@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premio de Qualidade 2026 - Poder Judiciario do Estado do Acre</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 80 80" width="50" height="50">
+                        <rect x="5" y="5" width="32" height="40" rx="3" fill="#7B1A2C"/>
+                        <rect x="43" y="5" width="32" height="40" rx="3" fill="#7B1A2C"/>
+                        <path d="M37 35 C37 20, 22 10, 22 25 C22 32, 30 38, 37 42" fill="none" stroke="white" stroke-width="3"/>
+                        <path d="M43 35 C43 20, 58 10, 58 25 C58 32, 50 38, 43 42" fill="none" stroke="white" stroke-width="3"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="logo-title">Premio de Qualidade 2026</h1>
+                    <p class="logo-subtitle">Poder Judiciario do Estado do Acre</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> Painel
+                </a>
+                <a href="#unidades" class="nav-link" data-section="unidades">
+                    <i class="fas fa-building"></i> Unidades
+                </a>
+                <a href="#criterios" class="nav-link" data-section="criterios">
+                    <i class="fas fa-list-check"></i> Criterios
+                </a>
+                <a href="#avaliacoes" class="nav-link" data-section="avaliacoes">
+                    <i class="fas fa-clipboard-check"></i> Avaliacoes
+                </a>
+                <a href="#ranking" class="nav-link" data-section="ranking">
+                    <i class="fas fa-trophy"></i> Ranking
+                </a>
+                <a href="#relatorios" class="nav-link" data-section="relatorios">
+                    <i class="fas fa-file-pdf"></i> Relatorios
+                </a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h2 class="section-title">Painel de Controle</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-building"></i></div>
+                        <div class="stat-value" id="totalUnidades">0</div>
+                        <div class="stat-label">Unidades Cadastradas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clipboard-check"></i></div>
+                        <div class="stat-value" id="totalAvaliacoes">0</div>
+                        <div class="stat-label">Avaliacoes Realizadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                        <div class="stat-value" id="mediaGeral">0.0</div>
+                        <div class="stat-label">Media Geral</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-value" id="avaliacoesPendentes">0</div>
+                        <div class="stat-label">Avaliacoes Pendentes</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> Desempenho por Criterio</h3>
+                        <div class="chart-container">
+                            <canvas id="chartCriterios"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-medal"></i> Top 5 Unidades</h3>
+                        <div id="topUnidades" class="top-list"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> Atividades Recentes</h3>
+                    <div id="atividadesRecentes" class="activity-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unidades -->
+        <section id="unidades" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Gestao de Unidades</h2>
+                    <button class="btn btn-primary" onclick="app.showModal('modalUnidade')">
+                        <i class="fas fa-plus"></i> Nova Unidade
+                    </button>
+                </div>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchUnidades" placeholder="Buscar unidade..." oninput="app.filterUnidades()">
+                </div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome da Unidade</th>
+                                <th>Comarca</th>
+                                <th>Tipo</th>
+                                <th>Responsavel</th>
+                                <th>Status</th>
+                                <th>Acoes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaUnidades"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Criterios -->
+        <section id="criterios" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Criterios de Avaliacao</h2>
+                    <button class="btn btn-primary" onclick="app.showModal('modalCriterio')">
+                        <i class="fas fa-plus"></i> Novo Criterio
+                    </button>
+                </div>
+                <div class="criterios-grid" id="listaCriterios"></div>
+            </div>
+        </section>
+
+        <!-- Avaliacoes -->
+        <section id="avaliacoes" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Avaliacoes</h2>
+                    <button class="btn btn-primary" onclick="app.iniciarAvaliacao()">
+                        <i class="fas fa-plus"></i> Nova Avaliacao
+                    </button>
+                </div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Unidade</th>
+                                <th>Data</th>
+                                <th>Avaliador</th>
+                                <th>Pontuacao</th>
+                                <th>Status</th>
+                                <th>Acoes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaAvaliacoes"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ranking -->
+        <section id="ranking" class="section">
+            <div class="container">
+                <h2 class="section-title">Ranking Geral</h2>
+                <div class="ranking-filters">
+                    <select id="filtroComarca" class="select" onchange="app.renderRanking()">
+                        <option value="">Todas as Comarcas</option>
+                    </select>
+                    <select id="filtroTipo" class="select" onchange="app.renderRanking()">
+                        <option value="">Todos os Tipos</option>
+                        <option value="Vara">Vara</option>
+                        <option value="Juizado">Juizado</option>
+                        <option value="Secretaria">Secretaria</option>
+                        <option value="Diretoria">Diretoria</option>
+                    </select>
+                </div>
+                <div id="rankingList" class="ranking-list"></div>
+            </div>
+        </section>
+
+        <!-- Relatorios -->
+        <section id="relatorios" class="section">
+            <div class="container">
+                <h2 class="section-title">Relatorios</h2>
+                <div class="reports-grid">
+                    <div class="report-card" onclick="app.gerarRelatorio('geral')">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Relatorio Geral</h4>
+                        <p>Visao completa de todas as avaliacoes e resultados</p>
+                    </div>
+                    <div class="report-card" onclick="app.gerarRelatorio('ranking')">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Relatorio de Ranking</h4>
+                        <p>Classificacao das unidades por pontuacao</p>
+                    </div>
+                    <div class="report-card" onclick="app.gerarRelatorio('criterios')">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>Analise por Criterio</h4>
+                        <p>Desempenho detalhado em cada criterio</p>
+                    </div>
+                    <div class="report-card" onclick="app.gerarRelatorio('comparativo')">
+                        <i class="fas fa-balance-scale"></i>
+                        <h4>Comparativo</h4>
+                        <p>Comparacao entre unidades e comarcas</p>
+                    </div>
+                </div>
+
+                <div id="relatorioOutput" class="card" style="display:none; margin-top: 2rem;">
+                    <div class="report-header">
+                        <h3 id="relatorioTitulo" class="card-title"></h3>
+                        <button class="btn btn-secondary" onclick="app.exportarCSV()">
+                            <i class="fas fa-download"></i> Exportar CSV
+                        </button>
+                    </div>
+                    <div id="relatorioConteudo"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Unidade -->
+    <div class="modal-overlay" id="modalUnidade">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalUnidadeTitulo">Nova Unidade</h3>
+                <button class="modal-close" onclick="app.hideModal('modalUnidade')">&times;</button>
+            </div>
+            <form id="formUnidade" onsubmit="app.salvarUnidade(event)">
+                <div class="form-group">
+                    <label>Nome da Unidade</label>
+                    <input type="text" id="unidadeNome" required class="input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Comarca</label>
+                        <input type="text" id="unidadeComarca" required class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select id="unidadeTipo" required class="select">
+                            <option value="">Selecione</option>
+                            <option value="Vara">Vara</option>
+                            <option value="Juizado">Juizado</option>
+                            <option value="Secretaria">Secretaria</option>
+                            <option value="Diretoria">Diretoria</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Responsavel</label>
+                    <input type="text" id="unidadeResponsavel" required class="input">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="unidadeEmail" class="input">
+                </div>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="tel" id="unidadeTelefone" class="input">
+                </div>
+                <input type="hidden" id="unidadeId">
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="app.hideModal('modalUnidade')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Criterio -->
+    <div class="modal-overlay" id="modalCriterio">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Novo Criterio</h3>
+                <button class="modal-close" onclick="app.hideModal('modalCriterio')">&times;</button>
+            </div>
+            <form onsubmit="app.salvarCriterio(event)">
+                <div class="form-group">
+                    <label>Nome do Criterio</label>
+                    <input type="text" id="criterioNome" required class="input">
+                </div>
+                <div class="form-group">
+                    <label>Descricao</label>
+                    <textarea id="criterioDescricao" required class="input textarea"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Peso (1-10)</label>
+                        <input type="number" id="criterioPeso" min="1" max="10" required class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Pontuacao Maxima</label>
+                        <input type="number" id="criterioMax" min="1" max="100" required class="input">
+                    </div>
+                </div>
+                <input type="hidden" id="criterioId">
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="app.hideModal('modalCriterio')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Avaliacao -->
+    <div class="modal-overlay" id="modalAvaliacao">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3>Nova Avaliacao</h3>
+                <button class="modal-close" onclick="app.hideModal('modalAvaliacao')">&times;</button>
+            </div>
+            <form onsubmit="app.salvarAvaliacao(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Unidade</label>
+                        <select id="avalUnidade" required class="select"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Avaliador</label>
+                        <input type="text" id="avalAvaliador" required class="input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Data da Avaliacao</label>
+                    <input type="date" id="avalData" required class="input">
+                </div>
+                <h4 style="margin: 1.5rem 0 1rem;">Pontuacao por Criterio</h4>
+                <div id="avalCriterios" class="avaliacao-criterios"></div>
+                <div class="form-group">
+                    <label>Observacoes</label>
+                    <textarea id="avalObs" class="input textarea"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="app.hideModal('modalAvaliacao')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Avaliacao</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Poder Judiciario do Estado do Acre - Premio de Qualidade 2026</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
