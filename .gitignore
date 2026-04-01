@@ -1,0 +1,24 @@
+# Ambiente Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Dados locais (não versionar dados brutos)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Credenciais
+.env
+
+# Notebooks com outputs
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
