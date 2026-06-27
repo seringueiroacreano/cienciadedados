@@ -1,0 +1,1783 @@
+{
+  "meta1Serie": [
+    {
+      "ano": 2004,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2005,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2006,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2009,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2010,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 3,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2011,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 2,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2012,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 9,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2013,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 8,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2014,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 12,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2015,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 28,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2016,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 40,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2016,
+      "grau": "JE",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2017,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 52,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2018,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 76,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2019,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 119,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2020,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 151,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2021,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 295,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2021,
+      "grau": "JE",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 3,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2022,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 583,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2022,
+      "grau": "JE",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 8,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2023,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 1167,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2023,
+      "grau": "G2",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 3,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2023,
+      "grau": "JE",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 16,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2024,
+      "grau": "G1",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 2792,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2024,
+      "grau": "G2",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 8,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2024,
+      "grau": "JE",
+      "casosNovos": 0,
+      "julgados": 0,
+      "pendentes": 58,
+      "indiceMeta1": null
+    },
+    {
+      "ano": 2025,
+      "grau": "G1",
+      "casosNovos": 419,
+      "julgados": 237,
+      "pendentes": 8534,
+      "indiceMeta1": 56.6
+    },
+    {
+      "ano": 2025,
+      "grau": "G2",
+      "casosNovos": 97,
+      "julgados": 307,
+      "pendentes": 355,
+      "indiceMeta1": 316.5
+    },
+    {
+      "ano": 2025,
+      "grau": "JE",
+      "casosNovos": 85,
+      "julgados": 89,
+      "pendentes": 490,
+      "indiceMeta1": 104.7
+    },
+    {
+      "ano": 2025,
+      "grau": "TR",
+      "casosNovos": 14,
+      "julgados": 0,
+      "pendentes": 32,
+      "indiceMeta1": 0.0
+    },
+    {
+      "ano": 2026,
+      "grau": "G1",
+      "casosNovos": 19025,
+      "julgados": 18622,
+      "pendentes": 0,
+      "indiceMeta1": 97.9
+    },
+    {
+      "ano": 2026,
+      "grau": "G2",
+      "casosNovos": 5207,
+      "julgados": 4673,
+      "pendentes": 0,
+      "indiceMeta1": 89.7
+    },
+    {
+      "ano": 2026,
+      "grau": "JE",
+      "casosNovos": 7757,
+      "julgados": 6629,
+      "pendentes": 0,
+      "indiceMeta1": 85.5
+    },
+    {
+      "ano": 2026,
+      "grau": "TR",
+      "casosNovos": 1184,
+      "julgados": 1810,
+      "pendentes": 0,
+      "indiceMeta1": 152.9
+    }
+  ],
+  "meta1Unidades": [
+    {
+      "unidade": "3º Juizado Especial Cível de Rio Branco",
+      "grau": "JE",
+      "casosNovos": 1297,
+      "julgados": 1126,
+      "indiceMeta1": 86.8
+    },
+    {
+      "unidade": "1º Juizado Especial Cível de Rio Branco",
+      "grau": "JE",
+      "casosNovos": 1194,
+      "julgados": 1040,
+      "indiceMeta1": 87.1
+    },
+    {
+      "unidade": "2º Juizado Especial Cível de Rio Branco",
+      "grau": "JE",
+      "casosNovos": 1146,
+      "julgados": 1034,
+      "indiceMeta1": 90.2
+    },
+    {
+      "unidade": "2ª Vara de Proteção à Mulher",
+      "grau": "G1",
+      "casosNovos": 894,
+      "julgados": 881,
+      "indiceMeta1": 98.5
+    },
+    {
+      "unidade": "Juizado Especial da Fazenda Pública E Rio Branco",
+      "grau": "JE",
+      "casosNovos": 970,
+      "julgados": 768,
+      "indiceMeta1": 79.2
+    },
+    {
+      "unidade": "Vara Cível de Tarauacá",
+      "grau": "G1",
+      "casosNovos": 1000,
+      "julgados": 702,
+      "indiceMeta1": 70.2
+    },
+    {
+      "unidade": "4ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 503,
+      "julgados": 1036,
+      "indiceMeta1": 206.0
+    },
+    {
+      "unidade": "1ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 750,
+      "julgados": 734,
+      "indiceMeta1": 97.9
+    },
+    {
+      "unidade": "Vara Cível de Feijó",
+      "grau": "G1",
+      "casosNovos": 735,
+      "julgados": 722,
+      "indiceMeta1": 98.2
+    },
+    {
+      "unidade": "3ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 692,
+      "julgados": 679,
+      "indiceMeta1": 98.1
+    },
+    {
+      "unidade": "2ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 707,
+      "julgados": 657,
+      "indiceMeta1": 92.9
+    },
+    {
+      "unidade": "1ª Vara de Proteção à Mulher de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 657,
+      "julgados": 683,
+      "indiceMeta1": 104.0
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial Cível de Cruzeiro do Sul",
+      "grau": "JE",
+      "casosNovos": 683,
+      "julgados": 634,
+      "indiceMeta1": 92.8
+    },
+    {
+      "unidade": "Gabinete da Desª. Waldirene Oliveira da Cruz Lima Cordeiro",
+      "grau": "G2",
+      "casosNovos": 635,
+      "julgados": 645,
+      "indiceMeta1": 101.6
+    },
+    {
+      "unidade": "Vara de Registros Públicos Órfãos e Sucessões e de Cartas Precatórias Cíveis de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 624,
+      "julgados": 629,
+      "indiceMeta1": 100.8
+    },
+    {
+      "unidade": "Gabinete do Des. Lois Carlos Arruda",
+      "grau": "G2",
+      "casosNovos": 612,
+      "julgados": 626,
+      "indiceMeta1": 102.3
+    },
+    {
+      "unidade": "Gabinete do Des. Elcio Sabo Mendes Júnior",
+      "grau": "G2",
+      "casosNovos": 605,
+      "julgados": 572,
+      "indiceMeta1": 94.5
+    },
+    {
+      "unidade": "Gabinete do Des. Júnior Alberto Ribeiro",
+      "grau": "G2",
+      "casosNovos": 607,
+      "julgados": 563,
+      "indiceMeta1": 92.8
+    },
+    {
+      "unidade": "1ª Vara Cível de Cruzeiro do Sul",
+      "grau": "G1",
+      "casosNovos": 683,
+      "julgados": 485,
+      "indiceMeta1": 71.0
+    },
+    {
+      "unidade": "2ª Vara da Infância e da Juventude de  Rio Branco",
+      "grau": "G1",
+      "casosNovos": 540,
+      "julgados": 627,
+      "indiceMeta1": 116.1
+    },
+    {
+      "unidade": "Gabinete do Des. Roberto Barros",
+      "grau": "G2",
+      "casosNovos": 596,
+      "julgados": 552,
+      "indiceMeta1": 92.6
+    },
+    {
+      "unidade": "3ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 604,
+      "julgados": 465,
+      "indiceMeta1": 77.0
+    },
+    {
+      "unidade": "5ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 505,
+      "julgados": 544,
+      "indiceMeta1": 107.7
+    },
+    {
+      "unidade": "Vara Cível de Sena Madureira",
+      "grau": "G1",
+      "casosNovos": 508,
+      "julgados": 498,
+      "indiceMeta1": 98.0
+    },
+    {
+      "unidade": "1ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 492,
+      "julgados": 496,
+      "indiceMeta1": 100.8
+    },
+    {
+      "unidade": "2ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 509,
+      "julgados": 471,
+      "indiceMeta1": 92.5
+    },
+    {
+      "unidade": "6ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 554,
+      "julgados": 411,
+      "indiceMeta1": 74.2
+    },
+    {
+      "unidade": "Juizado Especial Criminal de Rio Branco",
+      "grau": "JE",
+      "casosNovos": 500,
+      "julgados": 463,
+      "indiceMeta1": 92.6
+    },
+    {
+      "unidade": "Vara Cível de Brasiléia",
+      "grau": "G1",
+      "casosNovos": 510,
+      "julgados": 446,
+      "indiceMeta1": 87.5
+    },
+    {
+      "unidade": "Gabinete do Des. Luís Vitório Camolez",
+      "grau": "G2",
+      "casosNovos": 512,
+      "julgados": 375,
+      "indiceMeta1": 73.2
+    },
+    {
+      "unidade": "Gabinete do Des. Samoel Martins Evangelista",
+      "grau": "G2",
+      "casosNovos": 484,
+      "julgados": 368,
+      "indiceMeta1": 76.0
+    },
+    {
+      "unidade": "Gabinete da Desª. Denise Castelo Bonfim",
+      "grau": "G2",
+      "casosNovos": 458,
+      "julgados": 391,
+      "indiceMeta1": 85.4
+    },
+    {
+      "unidade": "2ª Vara Cível de Cruzeiro do Sul",
+      "grau": "G1",
+      "casosNovos": 521,
+      "julgados": 324,
+      "indiceMeta1": 62.2
+    },
+    {
+      "unidade": "Gabinete do Des. Francisco Djalma da Silva",
+      "grau": "G2",
+      "casosNovos": 448,
+      "julgados": 324,
+      "indiceMeta1": 72.3
+    },
+    {
+      "unidade": "Vara Única - Cível de Xapuri",
+      "grau": "G1",
+      "casosNovos": 452,
+      "julgados": 286,
+      "indiceMeta1": 63.3
+    },
+    {
+      "unidade": "Gabinete da Desª. Regina Célia Ferrari Longuini",
+      "grau": "G2",
+      "casosNovos": 178,
+      "julgados": 534,
+      "indiceMeta1": 300.0
+    },
+    {
+      "unidade": "Vara Cível de Senador Guiomard",
+      "grau": "G1",
+      "casosNovos": 347,
+      "julgados": 336,
+      "indiceMeta1": 96.8
+    },
+    {
+      "unidade": "Vara Única - Cível de Epitaciolândia",
+      "grau": "G1",
+      "casosNovos": 298,
+      "julgados": 332,
+      "indiceMeta1": 111.4
+    },
+    {
+      "unidade": "2ª TURMA RECURSAL",
+      "grau": "TR",
+      "casosNovos": 164,
+      "julgados": 379,
+      "indiceMeta1": 231.1
+    },
+    {
+      "unidade": "1ª TURMA RECURSAL",
+      "grau": "TR",
+      "casosNovos": 164,
+      "julgados": 375,
+      "indiceMeta1": 228.7
+    },
+    {
+      "unidade": "Vara Criminal de Tarauacá",
+      "grau": "G1",
+      "casosNovos": 251,
+      "julgados": 287,
+      "indiceMeta1": 114.3
+    },
+    {
+      "unidade": "1ª Vara da Fazenda Pública de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 345,
+      "julgados": 189,
+      "indiceMeta1": 54.8
+    },
+    {
+      "unidade": "Vara Única - Cível de Acrelândia",
+      "grau": "G1",
+      "casosNovos": 280,
+      "julgados": 214,
+      "indiceMeta1": 76.4
+    },
+    {
+      "unidade": "Vara Estadual do Juiz das Garantias",
+      "grau": "G1",
+      "casosNovos": 332,
+      "julgados": 152,
+      "indiceMeta1": 45.8
+    },
+    {
+      "unidade": "Vara Cível - Juizado Especial de Sena Madureira",
+      "grau": "JE",
+      "casosNovos": 235,
+      "julgados": 216,
+      "indiceMeta1": 91.9
+    },
+    {
+      "unidade": "Vara de Proteção à Mulher e Execuções Penais de Cruzeiro do Sul",
+      "grau": "G1",
+      "casosNovos": 248,
+      "julgados": 182,
+      "indiceMeta1": 73.4
+    },
+    {
+      "unidade": "Vara Única - Cível de Mâncio Lima",
+      "grau": "G1",
+      "casosNovos": 218,
+      "julgados": 179,
+      "indiceMeta1": 82.1
+    },
+    {
+      "unidade": "Vara da Infância e da Juventude de Cruzeiro do Sul",
+      "grau": "G1",
+      "casosNovos": 223,
+      "julgados": 172,
+      "indiceMeta1": 77.1
+    },
+    {
+      "unidade": "Vara Criminal de Feijó",
+      "grau": "G1",
+      "casosNovos": 164,
+      "julgados": 228,
+      "indiceMeta1": 139.0
+    },
+    {
+      "unidade": "Vara Única - Cível de Porto Acre",
+      "grau": "G1",
+      "casosNovos": 215,
+      "julgados": 168,
+      "indiceMeta1": 78.1
+    },
+    {
+      "unidade": "Vara Criminal de Sena Madureira",
+      "grau": "G1",
+      "casosNovos": 191,
+      "julgados": 188,
+      "indiceMeta1": 98.4
+    },
+    {
+      "unidade": "Vara Única - Cível de Plácido de Castro",
+      "grau": "G1",
+      "casosNovos": 209,
+      "julgados": 132,
+      "indiceMeta1": 63.2
+    },
+    {
+      "unidade": "2ª Vara de Fazenda Pública de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 192,
+      "julgados": 139,
+      "indiceMeta1": 72.4
+    },
+    {
+      "unidade": "Vara Única - Cível de Manoel Urbano",
+      "grau": "G1",
+      "casosNovos": 209,
+      "julgados": 116,
+      "indiceMeta1": 55.5
+    },
+    {
+      "unidade": "Vara de Delitos de Organizações Criminosas de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 80,
+      "julgados": 242,
+      "indiceMeta1": 302.5
+    },
+    {
+      "unidade": "3ª Vara Criminal de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 140,
+      "julgados": 180,
+      "indiceMeta1": 128.6
+    },
+    {
+      "unidade": "Vara Única - Cível de Bujari",
+      "grau": "G1",
+      "casosNovos": 192,
+      "julgados": 126,
+      "indiceMeta1": 65.6
+    },
+    {
+      "unidade": "Vara Única - Cível de Capixaba",
+      "grau": "G1",
+      "casosNovos": 152,
+      "julgados": 153,
+      "indiceMeta1": 100.7
+    },
+    {
+      "unidade": "1ª Vara da Infância e da Juventude de  Rio Branco",
+      "grau": "G1",
+      "casosNovos": 139,
+      "julgados": 159,
+      "indiceMeta1": 114.4
+    },
+    {
+      "unidade": "2ª Vara Criminal de Rio Branco",
+      "grau": "G1",
+      "casosNovos": 122,
+      "julgados": 173,
+      "indiceMeta1": 141.8
+    }
+  ],
+  "meta2Serie": [
+    {
+      "ano": 1979,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 1,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 1990,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 1991,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 1993,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 1994,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 1,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 1996,
+      "grau": "G1",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 1,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 1997,
+      "grau": "G1",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 2,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 1998,
+      "grau": "G1",
+      "distribuidos": 5,
+      "julgados": 0,
+      "distribuidosAntigos": 3,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 1999,
+      "grau": "G1",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 2,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2000,
+      "grau": "G1",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2001,
+      "grau": "G1",
+      "distribuidos": 3,
+      "julgados": 0,
+      "distribuidosAntigos": 1,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2002,
+      "grau": "G1",
+      "distribuidos": 9,
+      "julgados": 0,
+      "distribuidosAntigos": 4,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2003,
+      "grau": "G1",
+      "distribuidos": 7,
+      "julgados": 0,
+      "distribuidosAntigos": 4,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2004,
+      "grau": "G1",
+      "distribuidos": 5,
+      "julgados": 0,
+      "distribuidosAntigos": 3,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2005,
+      "grau": "G1",
+      "distribuidos": 11,
+      "julgados": 0,
+      "distribuidosAntigos": 8,
+      "julgadosAntigos": 1,
+      "indiceMeta2": 12.5
+    },
+    {
+      "ano": 2006,
+      "grau": "G1",
+      "distribuidos": 7,
+      "julgados": 0,
+      "distribuidosAntigos": 6,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2007,
+      "grau": "G1",
+      "distribuidos": 9,
+      "julgados": 0,
+      "distribuidosAntigos": 3,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2008,
+      "grau": "G1",
+      "distribuidos": 35,
+      "julgados": 0,
+      "distribuidosAntigos": 21,
+      "julgadosAntigos": 1,
+      "indiceMeta2": 4.8
+    },
+    {
+      "ano": 2008,
+      "grau": "JE",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 1,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2009,
+      "grau": "G1",
+      "distribuidos": 58,
+      "julgados": 0,
+      "distribuidosAntigos": 17,
+      "julgadosAntigos": 2,
+      "indiceMeta2": 11.8
+    },
+    {
+      "ano": 2009,
+      "grau": "JE",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2010,
+      "grau": "G1",
+      "distribuidos": 79,
+      "julgados": 0,
+      "distribuidosAntigos": 25,
+      "julgadosAntigos": 1,
+      "indiceMeta2": 4.0
+    },
+    {
+      "ano": 2010,
+      "grau": "JE",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2011,
+      "grau": "G1",
+      "distribuidos": 117,
+      "julgados": 0,
+      "distribuidosAntigos": 35,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2011,
+      "grau": "JE",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2011,
+      "grau": "TR",
+      "distribuidos": 7,
+      "julgados": 0,
+      "distribuidosAntigos": 6,
+      "julgadosAntigos": 0,
+      "indiceMeta2": 0.0
+    },
+    {
+      "ano": 2012,
+      "grau": "G1",
+      "distribuidos": 129,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2012,
+      "grau": "G2",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2012,
+      "grau": "TR",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2013,
+      "grau": "G1",
+      "distribuidos": 196,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2013,
+      "grau": "G2",
+      "distribuidos": 4,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2013,
+      "grau": "TR",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2014,
+      "grau": "G1",
+      "distribuidos": 222,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2014,
+      "grau": "G2",
+      "distribuidos": 3,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2014,
+      "grau": "JE",
+      "distribuidos": 2,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2015,
+      "grau": "G1",
+      "distribuidos": 289,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2015,
+      "grau": "JE",
+      "distribuidos": 6,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2016,
+      "grau": "G1",
+      "distribuidos": 445,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2016,
+      "grau": "G2",
+      "distribuidos": 1,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2016,
+      "grau": "JE",
+      "distribuidos": 12,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2016,
+      "grau": "TR",
+      "distribuidos": 3,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2017,
+      "grau": "G1",
+      "distribuidos": 739,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2017,
+      "grau": "G2",
+      "distribuidos": 5,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2017,
+      "grau": "JE",
+      "distribuidos": 74,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2017,
+      "grau": "TR",
+      "distribuidos": 14,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2018,
+      "grau": "G1",
+      "distribuidos": 1014,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2018,
+      "grau": "G2",
+      "distribuidos": 7,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2018,
+      "grau": "JE",
+      "distribuidos": 13,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2018,
+      "grau": "TR",
+      "distribuidos": 22,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2019,
+      "grau": "G1",
+      "distribuidos": 1950,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2019,
+      "grau": "G2",
+      "distribuidos": 3,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2019,
+      "grau": "JE",
+      "distribuidos": 69,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2020,
+      "grau": "G1",
+      "distribuidos": 2539,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2020,
+      "grau": "G2",
+      "distribuidos": 17,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2020,
+      "grau": "JE",
+      "distribuidos": 85,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2020,
+      "grau": "TR",
+      "distribuidos": 12,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2021,
+      "grau": "G1",
+      "distribuidos": 5812,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2021,
+      "grau": "G2",
+      "distribuidos": 108,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2021,
+      "grau": "JE",
+      "distribuidos": 373,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2021,
+      "grau": "TR",
+      "distribuidos": 130,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2022,
+      "grau": "G1",
+      "distribuidos": 14867,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 3,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2022,
+      "grau": "G2",
+      "distribuidos": 212,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2022,
+      "grau": "JE",
+      "distribuidos": 805,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2022,
+      "grau": "TR",
+      "distribuidos": 113,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2023,
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 14711,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 1,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2023,
+      "grau": "G2",
+      "distribuidos": 2587,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2023,
+      "grau": "JE",
+      "distribuidos": 6028,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2023,
+      "grau": "TR",
+      "distribuidos": 1073,
+      "julgados": 0,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2024,
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 7259,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 2,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2024,
+      "grau": "G2",
+      "distribuidos": 0,
+      "julgados": 2858,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2024,
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 6606,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2024,
+      "grau": "TR",
+      "distribuidos": 0,
+      "julgados": 1011,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2025,
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 3211,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 5,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2025,
+      "grau": "G2",
+      "distribuidos": 0,
+      "julgados": 69,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2025,
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 701,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2025,
+      "grau": "TR",
+      "distribuidos": 0,
+      "julgados": 91,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2026,
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 775,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 31,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2026,
+      "grau": "G2",
+      "distribuidos": 0,
+      "julgados": 3,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2026,
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 48,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 1,
+      "indiceMeta2": null
+    },
+    {
+      "ano": 2026,
+      "grau": "TR",
+      "distribuidos": 0,
+      "julgados": 33,
+      "distribuidosAntigos": 0,
+      "julgadosAntigos": 0,
+      "indiceMeta2": null
+    }
+  ],
+  "meta2Unidades": [
+    {
+      "unidade": "Vara Cível de Tarauacá",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 515
+    },
+    {
+      "unidade": "2ª Vara de Fazenda Pública de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 291
+    },
+    {
+      "unidade": "Vara Cível de Feijó",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 247
+    },
+    {
+      "unidade": "Vara Cível de Sena Madureira",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 223
+    },
+    {
+      "unidade": "2ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 194
+    },
+    {
+      "unidade": "Vara de Delitos de Organizações Criminosas de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 170
+    },
+    {
+      "unidade": "3ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 170
+    },
+    {
+      "unidade": "4ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 160
+    },
+    {
+      "unidade": "1ª Vara Cível de Cruzeiro do Sul",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 129
+    },
+    {
+      "unidade": "Juizado Especial da Fazenda Pública E Rio Branco",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 126
+    },
+    {
+      "unidade": "5ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 125
+    },
+    {
+      "unidade": "1ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 122
+    },
+    {
+      "unidade": "3ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 104
+    },
+    {
+      "unidade": "Vara de Registros Públicos Órfãos e Sucessões e de Cartas Precatórias Cíveis de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 90
+    },
+    {
+      "unidade": "Vara Criminal - Juizado Especial de Tarauacá",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 86
+    },
+    {
+      "unidade": "Vara Única - Cível de Acrelândia",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 85
+    },
+    {
+      "unidade": "Vara Criminal de Feijó",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 76
+    },
+    {
+      "unidade": "Vara Única - Cível de Epitaciolândia",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 71
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial Criminal de Acrelândia",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 71
+    },
+    {
+      "unidade": "Vara Única - Criminal de Acrelândia",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 69
+    },
+    {
+      "unidade": "1ª Vara Cível de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 69
+    },
+    {
+      "unidade": "2ª Vara Cível de Cruzeiro do Sul",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 66
+    },
+    {
+      "unidade": "Vara Cível - Juizado Especial de Sena Madureira",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 60
+    },
+    {
+      "unidade": "Vara Única - Cível de Xapuri",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 58
+    },
+    {
+      "unidade": "Vara de Execução Fiscal de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 56
+    },
+    {
+      "unidade": "Vara Criminal de Tarauacá",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 55
+    },
+    {
+      "unidade": "Vara Única - Cível de Mâncio Lima",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 52
+    },
+    {
+      "unidade": "Vara Cível de Brasiléia",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 51
+    },
+    {
+      "unidade": "Vara Cível de Senador Guiomard",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 51
+    },
+    {
+      "unidade": "2ª Vara de Família de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 46
+    },
+    {
+      "unidade": "Vara Única - Cível de Santa Rosa do Purus",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 45
+    },
+    {
+      "unidade": "Vara Única - Cível de Manoel Urbano",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 44
+    },
+    {
+      "unidade": "Vara Única - Cível de Plácido de Castro",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 42
+    },
+    {
+      "unidade": "2ª Vara Criminal de Cruzeiro do Sul",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 40
+    },
+    {
+      "unidade": "Juizado Especial Criminal de Cruzeiro do Sul",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 40
+    },
+    {
+      "unidade": "Juizado Especial Criminal de Rio Branco",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 37
+    },
+    {
+      "unidade": "Gabinete do Juiz de Direito Marcelo Coelho de Carvalho",
+      "grau": "TR",
+      "distribuidos": 0,
+      "julgados": 33
+    },
+    {
+      "unidade": "Vara Criminal - Juizado Especial de Feijó",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 32
+    },
+    {
+      "unidade": "Vara Única - Criminal de Mâncio Lima",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 30
+    },
+    {
+      "unidade": "Vara Única - Cível de Bujari",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 30
+    },
+    {
+      "unidade": "Vara de Proteção à Mulher e Execuções Penais de Cruzeiro do Sul",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 30
+    },
+    {
+      "unidade": "Vara Cível - Juizado Especial de Tarauacá",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 27
+    },
+    {
+      "unidade": "3ª Vara Criminal de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 27
+    },
+    {
+      "unidade": "2ª Vara da Infância e da Juventude de  Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 27
+    },
+    {
+      "unidade": "Gabinete da Desª. Regina Célia Ferrari Longuini",
+      "grau": "G2",
+      "distribuidos": 0,
+      "julgados": 27
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial da Fazenda Pública de Tarauacá",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 24
+    },
+    {
+      "unidade": "Vara Única - Cível de Porto Acre",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 24
+    },
+    {
+      "unidade": "Vara Criminal de Senador Guiomard",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 23
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial Cível de Cruzeiro do Sul",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 22
+    },
+    {
+      "unidade": "2ª Vara Criminal de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 20
+    },
+    {
+      "unidade": "1ª Vara Criminal de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 20
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial Cível de Mâncio Lima",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 19
+    },
+    {
+      "unidade": "1ª Vara da Fazenda Pública de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 17
+    },
+    {
+      "unidade": "Gabinete do Juiz de Direito Clovis de Souza Lodi",
+      "grau": "TR",
+      "distribuidos": 0,
+      "julgados": 17
+    },
+    {
+      "unidade": "Vara Única - Criminal de Manoel Urbano",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 17
+    },
+    {
+      "unidade": "Vara Única - Juizado Especial de Fazenda Pública de Cruzeiro do Sul",
+      "grau": "JE",
+      "distribuidos": 0,
+      "julgados": 17
+    },
+    {
+      "unidade": "1ª Vara de Proteção à Mulher de Rio Branco",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 17
+    },
+    {
+      "unidade": "Vara Criminal de Brasileia",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 16
+    },
+    {
+      "unidade": "1ª Vara Criminal de Cruzeiro do Sul",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 16
+    },
+    {
+      "unidade": "Vara Criminal de Sena Madureira",
+      "grau": "G1",
+      "distribuidos": 0,
+      "julgados": 16
+    }
+  ],
+  "geradoEm": "2026-06-27T07:13:49.191213"
+}
