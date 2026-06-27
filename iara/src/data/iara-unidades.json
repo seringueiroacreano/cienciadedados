@@ -1,0 +1,907 @@
+[
+  {
+    "unidade": "1ª TURMA RECURSAL",
+    "grau": "TR",
+    "arquivos": "2350"
+  },
+  {
+    "unidade": "1ª VARA CÍVEL DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "7901"
+  },
+  {
+    "unidade": "1ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "10143"
+  },
+  {
+    "unidade": "1ª VARA CRIMINAL DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "2322"
+  },
+  {
+    "unidade": "1ª VARA CRIMINAL DE CRUZEIRO DO SUL",
+    "grau": "JE",
+    "arquivos": "1631"
+  },
+  {
+    "unidade": "1ª VARA CRIMINAL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "4231"
+  },
+  {
+    "unidade": "1ª VARA DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "5798"
+  },
+  {
+    "unidade": "1ª VARA DA INFÂNCIA E DA JUVENTUDE DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "5661"
+  },
+  {
+    "unidade": "1ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "12290"
+  },
+  {
+    "unidade": "1ª VARA DE PROTEÇÃO À MULHER DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "17884"
+  },
+  {
+    "unidade": "1ª VARA DO TRIBUNAL DO JÚRI DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "1490"
+  },
+  {
+    "unidade": "1CÂMARA CÍVEL",
+    "grau": "G2",
+    "arquivos": "1568"
+  },
+  {
+    "unidade": "1º IZADO ESPECIAL CRIMINAL DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "1492"
+  },
+  {
+    "unidade": "1º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "1º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "21107"
+  },
+  {
+    "unidade": "2ª TURMA RECURSAL",
+    "grau": "TR",
+    "arquivos": "1838"
+  },
+  {
+    "unidade": "2ª VARA CÍVEL DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "9924"
+  },
+  {
+    "unidade": "2ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "10719"
+  },
+  {
+    "unidade": "2ª VARA CRIMINAL DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "2743"
+  },
+  {
+    "unidade": "2ª VARA CRIMINAL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "3763"
+  },
+  {
+    "unidade": "2ª VARA DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "6655"
+  },
+  {
+    "unidade": "2ª VARA DA INFÂNCIA E DA JUVENTUDE DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "7199"
+  },
+  {
+    "unidade": "2ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "12020"
+  },
+  {
+    "unidade": "2ª VARA DE PROTEÇÃO À MULHER DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "5929"
+  },
+  {
+    "unidade": "2ª VARA DO TRIBUNAL DO JÚRI E AUDITORIA MILITAR DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "1252"
+  },
+  {
+    "unidade": "2ª VARA DO TRIBUNAL DO JÚRI E AUDITORIA MILITAR DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "5"
+  },
+  {
+    "unidade": "2CÂMARA CÍVEL",
+    "grau": "G2",
+    "arquivos": "1539"
+  },
+  {
+    "unidade": "2º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "21709"
+  },
+  {
+    "unidade": "3ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "9985"
+  },
+  {
+    "unidade": "3ª VARA CRIMINAL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "4506"
+  },
+  {
+    "unidade": "3ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "29566"
+  },
+  {
+    "unidade": "3º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "22240"
+  },
+  {
+    "unidade": "4ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "9941"
+  },
+  {
+    "unidade": "5ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "9596"
+  },
+  {
+    "unidade": "6ª VARA CÍVEL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "5250"
+  },
+  {
+    "unidade": "CÂMARA CRIMINAL",
+    "grau": "G2",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRAL DE EXECUÇÕES DE PENAS ALTERNATIVAS",
+    "grau": "G1",
+    "arquivos": "5"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE ASSIS BRASIL",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE BRASILEIA",
+    "grau": "JE",
+    "arquivos": "2"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE BUJARI",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE BUJARI",
+    "grau": "JE",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE CAPIXABA",
+    "grau": "G1",
+    "arquivos": "24"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE CAPIXABA",
+    "grau": "JE",
+    "arquivos": "25"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE EPITACIOLÂNDIA",
+    "grau": "JE",
+    "arquivos": "4"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE FEIJÓ",
+    "grau": "JE",
+    "arquivos": "31"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE JORDAO",
+    "grau": "JE",
+    "arquivos": "4"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MANOEL URBANO",
+    "grau": "JE",
+    "arquivos": "29"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MARECHAL THAUMATURGO",
+    "grau": "G1",
+    "arquivos": "8"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MARECHAL THAUMATURGO",
+    "grau": "JE",
+    "arquivos": "12"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PLÁCIDO DE CASTRO",
+    "grau": "JE",
+    "arquivos": "177"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PORTO ACRE",
+    "grau": "G1",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PORTO ACRE",
+    "grau": "JE",
+    "arquivos": "5"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PORTO WALTER",
+    "grau": "G1",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SANTA ROSA",
+    "grau": "G1",
+    "arquivos": "11"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SANTA ROSA",
+    "grau": "JE",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENA MADUREIRA",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENA MADUREIRA",
+    "grau": "JE",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENADOR GUIOMARD",
+    "grau": "G1",
+    "arquivos": "115"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENADOR GUIOMARD",
+    "grau": "JE",
+    "arquivos": "64"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE TARAUACÁ",
+    "grau": "G1",
+    "arquivos": "14"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE TARAUACÁ",
+    "grau": "JE",
+    "arquivos": "160"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE XAPURI",
+    "grau": "JE",
+    "arquivos": "23"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - FAMÍLIA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "880"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - FAMÍLIA DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "935"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - JEC DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - JEC DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "2649"
+  },
+  {
+    "unidade": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA DE ACRELÂNDIA",
+    "grau": "JE",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "GABINETE DA JUIZA ADAMARCIA MACHADO NASCIMENTO",
+    "grau": "TR",
+    "arquivos": "1165"
+  },
+  {
+    "unidade": "GABINETE DA JUIZA CAROLINA ALVARES BRAGANCA",
+    "grau": "TR",
+    "arquivos": "10"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA EVELIN CAMPOS CERQUEIRA BUENO",
+    "grau": "TR",
+    "arquivos": "1364"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA LILIAN DEISE BRAGA PAIVA",
+    "grau": "G2",
+    "arquivos": "12"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA LILIAN DEISE BRAGA PAIVA",
+    "grau": "TR",
+    "arquivos": "2401"
+  },
+  {
+    "unidade": "Gabinete da Juíza Luana Cláudia de Albuquerque Campos",
+    "grau": "TR",
+    "arquivos": "1451"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA MAHA KOUZI MANASFI E MANASFI",
+    "grau": "TR",
+    "arquivos": "1889"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA MARIA ROSINETE DOS REIS SILVA",
+    "grau": "TR",
+    "arquivos": "134"
+  },
+  {
+    "unidade": "GABINETE DA JUIZA MIRLA REGINA DA SILVA CUTRIM",
+    "grau": "TR",
+    "arquivos": "198"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA OLIVIA MARIA ALVES RIBEIRO",
+    "grau": "G2",
+    "arquivos": "286"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA OLIVIA MARIA ALVES RIBEIRO",
+    "grau": "TR",
+    "arquivos": "891"
+  },
+  {
+    "unidade": "GABINETE DA JUIZA ROGERIA JOSE EPAMINONDAS",
+    "grau": "G2",
+    "arquivos": "8"
+  },
+  {
+    "unidade": "GABINETE DA JUIZA ROGERIA JOSE EPAMINONDAS",
+    "grau": "TR",
+    "arquivos": "1035"
+  },
+  {
+    "unidade": "Gabinete da Juíza Thais Queiroz Borges de Oliveira Abou Khalil",
+    "grau": "TR",
+    "arquivos": "1244"
+  },
+  {
+    "unidade": "GABINETE DA JUÍZA ZENICE MOTA CARDOZO",
+    "grau": "TR",
+    "arquivos": "110"
+  },
+  {
+    "unidade": "GABINETE DA PRESIDÊNCIA",
+    "grau": "G2",
+    "arquivos": "9"
+  },
+  {
+    "unidade": "Gabinete da Vice-Presidência",
+    "grau": "G2",
+    "arquivos": "6625"
+  },
+  {
+    "unidade": "GABINETE DO DES. ELCIO SABO MENDES JÚNIOR",
+    "grau": "G2",
+    "arquivos": "2480"
+  },
+  {
+    "unidade": "GABINETE DO DES. FRANCISCO DJALMA DA SILVA",
+    "grau": "G2",
+    "arquivos": "3908"
+  },
+  {
+    "unidade": "GABINETE DO DES. JÚNIOR ALBERTO RIBEIRO",
+    "grau": "G2",
+    "arquivos": "4468"
+  },
+  {
+    "unidade": "GABINETE DO DES. LAUDIVON DE OLIVEIRA NOGUEIRA",
+    "grau": "G2",
+    "arquivos": "2730"
+  },
+  {
+    "unidade": "GABINETE DO DES. LOIS CARLOS ARRUDA",
+    "grau": "G2",
+    "arquivos": "2313"
+  },
+  {
+    "unidade": "GABINETE DO DES. LUÍS VITÓRIO CAMOLEZ",
+    "grau": "G2",
+    "arquivos": "2823"
+  },
+  {
+    "unidade": "GABINETE DO DES. PEDRO RANZI",
+    "grau": "G2",
+    "arquivos": "1626"
+  },
+  {
+    "unidade": "Gabinete do Des. Raimundo Nonato da Costa Maia",
+    "grau": "G2",
+    "arquivos": "1588"
+  },
+  {
+    "unidade": "GABINETE DO DES. ROBERTO BARROS DOS SANTOS",
+    "grau": "G2",
+    "arquivos": "4187"
+  },
+  {
+    "unidade": "GABINETE DO DES. SAMOEL MARTINS EVANGELISTA",
+    "grau": "G2",
+    "arquivos": "3597"
+  },
+  {
+    "unidade": "GABINETE DO DES.ª DENISE CASTELO BONFIM",
+    "grau": "G2",
+    "arquivos": "4984"
+  },
+  {
+    "unidade": "GABINETE DO DES.ª EVA EVANGELISTA DE ARAÚJO SOUZA",
+    "grau": "G2",
+    "arquivos": "2858"
+  },
+  {
+    "unidade": "GABINETE DO DES.ª REGINA CÉLIA FERRARI LONGUINI",
+    "grau": "G2",
+    "arquivos": "1997"
+  },
+  {
+    "unidade": "GABINETE DO DES.ª WALDIRENE OLIVEIRA DA CRUZ LIMA CORDEIRO",
+    "grau": "G2",
+    "arquivos": "4064"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ ALESSON JOSÉ SANTOS BRAZ",
+    "grau": "TR",
+    "arquivos": "65"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ ANASTÁCIO LIMA DE MENEZES FILHO",
+    "grau": "G2",
+    "arquivos": "2"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ ANASTÁCIO LIMA DE MENEZES FILHO",
+    "grau": "TR",
+    "arquivos": "880"
+  },
+  {
+    "unidade": "Gabinete do Juiz Cloves Augusto Alves Cabral Ferreira",
+    "grau": "TR",
+    "arquivos": "2488"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ DANNIEL GUSTAVO BOMFIM ARAÚJO DA SILVA",
+    "grau": "G2",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ DANNIEL GUSTAVO BOMFIM ARAÚJO DA SILVA",
+    "grau": "TR",
+    "arquivos": "1504"
+  },
+  {
+    "unidade": "GABINETE DO JUÍZ FERNANDO NÓBREGA DA SILVA",
+    "grau": "TR",
+    "arquivos": "158"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ GILBERTO MATOS DE  ARAÚJO",
+    "grau": "TR",
+    "arquivos": "607"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ GIORDANE DE SOUZA DOURADO",
+    "grau": "G2",
+    "arquivos": "7"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ GIORDANE DE SOUZA DOURADO",
+    "grau": "TR",
+    "arquivos": "774"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ HUGO BARBOSA TORQUATO FERREIRA",
+    "grau": "G2",
+    "arquivos": "3"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ HUGO BARBOSA TORQUATO FERREIRA",
+    "grau": "TR",
+    "arquivos": "828"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ JOSÉ AUGUSTO CUNHA FONTES DA SILVA",
+    "grau": "TR",
+    "arquivos": "888"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ JOSÉ WAGNER FREITAS PEDROSA ALCÂNTARA",
+    "grau": "TR",
+    "arquivos": "1776"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ MARCELO BADARÓ DUARTE",
+    "grau": "TR",
+    "arquivos": "357"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ MARCELO COELHO DE CARVALHO",
+    "grau": "TR",
+    "arquivos": "2146"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ MARCOS THADEU DE ANDRADE MATIAS",
+    "grau": "TR",
+    "arquivos": "43"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ MARLON MARTINS MACHADO",
+    "grau": "TR",
+    "arquivos": "263"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ RAIMUNDO NONATO DA COSTA MAIA",
+    "grau": "TR",
+    "arquivos": "1083"
+  },
+  {
+    "unidade": "GABINETE DO JUIZ ROBSON RIBEIRO ALEIXO",
+    "grau": "TR",
+    "arquivos": "1982"
+  },
+  {
+    "unidade": "GABINETE DO SHIRLEI DE OLIVEIRA HAGE MENEZES",
+    "grau": "TR",
+    "arquivos": "58"
+  },
+  {
+    "unidade": "JUIZADO ESPECIAL CÍVEL E DE FAZENDA PÚBLICA DE CRUZEIRO DO SUL",
+    "grau": "JE",
+    "arquivos": "14889"
+  },
+  {
+    "unidade": "JUIZADO ESPECIAL CRIMINAL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "2"
+  },
+  {
+    "unidade": "JUIZADO ESPECIAL CRIMINAL DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "6275"
+  },
+  {
+    "unidade": "JUIZADO ESPECIAL DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "JUIZADO ESPECIAL DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "grau": "JE",
+    "arquivos": "17905"
+  },
+  {
+    "unidade": "VARA CÍVEL DE BRASILÉIA",
+    "grau": "G1",
+    "arquivos": "7724"
+  },
+  {
+    "unidade": "VARA CÍVEL DE BRASILÉIA",
+    "grau": "JE",
+    "arquivos": "3453"
+  },
+  {
+    "unidade": "VARA CÍVEL DE FEIJÓ",
+    "grau": "G1",
+    "arquivos": "13128"
+  },
+  {
+    "unidade": "VARA CÍVEL DE FEIJÓ",
+    "grau": "JE",
+    "arquivos": "1917"
+  },
+  {
+    "unidade": "VARA CÍVEL DE SENA MADUREIRA",
+    "grau": "G1",
+    "arquivos": "9941"
+  },
+  {
+    "unidade": "VARA CÍVEL DE SENA MADUREIRA",
+    "grau": "JE",
+    "arquivos": "5112"
+  },
+  {
+    "unidade": "VARA CÍVEL DE SENADOR GUIOMARD",
+    "grau": "G1",
+    "arquivos": "6187"
+  },
+  {
+    "unidade": "VARA CÍVEL DE SENADOR GUIOMARD",
+    "grau": "JE",
+    "arquivos": "3214"
+  },
+  {
+    "unidade": "VARA CÍVEL DE TARAUACÁ",
+    "grau": "G1",
+    "arquivos": "14108"
+  },
+  {
+    "unidade": "VARA CÍVEL DE TARAUACÁ",
+    "grau": "JE",
+    "arquivos": "4530"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE BRASILÉIA",
+    "grau": "G1",
+    "arquivos": "2534"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE BRASILÉIA",
+    "grau": "JE",
+    "arquivos": "578"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE FEIJÓ",
+    "grau": "G1",
+    "arquivos": "3188"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE FEIJÓ",
+    "grau": "JE",
+    "arquivos": "879"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE SENA MADUREIRA",
+    "grau": "G1",
+    "arquivos": "3870"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE SENA MADUREIRA",
+    "grau": "JE",
+    "arquivos": "702"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE SENADOR GUIOMARD",
+    "grau": "G1",
+    "arquivos": "2476"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE SENADOR GUIOMARD",
+    "grau": "JE",
+    "arquivos": "751"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE TARAUACÁ",
+    "grau": "G1",
+    "arquivos": "4555"
+  },
+  {
+    "unidade": "VARA CRIMINAL DE TARAUACÁ",
+    "grau": "JE",
+    "arquivos": "1059"
+  },
+  {
+    "unidade": "VARA DA INFÂNCIA E JUVENTUDE DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "2673"
+  },
+  {
+    "unidade": "VARA DE DELITOS DE ORGANIZAÇÕES CRIMINOSAS DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "3959"
+  },
+  {
+    "unidade": "VARA DE DELITOS DE ROUBOS E EXTORSÃO DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "2971"
+  },
+  {
+    "unidade": "VARA DE EXECUÇÃO DE PENAS NO REGIME FECHADO",
+    "grau": "G1",
+    "arquivos": "13"
+  },
+  {
+    "unidade": "VARA DE EXECUÇÃO FISCAL DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "17699"
+  },
+  {
+    "unidade": "VARA DE EXECUÇÕES PENAS E MEDIDAS ALTERNATIVAS DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "91"
+  },
+  {
+    "unidade": "VARA DE ÓRFÃOS E SUCESSÕES",
+    "grau": "G1",
+    "arquivos": "31"
+  },
+  {
+    "unidade": "VARA DE PLANTÃO DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "1"
+  },
+  {
+    "unidade": "VARA DE PLANTÃO DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "15"
+  },
+  {
+    "unidade": "VARA DE PROTEÇÃO À MULHER E EXECUÇÕES PENAIS DE CRUZEIRO DO SUL",
+    "grau": "G1",
+    "arquivos": "4707"
+  },
+  {
+    "unidade": "VARA DE REGISTROS PÚBLICOS  ÓRFÃOS E SUCESSÕES E DE CARTAS PRECATÓRIAS CÍVEIS DE RIO BRANCO",
+    "grau": "G1",
+    "arquivos": "9104"
+  },
+  {
+    "unidade": "VARA ESTADUAL DO JUIZ DAS GARANTIAS",
+    "grau": "G1",
+    "arquivos": "757"
+  },
+  {
+    "unidade": "VARA ÚNICA DE ACRELÂNDIA",
+    "grau": "G1",
+    "arquivos": "6047"
+  },
+  {
+    "unidade": "VARA ÚNICA DE ACRELÂNDIA",
+    "grau": "JE",
+    "arquivos": "1353"
+  },
+  {
+    "unidade": "VARA ÚNICA DE ASSIS BRASIL",
+    "grau": "G1",
+    "arquivos": "2845"
+  },
+  {
+    "unidade": "VARA ÚNICA DE ASSIS BRASIL",
+    "grau": "JE",
+    "arquivos": "918"
+  },
+  {
+    "unidade": "VARA ÚNICA DE BUJARI",
+    "grau": "G1",
+    "arquivos": "4274"
+  },
+  {
+    "unidade": "VARA ÚNICA DE BUJARI",
+    "grau": "JE",
+    "arquivos": "1540"
+  },
+  {
+    "unidade": "VARA ÚNICA DE CAPIXABA",
+    "grau": "G1",
+    "arquivos": "3063"
+  },
+  {
+    "unidade": "VARA ÚNICA DE CAPIXABA",
+    "grau": "JE",
+    "arquivos": "1060"
+  },
+  {
+    "unidade": "VARA ÚNICA DE EPITACIOLÂNDIA",
+    "grau": "G1",
+    "arquivos": "7776"
+  },
+  {
+    "unidade": "VARA ÚNICA DE EPITACIOLÂNDIA",
+    "grau": "JE",
+    "arquivos": "2697"
+  },
+  {
+    "unidade": "VARA ÚNICA DE MÂNCIO LIMA",
+    "grau": "G1",
+    "arquivos": "5255"
+  },
+  {
+    "unidade": "VARA ÚNICA DE MÂNCIO LIMA",
+    "grau": "JE",
+    "arquivos": "2435"
+  },
+  {
+    "unidade": "VARA ÚNICA DE MANOEL URBANO",
+    "grau": "G1",
+    "arquivos": "4212"
+  },
+  {
+    "unidade": "VARA ÚNICA DE MANOEL URBANO",
+    "grau": "JE",
+    "arquivos": "2039"
+  },
+  {
+    "unidade": "VARA ÚNICA DE PLÁCIDO DE CASTRO",
+    "grau": "G1",
+    "arquivos": "4577"
+  },
+  {
+    "unidade": "VARA ÚNICA DE PLÁCIDO DE CASTRO",
+    "grau": "JE",
+    "arquivos": "1911"
+  },
+  {
+    "unidade": "VARA ÚNICA DE PORTO ACRE",
+    "grau": "G1",
+    "arquivos": "3110"
+  },
+  {
+    "unidade": "VARA ÚNICA DE PORTO ACRE",
+    "grau": "JE",
+    "arquivos": "826"
+  },
+  {
+    "unidade": "VARA ÚNICA DE RODRIGUES ALVES",
+    "grau": "G1",
+    "arquivos": "2736"
+  },
+  {
+    "unidade": "VARA ÚNICA DE RODRIGUES ALVES",
+    "grau": "JE",
+    "arquivos": "1258"
+  },
+  {
+    "unidade": "VARA ÚNICA DE XAPURI",
+    "grau": "G1",
+    "arquivos": "8952"
+  },
+  {
+    "unidade": "VARA ÚNICA DE XAPURI",
+    "grau": "JE",
+    "arquivos": "5765"
+  },
+  {
+    "unidade": "-",
+    "grau": "TR",
+    "arquivos": "298"
+  },
+  {
+    "unidade": "-",
+    "grau": "TR",
+    "arquivos": "351"
+  }
+]
