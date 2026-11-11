@@ -10,6 +10,10 @@ se estiver ativado). A página busca a base, lista as unidades para marcar e bai
 Ela lembra a meta e as unidades marcadas na vez anterior.
 `web/pagina.html` é a fonte; `index.html` é a mesma página com o cabeçalho HTML.
 
+Onde a página não pode acessar o TJAC (por exemplo, publicada como artefato do Claude),
+ela lê uma cópia da base publicada junto, em `dados/`. `python web/gerar_copia.py PASTA`
+baixa as metas e gera essa cópia; a página mostra a data da base que está usando.
+
 ## Linha de comando (Python)
 
 ### Instalação (uma vez)

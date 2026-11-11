@@ -166,8 +166,8 @@ tfoot td { font-weight: 600; border-bottom: 0; }
     return { cabecalho: linhas[0] || [], linhas: linhas.slice(1) };
   }
 
-  function carregar(texto, origem) {
-    const { cabecalho, linhas } = lerCSV(texto);
+  function carregar(texto, origem) { const t = lerCSV(texto); carregarTabela(t.cabecalho, t.linhas, origem); }
+  function carregarTabela(cabecalho, linhas, origem) {
     const col = {}; cabecalho.forEach((c, i) => col[c.trim()] = i);
     if (col.nome_orgao_julgador === undefined) {
       status("base", `O arquivo não tem a coluna “nome_orgao_julgador”. Colunas encontradas: ${cabecalho.join(", ").slice(0, 200)}`, "err");
@@ -184,12 +184,50 @@ tfoot td { font-weight: 600; border-bottom: 0; }
     desenharUnidades(); atualizarResumo();
   }
 
+  /* ---------- cópia da base publicada junto com a página (quando existe) ---------- */
+  const dataBR = iso => { const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }); };
+  async function lerManifesto() {
+    try {
+      const r = await fetch("dados/manifest.json", { cache: "no-store" });
+      if (r.ok) { const m = await r.json(); if (m && m.metas) estado.copia = m; }
+    } catch (e) {}
+  }
+  async function buscarCopia(meta, vez) {
+    const info = estado.copia.metas[meta], barra = $("barra"), fio = barra.firstElementChild;
+    try {
+      status("base", `Carregando a base da Meta ${meta}…`);
+      let cabecalho = [], linhas = [];
+      for (let k = 0; k < info.partes.length; k++) {
+        const resp = await fetch(info.partes[k], { cache: "no-store" });
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        const parte = await resp.json();
+        if (vez !== buscaAtual) return;
+        cabecalho = parte.cabecalho;
+        const cols = parte.colunas.map(c => c.v || { d: c.d, i: c.i });
+        for (let r = 0; r < parte.linhas; r++) {
+          const linha = new Array(cols.length);
+          for (let c = 0; c < cols.length; c++) { const col = cols[c]; linha[c] = Array.isArray(col) ? col[r] : col.d[col.i[r]]; }
+          linhas.push(linha);
+        }
+        fio.style.width = ((k + 1) / info.partes.length * 100) + "%";
+      }
+      barra.hidden = true; $("buscar").disabled = false;
+      carregarTabela(cabecalho, linhas, `base que o TJAC publicou em ${dataBR(info.atualizado)}`);
+    } catch (e) {
+      if (vez !== buscaAtual) return;
+      barra.hidden = true; $("buscar").disabled = false;
+      status("base", "Não foi possível carregar a base. Use o caminho manual abaixo.", "err");
+      $("manual").hidden = false;
+    }
+  }
+
   /* ---------- busca na rede ---------- */
   let buscaAtual = 0;
   async function buscar() {
     const meta = estado.meta, vez = ++buscaAtual;
     $("buscar").disabled = true; $("manual").hidden = true;
     const barra = $("barra"), fio = barra.firstElementChild; barra.hidden = false; fio.style.width = "0";
+    if (estado.copia && estado.copia.metas[meta]) return buscarCopia(meta, vez);
     let erro;
     for (let tentativa = 1; tentativa <= 4; tentativa++) {
       try {
@@ -357,6 +395,6 @@ tfoot td { font-weight: 600; border-bottom: 0; }
     carregar(await f.text(), "arquivo " + f.name);
   });
   $("baixar").addEventListener("click", baixar);
-  buscar();
+  lerManifesto().then(buscar);
 })();
 </script>
