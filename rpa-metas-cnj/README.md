@@ -4,12 +4,20 @@ Faz com um comando o que o vídeo mostra em ~1min40 de cliques: baixar a base da
 no painel de estatística, filtrar a unidade judiciária e separar
 Casos Novos / Julgados / Pendentes / Suspensos em abas de um Excel.
 
-## Instalação (uma vez)
+## Jeito mais fácil: página web (sem instalar nada)
+Abra `index.html` no navegador (duplo clique no arquivo, ou o endereço do GitHub Pages
+se estiver ativado). A página busca a base, lista as unidades para marcar e baixa o Excel.
+Ela lembra a meta e as unidades marcadas na vez anterior.
+`web/pagina.html` é a fonte; `index.html` é a mesma página com o cabeçalho HTML.
+
+## Linha de comando (Python)
+
+### Instalação (uma vez)
 ```bash
 pip install -r requirements.txt
 ```
 
-## Uso
+### Uso
 ```bash
 # uma unidade (trecho do nome, sem se preocupar com acento/maiúscula)
 python extrair_meta.py --unidade "1ª Vara Cível de Cruzeiro do Sul"

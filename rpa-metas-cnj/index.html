@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="margin:0">
+<title>Extrator de Metas TJAC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: uma coluna estreita em três passos (meta -> unidades -> Excel); o resumo por variável imita a tabela do painel. */
+:root {
+  --bg: #f2f5fb; --surface: #ffffff; --ink: #14213d; --muted: #5a6781; --line: #d3dbea;
+  --accent: #1f5fd6; --accent-ink: #ffffff; --accent-soft: #e4ecfc;
+  --ok: #17734a; --warn: #9a5b00; --warn-soft: #fdf1da; --err: #b3261e;
+  --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1422; --surface: #161f31; --ink: #e8edf7; --muted: #9ba8c0; --line: #2a364f;
+    --accent: #77a4ff; --accent-ink: #0d1422; --accent-soft: #1d2b4a;
+    --ok: #5fd39a; --warn: #f0b95a; --warn-soft: #33290f; --err: #ff8a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1422; --surface: #161f31; --ink: #e8edf7; --muted: #9ba8c0; --line: #2a364f;
+  --accent: #77a4ff; --accent-ink: #0d1422; --accent-soft: #1d2b4a;
+  --ok: #5fd39a; --warn: #f0b95a; --warn-soft: #33290f; --err: #ff8a80; color-scheme: dark;
+}
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 20px; }
+h1 { font-family: var(--display); font-size: 26px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: 16px; margin: 0; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label.field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
+select, input[type="search"] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; width: 100%; box-sizing: border-box; }
+button, .filebtn { font: 600 14px var(--body); border-radius: 8px; padding: 10px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 600; }
+:is(button, select, input, a, .filebtn):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.filebtn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.filebtn { position: relative; display: inline-block; }
+a { color: var(--accent); }
+.status { font-size: 14px; color: var(--muted); min-height: 1.5em; min-width: 0; overflow-wrap: anywhere; }
+.status.ok { color: var(--ok); } .status.err { color: var(--err); }
+.bar { height: 6px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.manual { background: var(--warn-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.manual ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.units { border: 1px solid var(--line); border-radius: 8px; max-height: 300px; overflow-y: auto; background: var(--bg); }
+.units label { display: flex; gap: 10px; align-items: baseline; padding: 7px 12px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.units label:last-child { border-bottom: 0; }
+.units .n { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 13px; }
+.units .name { min-width: 0; overflow-wrap: anywhere; }
+.units .empty { padding: 16px 12px; color: var(--muted); }
+.tablebox { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; }
+tfoot td { font-weight: 600; border-bottom: 0; }
+.hint { font-size: 13px; color: var(--muted); }
+.kpi { font-family: var(--display); font-size: 22px; }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <h1>Extrator de Metas Nacionais — TJAC</h1>
+    <p class="lede">Escolha a meta e as unidades judiciárias. A página busca a base do painel de estatística, separa os processos por variável e entrega um Excel com uma aba para cada uma.</p>
+  </header>
+
+  <section class="step" aria-labelledby="h-base">
+    <h2 id="h-base">1. Base de dados</h2>
+    <div class="row">
+      <label class="field" for="meta">Meta
+        <select id="meta"></select>
+      </label>
+      <button id="buscar" class="primary" type="button">Buscar dados</button>
+    </div>
+    <div class="bar" id="barra" hidden><i></i></div>
+    <p class="status" id="status-base" role="status">Buscando a base da Meta 1…</p>
+    <div class="manual" id="manual" hidden>
+      <strong>Não foi possível buscar automaticamente daqui.</strong>
+      <ol>
+        <li>Baixe a base pelo link oficial: <a id="link-oficial" href="https://link.tjac.jus.br/meta-1" target="_blank" rel="noopener">link.tjac.jus.br/meta-1</a></li>
+        <li>Selecione abaixo o arquivo CSV que foi baixado.</li>
+      </ol>
+    </div>
+    <div class="row">
+      <label class="filebtn">Usar um CSV já baixado<input id="arquivo" type="file" accept=".csv,text/csv"></label>
+      <span class="hint">Opcional: serve para qualquer meta, inclusive a 9.</span>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="h-unid">
+    <h2 id="h-unid">2. Unidades judiciárias</h2>
+    <div class="row">
+      <label class="field" for="busca">Procurar (ex.: cruzeiro do sul, vara cível, juizado)
+        <input id="busca" type="search" placeholder="Digite parte do nome" autocomplete="off">
+      </label>
+    </div>
+    <div class="row">
+      <button id="marcar" class="link" type="button">Marcar as listadas</button>
+      <button id="limpar" class="link" type="button">Desmarcar todas</button>
+      <span class="hint" id="contagem-sel"></span>
+    </div>
+    <div class="units" id="unidades"><p class="empty">As unidades aparecem aqui assim que a base for carregada.</p></div>
+  </section>
+
+  <section class="step" aria-labelledby="h-xlsx">
+    <h2 id="h-xlsx">3. Excel</h2>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Variável</th><th class="num">Processos</th></tr></thead>
+        <tbody id="resumo"><tr><td colspan="2" class="hint">Marque ao menos uma unidade para ver os totais.</td></tr></tbody>
+        <tfoot id="resumo-total"></tfoot>
+      </table>
+    </div>
+    <p id="cumprimento" hidden></p>
+    <div class="row">
+      <button id="baixar" class="primary" type="button" disabled>Baixar Excel</button>
+      <span class="status" id="status-xlsx" role="status"></span>
+    </div>
+    <p class="hint">O Excel sai com a aba “Todos” e uma aba por variável. Números de processo e identificadores ficam como texto, para o Excel não os converter em notação científica.</p>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(() => {
+  const METAS = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+  const urlBase = m => `https://exportar-bi.tjac.jus.br/download/Metas_Nacionais_SAJ__meta_${String(m).padStart(2, "0")}`;
+  const $ = id => document.getElementById(id);
+  const norm = s => String(s).normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+  const fmt = n => n.toLocaleString("pt-BR");
+  const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const ler = (k, padrao) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? padrao; } catch (e) { return padrao; } };
+
+  const estado = { meta: 1, cabecalho: [], linhas: [], col: {}, unidades: [], sel: new Set(ler("unidades", [])) };
+
+  /* ---------- leitura do CSV ---------- */
+  function lerCSV(texto) {
+    if (texto.charCodeAt(0) === 0xfeff) texto = texto.slice(1);
+    const fim = texto.indexOf("\n");
+    const primeira = fim < 0 ? texto : texto.slice(0, fim);
+    const sep = (primeira.split(";").length >= primeira.split(",").length) ? ";" : ",";
+    let linhas;
+    if (!texto.includes('"')) {
+      linhas = texto.split(/\r?\n/).filter(l => l.length).map(l => l.split(sep));
+    } else {
+      linhas = []; let campo = "", linha = [], aspas = false;
+      for (let i = 0; i < texto.length; i++) {
+        const c = texto[i];
+        if (aspas) {
+          if (c === '"') { if (texto[i + 1] === '"') { campo += '"'; i++; } else aspas = false; }
+          else campo += c;
+        } else if (c === '"') aspas = true;
+        else if (c === sep) { linha.push(campo); campo = ""; }
+        else if (c === "\n") { linha.push(campo); campo = ""; if (linha.length > 1 || linha[0] !== "") linhas.push(linha); linha = []; }
+        else if (c !== "\r") campo += c;
+      }
+      if (campo !== "" || linha.length) { linha.push(campo); linhas.push(linha); }
+    }
+    return { cabecalho: linhas[0] || [], linhas: linhas.slice(1) };
+  }
+
+  function carregar(texto, origem) {
+    const { cabecalho, linhas } = lerCSV(texto);
+    const col = {}; cabecalho.forEach((c, i) => col[c.trim()] = i);
+    if (col.nome_orgao_julgador === undefined) {
+      status("base", `O arquivo não tem a coluna “nome_orgao_julgador”. Colunas encontradas: ${cabecalho.join(", ").slice(0, 200)}`, "err");
+      return;
+    }
+    Object.assign(estado, { cabecalho, linhas, col });
+    const cont = new Map();
+    for (const l of linhas) { const u = l[col.nome_orgao_julgador]; cont.set(u, (cont.get(u) || 0) + 1); }
+    estado.unidades = [...cont].map(([nome, n]) => ({ nome, n, chave: norm(nome) })).sort((a, b) => a.chave.localeCompare(b.chave));
+    const existentes = new Set(estado.unidades.map(u => u.nome));
+    estado.sel = new Set([...estado.sel].filter(u => existentes.has(u)));
+    status("base", `Base carregada: ${fmt(linhas.length)} linhas, ${fmt(estado.unidades.length)} unidades (${origem}).`, "ok");
+    $("manual").hidden = true;
+    desenharUnidades(); atualizarResumo();
+  }
+
+  /* ---------- busca na rede ---------- */
+  let buscaAtual = 0;
+  async function buscar() {
+    const meta = estado.meta, vez = ++buscaAtual;
+    $("buscar").disabled = true; $("manual").hidden = true;
+    const barra = $("barra"), fio = barra.firstElementChild; barra.hidden = false; fio.style.width = "0";
+    let erro;
+    for (let tentativa = 1; tentativa <= 4; tentativa++) {
+      try {
+        status("base", `Buscando a base da Meta ${meta}…${tentativa > 1 ? ` (tentativa ${tentativa})` : ""}`);
+        const resp = await fetch(urlBase(meta), { cache: "no-store" });
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        const total = +resp.headers.get("content-length") || 0;
+        const leitor = resp.body.getReader(); const partes = []; let lido = 0;
+        for (;;) {
+          const { done, value } = await leitor.read(); if (done) break;
+          partes.push(value); lido += value.length;
+          if (total) fio.style.width = Math.min(100, lido / total * 100) + "%";
+          status("base", `Buscando a base da Meta ${meta}… ${(lido / 1048576).toFixed(1)} MB`);
+        }
+        if (vez !== buscaAtual) return;
+        const texto = await new Blob(partes).text();
+        barra.hidden = true; $("buscar").disabled = false;
+        carregar(texto, "painel de estatística do TJAC, agora");
+        return;
+      } catch (e) { erro = e; await new Promise(r => setTimeout(r, 800 * tentativa)); }
+    }
+    if (vez !== buscaAtual) return;
+    barra.hidden = true; $("buscar").disabled = false;
+    status("base", "A busca automática falhou. Use o caminho manual abaixo.", "err");
+    $("manual").hidden = false;
+  }
+
+  /* ---------- interface ---------- */
+  function status(qual, texto, tipo) { const el = $("status-" + qual); el.textContent = texto; el.className = "status" + (tipo ? " " + tipo : ""); }
+
+  function visiveis() {
+    const termo = norm($("busca").value);
+    return termo ? estado.unidades.filter(u => u.chave.includes(termo)) : estado.unidades;
+  }
+
+  function desenharUnidades() {
+    const caixa = $("unidades"); caixa.textContent = "";
+    if (!estado.unidades.length) return;
+    const lista = visiveis();
+    if (!lista.length) { const p = document.createElement("p"); p.className = "empty"; p.textContent = "Nenhuma unidade com esse nome."; caixa.append(p); return; }
+    const frag = document.createDocumentFragment();
+    for (const u of lista) {
+      const rot = document.createElement("label"), cx = document.createElement("input"), nome = document.createElement("span"), n = document.createElement("span");
+      cx.type = "checkbox"; cx.checked = estado.sel.has(u.nome); cx.dataset.nome = u.nome;
+      nome.className = "name"; nome.textContent = u.nome; n.className = "n"; n.textContent = fmt(u.n);
+      rot.append(cx, nome, n); frag.append(rot);
+    }
+    caixa.append(frag);
+  }
+
+  function selecionadas() {
+    const c = estado.col.nome_orgao_julgador;
+    return estado.linhas.filter(l => estado.sel.has(l[c]));
+  }
+
+  function atualizarResumo() {
+    guardar("unidades", [...estado.sel]);
+    const corpo = $("resumo"), pe = $("resumo-total"), kpi = $("cumprimento");
+    corpo.textContent = ""; pe.textContent = ""; kpi.hidden = true;
+    $("contagem-sel").textContent = estado.sel.size ? `${estado.sel.size} marcada(s)` : "";
+    $("baixar").disabled = !estado.sel.size;
+    if (!estado.sel.size) {
+      corpo.innerHTML = '<tr><td colspan="2" class="hint">Marque ao menos uma unidade para ver os totais.</td></tr>'; return;
+    }
+    const linhas = selecionadas(), cv = estado.col.var, cont = new Map();
+    if (cv !== undefined) for (const l of linhas) cont.set(l[cv], (cont.get(l[cv]) || 0) + 1);
+    for (const [v, n] of [...cont].sort((a, b) => a[0].localeCompare(b[0]))) {
+      const tr = corpo.insertRow(); tr.insertCell().textContent = v || "(vazio)";
+      const td = tr.insertCell(); td.className = "num"; td.textContent = fmt(n);
+    }
+    const tr = pe.insertRow(); tr.insertCell().textContent = "Total de linhas";
+    const td = tr.insertCell(); td.className = "num"; td.textContent = fmt(linhas.length);
+    if (estado.meta === 1 && cont.has("Julgados") && cont.has("Casos Novos")) {
+      const base = cont.get("Casos Novos") - (cont.get("Suspensos") || 0);
+      if (base > 0) {
+        const pct = (cont.get("Julgados") / base * 100).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        kpi.innerHTML = `<span class="kpi">${pct}%</span> <span class="hint">cumprimento estimado: Julgados ÷ (Casos Novos − Suspensos). O painel pode diferir quando há processos dessobrestados.</span>`;
+        kpi.hidden = false;
+      }
+    }
+  }
+
+  /* ---------- Excel ---------- */
+  function serialData(txt) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(txt);
+    return m ? (Date.UTC(+m[1], +m[2] - 1, +m[3]) - Date.UTC(1899, 11, 30)) / 86400000 : null;
+  }
+  function planilha(linhas) {
+    const cd = estado.col.dt_evento;
+    const aoa = [estado.cabecalho];
+    for (const l of linhas) {
+      if (cd === undefined) { aoa.push(l); continue; }
+      const copia = l.slice(), s = serialData(l[cd]);
+      if (s !== null) copia[cd] = { t: "n", v: s, z: "dd/mm/yyyy" };
+      aoa.push(copia);
+    }
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws["!cols"] = estado.cabecalho.map((c, i) => {
+      let larg = c.length;
+      for (let r = 0; r < Math.min(linhas.length, 200); r++) larg = Math.max(larg, String(linhas[r][i] ?? "").length);
+      return { wch: i === cd ? 12 : Math.min(Math.max(larg + 2, 10), 50) };
+    });
+    ws["!autofilter"] = { ref: ws["!ref"] };
+    return ws;
+  }
+  function nomeArquivo() {
+    const nomes = [...estado.sel];
+    const parte = nomes.length === 1 ? norm(nomes[0]).replace(/[^a-z0-9]+/g, "_").slice(0, 60) : `${nomes.length}_unidades`;
+    const d = new Date(), p = n => String(n).padStart(2, "0");
+    return `meta_${p(estado.meta)}_${parte}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}.xlsx`;
+  }
+  async function baixar() {
+    const botao = $("baixar"); botao.disabled = true; status("xlsx", "Montando o Excel…");
+    await new Promise(r => setTimeout(r, 30));
+    try {
+      const linhas = selecionadas(), cv = estado.col.var, wb = XLSX.utils.book_new(), usados = new Set(["todos"]);
+      XLSX.utils.book_append_sheet(wb, planilha(linhas), "Todos");
+      if (cv !== undefined) {
+        const grupos = new Map();
+        for (const l of linhas) { if (!grupos.has(l[cv])) grupos.set(l[cv], []); grupos.get(l[cv]).push(l); }
+        for (const [v, ls] of [...grupos].sort((a, b) => a[0].localeCompare(b[0]))) {
+          let nome = (v || "vazio").replace(/[\\\/\?\*\[\]:]/g, " ").slice(0, 31);
+          while (usados.has(nome.toLowerCase())) nome = nome.slice(0, 29) + " 2";
+          usados.add(nome.toLowerCase());
+          XLSX.utils.book_append_sheet(wb, planilha(ls), nome);
+        }
+      }
+      const blob = new Blob([XLSX.write(wb, { bookType: "xlsx", type: "array", compression: true })],
+        { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+      const arquivo = nomeArquivo();
+      const cap = window.claude?.use ? await window.claude.use("downloads") : null;
+      if (cap) {
+        await cap.save({ filename: arquivo, data: blob });
+      } else {
+        const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = arquivo;
+        document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 60000);
+      }
+      status("xlsx", `Excel gerado: ${arquivo} (${fmt(linhas.length)} linhas).`, "ok");
+    } catch (e) {
+      status("xlsx", e && e.code === "declined" ? "Download cancelado." : "Não foi possível gerar o Excel: " + (e && e.message || e), "err");
+    }
+    botao.disabled = !estado.sel.size;
+  }
+
+  /* ---------- eventos ---------- */
+  const seletor = $("meta");
+  for (const m of METAS) seletor.add(new Option("Meta " + m, m));
+  estado.meta = METAS.includes(ler("meta", 1)) ? ler("meta", 1) : 1;
+  seletor.value = estado.meta;
+  const atualizarLink = () => { const a = $("link-oficial"); a.href = "https://link.tjac.jus.br/meta-" + estado.meta; a.textContent = "link.tjac.jus.br/meta-" + estado.meta; };
+  atualizarLink();
+  seletor.addEventListener("change", () => { estado.meta = +seletor.value; guardar("meta", estado.meta); atualizarLink(); buscar(); });
+  $("buscar").addEventListener("click", buscar);
+  $("busca").addEventListener("input", desenharUnidades);
+  $("unidades").addEventListener("change", e => {
+    const nome = e.target.dataset.nome; if (nome === undefined) return;
+    e.target.checked ? estado.sel.add(nome) : estado.sel.delete(nome); atualizarResumo();
+  });
+  $("marcar").addEventListener("click", () => { for (const u of visiveis()) estado.sel.add(u.nome); desenharUnidades(); atualizarResumo(); });
+  $("limpar").addEventListener("click", () => { estado.sel.clear(); desenharUnidades(); atualizarResumo(); });
+  $("arquivo").addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    buscaAtual++; $("barra").hidden = true; $("buscar").disabled = false;
+    status("base", "Lendo o arquivo…");
+    carregar(await f.text(), "arquivo " + f.name);
+  });
+  $("baixar").addEventListener("click", baixar);
+  buscar();
+})();
+</script>
+</body>
+</html>
