@@ -1,98 +1,97 @@
 #!/usr/bin/env python3
-"""RPA - extração das Metas Nacionais (portal Alvank/TJAC) com um comando.
+"""RPA - extração das Metas Nacionais do TJAC com um comando.
 
-Exemplo:
-    python extrair_meta.py --meta 1 --busca "cruzeiro do sul" \
-        --unidade "1ª Vara Cível Cruzeiro Do Sul"
+Exemplos:
+    python extrair_meta.py --unidade "1ª Vara Cível de Cruzeiro do Sul"
+    python extrair_meta.py --meta 2 --municipio "cruzeiro do sul"
+    python extrair_meta.py --listar --unidade cruzeiro     # mostra os nomes das unidades
 
-Fluxo automatizado (o mesmo do vídeo):
- 1. abre link.tjac.jus.br/meta-N  2. filtra "Unidade Judiciária"
- 3. marca a(s) unidade(s)         4. clica em Download (CSV)
- 5. separa o CSV por Casos Novos/Julgados/Pendentes/Suspensos em abas do Excel.
+O botão "Download" do painel é um link fixo (link.tjac.jus.br/meta-N) que entrega
+o CSV com a base inteira; os filtros da tela não alteram o arquivo. Por isso o robô
+baixa direto, sem navegador, e faz no pandas o filtro que no vídeo é feito no Excel.
 """
 from __future__ import annotations
-import argparse, sys, tomllib
+
+import argparse
+import sys
+import time
+import urllib.error
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-from pos_processamento import gerar_xlsx
+from pos_processamento import COL_UNIDADE, filtrar, gerar_xlsx, ler_csv, normalizar
 
-PADRAO = {
-    "url_base": "https://link.tjac.jus.br/meta-{meta}",
-    "meta": 1, "pasta_saida": "saida", "timeout_s": 60,
-    "termo_busca": "", "unidades": [],
-    "seletores": {
-        "filtro_unidade": "text=Unidade Judiciária",
-        "caixa_busca": "input[placeholder*='esquis'], input[type='search'], input[type='text']",
-        "botao_download": "text=Download",
-    },
-}
+URL = "https://link.tjac.jus.br/meta-{meta}"
+USER_AGENT = "rpa-metas-cnj/1.0 (extracao automatizada de dados publicos)"
 
 
-def carregar_config(args) -> dict:
-    cfg = {**PADRAO, "seletores": dict(PADRAO["seletores"])}
-    if args.config and Path(args.config).exists():
-        user = tomllib.loads(Path(args.config).read_text(encoding="utf-8"))
-        sel = user.pop("seletores", {})
-        cfg.update(user); cfg["seletores"].update(sel)
-    for k, v in (("meta", args.meta), ("pasta_saida", args.saida),
-                 ("termo_busca", args.busca)):
-        if v is not None:
-            cfg[k] = v
-    if args.url:
-        cfg["url_base"] = args.url
-    if args.unidade:
-        cfg["unidades"] = args.unidade
-    return cfg
-
-
-def baixar_csv(cfg: dict, destino: Path, headed: bool) -> Path:
-    from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
-    s, t = cfg["seletores"], cfg["timeout_s"] * 1000
-    destino.mkdir(parents=True, exist_ok=True)
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=not headed)
-        ctx = browser.new_context(accept_downloads=True, viewport={"width": 1400, "height": 800})
-        page = ctx.new_page(); page.set_default_timeout(t)
+def baixar_csv(meta: int, destino: Path, tentativas: int = 5) -> Path:
+    req = urllib.request.Request(URL.format(meta=meta), headers={"User-Agent": USER_AGENT})
+    for n in range(1, tentativas + 1):
         try:
-            page.goto(cfg["url_base"].replace("{meta}", str(cfg["meta"])), wait_until="networkidle")
-            # Painel Meta N (menu lateral numerado, se não for a meta aberta pelo link)
-            if cfg["unidades"]:
-                page.locator(s["filtro_unidade"]).first.click()
-                if cfg["termo_busca"]:
-                    page.locator(s["caixa_busca"]).last.fill(cfg["termo_busca"])
-                for u in cfg["unidades"]:
-                    page.get_by_text(u, exact=False).first.click()
-                page.keyboard.press("Escape")
-                page.wait_for_load_state("networkidle")
-            with page.expect_download() as dl:
-                page.locator(s["botao_download"]).first.click()
-            arq = destino / dl.value.suggested_filename
-            dl.value.save_as(arq)
-            return arq
-        except PWTimeout as e:
-            shot = destino / "erro.png"; page.screenshot(path=str(shot), full_page=True)
-            sys.exit(f"Tempo esgotado. Veja {shot}. Ajuste os seletores em config.toml.\n{e}")
-        finally:
-            browser.close()
+            with urllib.request.urlopen(req, timeout=300) as resp:
+                tipo = resp.headers.get("Content-Type", "")
+                if "csv" not in tipo:
+                    sys.exit(f"A meta {meta} não entrega CSV (veio '{tipo}' de {resp.url}). "
+                             "Baixe manualmente e use --csv.")
+                destino.write_bytes(resp.read())
+                return destino
+        except (urllib.error.URLError, ConnectionError, TimeoutError) as e:
+            if isinstance(e, urllib.error.HTTPError) and e.code < 500:
+                sys.exit(f"A meta {meta} não pôde ser baixada automaticamente "
+                         f"(erro {e.code} em {e.url}). Baixe manualmente e use --csv.")
+            if n == tentativas:
+                sys.exit(f"Falha ao baixar após {tentativas} tentativas: {e}")
+            print(f"  conexão falhou ({e}); nova tentativa {n + 1}/{tentativas}...")
+            time.sleep(2 ** n)
 
 
-def main():
+def slug(texto: str) -> str:
+    return "_".join(normalizar(texto).replace("/", " ").split())[:60]
+
+
+def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--meta", type=int); ap.add_argument("--url", help="URL direta (ex.: link público do Power BI)"); ap.add_argument("--busca")
-    ap.add_argument("--unidade", action="append", help="repita para várias unidades")
-    ap.add_argument("--saida"); ap.add_argument("--config", default="config.toml")
-    ap.add_argument("--headed", action="store_true", help="mostra o navegador (depuração)")
-    ap.add_argument("--csv", help="pula o portal e só processa este CSV já baixado")
-    a = ap.parse_args(); cfg = carregar_config(a)
-    pasta = Path(cfg["pasta_saida"]) / datetime.now().strftime("%Y%m%d_%H%M%S")
-    csv_path = Path(a.csv) if a.csv else baixar_csv(cfg, pasta, a.headed)
+    ap.add_argument("--meta", type=int, default=1, help="número da meta (padrão: 1)")
+    ap.add_argument("--unidade", action="append", default=[],
+                    help="trecho do nome da unidade judiciária; repita para várias")
+    ap.add_argument("--municipio", action="append", default=[], help="trecho do nome do município")
+    ap.add_argument("--saida", default="saida", help="pasta de saída (padrão: saida)")
+    ap.add_argument("--csv", help="usa um CSV já baixado em vez de acessar o portal")
+    ap.add_argument("--listar", action="store_true", help="só lista as unidades encontradas")
+    a = ap.parse_args()
+
+    pasta = Path(a.saida)
     pasta.mkdir(parents=True, exist_ok=True)
-    xlsx = pasta / f"meta_{cfg['meta']:02d}.xlsx"
-    cont = gerar_xlsx(csv_path, xlsx)
-    print(f"CSV: {csv_path}\nExcel: {xlsx}")
-    for k, v in cont.items():
-        print(f"  {k}: {v}")
+    carimbo = datetime.now().strftime("%Y%m%d_%H%M")
+    if a.csv:
+        csv_path = Path(a.csv)
+    else:
+        print(f"Baixando a base da Meta {a.meta}...")
+        csv_path = baixar_csv(a.meta, pasta / f"meta_{a.meta:02d}_{carimbo}_base.csv")
+
+    df = ler_csv(csv_path)
+    total = len(df)
+    df = filtrar(df, a.unidade, a.municipio)
+
+    if a.listar:
+        for nome, qtd in df[COL_UNIDADE].value_counts().sort_index().items():
+            print(f"{qtd:>7}  {nome}")
+        return
+    if df.empty:
+        sys.exit("Nenhuma linha para o filtro informado. Use --listar para ver os nomes das unidades.")
+
+    if (a.unidade or a.municipio) and COL_UNIDADE in df.columns:
+        print("Unidades incluídas:")
+        for nome in sorted(df[COL_UNIDADE].unique()):
+            print(f"  - {nome}")
+    sufixo = slug(" ".join(a.unidade + a.municipio)) or "todas"
+    xlsx = pasta / f"meta_{a.meta:02d}_{sufixo}_{carimbo}.xlsx"
+    contagem = gerar_xlsx(df, xlsx)
+    print(f"Base: {csv_path} ({total} linhas)\nExcel: {xlsx} ({len(df)} linhas)")
+    for nome, qtd in contagem.items():
+        print(f"  {nome}: {qtd}")
 
 
 if __name__ == "__main__":
