@@ -39,6 +39,8 @@ def carregar_config(args) -> dict:
                  ("termo_busca", args.busca)):
         if v is not None:
             cfg[k] = v
+    if args.url:
+        cfg["url_base"] = args.url
     if args.unidade:
         cfg["unidades"] = args.unidade
     return cfg
@@ -53,7 +55,7 @@ def baixar_csv(cfg: dict, destino: Path, headed: bool) -> Path:
         ctx = browser.new_context(accept_downloads=True, viewport={"width": 1400, "height": 800})
         page = ctx.new_page(); page.set_default_timeout(t)
         try:
-            page.goto(cfg["url_base"].format(meta=cfg["meta"]), wait_until="networkidle")
+            page.goto(cfg["url_base"].replace("{meta}", str(cfg["meta"])), wait_until="networkidle")
             # Painel Meta N (menu lateral numerado, se não for a meta aberta pelo link)
             if cfg["unidades"]:
                 page.locator(s["filtro_unidade"]).first.click()
@@ -77,7 +79,7 @@ def baixar_csv(cfg: dict, destino: Path, headed: bool) -> Path:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--meta", type=int); ap.add_argument("--busca")
+    ap.add_argument("--meta", type=int); ap.add_argument("--url", help="URL direta (ex.: link público do Power BI)"); ap.add_argument("--busca")
     ap.add_argument("--unidade", action="append", help="repita para várias unidades")
     ap.add_argument("--saida"); ap.add_argument("--config", default="config.toml")
     ap.add_argument("--headed", action="store_true", help="mostra o navegador (depuração)")
