@@ -63,6 +63,21 @@ td.num, th.num { text-align: right; }
 tfoot td { font-weight: 600; border-bottom: 0; }
 .hint { font-size: 13px; color: var(--muted); }
 .kpi { font-family: var(--display); font-size: 22px; }
+h3 { font-family: var(--display); font-size: 14px; margin: 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; background: var(--bg); }
+.card .nome { font-weight: 600; overflow-wrap: anywhere; }
+.card .pct { font-family: var(--display); font-size: 26px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.card .falta { font-weight: 600; }
+.card .nums { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.selo { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.selo::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.selo.ok { color: var(--ok); } .selo.warn { color: var(--warn); } .selo.err { color: var(--err); }
+.bloco { display: flex; flex-direction: column; gap: 8px; }
+.lista { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
+.lista table { font-size: 14px; }
+.lista th { position: sticky; top: 0; background: var(--surface); }
+.lista td { white-space: nowrap; } .lista td.larga { white-space: normal; min-width: 180px; }
 </style>
 
 <div class="wrap">
@@ -124,6 +139,26 @@ tfoot td { font-weight: 600; border-bottom: 0; }
       <span class="status" id="status-xlsx" role="status"></span>
     </div>
     <p class="hint">O Excel sai com a aba “Todos” e uma aba por variável. Números de processo e identificadores ficam como texto, para o Excel não os converter em notação científica.</p>
+  </section>
+
+  <section class="step" aria-labelledby="h-trab">
+    <h2 id="h-trab">4. Lista de trabalho</h2>
+    <p class="lede">Um processo por linha, já classificado: <strong>a julgar</strong>, <strong>suspenso</strong> ou <strong>julgado</strong>. Os que estão a julgar aparecem do mais antigo para o mais novo.</p>
+    <p class="hint" id="trab-aviso">Marque ao menos uma unidade para montar a lista.</p>
+    <div class="cards" id="trab-cards"></div>
+    <div id="trab-bloco" class="bloco" hidden>
+      <h3 id="trab-titulo">A julgar</h3>
+      <div class="lista"><table>
+        <thead><tr><th>Processo</th><th>Distribuído em</th><th>Classe</th><th>Recorte</th><th>Unidade</th></tr></thead>
+        <tbody id="trab-linhas"></tbody>
+      </table></div>
+      <p class="hint" id="trab-mais"></p>
+    </div>
+    <div class="row">
+      <button id="baixar-trab" class="primary" type="button" disabled>Baixar lista de trabalho</button>
+      <span class="status" id="status-trab" role="status"></span>
+    </div>
+    <p class="hint">Regra do glossário do CNJ (Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi julgado nem suspenso. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. O “faltam” por unidade aplica à unidade o percentual que a meta exige do tribunal; é referência de gestão, não o resultado oficial.</p>
   </section>
 </div>
 
@@ -285,6 +320,7 @@ tfoot td { font-weight: 600; border-bottom: 0; }
 
   function atualizarResumo() {
     guardar("unidades", [...estado.sel]);
+    atualizarTrabalho();
     const corpo = $("resumo"), pe = $("resumo-total"), kpi = $("cumprimento");
     corpo.textContent = ""; pe.textContent = ""; kpi.hidden = true;
     $("contagem-sel").textContent = estado.sel.size ? `${estado.sel.size} marcada(s)` : "";
@@ -293,7 +329,13 @@ tfoot td { font-weight: 600; border-bottom: 0; }
       corpo.innerHTML = '<tr><td colspan="2" class="hint">Marque ao menos uma unidade para ver os totais.</td></tr>'; return;
     }
     const linhas = selecionadas(), cv = estado.col.var, cont = new Map();
-    if (cv !== undefined) for (const l of linhas) cont.set(l[cv], (cont.get(l[cv]) || 0) + 1);
+    if (cv !== undefined) {
+      const ci = estado.col.id_processo, vistos = new Map();
+      for (const l of linhas) {
+        if (ci !== undefined) { let s = vistos.get(l[cv]); if (!s) vistos.set(l[cv], s = new Set()); if (s.has(l[ci])) continue; s.add(l[ci]); }
+        cont.set(l[cv], (cont.get(l[cv]) || 0) + 1);
+      }
+    }
     for (const [v, n] of [...cont].sort((a, b) => a[0].localeCompare(b[0]))) {
       const tr = corpo.insertRow(); tr.insertCell().textContent = v || "(vazio)";
       const td = tr.insertCell(); td.className = "num"; td.textContent = fmt(n);
@@ -333,11 +375,11 @@ tfoot td { font-weight: 600; border-bottom: 0; }
     ws["!autofilter"] = { ref: ws["!ref"] };
     return ws;
   }
-  function nomeArquivo() {
+  function nomeArquivo(prefixo = "") {
     const nomes = [...estado.sel];
     const parte = nomes.length === 1 ? norm(nomes[0]).replace(/[^a-z0-9]+/g, "_").slice(0, 60) : `${nomes.length}_unidades`;
     const d = new Date(), p = n => String(n).padStart(2, "0");
-    return `meta_${p(estado.meta)}_${parte}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}.xlsx`;
+    return `${prefixo}meta_${p(estado.meta)}_${parte}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}.xlsx`;
   }
   async function baixar() {
     const botao = $("baixar"); botao.disabled = true; status("xlsx", "Montando o Excel…");
@@ -355,21 +397,168 @@ tfoot td { font-weight: 600; border-bottom: 0; }
           XLSX.utils.book_append_sheet(wb, planilha(ls), nome);
         }
       }
-      const blob = new Blob([XLSX.write(wb, { bookType: "xlsx", type: "array", compression: true })],
-        { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       const arquivo = nomeArquivo();
-      const cap = window.claude?.use ? await window.claude.use("downloads") : null;
-      if (cap) {
-        await cap.save({ filename: arquivo, data: blob });
-      } else {
-        const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = arquivo;
-        document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 60000);
-      }
+      await salvar(wb, arquivo);
       status("xlsx", `Excel gerado: ${arquivo} (${fmt(linhas.length)} linhas).`, "ok");
     } catch (e) {
       status("xlsx", e && e.code === "declined" ? "Download cancelado." : "Não foi possível gerar o Excel: " + (e && e.message || e), "err");
     }
     botao.disabled = !estado.sel.size;
+  }
+
+  async function salvar(wb, arquivo) {
+    const blob = new Blob([XLSX.write(wb, { bookType: "xlsx", type: "array", compression: true })],
+      { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const cap = window.claude?.use ? await window.claude.use("downloads") : null;
+    if (cap) { await cap.save({ filename: arquivo, data: blob }); return; }
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = arquivo;
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 60000);
+  }
+
+  /* ---------- lista de trabalho (glossário CNJ 2026: a julgar = distribuído, não julgado, não suspenso) ---------- */
+  const RECORTES = {
+    2: (v, grau) => /antigos/i.test(v) ? ["Antigos (15 anos ou mais)", 1]
+      : grau === "G1" ? ["1º grau", 0.8] : grau === "G2" ? ["2º grau", 0.9] : ["Juizados e Turmas Recursais", 0.95],
+    4: { a: ["Crimes contra a administração pública", 0.65], b: ["Improbidade administrativa", 1] },
+    6: { "": ["Ações ambientais", 0.5] },
+    7: { a: ["Comunidades indígenas", 0.5], b: ["Comunidades quilombolas", 0.5], c: ["Racismo e injúria racial", 0.5] },
+    8: { a: ["Violência doméstica", 0.9], b: ["Feminicídio", 0.75] },
+    10: { a: ["1º grau", 0.9], b: ["2º grau", 0.99] },
+  };
+  function tipoVar(v) {
+    const t = norm(v);
+    return t.startsWith("distribuid") ? "dis" : t.startsWith("julgad") ? "jul" : t.startsWith("suspens") ? "sus" : t.startsWith("dessobrest") ? "des" : null;
+  }
+  function recorteDe(meta, v, grau) {
+    const r = RECORTES[meta]; if (!r) return null;
+    if (typeof r === "function") return r(v, grau);
+    const m = /_([a-z])$/i.exec(v); return r[m ? m[1].toLowerCase() : ""] || null;
+  }
+  const dataCurta = t => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(t || ""); return m ? `${m[3]}/${m[2]}/${m[1]}` : (t || ""); };
+
+  // Devolve { recortes: [{nome, pct, dis, sus, jul, fora, aJulgar, cumprimento, faltam}], itens: [...], porUnidade: [...] }
+  function montarTrabalho(meta, linhas, col) {
+    if (!RECORTES[meta] || col.var === undefined) return null;
+    const chave = col.id_processo !== undefined ? col.id_processo : col.numero;
+    const grupos = new Map();   // "recorte\u0001id" -> {recorte, pct, dis, jul, sus, des}
+    for (const l of linhas) {
+      const tipo = tipoVar(l[col.var]); if (!tipo) continue;
+      const rec = recorteDe(meta, l[col.var], l[col.grau]); if (!rec) continue;
+      const k = rec[0] + "\u0001" + l[chave];
+      let g = grupos.get(k); if (!g) grupos.set(k, g = { recorte: rec[0], pct: rec[1] });
+      g[tipo] = l;
+    }
+    const itens = [];
+    for (const g of grupos.values()) {
+      if (!g.dis) continue;
+      const situacao = g.jul ? "Julgado" : g.des ? "Fora do cômputo" : g.sus ? "Suspenso" : "A julgar";
+      const ev = g.jul || g.des || g.sus, d = g.dis;
+      itens.push({ situacao, recorte: g.recorte, pct: g.pct, unidade: d[col.nome_orgao_julgador], municipio: d[col.nome_municipio] ?? "",
+        numero: d[col.numero], grau: d[col.grau] ?? "", classe: d[col.classe] ?? "", natureza: d[col.nome_natureza] ?? "",
+        sistema: d[col.sistema] ?? "", distribuido: d[col.dt_evento] ?? "", evento: ev ? ev[col.dt_evento] ?? "" : "" });
+    }
+    itens.sort((a, b) => a.distribuido.localeCompare(b.distribuido) || a.numero.localeCompare(b.numero));
+    const somar = campo => {
+      const m = new Map();
+      for (const it of itens) {
+        const k = campo(it); let r = m.get(k);
+        if (!r) m.set(k, r = { nome: it.recorte, unidade: it.unidade, pct: it.pct, dis: 0, sus: 0, jul: 0, fora: 0, aJulgar: 0 });
+        r.dis++;
+        if (it.situacao === "Julgado") r.jul++; else if (it.situacao === "Suspenso") r.sus++;
+        else if (it.situacao === "Fora do cômputo") r.fora++; else r.aJulgar++;
+      }
+      for (const r of m.values()) {
+        const base = r.dis - r.sus - r.fora;
+        r.cumprimento = base > 0 ? r.jul / base / r.pct * 100 : null;
+        r.faltam = base > 0 ? Math.max(0, Math.ceil(r.pct * base - 1e-9) - r.jul) : 0;
+      }
+      return [...m.values()];
+    };
+    return {
+      itens,
+      recortes: somar(it => it.recorte).sort((a, b) => a.nome.localeCompare(b.nome)),
+      porUnidade: somar(it => it.unidade + "\u0001" + it.recorte).sort((a, b) => a.unidade.localeCompare(b.unidade) || a.nome.localeCompare(b.nome)),
+    };
+  }
+  const pctBR = n => n === null ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+  const LIMITE_TELA = 100;
+  let trabalho = null;
+
+  function atualizarTrabalho() {
+    const aviso = $("trab-aviso"), cards = $("trab-cards"), bloco = $("trab-bloco"), corpo = $("trab-linhas"), botao = $("baixar-trab");
+    cards.textContent = ""; corpo.textContent = ""; bloco.hidden = true; botao.disabled = true; trabalho = null; aviso.hidden = false;
+    status("trab", "");
+    if (!estado.linhas.length) { aviso.textContent = "A lista aparece aqui assim que a base for carregada."; return; }
+    if (!RECORTES[estado.meta]) {
+      aviso.textContent = `A lista de trabalho existe para as Metas 2, 4, 6, 7, 8 e 10. A Meta ${estado.meta} segue outra regra de cálculo; use o Excel por variável do passo 3.`;
+      return;
+    }
+    if (!estado.sel.size) { aviso.textContent = "Marque ao menos uma unidade para montar a lista."; return; }
+    trabalho = montarTrabalho(estado.meta, selecionadas(), estado.col);
+    if (!trabalho || !trabalho.itens.length) { aviso.textContent = "As unidades marcadas não têm processos nesta meta."; trabalho = null; return; }
+    aviso.hidden = true; botao.disabled = false;
+    for (const r of trabalho.recortes) {
+      const card = document.createElement("div"); card.className = "card";
+      const classe = r.cumprimento === null ? "warn" : r.cumprimento >= 100 ? "ok" : r.cumprimento >= 90 ? "warn" : "err";
+      const rotulo = r.cumprimento === null ? "Sem base de cálculo" : r.cumprimento >= 100 ? "Cumprida" : r.cumprimento >= 90 ? "Perto de cumprir" : "Abaixo da meta";
+      const el = (tag, cls, txt) => { const e = document.createElement(tag); e.className = cls; e.textContent = txt; return e; };
+      card.append(
+        el("span", "selo " + classe, rotulo),
+        el("span", "nome", `${r.nome} (exige ${(r.pct * 100).toLocaleString("pt-BR")}%)`),
+        el("span", "pct", pctBR(r.cumprimento)),
+        el("span", "falta", r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.aJulgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar"),
+        el("span", "nums", `${fmt(r.aJulgar)} a julgar · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} distribuído(s)`));
+      cards.append(card);
+    }
+    const fila = trabalho.itens.filter(it => it.situacao === "A julgar");
+    $("trab-titulo").textContent = `A julgar: ${fmt(fila.length)} processo(s), do mais antigo para o mais novo`;
+    if (fila.length) {
+      bloco.hidden = false;
+      for (const it of fila.slice(0, LIMITE_TELA)) {
+        const tr = corpo.insertRow();
+        tr.insertCell().textContent = it.numero; tr.insertCell().textContent = dataCurta(it.distribuido);
+        for (const v of [it.classe, it.recorte, it.unidade]) { const td = tr.insertCell(); td.className = "larga"; td.textContent = v; }
+      }
+      $("trab-mais").textContent = fila.length > LIMITE_TELA ? `A tela mostra os ${LIMITE_TELA} mais antigos. O Excel traz todos.` : "";
+    }
+  }
+
+  function folha(cabecalho, linhas, colunasData = []) {
+    const aoa = [cabecalho];
+    for (const l of linhas) aoa.push(l.map((v, i) => { if (!colunasData.includes(i)) return v; const s = serialData(v); return s === null ? v : { t: "n", v: s, z: "dd/mm/yyyy" }; }));
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws["!cols"] = cabecalho.map((c, i) => {
+      let larg = c.length;
+      for (let r = 0; r < Math.min(linhas.length, 200); r++) larg = Math.max(larg, String(linhas[r][i] ?? "").length);
+      return { wch: colunasData.includes(i) ? 14 : Math.min(Math.max(larg + 2, 10), 50) };
+    });
+    ws["!autofilter"] = { ref: ws["!ref"] };
+    return ws;
+  }
+  async function baixarTrabalho() {
+    if (!trabalho) return;
+    const botao = $("baixar-trab"); botao.disabled = true; status("trab", "Montando o Excel…");
+    await new Promise(r => setTimeout(r, 30));
+    try {
+      const wb = XLSX.utils.book_new(), arred = n => n === null ? "" : Math.round(n * 10) / 10;
+      XLSX.utils.book_append_sheet(wb, folha(
+        ["Unidade", "Recorte da meta", "Percentual exigido (%)", "Distribuídos", "Suspensos", "Fora do cômputo", "Julgados", "A julgar", "Cumprimento (%)", "Faltam para cumprir"],
+        trabalho.porUnidade.map(r => [r.unidade, r.nome, r.pct * 100, r.dis, r.sus, r.fora, r.jul, r.aJulgar, arred(r.cumprimento), r.faltam])), "Resumo");
+      const abas = [["A julgar", "A julgar", null], ["Suspenso", "Suspensos", "Suspenso em"], ["Julgado", "Julgados", "Julgado em"], ["Fora do cômputo", "Fora do cômputo", "Dessobrestado em"]];
+      for (const [situacao, nomeAba, rotuloEvento] of abas) {
+        const its = trabalho.itens.filter(it => it.situacao === situacao);
+        if (!its.length && situacao !== "A julgar") continue;
+        const cab = ["Processo", "Distribuído em"].concat(rotuloEvento ? [rotuloEvento] : [], ["Recorte da meta", "Unidade", "Município", "Grau", "Classe", "Natureza", "Sistema"]);
+        const linhas = its.map(it => [it.numero, it.distribuido].concat(rotuloEvento ? [it.evento] : [], [it.recorte, it.unidade, it.municipio, it.grau, it.classe, it.natureza, it.sistema]));
+        XLSX.utils.book_append_sheet(wb, folha(cab, linhas, rotuloEvento ? [1, 2] : [1]), nomeAba);
+      }
+      const arquivo = nomeArquivo("lista_trabalho_");
+      await salvar(wb, arquivo);
+      status("trab", `Excel gerado: ${arquivo}.`, "ok");
+    } catch (e) {
+      status("trab", e && e.code === "declined" ? "Download cancelado." : "Não foi possível gerar o Excel: " + (e && e.message || e), "err");
+    }
+    botao.disabled = !trabalho;
   }
 
   /* ---------- eventos ---------- */
@@ -395,6 +584,7 @@ tfoot td { font-weight: 600; border-bottom: 0; }
     carregar(await f.text(), "arquivo " + f.name);
   });
   $("baixar").addEventListener("click", baixar);
+  $("baixar-trab").addEventListener("click", baixarTrabalho);
   lerManifesto().then(buscar);
 })();
 </script>
