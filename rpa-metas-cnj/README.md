@@ -1,4 +1,4 @@
-# RPA – Extração das Metas Nacionais (TJAC)
+# Sumaúma RPA – Gestão à vista das Metas Nacionais (TJAC)
 
 Faz com um comando o que o vídeo mostra em ~1min40 de cliques: baixar a base da meta
 no painel de estatística, filtrar a unidade judiciária e separar
@@ -8,7 +8,7 @@ Casos Novos / Julgados / Pendentes / Suspensos em abas de um Excel.
 Abra `index.html` no navegador (duplo clique no arquivo, ou o endereço do GitHub Pages
 se estiver ativado). A página busca a base, lista as unidades para marcar e baixa o Excel.
 Ela lembra a meta e as unidades marcadas na vez anterior.
-`web/pagina.html` é a fonte; `index.html` é a mesma página com o cabeçalho HTML.
+`web/pagina.html` é a fonte; `python web/montar.py` gera o `index.html` (a mesma página com o cabeçalho HTML e o ícone).
 
 Onde a página não pode acessar o TJAC (por exemplo, publicada como artefato do Claude),
 ela lê uma cópia da base publicada junto, em `dados/`. `python web/gerar_copia.py PASTA`

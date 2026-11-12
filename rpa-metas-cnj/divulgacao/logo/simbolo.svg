@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sumaúma RPA">
+  <rect width="512" height="512" rx="112" fill="#0b3d2e"/>
+  <!-- copa da sumaúma -->
+  <path d="M84 196 C84 108 172 62 256 62 C340 62 428 108 428 196 Z" fill="#2aa866"/>
+  <path d="M132 196 C132 138 190 104 256 104 C322 104 380 138 380 196 Z" fill="#1f8f55"/>
+  <!-- galhos como rede de dados -->
+  <g stroke="#eaf7ee" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M256 196 V122"/><path d="M256 168 L204 140"/><path d="M256 168 L308 140"/>
+    <path d="M204 140 L160 160"/><path d="M308 140 L352 160"/>
+  </g>
+  <g fill="#eaf7ee"><circle cx="256" cy="118" r="11"/><circle cx="204" cy="140" r="10"/><circle cx="308" cy="140" r="10"/><circle cx="158" cy="161" r="9"/><circle cx="354" cy="161" r="9"/></g>
+  <!-- travessão e pratos da balança -->
+  <rect x="92" y="188" width="328" height="16" rx="8" fill="#f2b632"/>
+  <g stroke="#f2b632" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M124 204 L98 268"/><path d="M124 204 L150 268"/><path d="M388 204 L362 268"/><path d="M388 204 L414 268"/>
+  </g>
+  <path d="M84 268 H164 A40 26 0 0 1 84 268 Z" fill="#f2b632"/>
+  <path d="M348 268 H428 A40 26 0 0 1 348 268 Z" fill="#f2b632"/>
+  <!-- tronco com sapopemas -->
+  <path d="M234 204 H278 L286 318 C292 372 330 404 384 420 H128 C182 404 220 372 226 318 Z" fill="#f4efe1"/>
+  <g stroke="#0b3d2e" stroke-width="6" stroke-linecap="round" fill="none"><path d="M256 300 C252 356 226 394 190 418"/><path d="M256 300 C260 356 286 394 322 418"/></g>
+  <!-- rio -->
+  <g stroke="#56b4ff" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M100 452 q26 -18 52 0 t52 0 t52 0 t52 0 t52 0 t52 0"/>
+  </g>
+</svg>

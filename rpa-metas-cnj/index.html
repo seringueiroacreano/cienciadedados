@@ -2,106 +2,215 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Sumaúma RPA: gestão à vista das Metas Nacionais do Poder Judiciário por unidade judiciária.">
+<meta name="theme-color" content="#0b3d2e">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%20role%3D%22img%22%20aria-label%3D%22Suma%C3%BAma%20RPA%22%3E%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%230b3d2e%22/%3E%0A%20%20%3C%21--%20copa%20da%20suma%C3%BAma%20--%3E%0A%20%20%3Cpath%20d%3D%22M84%20196%20C84%20108%20172%2062%20256%2062%20C340%2062%20428%20108%20428%20196%20Z%22%20fill%3D%22%232aa866%22/%3E%0A%20%20%3Cpath%20d%3D%22M132%20196%20C132%20138%20190%20104%20256%20104%20C322%20104%20380%20138%20380%20196%20Z%22%20fill%3D%22%231f8f55%22/%3E%0A%20%20%3C%21--%20galhos%20como%20rede%20de%20dados%20--%3E%0A%20%20%3Cg%20stroke%3D%22%23eaf7ee%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M256%20196%20V122%22/%3E%3Cpath%20d%3D%22M256%20168%20L204%20140%22/%3E%3Cpath%20d%3D%22M256%20168%20L308%20140%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M204%20140%20L160%20160%22/%3E%3Cpath%20d%3D%22M308%20140%20L352%20160%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Cg%20fill%3D%22%23eaf7ee%22%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22118%22%20r%3D%2211%22/%3E%3Ccircle%20cx%3D%22204%22%20cy%3D%22140%22%20r%3D%2210%22/%3E%3Ccircle%20cx%3D%22308%22%20cy%3D%22140%22%20r%3D%2210%22/%3E%3Ccircle%20cx%3D%22158%22%20cy%3D%22161%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%22354%22%20cy%3D%22161%22%20r%3D%229%22/%3E%3C/g%3E%0A%20%20%3C%21--%20travess%C3%A3o%20e%20pratos%20da%20balan%C3%A7a%20--%3E%0A%20%20%3Crect%20x%3D%2292%22%20y%3D%22188%22%20width%3D%22328%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3Cg%20stroke%3D%22%23f2b632%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M124%20204%20L98%20268%22/%3E%3Cpath%20d%3D%22M124%20204%20L150%20268%22/%3E%3Cpath%20d%3D%22M388%20204%20L362%20268%22/%3E%3Cpath%20d%3D%22M388%20204%20L414%20268%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Cpath%20d%3D%22M84%20268%20H164%20A40%2026%200%200%201%2084%20268%20Z%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3Cpath%20d%3D%22M348%20268%20H428%20A40%2026%200%200%201%20348%20268%20Z%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3C%21--%20tronco%20com%20sapopemas%20--%3E%0A%20%20%3Cpath%20d%3D%22M234%20204%20H278%20L286%20318%20C292%20372%20330%20404%20384%20420%20H128%20C182%20404%20220%20372%20226%20318%20Z%22%20fill%3D%22%23f4efe1%22/%3E%0A%20%20%3Cg%20stroke%3D%22%230b3d2e%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M256%20300%20C252%20356%20226%20394%20190%20418%22/%3E%3Cpath%20d%3D%22M256%20300%20C260%20356%20286%20394%20322%20418%22/%3E%3C/g%3E%0A%20%20%3C%21--%20rio%20--%3E%0A%20%20%3Cg%20stroke%3D%22%2356b4ff%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M100%20452%20q26%20-18%2052%200%20t52%200%20t52%200%20t52%200%20t52%200%20t52%200%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A">
 </head>
 <body style="margin:0">
-<title>Extrator de Metas TJAC</title>
+<title>Sumaúma RPA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: uma coluna estreita em três passos (meta -> unidades -> Excel); o resumo por variável imita a tabela do painel. */
+/* Layout: faixa da marca no topo, trilha de 4 etapas e uma coluna de cartões; a etapa 4 é o quadro de gestão à vista. */
 :root {
-  --bg: #f2f5fb; --surface: #ffffff; --ink: #14213d; --muted: #5a6781; --line: #d3dbea;
-  --accent: #1f5fd6; --accent-ink: #ffffff; --accent-soft: #e4ecfc;
-  --ok: #17734a; --warn: #9a5b00; --warn-soft: #fdf1da; --err: #b3261e;
+  --bg: #f4efe1; --surface: #ffffff; --surface-2: #faf7ee; --ink: #10231b; --muted: #4c5f55; --line: #e1dac8;
+  --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #1f8f55; --gold: #f2b632; --gold-ink: #3d2a00;
+  --btn: #0b3d2e; --btn-ink: #f4efe1; --link: #1a63a8; --focus: #1a63a8;
+  --ok: #17734a; --ok-soft: #e3f3ea; --warn: #8a5200; --warn-soft: #fbefd6; --err: #b3261e; --err-soft: #fbe6e3;
   --display: "Archivo", "Segoe UI", system-ui, sans-serif;
   --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 14px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d1422; --surface: #161f31; --ink: #e8edf7; --muted: #9ba8c0; --line: #2a364f;
-    --accent: #77a4ff; --accent-ink: #0d1422; --accent-soft: #1d2b4a;
-    --ok: #5fd39a; --warn: #f0b95a; --warn-soft: #33290f; --err: #ff8a80; color-scheme: dark;
+    --bg: #07211a; --surface: #0e2f24; --surface-2: #12392b; --ink: #eef5ee; --muted: #a9c0b2; --line: #21503d;
+    --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #5fd39a; --gold: #f2b632; --gold-ink: #3d2a00;
+    --btn: #f2b632; --btn-ink: #2a1d00; --link: #8ccbff; --focus: #8ccbff;
+    --ok: #6fdba6; --ok-soft: #123f2d; --warn: #f3c16a; --warn-soft: #3a2e10; --err: #ff9b92; --err-soft: #44201d; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d1422; --surface: #161f31; --ink: #e8edf7; --muted: #9ba8c0; --line: #2a364f;
-  --accent: #77a4ff; --accent-ink: #0d1422; --accent-soft: #1d2b4a;
-  --ok: #5fd39a; --warn: #f0b95a; --warn-soft: #33290f; --err: #ff8a80; color-scheme: dark;
+  --bg: #07211a; --surface: #0e2f24; --surface-2: #12392b; --ink: #eef5ee; --muted: #a9c0b2; --line: #21503d;
+  --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #5fd39a; --gold: #f2b632; --gold-ink: #3d2a00;
+  --btn: #f2b632; --btn-ink: #2a1d00; --link: #8ccbff; --focus: #8ccbff;
+  --ok: #6fdba6; --ok-soft: #123f2d; --warn: #f3c16a; --warn-soft: #3a2e10; --err: #ff9b92; --err-soft: #44201d; color-scheme: dark;
 }
 [hidden] { display: none !important; }
+* { box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-.wrap { max-width: 820px; margin: 0 auto; padding-block: 28px 48px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: flex; flex-direction: column; gap: 20px; }
-h1 { font-family: var(--display); font-size: 29px; line-height: 1.15; margin: 0; text-wrap: balance; }
-h2 { font-family: var(--display); font-size: 19px; margin: 0; }
-p { margin: 0; }
-.lede { color: var(--muted); max-width: 62ch; }
-.step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+p, h1, h2, h3 { margin: 0; }
+a { color: var(--link); }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 860px; margin: 0 auto; }
+
+/* faixa da marca */
+.topo { background: var(--brand); color: var(--brand-ink); }
+.topo .col { padding-block: 30px 34px; display: flex; flex-direction: column; gap: 20px; }
+.marca-linha { display: flex; align-items: center; gap: 16px; }
+.marca { width: 68px; height: 68px; flex: none; }
+.olho { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+h1 { font-family: var(--display); font-weight: 800; font-size: 38px; line-height: 1.05; letter-spacing: -.01em; }
+h1 span { color: var(--gold); }
+.topo .lede { color: var(--brand-muted); font-size: 19px; max-width: 60ch; text-wrap: pretty; }
+.fatos { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.fatos li { border: 1px solid rgba(207, 230, 216, .35); border-radius: 999px; padding: 5px 14px; font-size: 14.5px; color: var(--brand-ink); }
+
+/* trilha de etapas */
+.trilha { background: var(--brand-2); }
+.trilha ol { list-style: none; margin: 0 auto; padding-block: 10px; display: flex; gap: 6px; overflow-x: auto; }
+.trilha a { display: flex; align-items: center; gap: 8px; padding: 7px 12px 7px 8px; border-radius: 999px; color: var(--brand-muted); text-decoration: none; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.trilha a:hover { background: rgba(255, 255, 255, .08); }
+.trilha .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 14px; border: 1.5px solid currentColor; }
+.trilha li.feita a { color: var(--brand-ink); }
+.trilha li.feita .n { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+
+main.col { padding-block: 26px 40px; display: flex; flex-direction: column; gap: 20px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; scroll-margin-top: 12px; }
+.cab { display: flex; gap: 14px; align-items: flex-start; }
+.cab .n { flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--brand); color: var(--gold); font-family: var(--display); font-weight: 800; font-size: 18px; display: grid; place-items: center; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.cab p { color: var(--muted); font-size: 16px; max-width: 62ch; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.lede { color: var(--muted); max-width: 64ch; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-label.field { display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
-select, input[type="search"] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; width: 100%; box-sizing: border-box; }
-button, .filebtn { font: 600 16px var(--body); border-radius: 8px; padding: 10px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-button:disabled { opacity: .5; cursor: not-allowed; }
-button.link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 600; }
-:is(button, select, input, a, .filebtn):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.row.base { align-items: flex-end; }
+label.field { display: flex; flex-direction: column; gap: 5px; font-size: 15px; font-weight: 600; color: var(--ink); min-width: 0; }
+.row > label.field { flex: 1 1 200px; }
+select, input[type="search"] { font: 400 17px var(--body); color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; min-height: 48px; }
+select:hover, input[type="search"]:hover { border-color: var(--leaf); }
+button, .filebtn { font: 600 16px var(--body); border-radius: 10px; padding: 12px 18px; min-height: 48px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button:hover:not(:disabled), .filebtn:hover { border-color: var(--leaf); }
+button.primary { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); }
+button.primary:hover:not(:disabled) { filter: brightness(1.12); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.link { border: 0; background: none; padding: 4px 0; min-height: 0; color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+:is(button, select, input, a, .filebtn):focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.filebtn { position: relative; display: inline-flex; align-items: center; }
 .filebtn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.filebtn { position: relative; display: inline-block; }
-a { color: var(--accent); }
+.filebtn:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
 .status { font-size: 15.5px; color: var(--muted); min-height: 1.5em; min-width: 0; overflow-wrap: anywhere; }
-.status.ok { color: var(--ok); } .status.err { color: var(--err); }
-.bar { height: 6px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
-.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
-.manual { background: var(--warn-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 15.5px; }
-.manual ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
-.units { border: 1px solid var(--line); border-radius: 8px; max-height: 300px; overflow-y: auto; background: var(--bg); }
-.units label { display: flex; gap: 10px; align-items: baseline; padding: 7px 12px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.status.ok { color: var(--ok); font-weight: 600; } .status.err { color: var(--err); font-weight: 600; }
+.bar { height: 8px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--leaf); transition: width .2s; }
+.manual { background: var(--warn-soft); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+.manual ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+.hint { font-size: 15px; color: var(--muted); }
+
+/* unidades */
+.units { border: 1.5px solid var(--line); border-radius: 10px; max-height: 330px; overflow-y: auto; background: var(--surface-2); }
+.units label { display: flex; gap: 12px; align-items: center; padding: 11px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .units label:last-child { border-bottom: 0; }
+.units label:hover { background: var(--surface); }
+.units input { width: 20px; height: 20px; flex: none; accent-color: var(--leaf); }
 .units .n { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14.5px; }
 .units .name { min-width: 0; overflow-wrap: anywhere; }
-.units .empty { padding: 16px 12px; color: var(--muted); }
+.units .empty { padding: 20px 14px; color: var(--muted); }
+.contagem { background: var(--ok-soft); color: var(--ok); border-radius: 999px; padding: 3px 12px; font-size: 14.5px; font-weight: 600; }
+.contagem:empty { display: none; }
+
+/* tabelas */
 .tablebox { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
-th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
-th { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
 td.num, th.num { text-align: right; }
 tfoot td { font-weight: 600; border-bottom: 0; }
-.hint { font-size: 15px; color: var(--muted); }
-.kpi { font-family: var(--display); font-size: 25px; }
-h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; background: var(--bg); }
+.kpi { font-family: var(--display); font-weight: 800; font-size: 26px; }
+.glossario { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.glossario .olho { color: var(--leaf); }
+.glossario p { max-width: 68ch; }
+
+/* quadros de gestão à vista */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; background: var(--surface-2); }
 .card .nome { font-weight: 600; overflow-wrap: anywhere; }
-.card .pct { font-family: var(--display); font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.card .pct { font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums; }
 .card .falta { font-weight: 600; }
 .card .nums { font-size: 14.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.selo { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
-.selo::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
-.selo.ok { color: var(--ok); } .selo.warn { color: var(--warn); } .selo.err { color: var(--err); }
-.glossario { border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
-.glossario p { max-width: 68ch; }
+.selo { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; border-radius: 999px; padding: 4px 12px 4px 9px; }
+.selo::before { font-size: 14px; line-height: 1; }
+.selo.ok { color: var(--ok); background: var(--ok-soft); } .selo.ok::before { content: "✓"; }
+.selo.warn { color: var(--warn); background: var(--warn-soft); } .selo.warn::before { content: "!"; font-weight: 800; }
+.selo.err { color: var(--err); background: var(--err-soft); } .selo.err::before { content: "▼"; font-size: 11px; }
+.medidor { position: relative; height: 10px; border-radius: 999px; background: var(--line); margin-block: 4px 2px; }
+.medidor > i { display: block; height: 100%; border-radius: 999px; min-width: 6px; }
+.medidor.ok > i { background: var(--ok); } .medidor.warn > i { background: var(--warn); } .medidor.err > i { background: var(--err); }
+.medidor > b { position: absolute; top: -4px; bottom: -4px; left: 80%; width: 2px; background: var(--ink); border-radius: 1px; }
+.legenda-medidor { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); }
 .bloco { display: flex; flex-direction: column; gap: 8px; }
-.lista { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
+.lista { max-height: 360px; overflow: auto; border: 1.5px solid var(--line); border-radius: 10px; }
 .lista table { font-size: 15.5px; }
 .lista th { position: sticky; top: 0; background: var(--surface); }
 .lista td { white-space: nowrap; } .lista td.larga { white-space: normal; min-width: 180px; }
+.lista tbody tr:nth-child(even) td { background: var(--surface-2); }
+
+footer.col { padding-block: 0 40px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; color: var(--muted); }
+footer strong { color: var(--ink); font-family: var(--display); }
+@media (max-width: 520px) {
+  h1 { font-size: 31px; } .marca { width: 56px; height: 56px; } .topo .lede { font-size: 17px; }
+  .step { padding: 18px 16px; } .row.base > button { flex: 1 1 100%; } .card .pct { font-size: 36px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
-<div class="wrap">
-  <header style="display:flex;flex-direction:column;gap:8px">
-    <h1>Extrator de Metas Nacionais — TJAC</h1>
-    <p class="lede">Escolha a meta e as unidades judiciárias. A página busca a base do painel de estatística, separa os processos por variável e entrega um Excel com uma aba para cada uma.</p>
-  </header>
+<header class="topo">
+  <div class="col gut">
+    <div class="marca-linha">
+      <svg class="marca" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- copa da samaúma -->
+  <path d="M84 196 C84 108 172 62 256 62 C340 62 428 108 428 196 Z" fill="#2aa866"/>
+  <path d="M132 196 C132 138 190 104 256 104 C322 104 380 138 380 196 Z" fill="#1f8f55"/>
+  <!-- galhos como rede de dados -->
+  <g stroke="#eaf7ee" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M256 196 V122"/><path d="M256 168 L204 140"/><path d="M256 168 L308 140"/>
+    <path d="M204 140 L160 160"/><path d="M308 140 L352 160"/>
+  </g>
+  <g fill="#eaf7ee"><circle cx="256" cy="118" r="11"/><circle cx="204" cy="140" r="10"/><circle cx="308" cy="140" r="10"/><circle cx="158" cy="161" r="9"/><circle cx="354" cy="161" r="9"/></g>
+  <!-- travessão e pratos da balança -->
+  <rect x="92" y="188" width="328" height="16" rx="8" fill="#f2b632"/>
+  <g stroke="#f2b632" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M124 204 L98 268"/><path d="M124 204 L150 268"/><path d="M388 204 L362 268"/><path d="M388 204 L414 268"/>
+  </g>
+  <path d="M84 268 H164 A40 26 0 0 1 84 268 Z" fill="#f2b632"/>
+  <path d="M348 268 H428 A40 26 0 0 1 348 268 Z" fill="#f2b632"/>
+  <!-- tronco com sapopemas -->
+  <path d="M234 204 H278 L286 318 C292 372 330 404 384 420 H128 C182 404 220 372 226 318 Z" fill="#f4efe1"/>
+  <g stroke="#0b3d2e" stroke-width="6" stroke-linecap="round" fill="none"><path d="M256 300 C252 356 226 394 190 418"/><path d="M256 300 C260 356 286 394 322 418"/></g>
+  <!-- rio -->
+  <g stroke="#56b4ff" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M100 452 q26 -18 52 0 t52 0 t52 0 t52 0 t52 0 t52 0"/>
+  </g>
+</svg>
 
-  <section class="step" aria-labelledby="h-base">
-    <h2 id="h-base">1. Base de dados</h2>
-    <div class="row">
+      <div>
+        <p class="olho">RPA · Metas Nacionais do Judiciário</p>
+        <h1>Sumaúma <span>RPA</span></h1>
+      </div>
+    </div>
+    <p class="lede">Do painel de estatística à lista de trabalho de cada unidade judiciária: escolha a meta, marque as unidades e veja o que falta para cumprir.</p>
+    <ul class="fatos" aria-label="Sobre os dados">
+      <li>9 metas nacionais</li><li>Regras do Glossário CNJ 2026</li><li>Dados públicos do TJAC</li>
+    </ul>
+  </div>
+</header>
+<nav class="trilha" aria-label="Etapas">
+  <ol class="col gut">
+    <li id="et-1"><a href="#base"><span class="n">1</span>Base</a></li>
+    <li id="et-2"><a href="#unidades"><span class="n">2</span>Unidades</a></li>
+    <li id="et-3"><a href="#excel"><span class="n">3</span>Excel</a></li>
+    <li id="et-4"><a href="#gestao"><span class="n">4</span>Gestão à vista</a></li>
+  </ol>
+</nav>
+
+<main class="col gut">
+  <section class="step" id="base" aria-labelledby="h-base">
+    <div class="cab"><span class="n" aria-hidden="true">1</span><div><h2 id="h-base">Base de dados</h2><p>Escolha a meta. A base mais recente do painel de estatística é buscada automaticamente.</p></div></div>
+    <div class="row base">
       <label class="field" for="meta">Meta
         <select id="meta"></select>
       </label>
-      <button id="buscar" class="primary" type="button">Buscar dados</button>
+      <button id="buscar" class="primary" type="button">Atualizar dados</button>
     </div>
     <div class="bar" id="barra" hidden><i></i></div>
     <p class="status" id="status-base" role="status">Buscando a base da Meta 1…</p>
@@ -114,27 +223,25 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
     </div>
     <div class="row">
       <label class="filebtn">Usar um CSV já baixado<input id="arquivo" type="file" accept=".csv,text/csv"></label>
-      <span class="hint">Opcional: serve para qualquer meta, inclusive a 9.</span>
+      <span class="hint">Opcional. Serve para qualquer meta, inclusive a 9.</span>
     </div>
   </section>
 
-  <section class="step" aria-labelledby="h-unid">
-    <h2 id="h-unid">2. Unidades judiciárias</h2>
-    <div class="row">
-      <label class="field" for="busca">Procurar (ex.: cruzeiro do sul, vara cível, juizado)
-        <input id="busca" type="search" placeholder="Digite parte do nome" autocomplete="off">
-      </label>
-    </div>
+  <section class="step" id="unidades" aria-labelledby="h-unid">
+    <div class="cab"><span class="n" aria-hidden="true">2</span><div><h2 id="h-unid">Unidades judiciárias</h2><p>Procure pelo nome e marque uma ou várias. A seleção fica guardada para a próxima visita.</p></div></div>
+    <label class="field" for="busca">Procurar unidade
+      <input id="busca" type="search" placeholder="Ex.: cruzeiro do sul, vara cível, juizado" autocomplete="off">
+    </label>
     <div class="row">
       <button id="marcar" class="link" type="button">Marcar as listadas</button>
       <button id="limpar" class="link" type="button">Desmarcar todas</button>
-      <span class="hint" id="contagem-sel"></span>
+      <span class="contagem" id="contagem-sel"></span>
     </div>
-    <div class="units" id="unidades"><p class="empty">As unidades aparecem aqui assim que a base for carregada.</p></div>
+    <div class="units" id="unidades-lista"><p class="empty">As unidades aparecem aqui assim que a base for carregada.</p></div>
   </section>
 
-  <section class="step" aria-labelledby="h-xlsx">
-    <h2 id="h-xlsx">3. Excel</h2>
+  <section class="step" id="excel" aria-labelledby="h-xlsx">
+    <div class="cab"><span class="n" aria-hidden="true">3</span><div><h2 id="h-xlsx">Excel por variável</h2><p>O total de processos das unidades marcadas e a planilha com uma aba para cada variável.</p></div></div>
     <div class="tablebox">
       <table>
         <thead><tr><th>Variável</th><th class="num">Processos</th></tr></thead>
@@ -149,16 +256,16 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
     </div>
     <p class="hint">O Excel sai com a aba “Todos” e uma aba por variável. Números de processo e identificadores ficam como texto, para o Excel não os converter em notação científica.</p>
     <div class="glossario" id="glossario" aria-live="polite">
+      <p class="olho">O que diz o glossário</p>
       <h3 id="gloss-titulo"></h3>
       <p id="gloss-texto"></p>
       <p class="hint">Resumo do Glossário das Metas Nacionais do Poder Judiciário 2026, Justiça Estadual, versão 3 (CNJ). Em caso de dúvida, vale o texto do glossário.</p>
     </div>
   </section>
 
-  <section class="step" aria-labelledby="h-trab">
-    <h2 id="h-trab">4. Gestão à vista</h2>
-    <p class="lede" id="trab-lede"></p>
-    <p class="hint" id="trab-aviso">Marque ao menos uma unidade para montar a lista.</p>
+  <section class="step" id="gestao" aria-labelledby="h-trab">
+    <div class="cab"><span class="n" aria-hidden="true">4</span><div><h2 id="h-trab">Gestão à vista</h2><p id="trab-lede"></p></div></div>
+    <p class="hint" id="trab-aviso">Marque ao menos uma unidade para montar o quadro.</p>
     <div class="cards" id="trab-cards"></div>
     <div id="trab-bloco" class="bloco" hidden>
       <h3 id="trab-titulo">A julgar</h3>
@@ -174,7 +281,13 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
     </div>
     <p class="hint" id="trab-regra"></p>
   </section>
-</div>
+</main>
+
+<footer class="col gut">
+  <p><strong>Sumaúma RPA</strong> · Gestão à vista das Metas Nacionais do Poder Judiciário.</p>
+  <p>Fonte dos dados: painel de estatística do TJAC, de acesso público. Regras de cálculo: Glossário das Metas Nacionais 2026 (CNJ). O resultado por unidade é referência de gestão, não o resultado oficial.</p>
+  <p><a href="https://github.com/seringueiroacreano/cienciadedados" target="_blank" rel="noopener">Código aberto no GitHub</a></p>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
@@ -313,7 +426,7 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   }
 
   function desenharUnidades() {
-    const caixa = $("unidades"); caixa.textContent = "";
+    const caixa = $("unidades-lista"); caixa.textContent = "";
     if (!estado.unidades.length) return;
     const lista = visiveis();
     if (!lista.length) { const p = document.createElement("p"); p.className = "empty"; p.textContent = "Nenhuma unidade com esse nome."; caixa.append(p); return; }
@@ -334,10 +447,10 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
 
   function atualizarResumo() {
     guardar("unidades", [...estado.sel]);
-    atualizarTrabalho();
+    atualizarTrabalho(); atualizarEtapas();
     const corpo = $("resumo"), pe = $("resumo-total"), kpi = $("cumprimento");
     corpo.textContent = ""; pe.textContent = ""; kpi.hidden = true;
-    $("contagem-sel").textContent = estado.sel.size ? `${estado.sel.size} marcada(s)` : "";
+    $("contagem-sel").textContent = estado.sel.size ? `${fmt(estado.sel.size)} ${estado.sel.size === 1 ? "unidade marcada" : "unidades marcadas"}` : "";
     $("baixar").disabled = !estado.sel.size;
     if (!estado.sel.size) {
       corpo.innerHTML = '<tr><td colspan="2" class="hint">Marque ao menos uma unidade para ver os totais.</td></tr>'; return;
@@ -648,6 +761,22 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   const LEDE_GERAL = "Um processo por linha, já classificado: a julgar, suspenso ou julgado. Os que estão a julgar aparecem do mais antigo para o mais novo.";
   const pctBR = n => n === null ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
   const LIMITE_TELA = 100;
+  // Barra de 0 a 125% com o traço da meta em 100%; o texto ao lado diz o mesmo em números.
+  function medidor(cumprimento, classe) {
+    const caixa = document.createElement("div");
+    if (cumprimento === null) return caixa;
+    const m = document.createElement("div"); m.className = "medidor " + classe; m.setAttribute("aria-hidden", "true");
+    const fill = document.createElement("i"); fill.style.width = Math.min(cumprimento, 125) / 125 * 100 + "%";
+    m.append(fill, document.createElement("b"));
+    const leg = document.createElement("div"); leg.className = "legenda-medidor"; leg.setAttribute("aria-hidden", "true");
+    leg.innerHTML = '<span>0%</span><span style="margin-left:auto;margin-right:calc(20% - 1.6em)">meta 100%</span>';
+    caixa.append(m, leg); return caixa;
+  }
+  function atualizarEtapas() {
+    const base = estado.linhas.length > 0, sel = estado.sel.size > 0;
+    $("et-1").classList.toggle("feita", base); $("et-2").classList.toggle("feita", base && sel);
+    $("et-3").classList.toggle("feita", base && sel); $("et-4").classList.toggle("feita", base && sel && !!trabalho);
+  }
   let trabalho = null;
 
   function atualizarTrabalho() {
@@ -679,6 +808,7 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
         el("span", "selo " + classe, rotulo),
         el("span", "nome", r.titulo || `${r.nome} (exige ${(r.pct * 100).toLocaleString("pt-BR")}%)`),
         el("span", "pct", pctBR(r.cumprimento)),
+        medidor(r.cumprimento, classe),
         el("span", "falta", r.frase ? r.frase : r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.aJulgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar"),
         el("span", "nums", r.detalhe || `${fmt(r.aJulgar)} a julgar · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} distribuído(s)`));
       cards.append(card);
@@ -753,7 +883,7 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   };
   function atualizarGlossario() {
     const g = GLOSSARIO[estado.meta]; $("glossario").hidden = !g; if (!g) return;
-    $("gloss-titulo").textContent = `O que diz o glossário: Meta ${estado.meta} – ${g[0]}`;
+    $("gloss-titulo").textContent = `Meta ${estado.meta} – ${g[0]}`;
     $("gloss-texto").textContent = g[1];
   }
 
@@ -767,7 +897,7 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   seletor.addEventListener("change", () => { estado.meta = +seletor.value; guardar("meta", estado.meta); atualizarLink(); buscar(); });
   $("buscar").addEventListener("click", buscar);
   $("busca").addEventListener("input", desenharUnidades);
-  $("unidades").addEventListener("change", e => {
+  $("unidades-lista").addEventListener("change", e => {
     const nome = e.target.dataset.nome; if (nome === undefined) return;
     e.target.checked ? estado.sel.add(nome) : estado.sel.delete(nome); atualizarResumo();
   });
