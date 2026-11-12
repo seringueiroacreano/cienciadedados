@@ -8,10 +8,6 @@ on:
   schedule:
     - cron: "20 13 * * *"   # 8h20 no Acre
   workflow_dispatch:         # permite rodar à mão pela aba Actions
-  push:
-    paths:
-      - ".github/workflows/carga-diaria.yml"
-      - "rpa-metas-cnj/web/gerar_copia.py"
 
 permissions:
   contents: write
@@ -23,7 +19,7 @@ concurrency:
 jobs:
   carga:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 

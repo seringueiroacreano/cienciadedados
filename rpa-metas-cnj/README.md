@@ -76,7 +76,8 @@ A rotina `.github/workflows/carga-diaria.yml` roda às 8h20, baixa a base de cad
 uma única vez (`web/gerar_copia.py`) e publica a cópia na ramificação `dados-metas`.
 A página lê essa cópia e mostra a data da base; ela não acessa o TJAC. Se a carga
 atrasar mais de 30 horas, a página avisa. A rotina se identifica ao servidor como
-`sumauma-rpa/1.0` e pode ser rodada à mão pela aba Actions do GitHub.
+`sumauma-rpa/1.0` e pode ser rodada à mão pela aba Actions do GitHub. A carga leva
+cerca de 12 minutos e é a única consulta ao servidor do TJAC no dia.
 
 ## Como funciona
 O botão **Download** do painel (Power BI) é um link fixo, `link.tjac.jus.br/meta-N`,
