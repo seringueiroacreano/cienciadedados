@@ -156,8 +156,8 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   </section>
 
   <section class="step" aria-labelledby="h-trab">
-    <h2 id="h-trab">4. Lista de trabalho</h2>
-    <p class="lede">Um processo por linha, já classificado: <strong>a julgar</strong>, <strong>suspenso</strong> ou <strong>julgado</strong>. Os que estão a julgar aparecem do mais antigo para o mais novo.</p>
+    <h2 id="h-trab">4. Gestão à vista</h2>
+    <p class="lede" id="trab-lede"></p>
     <p class="hint" id="trab-aviso">Marque ao menos uma unidade para montar a lista.</p>
     <div class="cards" id="trab-cards"></div>
     <div id="trab-bloco" class="bloco" hidden>
@@ -321,7 +321,7 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
     for (const u of lista) {
       const rot = document.createElement("label"), cx = document.createElement("input"), nome = document.createElement("span"), n = document.createElement("span");
       cx.type = "checkbox"; cx.checked = estado.sel.has(u.nome); cx.dataset.nome = u.nome;
-      nome.className = "name"; nome.textContent = u.nome; n.className = "n"; n.textContent = fmt(u.n);
+      nome.className = "name"; nome.textContent = u.nome || "(unidade não informada na base)"; n.className = "n"; n.textContent = fmt(u.n);
       rot.append(cx, nome, n); frag.append(rot);
     }
     caixa.append(frag);
@@ -541,6 +541,111 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   }
   const REGRA_M1 = "Regra do glossário do CNJ para a Meta 1: cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos). Suspenso é o processo com a situação Pendente (88) aberta e a Pendente líquido (25) fechada; ele sai da conta. Se for dessobrestado, volta a ser cobrado. Julgar processo do acervo anterior a 2026 também conta como julgado. O “faltam” por unidade é referência de gestão, não o resultado oficial.";
   const REGRA_GERAL = "Regra do glossário do CNJ (Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi julgado nem suspenso. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. O “faltam” por unidade aplica à unidade o percentual que a meta exige do tribunal; é referência de gestão, não o resultado oficial.";
+  const doisDec = n => (n * 100).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+  const distintos = () => { const m = new Map(); return { add(k, id) { let c = m.get(k); if (!c) m.set(k, c = new Set()); c.add(id); }, n: k => (m.get(k) || { size: 0 }).size }; };
+
+  // Meta 3 (glossário CNJ 2026): IC = sentenças homologatórias ÷ sentenças; cumprimento = IC ÷ (IC de 2025 + 0,01);
+  // com IC de 18% ou mais, o cumprimento é 100% (cláusula de barreira).
+  function montarIndiceM3(linhas, col) {
+    if (col.var === undefined || col.dt_evento === undefined) return null;
+    const chave = col.id_processo !== undefined ? col.id_processo : col.numero;
+    let anoAtual = 0; for (const l of linhas) { const a = +(l[col.dt_evento] || "").slice(0, 4); if (a > anoAtual) anoAtual = a; }
+    if (!anoAtual) return null;
+    const anoAnt = anoAtual - 1, cont = distintos(), unidades = new Set();
+    for (const l of linhas) {
+      const ano = +(l[col.dt_evento] || "").slice(0, 4); if (ano !== anoAtual && ano !== anoAnt) continue;
+      const t = norm(l[col.var]);
+      const tipo = t.startsWith("sentencas") ? "sent" : t.includes("pre-processual") ? "pre" : t.startsWith("homologatoria") ? "hom" : null;
+      if (!tipo) continue;
+      const u = l[col.nome_orgao_julgador]; unidades.add(u);
+      cont.add(`${u}\u0001${tipo}\u0001${ano}`, l[chave]); cont.add(`\u0002${tipo}\u0001${ano}`, l[chave] + "\u0001" + u);
+    }
+    const calc = u => {
+      const n = (tipo, ano) => cont.n(u === null ? `\u0002${tipo}\u0001${ano}` : `${u}\u0001${tipo}\u0001${ano}`);
+      const r = { unidade: u, sent: n("sent", anoAtual), hom: n("hom", anoAtual), pre: n("pre", anoAtual), sentAnt: n("sent", anoAnt), homAnt: n("hom", anoAnt), preAnt: n("pre", anoAnt) };
+      r.ic = r.sent ? (r.hom + r.pre) / r.sent : null; r.icAnt = r.sentAnt ? (r.homAnt + r.preAnt) / r.sentAnt : null;
+      r.barreira = r.ic !== null && r.ic >= 0.18;
+      const bruto = r.ic !== null && r.icAnt !== null ? r.ic / (r.icAnt + 0.01) * 100 : null;
+      r.cumprimento = r.barreira && (bruto === null || bruto < 100) ? 100 : bruto;
+      r.alvo = r.icAnt === null ? 0.18 : Math.min(r.icAnt + 0.01, 0.18);
+      r.faltam = r.sent ? Math.max(0, Math.ceil(r.alvo * r.sent - 1e-9) - r.hom - r.pre) : 0;
+      return r;
+    };
+    const total = calc(null);
+    total.titulo = "Índice de conciliação (exige 1 ponto acima de 2025, ou 18%)".replace("2025", anoAnt);
+    total.frase = total.ic === null ? `Sem sentenças em ${anoAtual} nas unidades marcadas`
+      : total.faltam ? `Faltam ${fmt(total.faltam)} acordo(s) homologado(s) para chegar a ${doisDec(total.alvo)}`
+      : total.barreira && total.icAnt !== null && total.ic < total.icAnt + 0.01 ? "Cumprida pela cláusula de barreira (índice de 18% ou mais)" : "Meta atingida";
+    total.detalhe = `Índice de ${anoAtual}: ${total.ic === null ? "—" : doisDec(total.ic)} (${fmt(total.hom + total.pre)} acordos, ${fmt(total.pre)} deles pré-processuais, em ${fmt(total.sent)} sentenças) · Índice de ${anoAnt}: ${total.icAnt === null ? "—" : doisDec(total.icAnt)} (${fmt(total.homAnt + total.preAnt)} em ${fmt(total.sentAnt)})`;
+    const porUnidade = [...unidades].sort((a, b) => a.localeCompare(b)).map(calc);
+    const pc = v => v === null ? "" : Math.round(v * 10000) / 100;
+    return { itens: [], fila: [], recortes: [total], porUnidade, vazio: !total.sent && !total.sentAnt,
+      planilhas: [["Resumo", ["Unidade", `Sentenças ${anoAnt}`, `Acordos ${anoAnt}`, `Índice ${anoAnt} (%)`, `Sentenças ${anoAtual}`, `Acordos ${anoAtual}`, `Pré-processuais ${anoAtual}`, `Índice ${anoAtual} (%)`, "Cumprimento (%)", "Acordos que faltam"],
+        porUnidade.map(r => [r.unidade, r.sentAnt, r.homAnt + r.preAnt, pc(r.icAnt), r.sent, r.hom + r.pre, r.pre, pc(r.ic), r.cumprimento === null ? "" : Math.round(r.cumprimento * 100) / 100, r.faltam]), []]] };
+  }
+
+  // Meta 5 (glossário CNJ 2026): TCLC = pendentes líquidos ÷ (pendentes líquidos + baixados);
+  // cumprimento = (TCLC de 2025 − 0,005) ÷ TCLC de 2026; com TCLC de 52% ou menos, o cumprimento é 100%.
+  function montarIndiceM5(linhas, col) {
+    if (col.var === undefined || col.dt_evento === undefined) return null;
+    const mesesCP = new Set(); let anoAtual = 0;
+    for (const l of linhas) { const m = l[col.dt_evento] || ""; if (+m.slice(0, 4) > anoAtual) anoAtual = +m.slice(0, 4); if (norm(l[col.var]).startsWith("cplc")) mesesCP.add(m); }
+    if (!anoAtual) return null;
+    const anoAnt = anoAtual - 1, lista = [...mesesCP].sort();
+    const mesAtual = lista.filter(m => +m.slice(0, 4) === anoAtual).pop(), mesAnt = lista.filter(m => +m.slice(0, 4) === anoAnt).pop();
+    const cont = distintos(), unidades = new Set(), primeiro = new Map(), acervo = [];
+    for (const l of linhas) {
+      const m = l[col.dt_evento] || "", ano = +m.slice(0, 4), t = norm(l[col.var]), u = l[col.nome_orgao_julgador], num = l[col.numero];
+      if (t.startsWith("cplc")) {
+        const k = u + "\u0001" + num; if (!primeiro.has(k) || m < primeiro.get(k)) primeiro.set(k, m);
+        if (m === mesAtual) { unidades.add(u); cont.add(u + "\u0001cp", num); cont.add("\u0002cp", k); acervo.push(l); }
+        else if (m === mesAnt) { unidades.add(u); cont.add(u + "\u0001cpAnt", num); cont.add("\u0002cpAnt", k); }
+      } else if (t.startsWith("tbaix") && (ano === anoAtual || ano === anoAnt)) {
+        const sufixo = ano === anoAtual ? "tb" : "tbAnt"; unidades.add(u);
+        cont.add(u + "\u0001" + sufixo, num + m); cont.add("\u0002" + sufixo, num + m + u);
+      }
+    }
+    const rotMes = m => m ? `${m.slice(4)}/${m.slice(0, 4)}` : "—";
+    const calc = u => {
+      const pre = u === null ? "\u0002" : u + "\u0001";
+      const r = { unidade: u, cp: cont.n(pre + "cp"), tb: cont.n(pre + "tb"), cpAnt: cont.n(pre + "cpAnt"), tbAnt: cont.n(pre + "tbAnt") };
+      r.taxa = r.cp + r.tb ? r.cp / (r.cp + r.tb) : null; r.taxaAnt = r.cpAnt + r.tbAnt ? r.cpAnt / (r.cpAnt + r.tbAnt) : null;
+      r.barreira = r.taxa !== null && r.taxa <= 0.52;
+      const bruto = r.taxa !== null && r.taxaAnt !== null ? (r.taxa > 0 ? (r.taxaAnt - 0.005) / r.taxa * 100 : 100) : null;
+      r.cumprimento = r.barreira && (bruto === null || bruto < 100) ? 100 : bruto;
+      r.alvo = r.taxaAnt === null ? 0.52 : Math.max(r.taxaAnt - 0.005, 0.52);
+      r.faltam = r.taxa !== null ? Math.max(0, Math.ceil(r.cp - r.alvo * (r.cp + r.tb) - 1e-9)) : 0;
+      return r;
+    };
+    const total = calc(null);
+    total.titulo = `Taxa de congestionamento líquida (exige 0,5 ponto abaixo de ${anoAnt}, ou até 52%)`;
+    total.frase = total.taxa === null ? `Sem movimento em ${anoAtual} nas unidades marcadas`
+      : total.faltam ? `Faltam ${fmt(total.faltam)} baixa(s) de processos do acervo para chegar a ${doisDec(total.alvo)}`
+      : total.barreira && total.taxaAnt !== null && total.taxa > total.taxaAnt - 0.005 ? "Cumprida pela cláusula de barreira (taxa de 52% ou menos)" : "Meta atingida";
+    total.detalhe = `Taxa de ${anoAtual}: ${total.taxa === null ? "—" : doisDec(total.taxa)} (${fmt(total.cp)} pendentes líquidos em ${rotMes(mesAtual)}, ${fmt(total.tb)} baixados no ano) · Taxa de ${anoAnt}: ${total.taxaAnt === null ? "—" : doisDec(total.taxaAnt)} (${fmt(total.cpAnt)} pendentes em ${rotMes(mesAnt)}, ${fmt(total.tbAnt)} baixados)`;
+    const anoProc = n => { const m = /^\d{7}-\d{2}\.(\d{4})\./.exec(n || ""); return m ? m[1] : ""; };
+    const itens = acervo.map(l => { const u = l[col.nome_orgao_julgador], num = l[col.numero];
+      return { situacao: "A julgar", numero: num, distribuido: anoProc(num), recorte: l[col.grau] === "JE" ? "Juizado Especial" : "1º grau", unidade: u, municipio: l[col.nome_municipio] ?? "",
+        grau: l[col.grau] ?? "", classe: l[col.classe] ?? "", natureza: l[col.nome_natureza] ?? "", sistema: l[col.sistema] ?? "", desde: rotMes(primeiro.get(u + "\u0001" + num)) + (primeiro.get(u + "\u0001" + num) === lista[0] ? " ou antes" : "") }; })
+      .sort((a, b) => (a.distribuido || "9").localeCompare(b.distribuido || "9") || a.numero.localeCompare(b.numero));
+    const porUnidade = [...unidades].sort((a, b) => a.localeCompare(b)).map(calc);
+    const pc = v => v === null ? "" : Math.round(v * 10000) / 100;
+    return { itens, fila: itens, recortes: [total], porUnidade, vazio: !unidades.size,
+      tituloFila: n => `Acervo pendente líquido em ${rotMes(mesAtual)}: ${fmt(n)} processo(s), do mais antigo para o mais novo`,
+      colData: "Ano do processo", colRec: "Grau",
+      planilhas: [
+        ["Resumo", ["Unidade", `Pendentes líquidos em ${rotMes(mesAnt)}`, `Baixados em ${anoAnt}`, `Taxa ${anoAnt} (%)`, `Pendentes líquidos em ${rotMes(mesAtual)}`, `Baixados em ${anoAtual}`, `Taxa ${anoAtual} (%)`, "Cumprimento (%)", "Baixas que faltam"],
+          porUnidade.map(r => [r.unidade, r.cpAnt, r.tbAnt, pc(r.taxaAnt), r.cp, r.tb, pc(r.taxa), r.cumprimento === null ? "" : Math.round(r.cumprimento * 100) / 100, r.faltam]), []],
+        ["Acervo pendente", ["Processo", "Ano do processo", "No acervo desde", "Unidade", "Município", "Grau", "Classe", "Natureza", "Sistema"],
+          itens.map(it => [it.numero, it.distribuido, it.desde, it.unidade, it.municipio, it.grau, it.classe, it.natureza, it.sistema]), []]] };
+  }
+  const REGRA_M3 = "Regra do glossário do CNJ para a Meta 3: índice de conciliação = sentenças homologatórias de acordo (inclusive pré-processuais) ÷ total de sentenças não criminais do 1º grau e dos Juizados. Cumprimento = índice do ano ÷ (índice do ano anterior + 1 ponto percentual); com índice de 18% ou mais, a meta está cumprida. O ano é o da data do evento na base. O resultado por unidade é referência de gestão: a meta e a cláusula de barreira são do tribunal.";
+  const REGRA_M5 = "Regra do glossário do CNJ para a Meta 5: taxa de congestionamento líquida = pendentes líquidos ÷ (pendentes líquidos + baixados no ano). Cumprimento = (taxa do ano anterior − 0,5 ponto percentual) ÷ taxa do ano; com taxa de 52% ou menos, a meta está cumprida. Com o ano em curso, os baixados ainda estão se acumulando, então a taxa tende a cair até dezembro. O resultado por unidade é referência de gestão: a meta e a cláusula de barreira são do tribunal.";
+  const LEDES = {
+    3: "Na Meta 3 não há fila de processos: o que conta é a proporção de acordos homologados entre as sentenças. O quadro mostra o índice das unidades marcadas e quantos acordos faltam.",
+    5: "Na Meta 5 a unidade melhora o indicador baixando processos do acervo. O quadro mostra a taxa de congestionamento e a lista traz o acervo pendente líquido, do processo mais antigo para o mais novo.",
+  };
+  const LEDE_GERAL = "Um processo por linha, já classificado: a julgar, suspenso ou julgado. Os que estão a julgar aparecem do mais antigo para o mais novo.";
   const pctBR = n => n === null ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
   const LIMITE_TELA = 100;
   let trabalho = null;
@@ -548,19 +653,22 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   function atualizarTrabalho() {
     const aviso = $("trab-aviso"), cards = $("trab-cards"), bloco = $("trab-bloco"), corpo = $("trab-linhas"), botao = $("baixar-trab");
     cards.textContent = ""; corpo.textContent = ""; bloco.hidden = true; botao.disabled = true; trabalho = null; aviso.hidden = false;
+    $("trab-lede").textContent = LEDES[estado.meta] || LEDE_GERAL;
+    botao.textContent = estado.meta === 3 ? "Baixar resumo por unidade" : estado.meta === 5 ? "Baixar acervo pendente" : "Baixar lista de trabalho";
     status("trab", "");
     if (!estado.linhas.length) { aviso.textContent = "A lista aparece aqui assim que a base for carregada."; return; }
-    const m1 = estado.meta === 1;
-    $("trab-regra").textContent = m1 ? REGRA_M1 : REGRA_GERAL;
-    $("trab-th-rec").textContent = m1 ? "Origem" : "Recorte";
-    $("trab-th-data").textContent = m1 ? "Pendente desde" : "Distribuído em";
-    if (!RECORTES[estado.meta] && !m1) {
-      aviso.textContent = `A lista de trabalho existe para as Metas 1, 2, 4, 6, 7, 8 e 10. A Meta ${estado.meta} segue outra regra de cálculo; use o Excel por variável do passo 3.`;
+    const m1 = estado.meta === 1, m = estado.meta, indice = m === 3 || m === 5;
+    $("trab-regra").textContent = m1 ? REGRA_M1 : m === 3 ? REGRA_M3 : m === 5 ? REGRA_M5 : REGRA_GERAL;
+    if (!RECORTES[m] && !m1 && !indice) {
+      aviso.textContent = `A Meta ${m} não tem quadro de gestão nesta página; use o Excel por variável do passo 3.`;
       return;
     }
-    if (!estado.sel.size) { aviso.textContent = "Marque ao menos uma unidade para montar a lista."; return; }
-    trabalho = m1 ? montarTrabalhoM1(selecionadas(), estado.col) : montarTrabalho(estado.meta, selecionadas(), estado.col);
-    if (!trabalho || !trabalho.itens.length) { aviso.textContent = "As unidades marcadas não têm processos nesta meta."; trabalho = null; return; }
+    if (!estado.sel.size) { aviso.textContent = "Marque ao menos uma unidade para montar o quadro."; return; }
+    const sel = selecionadas();
+    trabalho = m1 ? montarTrabalhoM1(sel, estado.col) : m === 3 ? montarIndiceM3(sel, estado.col) : m === 5 ? montarIndiceM5(sel, estado.col) : montarTrabalho(m, sel, estado.col);
+    if (!trabalho || trabalho.vazio || (!indice && !trabalho.itens.length)) { aviso.textContent = "As unidades marcadas não têm processos nesta meta."; trabalho = null; return; }
+    $("trab-th-rec").textContent = trabalho.colRec || (m1 ? "Origem" : "Recorte");
+    $("trab-th-data").textContent = trabalho.colData || (m1 ? "Pendente desde" : "Distribuído em");
     aviso.hidden = true; botao.disabled = false;
     for (const r of trabalho.recortes) {
       const card = document.createElement("div"); card.className = "card";
@@ -569,14 +677,14 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
       const el = (tag, cls, txt) => { const e = document.createElement(tag); e.className = cls; e.textContent = txt; return e; };
       card.append(
         el("span", "selo " + classe, rotulo),
-        el("span", "nome", `${r.nome} (exige ${(r.pct * 100).toLocaleString("pt-BR")}%)`),
+        el("span", "nome", r.titulo || `${r.nome} (exige ${(r.pct * 100).toLocaleString("pt-BR")}%)`),
         el("span", "pct", pctBR(r.cumprimento)),
-        el("span", "falta", r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.aJulgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar"),
+        el("span", "falta", r.frase ? r.frase : r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.aJulgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar"),
         el("span", "nums", r.detalhe || `${fmt(r.aJulgar)} a julgar · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} distribuído(s)`));
       cards.append(card);
     }
-    const fila = trabalho.itens.filter(it => it.situacao === "A julgar");
-    $("trab-titulo").textContent = `A julgar: ${fmt(fila.length)} processo(s), do mais antigo para o mais novo`;
+    const fila = trabalho.fila || trabalho.itens.filter(it => it.situacao === "A julgar");
+    $("trab-titulo").textContent = trabalho.tituloFila ? trabalho.tituloFila(fila.length) : `A julgar: ${fmt(fila.length)} processo(s), do mais antigo para o mais novo`;
     if (fila.length) {
       bloco.hidden = false;
       for (const it of fila.slice(0, LIMITE_TELA)) {
@@ -607,21 +715,22 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
     try {
       const wb = XLSX.utils.book_new(), arred = n => n === null ? "" : Math.round(n * 100) / 100, m1 = estado.meta === 1;
       const rotRec = m1 ? "Origem" : "Recorte da meta";
-      if (m1) XLSX.utils.book_append_sheet(wb, folha(
+      if (trabalho.planilhas) for (const [aba, cab, linhas, datas] of trabalho.planilhas) XLSX.utils.book_append_sheet(wb, folha(cab, linhas, datas), aba);
+      else if (m1) XLSX.utils.book_append_sheet(wb, folha(
         ["Unidade", "Casos novos", "Dessobrestados", "Suspensos", "Julgados", "A julgar", "A julgar: casos novos de 2026", "A julgar: acervo anterior", "Cumprimento (%)", "Faltam para cumprir"],
         trabalho.porUnidade.map(r => [r.unidade, r.dis, r.des, r.sus, r.jul, r.aJulgar, r.aNovos, r.aAcervo, arred(r.cumprimento), r.faltam])), "Resumo");
       else XLSX.utils.book_append_sheet(wb, folha(
         ["Unidade", "Recorte da meta", "Percentual exigido (%)", "Distribuídos", "Suspensos", "Fora do cômputo", "Julgados", "A julgar", "Cumprimento (%)", "Faltam para cumprir"],
         trabalho.porUnidade.map(r => [r.unidade, r.nome, r.pct * 100, r.dis, r.sus, r.fora, r.jul, r.aJulgar, arred(r.cumprimento), r.faltam])), "Resumo");
       const abas = [["A julgar", "A julgar", null], ["Suspenso", "Suspensos", "Suspenso em"], ["Julgado", "Julgados", "Julgado em"], ["Fora do cômputo", "Fora do cômputo", "Dessobrestado em"]];
-      for (const [situacao, nomeAba, rotuloEvento] of abas) {
+      for (const [situacao, nomeAba, rotuloEvento] of trabalho.planilhas ? [] : abas) {
         const its = trabalho.itens.filter(it => it.situacao === situacao);
         if (!its.length && situacao !== "A julgar") continue;
         const cab = ["Processo", m1 ? "Pendente desde" : "Distribuído em"].concat(rotuloEvento ? [rotuloEvento] : [], [rotRec, "Unidade", "Município", "Grau", "Classe", "Natureza", "Sistema"]);
         const linhas = its.map(it => [it.numero, it.distribuido].concat(rotuloEvento ? [it.evento] : [], [it.recorte, it.unidade, it.municipio, it.grau, it.classe, it.natureza, it.sistema]));
         XLSX.utils.book_append_sheet(wb, folha(cab, linhas, rotuloEvento ? [1, 2] : [1]), nomeAba);
       }
-      const arquivo = nomeArquivo("lista_trabalho_");
+      const arquivo = nomeArquivo(estado.meta === 3 ? "conciliacao_" : estado.meta === 5 ? "acervo_pendente_" : "lista_trabalho_");
       await salvar(wb, arquivo);
       status("trab", `Excel gerado: ${arquivo}.`, "ok");
     } catch (e) {
@@ -634,9 +743,9 @@ h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
   const GLOSSARIO = {
     1: ["Julgar mais processos que os distribuídos", "Julgar mais processos de conhecimento do que os distribuídos de 20/12/2025 a 19/12/2026, deixando de fora os suspensos e sobrestados nesse período. Cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos) × 100; a meta está cumprida com 100% ou mais. Conta como julgado o primeiro destes eventos no processo: primeira sentença, procedimento incidental ou cautelar resolvido, baixa ou decisão em medida protetiva de urgência."],
     2: ["Julgar processos mais antigos", "Identificar e julgar, até 31/12/2026, pelo menos 80% dos processos distribuídos até 31/12/2022 no 1º grau, 90% dos distribuídos até 31/12/2023 no 2º grau, 95% dos distribuídos até 31/12/2023 nos Juizados Especiais e Turmas Recursais e 100% dos processos de conhecimento pendentes de julgamento há 15 anos ou mais (2011). Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. No recorte dos antigos não entram inventário, usucapião e falência, e os dessobrestados durante 2026 ficam fora da conta."],
-    3: ["Estimular a conciliação", "Aumentar em 1 ponto percentual, em relação a 2025, o Índice de Conciliação do Justiça em Números. Quem alcançar 18% de índice cumpre a meta de qualquer forma (cláusula de barreira). O índice é a razão entre as sentenças homologatórias de acordo e o total de sentenças, contando só a primeira sentença de cada processo de conhecimento não criminal no 1º grau e nos Juizados Especiais; as homologações pré-processuais também contam."],
+    3: ["Estimular a conciliação", "Aumentar em 1 ponto percentual, em relação a 2025, o Índice de Conciliação do Justiça em Números. Quem alcançar 18% de índice cumpre a meta de qualquer forma (cláusula de barreira). O índice é a razão entre as sentenças homologatórias de acordo e o total de sentenças, contando só a primeira sentença de cada processo de conhecimento não criminal no 1º grau e nos Juizados Especiais; as homologações pré-processuais também contam. Cumprimento = índice de 2026 ÷ (índice de 2025 + 1 ponto percentual) × 100."],
     4: ["Priorizar crimes contra a administração pública e improbidade", "Identificar e julgar, até 31/12/2026, 65% das ações penais de crimes contra a Administração Pública distribuídas até 31/12/2022, em especial corrupção ativa e passiva, peculato e concussão, e 100% das ações de improbidade administrativa distribuídas até 31/12/2022. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. Entram os processos de conhecimento com os assuntos listados no glossário e, na improbidade, também os da classe 64."],
-    5: ["Reduzir a taxa de congestionamento", "Reduzir em 0,5 ponto percentual, em relação a 2025, a taxa de congestionamento líquida da fase de conhecimento no 1º grau e nos Juizados Especiais. Quem ficar em 52% ou menos cumpre a meta de qualquer forma (cláusula de barreira). A taxa é: casos pendentes líquidos ÷ (casos pendentes líquidos + processos baixados). “Líquidos” quer dizer sem os suspensos, sobrestados e em arquivo provisório."],
+    5: ["Reduzir a taxa de congestionamento", "Reduzir em 0,5 ponto percentual, em relação a 2025, a taxa de congestionamento líquida da fase de conhecimento no 1º grau e nos Juizados Especiais. Quem ficar em 52% ou menos cumpre a meta de qualquer forma (cláusula de barreira). A taxa é: casos pendentes líquidos ÷ (casos pendentes líquidos + processos baixados). “Líquidos” quer dizer sem os suspensos, sobrestados e em arquivo provisório. Cumprimento = (taxa de 2025 − 0,5 ponto percentual) ÷ taxa de 2026 × 100."],
     6: ["Priorizar o julgamento das ações ambientais", "Identificar e julgar, até 31/12/2026, 50% dos processos relacionados às ações ambientais distribuídos até 31/12/2025. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ 50%. Entram os processos de conhecimento com os assuntos ambientais listados no glossário (criminais, tributários, administrativos e de direito ambiental)."],
     7: ["Priorizar indígenas, quilombolas e crimes de racismo", "Identificar e julgar, até 31/12/2026, 50% dos processos relacionados aos direitos das comunidades indígenas, 50% dos relacionados aos direitos das comunidades quilombolas e 50% dos relacionados a crimes de racismo, injúria racial e crimes de ódio, violência e discriminação, distribuídos até 31/12/2025. Cada um dos três grupos é calculado em separado. A meta não se aplica à unidade que não tem processos com esses assuntos."],
     8: ["Priorizar feminicídio e violência doméstica contra as mulheres", "Identificar e julgar, até 31/12/2026, 75% dos casos de feminicídio e 90% dos casos de violência doméstica e familiar contra a mulher distribuídos até 31/12/2024. A meta só está cumprida com 100% de cumprimento nos dois grupos. O processo que tem assuntos dos dois tipos conta apenas como feminicídio."],
