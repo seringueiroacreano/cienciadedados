@@ -30,19 +30,19 @@
   --ok: #5fd39a; --warn: #f0b95a; --warn-soft: #33290f; --err: #ff8a80; color-scheme: dark;
 }
 [hidden] { display: none !important; }
-body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
-.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 48px;
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 820px; margin: 0 auto; padding-block: 28px 48px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   display: flex; flex-direction: column; gap: 20px; }
-h1 { font-family: var(--display); font-size: 26px; line-height: 1.15; margin: 0; text-wrap: balance; }
-h2 { font-family: var(--display); font-size: 16px; margin: 0; }
+h1 { font-family: var(--display); font-size: 29px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: 19px; margin: 0; }
 p { margin: 0; }
 .lede { color: var(--muted); max-width: 62ch; }
 .step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-label.field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
+label.field { display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
 select, input[type="search"] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; width: 100%; box-sizing: border-box; }
-button, .filebtn { font: 600 14px var(--body); border-radius: 8px; padding: 10px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button, .filebtn { font: 600 16px var(--body); border-radius: 8px; padding: 10px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
 button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 button:disabled { opacity: .5; cursor: not-allowed; }
 button.link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 600; }
@@ -50,39 +50,41 @@ button.link { border: 0; background: none; padding: 0; color: var(--accent); fon
 .filebtn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .filebtn { position: relative; display: inline-block; }
 a { color: var(--accent); }
-.status { font-size: 14px; color: var(--muted); min-height: 1.5em; min-width: 0; overflow-wrap: anywhere; }
+.status { font-size: 15.5px; color: var(--muted); min-height: 1.5em; min-width: 0; overflow-wrap: anywhere; }
 .status.ok { color: var(--ok); } .status.err { color: var(--err); }
 .bar { height: 6px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
 .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
-.manual { background: var(--warn-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.manual { background: var(--warn-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 15.5px; }
 .manual ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
 .units { border: 1px solid var(--line); border-radius: 8px; max-height: 300px; overflow-y: auto; background: var(--bg); }
 .units label { display: flex; gap: 10px; align-items: baseline; padding: 7px 12px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .units label:last-child { border-bottom: 0; }
-.units .n { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 13px; }
+.units .n { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14.5px; }
 .units .name { min-width: 0; overflow-wrap: anywhere; }
 .units .empty { padding: 16px 12px; color: var(--muted); }
 .tablebox { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
 th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
-th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
 td.num, th.num { text-align: right; }
 tfoot td { font-weight: 600; border-bottom: 0; }
-.hint { font-size: 13px; color: var(--muted); }
-.kpi { font-family: var(--display); font-size: 22px; }
-h3 { font-family: var(--display); font-size: 14px; margin: 0; }
+.hint { font-size: 15px; color: var(--muted); }
+.kpi { font-family: var(--display); font-size: 25px; }
+h3 { font-family: var(--display); font-size: 16.5px; margin: 0; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; background: var(--bg); }
 .card .nome { font-weight: 600; overflow-wrap: anywhere; }
-.card .pct { font-family: var(--display); font-size: 26px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.card .pct { font-family: var(--display); font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .card .falta { font-weight: 600; }
-.card .nums { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.selo { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.card .nums { font-size: 14.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.selo { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .selo::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
 .selo.ok { color: var(--ok); } .selo.warn { color: var(--warn); } .selo.err { color: var(--err); }
+.glossario { border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.glossario p { max-width: 68ch; }
 .bloco { display: flex; flex-direction: column; gap: 8px; }
 .lista { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
-.lista table { font-size: 14px; }
+.lista table { font-size: 15.5px; }
 .lista th { position: sticky; top: 0; background: var(--surface); }
 .lista td { white-space: nowrap; } .lista td.larga { white-space: normal; min-width: 180px; }
 </style>
@@ -146,6 +148,11 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
       <span class="status" id="status-xlsx" role="status"></span>
     </div>
     <p class="hint">O Excel sai com a aba “Todos” e uma aba por variável. Números de processo e identificadores ficam como texto, para o Excel não os converter em notação científica.</p>
+    <div class="glossario" id="glossario" aria-live="polite">
+      <h3 id="gloss-titulo"></h3>
+      <p id="gloss-texto"></p>
+      <p class="hint">Resumo do Glossário das Metas Nacionais do Poder Judiciário 2026, Justiça Estadual, versão 3 (CNJ). Em caso de dúvida, vale o texto do glossário.</p>
+    </div>
   </section>
 
   <section class="step" aria-labelledby="h-trab">
@@ -623,12 +630,30 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
     botao.disabled = !trabalho;
   }
 
+  /* ---------- resumo do glossário da meta selecionada ---------- */
+  const GLOSSARIO = {
+    1: ["Julgar mais processos que os distribuídos", "Julgar mais processos de conhecimento do que os distribuídos de 20/12/2025 a 19/12/2026, deixando de fora os suspensos e sobrestados nesse período. Cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos) × 100; a meta está cumprida com 100% ou mais. Conta como julgado o primeiro destes eventos no processo: primeira sentença, procedimento incidental ou cautelar resolvido, baixa ou decisão em medida protetiva de urgência."],
+    2: ["Julgar processos mais antigos", "Identificar e julgar, até 31/12/2026, pelo menos 80% dos processos distribuídos até 31/12/2022 no 1º grau, 90% dos distribuídos até 31/12/2023 no 2º grau, 95% dos distribuídos até 31/12/2023 nos Juizados Especiais e Turmas Recursais e 100% dos processos de conhecimento pendentes de julgamento há 15 anos ou mais (2011). Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. No recorte dos antigos não entram inventário, usucapião e falência, e os dessobrestados durante 2026 ficam fora da conta."],
+    3: ["Estimular a conciliação", "Aumentar em 1 ponto percentual, em relação a 2025, o Índice de Conciliação do Justiça em Números. Quem alcançar 18% de índice cumpre a meta de qualquer forma (cláusula de barreira). O índice é a razão entre as sentenças homologatórias de acordo e o total de sentenças, contando só a primeira sentença de cada processo de conhecimento não criminal no 1º grau e nos Juizados Especiais; as homologações pré-processuais também contam."],
+    4: ["Priorizar crimes contra a administração pública e improbidade", "Identificar e julgar, até 31/12/2026, 65% das ações penais de crimes contra a Administração Pública distribuídas até 31/12/2022, em especial corrupção ativa e passiva, peculato e concussão, e 100% das ações de improbidade administrativa distribuídas até 31/12/2022. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. Entram os processos de conhecimento com os assuntos listados no glossário e, na improbidade, também os da classe 64."],
+    5: ["Reduzir a taxa de congestionamento", "Reduzir em 0,5 ponto percentual, em relação a 2025, a taxa de congestionamento líquida da fase de conhecimento no 1º grau e nos Juizados Especiais. Quem ficar em 52% ou menos cumpre a meta de qualquer forma (cláusula de barreira). A taxa é: casos pendentes líquidos ÷ (casos pendentes líquidos + processos baixados). “Líquidos” quer dizer sem os suspensos, sobrestados e em arquivo provisório."],
+    6: ["Priorizar o julgamento das ações ambientais", "Identificar e julgar, até 31/12/2026, 50% dos processos relacionados às ações ambientais distribuídos até 31/12/2025. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ 50%. Entram os processos de conhecimento com os assuntos ambientais listados no glossário (criminais, tributários, administrativos e de direito ambiental)."],
+    7: ["Priorizar indígenas, quilombolas e crimes de racismo", "Identificar e julgar, até 31/12/2026, 50% dos processos relacionados aos direitos das comunidades indígenas, 50% dos relacionados aos direitos das comunidades quilombolas e 50% dos relacionados a crimes de racismo, injúria racial e crimes de ódio, violência e discriminação, distribuídos até 31/12/2025. Cada um dos três grupos é calculado em separado. A meta não se aplica à unidade que não tem processos com esses assuntos."],
+    8: ["Priorizar feminicídio e violência doméstica contra as mulheres", "Identificar e julgar, até 31/12/2026, 75% dos casos de feminicídio e 90% dos casos de violência doméstica e familiar contra a mulher distribuídos até 31/12/2024. A meta só está cumprida com 100% de cumprimento nos dois grupos. O processo que tem assuntos dos dois tipos conta apenas como feminicídio."],
+    10: ["Promover os direitos da criança e do adolescente", "Identificar e julgar, até 31/12/2026, 90% no 1º grau e 99% no 2º grau dos processos em fase de conhecimento das competências da Infância e Juventude cível e de apuração de ato infracional distribuídos até 31/12/2024 em cada instância. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido."],
+  };
+  function atualizarGlossario() {
+    const g = GLOSSARIO[estado.meta]; $("glossario").hidden = !g; if (!g) return;
+    $("gloss-titulo").textContent = `O que diz o glossário: Meta ${estado.meta} – ${g[0]}`;
+    $("gloss-texto").textContent = g[1];
+  }
+
   /* ---------- eventos ---------- */
   const seletor = $("meta");
   for (const m of METAS) seletor.add(new Option("Meta " + m, m));
   estado.meta = METAS.includes(ler("meta", 1)) ? ler("meta", 1) : 1;
   seletor.value = estado.meta;
-  const atualizarLink = () => { const a = $("link-oficial"); a.href = "https://link.tjac.jus.br/meta-" + estado.meta; a.textContent = "link.tjac.jus.br/meta-" + estado.meta; };
+  const atualizarLink = () => { atualizarGlossario(); const a = $("link-oficial"); a.href = "https://link.tjac.jus.br/meta-" + estado.meta; a.textContent = "link.tjac.jus.br/meta-" + estado.meta; };
   atualizarLink();
   seletor.addEventListener("change", () => { estado.meta = +seletor.value; guardar("meta", estado.meta); atualizarLink(); buscar(); });
   $("buscar").addEventListener("click", buscar);
