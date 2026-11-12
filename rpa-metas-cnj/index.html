@@ -156,7 +156,7 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
     <div id="trab-bloco" class="bloco" hidden>
       <h3 id="trab-titulo">A julgar</h3>
       <div class="lista"><table>
-        <thead><tr><th>Processo</th><th>Distribuído em</th><th>Classe</th><th>Recorte</th><th>Unidade</th></tr></thead>
+        <thead><tr><th>Processo</th><th id="trab-th-data">Distribuído em</th><th>Classe</th><th id="trab-th-rec">Recorte</th><th>Unidade</th></tr></thead>
         <tbody id="trab-linhas"></tbody>
       </table></div>
       <p class="hint" id="trab-mais"></p>
@@ -165,7 +165,7 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
       <button id="baixar-trab" class="primary" type="button" disabled>Baixar lista de trabalho</button>
       <span class="status" id="status-trab" role="status"></span>
     </div>
-    <p class="hint">Regra do glossário do CNJ (Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi julgado nem suspenso. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. O “faltam” por unidade aplica à unidade o percentual que a meta exige do tribunal; é referência de gestão, não o resultado oficial.</p>
+    <p class="hint" id="trab-regra"></p>
   </section>
 </div>
 
@@ -487,7 +487,54 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
       porUnidade: somar(it => it.unidade + "\u0001" + it.recorte).sort((a, b) => a.unidade.localeCompare(b.unidade) || a.nome.localeCompare(b.nome)),
     };
   }
-  const pctBR = n => n === null ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+  // Meta 1 (glossário CNJ 2026): cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos).
+  // Suspenso = Pendente (88) aberto com Pendente líquido (25) fechado: sai do denominador.
+  // Dessobrestado = reabriu o Pendente líquido (25): volta a ser cobrado.
+  // Na base do TJAC, "Pendentes" são os processos do acervo anterior a 2026 ainda sem julgamento.
+  function montarTrabalhoM1(linhas, col) {
+    if (col.var === undefined) return null;
+    const chave = col.id_processo !== undefined ? col.id_processo : col.numero;
+    const procs = new Map();
+    for (const l of linhas) {
+      const t = norm(l[col.var]);
+      const tipo = t.startsWith("casos novos") ? "cn" : t.startsWith("julgad") ? "jul" : t.startsWith("suspens") ? "sus"
+        : t.startsWith("dessobrest") ? "des" : t.startsWith("pendente") ? "pend" : null;
+      if (!tipo) continue;
+      let g = procs.get(l[chave]); if (!g) procs.set(l[chave], g = {});
+      if (!g[tipo]) g[tipo] = l;
+    }
+    const itens = [], porU = new Map();
+    for (const g of procs.values()) {
+      const ref = g.cn || g.pend || g.jul || g.sus || g.des, entrada = g.cn || g.pend;
+      const retomado = g.des && (!g.sus || (g.des[col.dt_evento] ?? "") >= (g.sus[col.dt_evento] ?? ""));
+      const situacao = g.jul ? "Julgado" : (g.sus && !retomado) ? "Suspenso" : entrada || g.des ? "A julgar" : null;
+      if (!situacao) continue;
+      const origem = g.cn ? "Caso novo de 2026" : "Acervo anterior a 2026";
+      const unidade = ref[col.nome_orgao_julgador];
+      itens.push({ situacao, recorte: origem, pct: 1, unidade, municipio: ref[col.nome_municipio] ?? "", numero: ref[col.numero],
+        grau: ref[col.grau] ?? "", classe: ref[col.classe] ?? "", natureza: ref[col.nome_natureza] ?? "", sistema: ref[col.sistema] ?? "",
+        distribuido: entrada ? entrada[col.dt_evento] ?? "" : "", evento: g.jul ? g.jul[col.dt_evento] ?? "" : g.sus ? g.sus[col.dt_evento] ?? "" : "" });
+      let r = porU.get(unidade);
+      if (!r) porU.set(unidade, r = { nome: "Julgar mais do que os distribuídos", unidade, pct: 1, dis: 0, des: 0, sus: 0, jul: 0, fora: 0, aJulgar: 0, aNovos: 0, aAcervo: 0 });
+      if (g.cn) r.dis++; if (g.des) r.des++; if (g.sus) r.sus++; if (g.jul) r.jul++;
+      if (situacao === "A julgar") { r.aJulgar++; g.cn ? r.aNovos++ : r.aAcervo++; }
+    }
+    itens.sort((a, b) => (a.distribuido || "9").localeCompare(b.distribuido || "9") || a.numero.localeCompare(b.numero));
+    const fechar = r => {
+      const base = r.dis + r.des - r.sus;
+      r.cumprimento = base > 0 ? r.jul / base * 100 : null;
+      r.faltam = base > 0 ? Math.max(0, base - r.jul) : 0;
+      r.detalhe = `${fmt(r.aJulgar)} a julgar (${fmt(r.aNovos)} casos novos de 2026 + ${fmt(r.aAcervo)} do acervo anterior) · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} caso(s) novo(s)` + (r.des ? ` · ${fmt(r.des)} dessobrestado(s)` : "");
+      return r;
+    };
+    const porUnidade = [...porU.values()].map(fechar).sort((a, b) => a.unidade.localeCompare(b.unidade));
+    const total = { nome: "Julgar mais do que os distribuídos", unidade: "", pct: 1, dis: 0, des: 0, sus: 0, jul: 0, fora: 0, aJulgar: 0, aNovos: 0, aAcervo: 0 };
+    for (const r of porUnidade) for (const k of ["dis", "des", "sus", "jul", "aJulgar", "aNovos", "aAcervo"]) total[k] += r[k];
+    return { itens, recortes: [fechar(total)], porUnidade };
+  }
+  const REGRA_M1 = "Regra do glossário do CNJ para a Meta 1: cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos). Suspenso é o processo com a situação Pendente (88) aberta e a Pendente líquido (25) fechada; ele sai da conta. Se for dessobrestado, volta a ser cobrado. Julgar processo do acervo anterior a 2026 também conta como julgado. O “faltam” por unidade é referência de gestão, não o resultado oficial.";
+  const REGRA_GERAL = "Regra do glossário do CNJ (Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi julgado nem suspenso. Cumprimento = julgados ÷ (distribuídos − suspensos) ÷ percentual exigido. O “faltam” por unidade aplica à unidade o percentual que a meta exige do tribunal; é referência de gestão, não o resultado oficial.";
+  const pctBR = n => n === null ? "—" : n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
   const LIMITE_TELA = 100;
   let trabalho = null;
 
@@ -496,12 +543,16 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
     cards.textContent = ""; corpo.textContent = ""; bloco.hidden = true; botao.disabled = true; trabalho = null; aviso.hidden = false;
     status("trab", "");
     if (!estado.linhas.length) { aviso.textContent = "A lista aparece aqui assim que a base for carregada."; return; }
-    if (!RECORTES[estado.meta]) {
-      aviso.textContent = `A lista de trabalho existe para as Metas 2, 4, 6, 7, 8 e 10. A Meta ${estado.meta} segue outra regra de cálculo; use o Excel por variável do passo 3.`;
+    const m1 = estado.meta === 1;
+    $("trab-regra").textContent = m1 ? REGRA_M1 : REGRA_GERAL;
+    $("trab-th-rec").textContent = m1 ? "Origem" : "Recorte";
+    $("trab-th-data").textContent = m1 ? "Pendente desde" : "Distribuído em";
+    if (!RECORTES[estado.meta] && !m1) {
+      aviso.textContent = `A lista de trabalho existe para as Metas 1, 2, 4, 6, 7, 8 e 10. A Meta ${estado.meta} segue outra regra de cálculo; use o Excel por variável do passo 3.`;
       return;
     }
     if (!estado.sel.size) { aviso.textContent = "Marque ao menos uma unidade para montar a lista."; return; }
-    trabalho = montarTrabalho(estado.meta, selecionadas(), estado.col);
+    trabalho = m1 ? montarTrabalhoM1(selecionadas(), estado.col) : montarTrabalho(estado.meta, selecionadas(), estado.col);
     if (!trabalho || !trabalho.itens.length) { aviso.textContent = "As unidades marcadas não têm processos nesta meta."; trabalho = null; return; }
     aviso.hidden = true; botao.disabled = false;
     for (const r of trabalho.recortes) {
@@ -514,7 +565,7 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
         el("span", "nome", `${r.nome} (exige ${(r.pct * 100).toLocaleString("pt-BR")}%)`),
         el("span", "pct", pctBR(r.cumprimento)),
         el("span", "falta", r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.aJulgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar"),
-        el("span", "nums", `${fmt(r.aJulgar)} a julgar · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} distribuído(s)`));
+        el("span", "nums", r.detalhe || `${fmt(r.aJulgar)} a julgar · ${fmt(r.sus)} suspenso(s) · ${fmt(r.jul)} julgado(s) · ${fmt(r.dis)} distribuído(s)`));
       cards.append(card);
     }
     const fila = trabalho.itens.filter(it => it.situacao === "A julgar");
@@ -547,15 +598,19 @@ h3 { font-family: var(--display); font-size: 14px; margin: 0; }
     const botao = $("baixar-trab"); botao.disabled = true; status("trab", "Montando o Excel…");
     await new Promise(r => setTimeout(r, 30));
     try {
-      const wb = XLSX.utils.book_new(), arred = n => n === null ? "" : Math.round(n * 10) / 10;
-      XLSX.utils.book_append_sheet(wb, folha(
+      const wb = XLSX.utils.book_new(), arred = n => n === null ? "" : Math.round(n * 100) / 100, m1 = estado.meta === 1;
+      const rotRec = m1 ? "Origem" : "Recorte da meta";
+      if (m1) XLSX.utils.book_append_sheet(wb, folha(
+        ["Unidade", "Casos novos", "Dessobrestados", "Suspensos", "Julgados", "A julgar", "A julgar: casos novos de 2026", "A julgar: acervo anterior", "Cumprimento (%)", "Faltam para cumprir"],
+        trabalho.porUnidade.map(r => [r.unidade, r.dis, r.des, r.sus, r.jul, r.aJulgar, r.aNovos, r.aAcervo, arred(r.cumprimento), r.faltam])), "Resumo");
+      else XLSX.utils.book_append_sheet(wb, folha(
         ["Unidade", "Recorte da meta", "Percentual exigido (%)", "Distribuídos", "Suspensos", "Fora do cômputo", "Julgados", "A julgar", "Cumprimento (%)", "Faltam para cumprir"],
         trabalho.porUnidade.map(r => [r.unidade, r.nome, r.pct * 100, r.dis, r.sus, r.fora, r.jul, r.aJulgar, arred(r.cumprimento), r.faltam])), "Resumo");
       const abas = [["A julgar", "A julgar", null], ["Suspenso", "Suspensos", "Suspenso em"], ["Julgado", "Julgados", "Julgado em"], ["Fora do cômputo", "Fora do cômputo", "Dessobrestado em"]];
       for (const [situacao, nomeAba, rotuloEvento] of abas) {
         const its = trabalho.itens.filter(it => it.situacao === situacao);
         if (!its.length && situacao !== "A julgar") continue;
-        const cab = ["Processo", "Distribuído em"].concat(rotuloEvento ? [rotuloEvento] : [], ["Recorte da meta", "Unidade", "Município", "Grau", "Classe", "Natureza", "Sistema"]);
+        const cab = ["Processo", m1 ? "Pendente desde" : "Distribuído em"].concat(rotuloEvento ? [rotuloEvento] : [], [rotRec, "Unidade", "Município", "Grau", "Classe", "Natureza", "Sistema"]);
         const linhas = its.map(it => [it.numero, it.distribuido].concat(rotuloEvento ? [it.evento] : [], [it.recorte, it.unidade, it.municipio, it.grau, it.classe, it.natureza, it.sistema]));
         XLSX.utils.book_append_sheet(wb, folha(cab, linhas, rotuloEvento ? [1, 2] : [1]), nomeAba);
       }

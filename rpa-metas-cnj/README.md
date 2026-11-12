@@ -14,15 +14,21 @@ Onde a página não pode acessar o TJAC (por exemplo, publicada como artefato do
 ela lê uma cópia da base publicada junto, em `dados/`. `python web/gerar_copia.py PASTA`
 baixa as metas e gera essa cópia; a página mostra a data da base que está usando.
 
-### Lista de trabalho (Metas 2, 4, 6, 7, 8 e 10)
+### Lista de trabalho (Metas 1, 2, 4, 6, 7, 8 e 10)
 Além do Excel por variável, a página monta a lista de trabalho da unidade: um processo
 por linha, classificado como **a julgar**, **suspenso** ou **julgado**, com os que estão a
 julgar ordenados do mais antigo para o mais novo. A regra vem do glossário do CNJ
 (Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi
 julgado nem suspenso. Cada recorte da meta ganha um quadro com o cumprimento e quantos
 julgamentos faltam; o Excel traz as abas Resumo, A julgar, Suspensos e Julgados.
-O processo é identificado por `id_processo`. As Metas 1, 3 e 5 seguem outras regras e
+O processo é identificado por `id_processo`. As Metas 3 e 5 seguem outras regras e
 ficam só com o Excel por variável.
+
+Na Meta 1 a conta é outra: cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos).
+Suspenso é o processo com a situação Pendente (88) aberta e a Pendente líquido (25) fechada;
+dessobrestado é o que reabriu a 25 e volta a ser cobrado. A lista "A julgar" junta os casos
+novos de 2026 ainda sem julgamento e o acervo anterior (variável `Pendentes` da base), e a
+coluna Origem diz de qual dos dois o processo veio.
 
 ## Linha de comando (Python)
 
