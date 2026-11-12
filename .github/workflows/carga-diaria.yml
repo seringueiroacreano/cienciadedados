@@ -1,0 +1,39 @@
+name: Carga diária das Metas
+
+# O painel de estatística do TJAC atualiza uma vez por dia, às 8h (horário do Acre, UTC-5).
+# Esta rotina baixa a base de cada meta uma única vez, 20 minutos depois, e publica a cópia
+# na ramificação "dados-metas", que a página do Sumaúma RPA lê. Assim a página não consulta
+# o TJAC a cada acesso.
+on:
+  schedule:
+    - cron: "20 13 * * *"   # 8h20 no Acre
+  workflow_dispatch:         # permite rodar à mão pela aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: carga-diaria
+  cancel-in-progress: false
+
+jobs:
+  carga:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Baixar e preparar a base de cada meta
+        run: python3 rpa-metas-cnj/web/gerar_copia.py saida
+
+      - name: Publicar na ramificação dados-metas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd saida
+          git init -q -b dados-metas
+          git config user.name "sumauma-rpa"
+          git config user.email "sumauma-rpa@users.noreply.github.com"
+          git add dados
+          git commit -q -m "Carga de $(TZ=America/Rio_Branco date '+%d/%m/%Y %H:%M') (horário do Acre)"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" dados-metas
