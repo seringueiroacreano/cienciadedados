@@ -10,6 +10,41 @@ se estiver ativado). A página busca a base, lista as unidades para marcar e bai
 Ela lembra a meta e as unidades marcadas na vez anterior.
 `web/pagina.html` é a fonte; `index.html` é a mesma página com o cabeçalho HTML.
 
+Onde a página não pode acessar o TJAC (por exemplo, publicada como artefato do Claude),
+ela lê uma cópia da base publicada junto, em `dados/`. `python web/gerar_copia.py PASTA`
+baixa as metas e gera essa cópia; a página mostra a data da base que está usando.
+
+### Gestão à vista (passo 4 da página)
+Todas as metas da base (1 a 8 e 10) têm um quadro com o cumprimento e o que falta.
+Nas Metas 1, 2, 4, 6, 7, 8 e 10 o quadro vem com a lista de trabalho descrita abaixo.
+Nas outras duas a meta é um índice:
+
+- **Meta 3 (conciliação):** índice = acordos homologados (inclusive pré-processuais) ÷ sentenças;
+  cumprimento = índice do ano ÷ (índice do ano anterior + 1 ponto); com 18% ou mais, cumpre.
+  O quadro mostra quantos acordos faltam e o Excel traz o resumo por unidade.
+- **Meta 5 (congestionamento):** taxa = pendentes líquidos ÷ (pendentes líquidos + baixados no ano);
+  cumprimento = (taxa do ano anterior − 0,5 ponto) ÷ taxa do ano; com 52% ou menos, cumpre.
+  O quadro mostra quantas baixas faltam e o Excel traz o acervo pendente líquido do último mês,
+  ordenado pelo ano que consta no número do processo.
+
+Abaixo do Excel do passo 3, a página mostra um resumo do glossário da meta selecionada.
+
+### Lista de trabalho (Metas 1, 2, 4, 6, 7, 8 e 10)
+Além do Excel por variável, a página monta a lista de trabalho da unidade: um processo
+por linha, classificado como **a julgar**, **suspenso** ou **julgado**, com os que estão a
+julgar ordenados do mais antigo para o mais novo. A regra vem do glossário do CNJ
+(Metas Nacionais 2026, Justiça Estadual): está a julgar o processo distribuído que não foi
+julgado nem suspenso. Cada recorte da meta ganha um quadro com o cumprimento e quantos
+julgamentos faltam; o Excel traz as abas Resumo, A julgar, Suspensos e Julgados.
+O processo é identificado por `id_processo`. As Metas 3 e 5 seguem outras regras e
+ficam só com o Excel por variável.
+
+Na Meta 1 a conta é outra: cumprimento = julgados ÷ (casos novos + dessobrestados − suspensos).
+Suspenso é o processo com a situação Pendente (88) aberta e a Pendente líquido (25) fechada;
+dessobrestado é o que reabriu a 25 e volta a ser cobrado. A lista "A julgar" junta os casos
+novos de 2026 ainda sem julgamento e o acervo anterior (variável `Pendentes` da base), e a
+coluna Origem diz de qual dos dois o processo veio.
+
 ## Linha de comando (Python)
 
 ### Instalação (uma vez)
