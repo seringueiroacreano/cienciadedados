@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Samaúma RPA">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sumaúma RPA">
   <rect width="512" height="512" rx="112" fill="#0b3d2e"/>
-  <!-- copa da samaúma -->
+  <!-- copa da sumaúma -->
   <path d="M84 196 C84 108 172 62 256 62 C340 62 428 108 428 196 Z" fill="#2aa866"/>
   <path d="M132 196 C132 138 190 104 256 104 C322 104 380 138 380 196 Z" fill="#1f8f55"/>
   <!-- galhos como rede de dados -->
