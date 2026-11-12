@@ -70,6 +70,14 @@ python extrair_meta.py --listar --unidade cruzeiro
 Saída em `saida/`: o CSV bruto baixado e `meta_NN_<filtro>_<data_hora>.xlsx`
 com a aba `Todos` e uma aba por valor da coluna `var`.
 
+## Carga diária (sem consultar o TJAC a cada acesso)
+O painel de estatística do TJAC atualiza uma vez por dia, às 8h (horário do Acre).
+A rotina `.github/workflows/carga-diaria.yml` roda às 8h20, baixa a base de cada meta
+uma única vez (`web/gerar_copia.py`) e publica a cópia na ramificação `dados-metas`.
+A página lê essa cópia e mostra a data da base; ela não acessa o TJAC. Se a carga
+atrasar mais de 30 horas, a página avisa. A rotina se identifica ao servidor como
+`sumauma-rpa/1.0` e pode ser rodada à mão pela aba Actions do GitHub.
+
 ## Como funciona
 O botão **Download** do painel (Power BI) é um link fixo, `link.tjac.jus.br/meta-N`,
 que redireciona para `exportar-bi.tjac.jus.br/download/Metas_Nacionais_SAJ__meta_NN`

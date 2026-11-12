@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""Gera a cópia da base usada pela página quando ela está hospedada onde não
-pode acessar o TJAC (ex.: artefato do Claude).
+"""Carga diária da base das Metas Nacionais, lida pela página do Sumaúma RPA.
+
+Roda uma vez por dia (ver .github/workflows/carga-diaria.yml), depois que o painel
+de estatística do TJAC atualiza, às 8h no horário do Acre. Faz um único download por
+meta; a página nunca consulta o TJAC diretamente.
 
     python gerar_copia.py PASTA_DESTINO
 
@@ -23,7 +26,7 @@ from pathlib import Path
 
 METAS = [1, 2, 3, 4, 5, 6, 7, 8, 10]
 URL = "https://exportar-bi.tjac.jus.br/download/Metas_Nacionais_SAJ__meta_{:02d}"
-USER_AGENT = "rpa-metas-cnj/1.0 (extracao automatizada de dados publicos)"
+USER_AGENT = "sumauma-rpa/1.0 (carga diaria de dados publicos; github.com/seringueiroacreano/cienciadedados)"
 LIMITE = 14 * 1024 * 1024  # bytes por parte
 
 
