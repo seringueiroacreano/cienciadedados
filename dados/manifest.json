@@ -1,0 +1,70 @@
+{
+ "gerado": "2026-11-13T20:29:46+00:00",
+ "metas": {
+  "1": {
+   "partes": [
+    "dados/meta_01_p1.json"
+   ],
+   "linhas": 138598,
+   "atualizado": "2026-11-13T12:43:33+00:00"
+  },
+  "2": {
+   "partes": [
+    "dados/meta_02_p1.json"
+   ],
+   "linhas": 72514,
+   "atualizado": "2026-11-13T12:43:40+00:00"
+  },
+  "3": {
+   "partes": [
+    "dados/meta_03_p1.json",
+    "dados/meta_03_p2.json"
+   ],
+   "linhas": 259658,
+   "atualizado": "2026-11-13T12:43:57+00:00"
+  },
+  "4": {
+   "partes": [
+    "dados/meta_04_p1.json"
+   ],
+   "linhas": 1509,
+   "atualizado": "2026-11-13T12:43:59+00:00"
+  },
+  "5": {
+   "partes": [
+    "dados/meta_05_p1.json",
+    "dados/meta_05_p2.json"
+   ],
+   "linhas": 673413,
+   "atualizado": "2026-11-13T12:44:34+00:00"
+  },
+  "6": {
+   "partes": [
+    "dados/meta_06_p1.json"
+   ],
+   "linhas": 611,
+   "atualizado": "2026-11-13T12:44:28+00:00"
+  },
+  "7": {
+   "partes": [
+    "dados/meta_07_p1.json"
+   ],
+   "linhas": 147,
+   "atualizado": "2026-11-13T12:44:29+00:00"
+  },
+  "8": {
+   "partes": [
+    "dados/meta_08_p1.json"
+   ],
+   "linhas": 3407,
+   "atualizado": "2026-11-13T12:44:31+00:00"
+  },
+  "10": {
+   "partes": [
+    "dados/meta_10_p1.json"
+   ],
+   "linhas": 18052,
+   "atualizado": "2026-11-13T12:44:33+00:00"
+  }
+ }
+}
