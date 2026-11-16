@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Sumaúma: gestão à vista e previsão das Metas Nacionais do Poder Judiciário (TJAC). Acesso interno.">
+<meta name="theme-color" content="#0b3d2e">
+<meta name="robots" content="noindex">
+<title>Sumaúma</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%20role%3D%22img%22%20aria-label%3D%22Suma%C3%BAma%20RPA%22%3E%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%230b3d2e%22/%3E%0A%20%20%3C%21--%20copa%20da%20suma%C3%BAma%20--%3E%0A%20%20%3Cpath%20d%3D%22M84%20196%20C84%20108%20172%2062%20256%2062%20C340%2062%20428%20108%20428%20196%20Z%22%20fill%3D%22%232aa866%22/%3E%0A%20%20%3Cpath%20d%3D%22M132%20196%20C132%20138%20190%20104%20256%20104%20C322%20104%20380%20138%20380%20196%20Z%22%20fill%3D%22%231f8f55%22/%3E%0A%20%20%3C%21--%20galhos%20como%20rede%20de%20dados%20--%3E%0A%20%20%3Cg%20stroke%3D%22%23eaf7ee%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M256%20196%20V122%22/%3E%3Cpath%20d%3D%22M256%20168%20L204%20140%22/%3E%3Cpath%20d%3D%22M256%20168%20L308%20140%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M204%20140%20L160%20160%22/%3E%3Cpath%20d%3D%22M308%20140%20L352%20160%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Cg%20fill%3D%22%23eaf7ee%22%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22118%22%20r%3D%2211%22/%3E%3Ccircle%20cx%3D%22204%22%20cy%3D%22140%22%20r%3D%2210%22/%3E%3Ccircle%20cx%3D%22308%22%20cy%3D%22140%22%20r%3D%2210%22/%3E%3Ccircle%20cx%3D%22158%22%20cy%3D%22161%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%22354%22%20cy%3D%22161%22%20r%3D%229%22/%3E%3C/g%3E%0A%20%20%3C%21--%20travess%C3%A3o%20e%20pratos%20da%20balan%C3%A7a%20--%3E%0A%20%20%3Crect%20x%3D%2292%22%20y%3D%22188%22%20width%3D%22328%22%20height%3D%2216%22%20rx%3D%228%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3Cg%20stroke%3D%22%23f2b632%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M124%20204%20L98%20268%22/%3E%3Cpath%20d%3D%22M124%20204%20L150%20268%22/%3E%3Cpath%20d%3D%22M388%20204%20L362%20268%22/%3E%3Cpath%20d%3D%22M388%20204%20L414%20268%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Cpath%20d%3D%22M84%20268%20H164%20A40%2026%200%200%201%2084%20268%20Z%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3Cpath%20d%3D%22M348%20268%20H428%20A40%2026%200%200%201%20348%20268%20Z%22%20fill%3D%22%23f2b632%22/%3E%0A%20%20%3C%21--%20tronco%20com%20sapopemas%20--%3E%0A%20%20%3Cpath%20d%3D%22M234%20204%20H278%20L286%20318%20C292%20372%20330%20404%20384%20420%20H128%20C182%20404%20220%20372%20226%20318%20Z%22%20fill%3D%22%23f4efe1%22/%3E%0A%20%20%3Cg%20stroke%3D%22%230b3d2e%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M256%20300%20C252%20356%20226%20394%20190%20418%22/%3E%3Cpath%20d%3D%22M256%20300%20C260%20356%20286%20394%20322%20418%22/%3E%3C/g%3E%0A%20%20%3C%21--%20rio%20--%3E%0A%20%20%3Cg%20stroke%3D%22%2356b4ff%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M100%20452%20q26%20-18%2052%200%20t52%200%20t52%200%20t52%200%20t52%200%20t52%200%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: faixa da marca no topo, trilha de 4 etapas e uma coluna de cartões; a etapa 4 é o quadro de gestão à vista. */
+:root {
+  --bg: #f4efe1; --surface: #ffffff; --surface-2: #faf7ee; --ink: #10231b; --muted: #4c5f55; --line: #e1dac8;
+  --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #1f8f55; --gold: #f2b632; --gold-ink: #3d2a00;
+  --btn: #0b3d2e; --btn-ink: #f4efe1; --link: #1a63a8; --focus: #1a63a8;
+  --ok: #17734a; --ok-soft: #e3f3ea; --warn: #8a5200; --warn-soft: #fbefd6; --err: #b3261e; --err-soft: #fbe6e3;
+  --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #07211a; --surface: #0e2f24; --surface-2: #12392b; --ink: #eef5ee; --muted: #a9c0b2; --line: #21503d;
+    --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #5fd39a; --gold: #f2b632; --gold-ink: #3d2a00;
+    --btn: #f2b632; --btn-ink: #2a1d00; --link: #8ccbff; --focus: #8ccbff;
+    --ok: #6fdba6; --ok-soft: #123f2d; --warn: #f3c16a; --warn-soft: #3a2e10; --err: #ff9b92; --err-soft: #44201d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #07211a; --surface: #0e2f24; --surface-2: #12392b; --ink: #eef5ee; --muted: #a9c0b2; --line: #21503d;
+  --brand: #0b3d2e; --brand-2: #114f3b; --brand-ink: #f4efe1; --brand-muted: #cfe6d8; --leaf: #5fd39a; --gold: #f2b632; --gold-ink: #3d2a00;
+  --btn: #f2b632; --btn-ink: #2a1d00; --link: #8ccbff; --focus: #8ccbff;
+  --ok: #6fdba6; --ok-soft: #123f2d; --warn: #f3c16a; --warn-soft: #3a2e10; --err: #ff9b92; --err-soft: #44201d; color-scheme: dark;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+p, h1, h2, h3 { margin: 0; }
+a { color: var(--link); }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 860px; margin: 0 auto; }
+
+/* faixa da marca */
+.topo { background: var(--brand); color: var(--brand-ink); }
+.topo .col { padding-block: 30px 34px; display: flex; flex-direction: column; gap: 20px; }
+.marca-linha { display: flex; align-items: center; gap: 16px; }
+.marca { width: 68px; height: 68px; flex: none; }
+.olho { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+h1 { font-family: var(--display); font-weight: 800; font-size: 38px; line-height: 1.05; letter-spacing: -.01em; }
+h1 span { color: var(--gold); }
+.topo .lede { color: var(--brand-muted); font-size: 19px; max-width: 60ch; text-wrap: pretty; }
+.fatos { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.fatos li { border: 1px solid rgba(207, 230, 216, .35); border-radius: 999px; padding: 5px 14px; font-size: 14.5px; color: var(--brand-ink); }
+
+/* trilha de etapas */
+.trilha { background: var(--brand-2); }
+.trilha ol { list-style: none; margin: 0 auto; padding-block: 10px; display: flex; gap: 6px; overflow-x: auto; }
+.trilha a { display: flex; align-items: center; gap: 8px; padding: 7px 12px 7px 8px; border-radius: 999px; color: var(--brand-muted); text-decoration: none; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.trilha a:hover { background: rgba(255, 255, 255, .08); }
+.trilha .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 14px; border: 1.5px solid currentColor; }
+.trilha li.feita a { color: var(--brand-ink); }
+.trilha li.feita .n { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+
+main.col { padding-block: 26px 40px; display: flex; flex-direction: column; gap: 20px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; scroll-margin-top: 12px; }
+.cab { display: flex; gap: 14px; align-items: flex-start; }
+.cab .n { flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--brand); color: var(--gold); font-family: var(--display); font-weight: 800; font-size: 18px; display: grid; place-items: center; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.cab p { color: var(--muted); font-size: 16px; max-width: 62ch; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.lede { color: var(--muted); max-width: 64ch; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.row.base { align-items: flex-end; }
+label.field { display: flex; flex-direction: column; gap: 5px; font-size: 15px; font-weight: 600; color: var(--ink); min-width: 0; }
+.row > label.field { flex: 1 1 200px; }
+select, input[type="search"] { font: 400 17px var(--body); color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; min-height: 48px; }
+select:hover, input[type="search"]:hover { border-color: var(--leaf); }
+button, .filebtn { font: 600 16px var(--body); border-radius: 10px; padding: 12px 18px; min-height: 48px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button:hover:not(:disabled), .filebtn:hover { border-color: var(--leaf); }
+button.primary { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); }
+button.primary:hover:not(:disabled) { filter: brightness(1.12); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.link { border: 0; background: none; padding: 4px 0; min-height: 0; color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+:is(button, select, input, a, .filebtn):focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.filebtn { position: relative; display: inline-flex; align-items: center; }
+.filebtn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.filebtn:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+.status { font-size: 15.5px; color: var(--muted); min-height: 1.5em; min-width: 0; overflow-wrap: anywhere; }
+.status.ok { color: var(--ok); font-weight: 600; } .status.err { color: var(--err); font-weight: 600; }
+.bar { height: 8px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--leaf); transition: width .2s; }
+.manual { background: var(--warn-soft); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+.manual ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+.hint { font-size: 15px; color: var(--muted); }
+
+/* unidades */
+.units { border: 1.5px solid var(--line); border-radius: 10px; max-height: 330px; overflow-y: auto; background: var(--surface-2); }
+.units label { display: flex; gap: 12px; align-items: center; padding: 11px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.units label:last-child { border-bottom: 0; }
+.units label:hover { background: var(--surface); }
+.units input { width: 20px; height: 20px; flex: none; accent-color: var(--leaf); }
+.units .n { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14.5px; }
+.units .name { min-width: 0; overflow-wrap: anywhere; }
+.units .empty { padding: 20px 14px; color: var(--muted); }
+.contagem { background: var(--ok-soft); color: var(--ok); border-radius: 999px; padding: 3px 12px; font-size: 14.5px; font-weight: 600; }
+.contagem:empty { display: none; }
+
+/* tabelas */
+.tablebox { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; }
+tfoot td { font-weight: 600; border-bottom: 0; }
+.kpi { font-family: var(--display); font-weight: 800; font-size: 26px; }
+.glossario { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.glossario .olho { color: var(--leaf); }
+.glossario p { max-width: 68ch; }
+
+/* quadros de gestão à vista */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; background: var(--surface-2); }
+.card .nome { font-weight: 600; overflow-wrap: anywhere; }
+.card .pct { font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums; }
+.card .falta { font-weight: 600; }
+.card .nums { font-size: 14.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.selo { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; border-radius: 999px; padding: 4px 12px 4px 9px; }
+.selo::before { font-size: 14px; line-height: 1; }
+.selo.ok { color: var(--ok); background: var(--ok-soft); } .selo.ok::before { content: "✓"; }
+.selo.warn { color: var(--warn); background: var(--warn-soft); } .selo.warn::before { content: "!"; font-weight: 800; }
+.selo.err { color: var(--err); background: var(--err-soft); } .selo.err::before { content: "▼"; font-size: 11px; }
+.medidor { position: relative; height: 10px; border-radius: 999px; background: var(--line); margin-block: 4px 2px; }
+.medidor > i { display: block; height: 100%; border-radius: 999px; min-width: 6px; }
+.medidor.ok > i { background: var(--ok); } .medidor.warn > i { background: var(--warn); } .medidor.err > i { background: var(--err); }
+.medidor > b { position: absolute; top: -4px; bottom: -4px; left: 80%; width: 2px; background: var(--ink); border-radius: 1px; }
+.legenda-medidor { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); }
+.bloco { display: flex; flex-direction: column; gap: 8px; }
+.lista { max-height: 360px; overflow: auto; border: 1.5px solid var(--line); border-radius: 10px; }
+.lista table { font-size: 15.5px; }
+.lista th { position: sticky; top: 0; background: var(--surface); }
+.lista td { white-space: nowrap; } .lista td.larga { white-space: normal; min-width: 180px; }
+.lista tbody tr:nth-child(even) td { background: var(--surface-2); }
+
+footer.col { padding-block: 0 40px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; color: var(--muted); }
+footer strong { color: var(--ink); font-family: var(--display); }
+@media (max-width: 520px) {
+  h1 { font-size: 31px; } .marca { width: 56px; height: 56px; } .topo .lede { font-size: 17px; }
+  .step { padding: 18px 16px; } .row.base > button { flex: 1 1 100%; } .card .pct { font-size: 36px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ----- telas do sistema ----- */
+.trilha a.ativa { background: var(--gold); color: var(--gold-ink); }
+.sair { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--brand-muted); white-space: nowrap; }
+.sair button { min-height: 0; padding: 6px 12px; background: transparent; color: var(--brand-ink); border-color: rgba(207,230,216,.4); font-size: 14px; }
+input[type="email"], input[type="password"], input[type="text"], textarea { font: 400 17px var(--body); color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; min-height: 48px; }
+textarea { min-height: 76px; resize: vertical; }
+.login { max-width: 460px; margin-inline: auto; }
+.meta-bloco { display: flex; flex-direction: column; gap: 10px; }
+.meta-bloco > h3 { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.meta-bloco > h3 small { font: 400 14.5px var(--body); color: var(--muted); }
+.prev { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--surface-2); display: flex; flex-direction: column; gap: 8px; }
+.prev .linha { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; }
+.prev .num { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; }
+.prev dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 4px 0 0; }
+.prev dt { font-size: 13px; color: var(--muted); } .prev dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+tr.clicavel { cursor: pointer; } tr.clicavel:hover td { background: var(--surface-2); }
+.conversa { display: flex; flex-direction: column; gap: 12px; max-height: 460px; overflow-y: auto; padding: 4px; }
+.fala { max-width: 88%; padding: 12px 14px; border-radius: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.fala.eu { align-self: flex-end; background: var(--brand); color: var(--brand-ink); }
+.fala.ia { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--line); }
+.sugestoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.sugestoes button { min-height: 0; padding: 8px 12px; font-size: 14.5px; font-weight: 500; }
+</style>
+</head>
+<body style="margin:0">
+<header class="topo">
+  <div class="col gut">
+    <div class="marca-linha">
+      <svg class="marca" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- copa da sumaúma -->
+  <path d="M84 196 C84 108 172 62 256 62 C340 62 428 108 428 196 Z" fill="#2aa866"/>
+  <path d="M132 196 C132 138 190 104 256 104 C322 104 380 138 380 196 Z" fill="#1f8f55"/>
+  <!-- galhos como rede de dados -->
+  <g stroke="#eaf7ee" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M256 196 V122"/><path d="M256 168 L204 140"/><path d="M256 168 L308 140"/>
+    <path d="M204 140 L160 160"/><path d="M308 140 L352 160"/>
+  </g>
+  <g fill="#eaf7ee"><circle cx="256" cy="118" r="11"/><circle cx="204" cy="140" r="10"/><circle cx="308" cy="140" r="10"/><circle cx="158" cy="161" r="9"/><circle cx="354" cy="161" r="9"/></g>
+  <!-- travessão e pratos da balança -->
+  <rect x="92" y="188" width="328" height="16" rx="8" fill="#f2b632"/>
+  <g stroke="#f2b632" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M124 204 L98 268"/><path d="M124 204 L150 268"/><path d="M388 204 L362 268"/><path d="M388 204 L414 268"/>
+  </g>
+  <path d="M84 268 H164 A40 26 0 0 1 84 268 Z" fill="#f2b632"/>
+  <path d="M348 268 H428 A40 26 0 0 1 348 268 Z" fill="#f2b632"/>
+  <!-- tronco com sapopemas -->
+  <path d="M234 204 H278 L286 318 C292 372 330 404 384 420 H128 C182 404 220 372 226 318 Z" fill="#f4efe1"/>
+  <g stroke="#0b3d2e" stroke-width="6" stroke-linecap="round" fill="none"><path d="M256 300 C252 356 226 394 190 418"/><path d="M256 300 C260 356 286 394 322 418"/></g>
+  <!-- rio -->
+  <g stroke="#56b4ff" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M100 452 q26 -18 52 0 t52 0 t52 0 t52 0 t52 0 t52 0"/>
+  </g>
+</svg>
+
+      <div>
+        <p class="olho">Metas Nacionais do Judiciário · TJAC</p>
+        <h1>Sumaúma</h1>
+      </div>
+    </div>
+    <p class="lede">Gestão à vista, lista de trabalho e previsão de cumprimento das metas, por unidade judiciária.</p>
+  </div>
+</header>
+<nav class="trilha" aria-label="Seções" id="nav" hidden>
+  <ol class="col gut">
+    <li><a href="#tribunal" data-v="tribunal">Tribunal</a></li>
+    <li><a href="#unidade" data-v="unidade">Unidade</a></li>
+    <li><a href="#previsao" data-v="previsao">Previsão</a></li>
+    <li><a href="#assistente" data-v="assistente">Assistente</a></li>
+    <li class="sair"><span id="quem"></span><button type="button" id="sair">Sair</button></li>
+  </ol>
+</nav>
+
+<main class="col gut">
+  <section class="step login" id="v-entrar" hidden>
+    <div class="cab"><div><h2>Entrar</h2><p>Acesso para contas <strong>@tjac.jus.br</strong>. No primeiro acesso, crie a conta e confirme pelo e-mail que enviaremos.</p></div></div>
+    <form id="f-entrar" style="display:flex;flex-direction:column;gap:12px">
+      <label class="field" for="email">E-mail<input id="email" type="email" autocomplete="username" required></label>
+      <label class="field" for="senha">Senha (mínimo de 8 caracteres)<input id="senha" type="password" autocomplete="current-password" minlength="8" required></label>
+      <div class="row"><button class="primary" type="submit" id="b-entrar">Entrar</button><button type="button" id="b-criar">Criar conta</button><button type="button" class="link" id="b-esqueci">Esqueci a senha</button></div>
+      <p class="status" id="st-entrar" role="status"></p>
+    </form>
+  </section>
+  <section class="step login" id="v-novasenha" hidden>
+    <div class="cab"><div><h2>Definir nova senha</h2></div></div>
+    <form id="f-novasenha" style="display:flex;flex-direction:column;gap:12px">
+      <label class="field" for="nova">Nova senha<input id="nova" type="password" autocomplete="new-password" minlength="8" required></label>
+      <div class="row"><button class="primary" type="submit">Salvar senha</button></div>
+      <p class="status" id="st-novasenha" role="status"></p>
+    </form>
+  </section>
+  <section class="step" id="v-aviso" hidden><p id="aviso"></p></section>
+
+  <section class="step" id="v-tribunal" hidden>
+    <div class="cab"><div><h2>Tribunal</h2><p id="t-base"></p></div></div>
+    <div id="t-previsao"></div>
+    <div id="t-metas" style="display:flex;flex-direction:column;gap:22px"></div>
+  </section>
+
+  <section class="step" id="v-unidade" hidden>
+    <div class="cab"><div><h2>Unidade judiciária</h2><p>Indicadores, previsão e fila de trabalho de uma unidade.</p></div></div>
+    <label class="field" for="u-busca">Unidade<input id="u-busca" type="text" list="u-lista" placeholder="Digite parte do nome e escolha" autocomplete="off"></label>
+    <datalist id="u-lista"></datalist>
+    <div id="u-previsao"></div>
+    <div id="u-metas" style="display:flex;flex-direction:column;gap:22px"></div>
+    <div id="u-fila" class="bloco" hidden>
+      <h3>Fila de trabalho</h3>
+      <div class="row"><label class="field" for="f-meta">Meta<select id="f-meta"></select></label><label class="field" for="f-sit">Situação<select id="f-sit"><option>A julgar</option><option>Suspenso</option><option>Pendente</option></select></label></div>
+      <p class="status" id="f-status" role="status"></p>
+      <div class="lista"><table><thead><tr><th>Processo</th><th>Desde</th><th>Classe</th><th>Recorte</th><th>Origem</th></tr></thead><tbody id="f-linhas"></tbody></table></div>
+      <div class="row"><button class="primary" type="button" id="f-baixar" disabled>Baixar Excel</button><span class="hint" id="f-mais"></span></div>
+    </div>
+  </section>
+
+  <section class="step" id="v-previsao" hidden>
+    <div class="cab"><div><h2>Previsão da Meta 1</h2><p id="p-sub"></p></div></div>
+    <div class="row"><label class="field" for="p-sit">Situação<select id="p-sit"><option value="">Todas</option><option>Tende a não cumprir</option><option>Em risco</option><option>Tende a cumprir</option></select></label></div>
+    <p class="hint" id="p-conta"></p>
+    <div class="lista" style="max-height:560px"><table><thead><tr><th>Unidade</th><th>Situação</th><th class="num">Projeção 19/12</th><th class="num">Margem</th><th class="num">Ritmo atual / semana</th><th class="num">Necessário / semana</th></tr></thead><tbody id="p-linhas"></tbody></table></div>
+    <p class="hint">Previsão estatística: ritmo recente de casos novos e de julgamentos por dia útil, projetado até 19/12. A margem é o erro não superado em 80% das simulações feitas com datas passadas. Toque numa linha para abrir a unidade.</p>
+  </section>
+
+  <section class="step" id="v-assistente" hidden>
+    <div class="cab"><div><h2>Assistente</h2><p>Pergunte sobre metas, unidades e previsão. As respostas usam só os dados do sistema.</p></div></div>
+    <div class="sugestoes" id="c-sugestoes">
+      <button type="button">Quais unidades tendem a não cumprir a Meta 1?</button>
+      <button type="button">Como está a Meta 2 no tribunal?</button>
+      <button type="button">Quais os 10 processos mais antigos a julgar na Meta 2 da 1ª Vara Cível de Cruzeiro do Sul?</button>
+    </div>
+    <div class="conversa" id="c-falas" aria-live="polite"></div>
+    <form id="c-form" style="display:flex;flex-direction:column;gap:10px">
+      <label class="field" for="c-texto">Sua pergunta<textarea id="c-texto" maxlength="2000" required></textarea></label>
+      <div class="row"><button class="primary" type="submit" id="c-enviar">Perguntar</button><button type="button" id="c-nova">Nova conversa</button><span class="status" id="c-status" role="status"></span></div>
+    </form>
+    <p class="hint">As perguntas e os dados consultados são enviados ao serviço da Anthropic (Claude) para gerar a resposta. Não escreva dados pessoais nem informações sigilosas. Limite de 40 perguntas por dia.</p>
+  </section>
+</main>
+
+<footer class="col gut">
+  <p><strong>Sumaúma</strong> · Uso interno. Fonte: painel de estatística do TJAC. Regras: Glossário das Metas Nacionais 2026 (CNJ).</p>
+  <p>O resultado por unidade é referência de gestão, não o resultado oficial apurado pelo CNJ.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(() => {
+  const SB_URL = "https://nktvgbzwhqslrgoefmxx.supabase.co";
+  const SB_KEY = "sb_publishable_veaCN1mlxiBJnlK5FR0rIg_R3IB71r1";   // chave pública; o acesso é controlado por login e regras no banco
+  const sb = supabase.createClient(SB_URL, SB_KEY);
+  const $ = id => document.getElementById(id);
+  const fmt = n => Number(n).toLocaleString("pt-BR", { maximumFractionDigits: 1 });
+  const pct = (n, casas = 2) => n == null ? "—" : Number(n).toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas }) + "%";
+  const dataBR = t => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(t || ""); return m ? `${m[3]}/${m[2]}/${m[1]}` : (t || ""); };
+  const norm = s => String(s).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const METAS = { 1: "Julgar mais processos que os distribuídos", 2: "Julgar processos mais antigos", 3: "Estimular a conciliação", 4: "Crimes contra a administração pública e improbidade", 5: "Reduzir a taxa de congestionamento", 6: "Ações ambientais", 7: "Indígenas, quilombolas e racismo", 8: "Feminicídio e violência doméstica", 10: "Direitos da criança e do adolescente" };
+  const est = { perfil: null, dataBase: null, dataPrev: null, unidades: new Map(), indicadores: [], prev: new Map(), unidadeId: null, conversa: null, fila: [] };
+
+  /* ---------- acesso ---------- */
+  const st = (id, texto, tipo) => { const e = $(id); e.textContent = texto; e.className = "status" + (tipo ? " " + tipo : ""); };
+  function traduzir(erro, email) {
+    const m = (erro && erro.message) || String(erro);
+    if (/Invalid login credentials/i.test(m)) return "E-mail ou senha incorretos.";
+    if (/Email not confirmed/i.test(m)) return "Confirme o cadastro pelo link enviado ao seu e-mail e tente de novo.";
+    if (/Database error|Cadastro permitido/i.test(m)) return "Cadastro permitido apenas para contas @tjac.jus.br.";
+    if (/already registered/i.test(m)) return "Este e-mail já tem conta. Use Entrar ou Esqueci a senha.";
+    if (/rate limit|security purposes/i.test(m)) return "Muitas tentativas. Aguarde alguns minutos e tente de novo.";
+    if (/at least|Password should/i.test(m)) return "A senha precisa ter pelo menos 8 caracteres.";
+    return "Não foi possível concluir: " + m;
+  }
+  const aqui = () => location.origin + location.pathname;
+  $("f-entrar").addEventListener("submit", async e => {
+    e.preventDefault(); st("st-entrar", "Entrando…");
+    const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("senha").value });
+    if (error) st("st-entrar", traduzir(error), "err");
+  });
+  $("b-criar").addEventListener("click", async () => {
+    if (!$("f-entrar").reportValidity()) return;
+    st("st-entrar", "Criando a conta…");
+    const { data, error } = await sb.auth.signUp({ email: $("email").value.trim(), password: $("senha").value, options: { emailRedirectTo: aqui() } });
+    if (error) return st("st-entrar", traduzir(error), "err");
+    if (data.user && data.user.identities && !data.user.identities.length) return st("st-entrar", "Este e-mail já tem conta. Use Entrar ou Esqueci a senha.", "err");
+    st("st-entrar", data.session ? "Conta criada." : "Conta criada. Abra o e-mail que enviamos e confirme o cadastro; depois volte e clique em Entrar.", "ok");
+  });
+  $("b-esqueci").addEventListener("click", async () => {
+    const email = $("email").value.trim(); if (!email) return st("st-entrar", "Digite o e-mail primeiro.", "err");
+    const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: aqui() });
+    st("st-entrar", error ? traduzir(error) : "Se o e-mail tiver conta, enviamos um link para definir nova senha.", error ? "err" : "ok");
+  });
+  $("f-novasenha").addEventListener("submit", async e => {
+    e.preventDefault();
+    const { error } = await sb.auth.updateUser({ password: $("nova").value });
+    if (error) return st("st-novasenha", traduzir(error), "err");
+    $("v-novasenha").hidden = true; iniciar();
+  });
+  $("sair").addEventListener("click", () => sb.auth.signOut());
+
+  /* ---------- dados ---------- */
+  async function todas(montar) {
+    const saida = [];
+    for (let i = 0; ; i += 1000) {
+      const { data, error } = await montar().range(i, i + 999);
+      if (error) throw error;
+      saida.push(...data);
+      if (data.length < 1000) return saida;
+    }
+  }
+  async function ultima(tabela) {
+    const { data, error } = await sb.from(tabela).select("data_base").order("data_base", { ascending: false }).limit(1);
+    if (error) throw error;
+    return data[0] ? data[0].data_base : null;
+  }
+  async function carregar() {
+    const [unidades, dataBase, dataPrev] = await Promise.all([
+      todas(() => sb.from("unidades").select("id,nome,municipio").order("nome")), ultima("indicadores_diarios"), ultima("previsoes")]);
+    est.unidades = new Map(unidades.map(u => [u.id, u])); est.dataBase = dataBase; est.dataPrev = dataPrev;
+    est.indicadores = dataBase ? await todas(() => sb.from("indicadores_diarios").select("*").eq("data_base", dataBase).order("meta").order("unidade_id")) : [];
+    est.prev = new Map();
+    if (dataPrev) for (const l of await todas(() => sb.from("previsoes").select("unidade_id,variavel,valor,limite_inferior,limite_superior,erro_backtest,modelo").eq("data_base", dataPrev).eq("meta", 1).order("id"))) {
+      const u = est.prev.get(l.unidade_id) || { margem: l.erro_backtest, modelo: l.modelo };
+      if (l.variavel === "cumprimento_projetado") { u.c = Number(l.valor); u.min = l.limite_inferior == null ? null : Number(l.limite_inferior); u.max = l.limite_superior == null ? null : Number(l.limite_superior); }
+      else u[l.variavel] = Number(l.valor);
+      est.prev.set(l.unidade_id, u);
+    }
+    for (const u of est.prev.values()) u.situacao = u.c == null ? "Sem base de cálculo" : (u.min == null || u.margem == null) ? "Sem margem medida" : u.min >= 100 ? "Tende a cumprir" : u.max < 100 ? "Tende a não cumprir" : "Em risco";
+  }
+
+  /* ---------- quadros ---------- */
+  function fechar(d, s, f, j, fr) { const b = d - s - f; return b > 0 ? [j / b / fr * 100, Math.max(0, Math.ceil(fr * b - 1e-9) - j)] : [null, 0]; }
+  // Soma as unidades de um recorte e refaz a conta da meta para o conjunto.
+  function agregar(meta, linhas) {
+    const s = k => linhas.reduce((a, l) => a + (l[k] || 0), 0), sd = k => linhas.reduce((a, l) => a + (Number(l.detalhes[k]) || 0), 0);
+    const r = { meta, recorte: linhas[0].recorte, percentual_exigido: linhas[0].percentual_exigido, distribuidos: s("distribuidos"), suspensos: s("suspensos"), fora_computo: s("fora_computo"), julgados: s("julgados"), a_julgar: s("a_julgar"), detalhes: {} };
+    if (meta === 1) {
+      const des = sd("dessobrestados"), base = r.distribuidos + des - r.suspensos;
+      r.detalhes = { dessobrestados: des, a_julgar_casos_novos: sd("a_julgar_casos_novos"), a_julgar_acervo: sd("a_julgar_acervo") };
+      r.cumprimento = base > 0 ? r.julgados / base * 100 : null; r.faltam = base > 0 ? Math.max(0, base - r.julgados) : 0;
+    } else if (meta === 3) {
+      const d = { ano: linhas[0].detalhes.ano, sentencas: sd("sentencas"), acordos: sd("acordos"), pre_processuais: sd("pre_processuais"), sentencas_ano_anterior: sd("sentencas_ano_anterior"), acordos_ano_anterior: sd("acordos_ano_anterior") };
+      d.indice = d.sentencas ? d.acordos / d.sentencas : null; d.indice_ano_anterior = d.sentencas_ano_anterior ? d.acordos_ano_anterior / d.sentencas_ano_anterior : null;
+      d.clausula_barreira = d.indice != null && d.indice >= 0.18;
+      const bruto = d.indice != null && d.indice_ano_anterior != null ? d.indice / (d.indice_ano_anterior + 0.01) * 100 : null;
+      const alvo = d.indice_ano_anterior == null ? 0.18 : Math.min(d.indice_ano_anterior + 0.01, 0.18);
+      r.detalhes = d; r.cumprimento = d.clausula_barreira && (bruto == null || bruto < 100) ? 100 : bruto; r.faltam = d.sentencas ? Math.max(0, Math.ceil(alvo * d.sentencas - 1e-9) - d.acordos) : 0;
+    } else if (meta === 5) {
+      const d = { ano: linhas[0].detalhes.ano, mes_pendentes: linhas[0].detalhes.mes_pendentes, pendentes_liquidos: sd("pendentes_liquidos"), baixados: sd("baixados"), pendentes_ano_anterior: sd("pendentes_ano_anterior"), baixados_ano_anterior: sd("baixados_ano_anterior") };
+      d.taxa = d.pendentes_liquidos + d.baixados ? d.pendentes_liquidos / (d.pendentes_liquidos + d.baixados) : null;
+      d.taxa_ano_anterior = d.pendentes_ano_anterior + d.baixados_ano_anterior ? d.pendentes_ano_anterior / (d.pendentes_ano_anterior + d.baixados_ano_anterior) : null;
+      d.clausula_barreira = d.taxa != null && d.taxa <= 0.52;
+      const bruto = d.taxa != null && d.taxa_ano_anterior != null ? (d.taxa > 0 ? (d.taxa_ano_anterior - 0.005) / d.taxa * 100 : 100) : null;
+      const alvo = d.taxa_ano_anterior == null ? 0.52 : Math.max(d.taxa_ano_anterior - 0.005, 0.52);
+      r.detalhes = d; r.cumprimento = d.clausula_barreira && (bruto == null || bruto < 100) ? 100 : bruto;
+      r.faltam = d.taxa != null ? Math.max(0, Math.ceil(d.pendentes_liquidos - alvo * (d.pendentes_liquidos + d.baixados) - 1e-9)) : 0;
+    } else [r.cumprimento, r.faltam] = fechar(r.distribuidos, r.suspensos, r.fora_computo, r.julgados, r.percentual_exigido / 100);
+    return r;
+  }
+  function cartao(r) {
+    const c = r.cumprimento == null ? null : Number(r.cumprimento), d = r.detalhes || {}, card = el("div", "card");
+    const classe = c == null ? "warn" : c >= 100 ? "ok" : c >= 90 ? "warn" : "err";
+    card.append(el("span", "selo " + classe, c == null ? "Sem base de cálculo" : c >= 100 ? "Cumprida" : c >= 90 ? "Perto de cumprir" : "Abaixo da meta"));
+    let nome, frase, nums;
+    if (r.meta === 3) {
+      nome = "Índice de conciliação (exige 1 ponto acima do ano anterior, ou 18%)";
+      frase = d.indice == null ? "Sem sentenças no ano" : r.faltam ? `Faltam ${fmt(r.faltam)} acordo(s) homologado(s)` : d.clausula_barreira ? "Cumprida; índice de 18% ou mais" : "Meta atingida";
+      nums = `Índice de ${d.ano}: ${d.indice == null ? "—" : pct(d.indice * 100)} (${fmt(d.acordos)} acordos em ${fmt(d.sentencas)} sentenças) · ${d.ano - 1}: ${d.indice_ano_anterior == null ? "—" : pct(d.indice_ano_anterior * 100)}`;
+    } else if (r.meta === 5) {
+      nome = "Taxa de congestionamento líquida (exige 0,5 ponto abaixo do ano anterior, ou até 52%)";
+      frase = d.taxa == null ? "Sem movimento no ano" : r.faltam ? `Faltam ${fmt(r.faltam)} baixa(s) de processos do acervo` : d.clausula_barreira ? "Cumprida; taxa de 52% ou menos" : "Meta atingida";
+      nums = `Taxa de ${d.ano}: ${d.taxa == null ? "—" : pct(d.taxa * 100)} (${fmt(d.pendentes_liquidos)} pendentes líquidos, ${fmt(d.baixados)} baixados) · ${d.ano - 1}: ${d.taxa_ano_anterior == null ? "—" : pct(d.taxa_ano_anterior * 100)}`;
+    } else {
+      nome = r.meta === 1 ? "Julgar mais do que os distribuídos (exige 100%)" : `${r.recorte} (exige ${fmt(r.percentual_exigido)}%)`;
+      frase = r.faltam ? `Faltam ${fmt(r.faltam)} julgamento(s) para cumprir` : r.a_julgar ? "Meta atingida; ainda há processos a julgar" : "Nenhum processo a julgar";
+      nums = r.meta === 1 ? `${fmt(r.a_julgar)} a julgar (${fmt(d.a_julgar_casos_novos || 0)} casos novos do ano + ${fmt(d.a_julgar_acervo || 0)} do acervo anterior) · ${fmt(r.suspensos)} suspenso(s) · ${fmt(r.julgados)} julgado(s) · ${fmt(r.distribuidos)} caso(s) novo(s)`
+        : `${fmt(r.a_julgar)} a julgar · ${fmt(r.suspensos)} suspenso(s) · ${fmt(r.julgados)} julgado(s) · ${fmt(r.distribuidos)} distribuído(s)`;
+    }
+    card.append(el("span", "nome", nome), el("span", "pct", pct(c)));
+    if (c != null) {
+      const m = el("div", "medidor " + classe); m.setAttribute("aria-hidden", "true");
+      const i = el("i"); i.style.width = Math.min(c, 125) / 125 * 100 + "%"; m.append(i, el("b"));
+      const leg = el("div", "legenda-medidor"); leg.setAttribute("aria-hidden", "true");
+      leg.innerHTML = '<span>0%</span><span style="margin-left:auto;margin-right:calc(20% - 1.6em)">meta 100%</span>';
+      card.append(m, leg);
+    }
+    card.append(el("span", "falta", frase), el("span", "nums", nums));
+    return card;
+  }
+  function blocosDeMetas(destino, linhas, agrupar) {
+    destino.textContent = "";
+    for (const meta of Object.keys(METAS).map(Number)) {
+      const daMeta = linhas.filter(l => l.meta === meta); if (!daMeta.length) continue;
+      const bloco = el("div", "meta-bloco"), h = el("h3", null, `Meta ${meta}`); h.append(el("small", null, METAS[meta]));
+      const cards = el("div", "cards"), recortes = [...new Set(daMeta.map(l => l.recorte))];
+      for (const rec of recortes) { const ls = daMeta.filter(l => l.recorte === rec); cards.append(cartao(agrupar ? agregar(meta, ls) : ls[0])); }
+      bloco.append(h, cards); destino.append(bloco);
+    }
+    if (!destino.children.length) destino.append(el("p", "hint", "Sem indicadores para mostrar."));
+  }
+  function caixaPrevisao(p, titulo) {
+    const caixa = el("div", "prev");
+    if (!p || p.c == null) { caixa.append(el("strong", null, titulo), el("span", "hint", "Sem previsão disponível para a Meta 1.")); return caixa; }
+    const classe = p.situacao === "Tende a cumprir" ? "ok" : p.situacao === "Tende a não cumprir" ? "err" : "warn";
+    const linha = el("div", "linha"); linha.append(el("span", "num", pct(p.c)), el("span", "selo " + classe, p.situacao));
+    const dl = el("dl");
+    for (const [rot, val] of [["Margem", p.margem == null ? "não medida" : `± ${fmt(p.margem)} pontos`], ["Ritmo atual", `${fmt(p.ritmo_atual_semana)} julgamentos por semana`], ["Ritmo necessário", `${fmt(p.ritmo_necessario_semana)} por semana`], ["Julgados previstos até 19/12", fmt(Math.round(p.julgados_fim))], ["Casos novos previstos até 19/12", fmt(Math.round(p.casos_novos_fim))]]) {
+      const d = el("div"); d.append(el("dt", null, rot), el("dd", null, val)); dl.append(d);
+    }
+    caixa.append(el("strong", null, titulo), linha, dl, el("span", "hint", `Projeção da Meta 1 para 19/12, com a base de ${dataBR(est.dataPrev)}. Método: ritmo recente por dia útil, testado contra o passado.`));
+    return caixa;
+  }
+
+  /* ---------- telas ---------- */
+  function telaTribunal() {
+    $("t-base").textContent = est.dataBase ? `Base que o TJAC publicou em ${dataBR(est.dataBase)}. Soma de ${fmt(est.unidades.size)} unidades.` : "Ainda não há carga no banco.";
+    $("t-previsao").textContent = ""; $("t-previsao").append(caixaPrevisao(est.prev.get(null), "Previsão da Meta 1 para o tribunal"));
+    blocosDeMetas($("t-metas"), est.indicadores, true);
+  }
+  function telaUnidade() {
+    const dl = $("u-lista"); if (!dl.children.length) for (const u of est.unidades.values()) dl.append(new Option(u.nome));
+    const u = est.unidades.get(est.unidadeId);
+    $("u-previsao").textContent = ""; $("u-fila").hidden = !u;
+    if (!u) { $("u-metas").textContent = ""; $("u-metas").append(el("p", "hint", "Escolha uma unidade para ver os indicadores.")); return; }
+    $("u-busca").value = u.nome;
+    const linhas = est.indicadores.filter(l => l.unidade_id === u.id);
+    $("u-previsao").append(caixaPrevisao(est.prev.get(u.id), "Previsão da Meta 1"));
+    blocosDeMetas($("u-metas"), linhas, false);
+    const sel = $("f-meta"), atual = sel.value; sel.textContent = "";
+    for (const m of [...new Set(linhas.map(l => l.meta))].filter(m => m !== 3)) sel.add(new Option(`Meta ${m}`, m));
+    if ([...sel.options].some(o => o.value === atual)) sel.value = atual;
+    carregarFila();
+  }
+  $("u-busca").addEventListener("change", () => {
+    const alvo = norm($("u-busca").value), achada = [...est.unidades.values()].find(u => norm(u.nome) === alvo) || [...est.unidades.values()].find(u => norm(u.nome).includes(alvo));
+    if (achada && alvo) { est.unidadeId = achada.id; try { localStorage.setItem("sumauma.unidade", achada.id); } catch (e) {} telaUnidade(); }
+  });
+  let filaVez = 0;
+  async function carregarFila() {
+    const vez = ++filaVez, meta = Number($("f-meta").value), corpo = $("f-linhas");
+    if (meta === 5) $("f-sit").value = "Pendente"; else if ($("f-sit").value === "Pendente") $("f-sit").value = "A julgar";
+    const sit = $("f-sit").value;
+    corpo.textContent = ""; $("f-baixar").disabled = true; $("f-mais").textContent = ""; est.fila = [];
+    if (!meta || !est.unidadeId) return;
+    st("f-status", "Carregando a fila…");
+    try {
+      const linhas = await todas(() => sb.from("fila_trabalho").select("processo,recorte,origem,distribuido_em,evento_em,grau,classe,natureza,sistema").eq("unidade_id", est.unidadeId).eq("meta", meta).eq("situacao", sit).order("distribuido_em", { ascending: true, nullsFirst: false }).order("processo"));
+      if (vez !== filaVez) return;
+      est.fila = linhas; st("f-status", `${fmt(linhas.length)} processo(s), do mais antigo para o mais novo.`, linhas.length ? "ok" : "");
+      for (const l of linhas.slice(0, 100)) {
+        const tr = corpo.insertRow(); tr.insertCell().textContent = l.processo; tr.insertCell().textContent = l.distribuido_em ? dataBR(l.distribuido_em) : (meta === 5 ? (l.origem || "") : "");
+        for (const v of [l.classe, l.recorte, meta === 5 ? "" : (l.origem || "")]) { const td = tr.insertCell(); td.className = "larga"; td.textContent = v || ""; }
+      }
+      $("f-baixar").disabled = !linhas.length; $("f-mais").textContent = linhas.length > 100 ? "A tela mostra os 100 mais antigos. O Excel traz todos." : "";
+    } catch (e) { if (vez === filaVez) st("f-status", "Não foi possível carregar a fila: " + (e.message || e), "err"); }
+  }
+  $("f-meta").addEventListener("change", carregarFila); $("f-sit").addEventListener("change", carregarFila);
+  $("f-baixar").addEventListener("click", () => {
+    const u = est.unidades.get(est.unidadeId), meta = $("f-meta").value;
+    const cab = ["Processo", "Distribuído ou pendente desde", "Data do evento", "Recorte", "Origem", "Grau", "Classe", "Natureza", "Sistema"];
+    const ws = XLSX.utils.aoa_to_sheet([cab, ...est.fila.map(l => [l.processo, l.distribuido_em ? dataBR(l.distribuido_em) : "", l.evento_em ? dataBR(l.evento_em) : "", l.recorte, l.origem || "", l.grau, l.classe, l.natureza, l.sistema])]);
+    ws["!cols"] = [28, 16, 14, 30, 22, 8, 40, 28, 10].map(wch => ({ wch })); ws["!autofilter"] = { ref: ws["!ref"] };
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, $("f-sit").value.slice(0, 31));
+    XLSX.writeFile(wb, `fila_meta_${String(meta).padStart(2, "0")}_${norm(u.nome).replace(/[^a-z0-9]+/g, "_").slice(0, 50)}_${est.dataBase}.xlsx`, { compression: true });
+  });
+  function telaPrevisao() {
+    const t = est.prev.get(null), filtro = $("p-sit").value, corpo = $("p-linhas"); corpo.textContent = "";
+    $("p-sub").textContent = est.dataPrev ? `Projeção para 19/12, com a base de ${dataBR(est.dataPrev)}.` + (t && t.c != null ? ` Tribunal: ${pct(t.c)} ± ${fmt(t.margem)} pontos (${t.situacao}).` : "") : "Ainda não há previsão no banco.";
+    const todasU = [...est.prev].filter(([id]) => id != null && est.unidades.has(id)).map(([id, p]) => ({ id, nome: est.unidades.get(id).nome, ...p }));
+    const lista = todasU.filter(p => !filtro || p.situacao === filtro).sort((a, b) => (b.ritmo_necessario_semana - b.ritmo_atual_semana) - (a.ritmo_necessario_semana - a.ritmo_atual_semana));
+    const conta = {}; for (const p of todasU) conta[p.situacao] = (conta[p.situacao] || 0) + 1;
+    $("p-conta").textContent = Object.entries(conta).map(([k, v]) => `${k}: ${v}`).join(" · ");
+    for (const p of lista) {
+      const tr = corpo.insertRow(); tr.className = "clicavel"; tr.tabIndex = 0;
+      const abrir = () => { est.unidadeId = p.id; location.hash = "#unidade"; };
+      tr.addEventListener("click", abrir); tr.addEventListener("keydown", e => { if (e.key === "Enter") abrir(); });
+      const nome = tr.insertCell(); nome.className = "larga"; nome.textContent = p.nome;
+      const classe = p.situacao === "Tende a cumprir" ? "ok" : p.situacao === "Tende a não cumprir" ? "err" : "warn";
+      tr.insertCell().append(el("span", "selo " + classe, p.situacao));
+      for (const v of [pct(p.c), p.margem == null ? "—" : "± " + fmt(p.margem), fmt(p.ritmo_atual_semana), fmt(p.ritmo_necessario_semana)]) { const td = tr.insertCell(); td.className = "num"; td.textContent = v; }
+    }
+  }
+  $("p-sit").addEventListener("change", telaPrevisao);
+
+  /* ---------- assistente ---------- */
+  function fala(texto, quem) { const f = el("div", "fala " + quem, texto); $("c-falas").append(f); f.scrollIntoView({ block: "nearest" }); return f; }
+  async function perguntar(texto) {
+    fala(texto, "eu"); $("c-enviar").disabled = true; st("c-status", "Consultando os dados…");
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      const r = await fetch(SB_URL + "/functions/v1/chat", { method: "POST", headers: { "Content-Type": "application/json", apikey: SB_KEY, Authorization: "Bearer " + session.access_token }, body: JSON.stringify({ pergunta: texto, conversa_id: est.conversa }) });
+      const j = await r.json().catch(() => ({}));
+      if (j.conversa_id) est.conversa = j.conversa_id;
+      if (!r.ok) { st("c-status", j.erro || "O assistente não respondeu.", "err"); } else { fala(j.resposta, "ia"); st("c-status", ""); }
+    } catch (e) { st("c-status", "Não foi possível falar com o assistente: " + (e.message || e), "err"); }
+    $("c-enviar").disabled = false;
+  }
+  $("c-form").addEventListener("submit", e => { e.preventDefault(); const t = $("c-texto").value.trim(); if (!t) return; $("c-texto").value = ""; perguntar(t); });
+  $("c-sugestoes").addEventListener("click", e => { if (e.target.tagName === "BUTTON" && !$("c-enviar").disabled) perguntar(e.target.textContent); });
+  $("c-nova").addEventListener("click", () => { est.conversa = null; $("c-falas").textContent = ""; st("c-status", ""); });
+
+  /* ---------- navegação ---------- */
+  const VISOES = { tribunal: telaTribunal, unidade: telaUnidade, previsao: telaPrevisao, assistente: () => {} };
+  function mostrar() {
+    if (!est.perfil) return;
+    const v = VISOES[location.hash.slice(1)] ? location.hash.slice(1) : "tribunal";
+    for (const k of Object.keys(VISOES)) $("v-" + k).hidden = k !== v;
+    for (const a of document.querySelectorAll("#nav a")) a.classList.toggle("ativa", a.dataset.v === v);
+    VISOES[v]();
+  }
+  addEventListener("hashchange", mostrar);
+  function soIsto(id) { for (const s of document.querySelectorAll("main > section")) s.hidden = s.id !== id; }
+  let iniciando = 0;
+  async function iniciar() {
+    const vez = ++iniciando, { data: { session } } = await sb.auth.getSession();
+    if (vez !== iniciando) return;
+    if (!session) { est.perfil = null; $("nav").hidden = true; soIsto("v-entrar"); return; }
+    soIsto("v-aviso"); $("aviso").textContent = "Carregando os dados…";
+    try {
+      const { data: perfil, error } = await sb.from("perfis").select("email,papel").eq("id", session.user.id).maybeSingle();
+      if (error) throw error;
+      if (!perfil) { $("aviso").textContent = "Sua conta não tem acesso a este sistema."; $("nav").hidden = false; $("quem").textContent = session.user.email; return; }
+      await carregar(); if (vez !== iniciando) return;
+      est.perfil = perfil; $("quem").textContent = perfil.email + (perfil.papel === "admin" ? " (administrador)" : ""); $("nav").hidden = false;
+      try { const g = Number(localStorage.getItem("sumauma.unidade")); if (!est.unidadeId && est.unidades.has(g)) est.unidadeId = g; } catch (e) {}
+      mostrar();
+    } catch (e) { $("aviso").textContent = "Não foi possível carregar os dados: " + (e.message || e); }
+  }
+  sb.auth.onAuthStateChange((evento) => {
+    if (evento === "PASSWORD_RECOVERY") { $("nav").hidden = true; soIsto("v-novasenha"); return; }
+    if (evento === "SIGNED_IN" || evento === "SIGNED_OUT" || evento === "INITIAL_SESSION") setTimeout(iniciar, 0);
+  });
+})();
+</script>
+</body>
+</html>
