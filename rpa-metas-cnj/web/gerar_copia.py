@@ -5,7 +5,7 @@ Roda uma vez por dia (ver .github/workflows/carga-diaria.yml), depois que o pain
 de estatística do TJAC atualiza, às 8h no horário do Acre. Faz um único download por
 meta; a página nunca consulta o TJAC diretamente.
 
-    python gerar_copia.py PASTA_DESTINO
+    python gerar_copia.py PASTA_DESTINO [--de PASTA_COM_CSV_JA_BAIXADOS]
 
 Cria PASTA_DESTINO/dados/manifest.json e dados/meta_NN_pK.json. Cada parte é um
 JSON por colunas: colunas com poucos valores distintos viram dicionário + índices,
@@ -70,12 +70,20 @@ def partes(cabecalho: list[str], linhas: list[list[str]]) -> list[str]:
     return partes(cabecalho, linhas[:meio]) + partes(cabecalho, linhas[meio:])
 
 
+def ler_baixado(meta: int, pasta: Path) -> tuple[str, str]:
+    """Usa a base que a carga do Sumaúma já baixou, para não consultar o TJAC duas vezes."""
+    texto = (pasta / f"meta_{meta:02d}.csv").read_text(encoding="utf-8-sig")
+    quando = json.loads((pasta / f"meta_{meta:02d}.json").read_text(encoding="utf-8"))["publicada_em"]
+    return texto, quando
+
+
 def main() -> None:
     destino = Path(sys.argv[1]) / "dados"
+    baixado = Path(sys.argv[sys.argv.index("--de") + 1]) if "--de" in sys.argv else None
     destino.mkdir(parents=True, exist_ok=True)
     manifesto = {"gerado": datetime.now(timezone.utc).isoformat(timespec="seconds"), "metas": {}}
     for meta in METAS:
-        texto, quando = baixar(meta)
+        texto, quando = ler_baixado(meta, baixado) if baixado else baixar(meta)
         tabela = list(csv.reader(io.StringIO(texto), delimiter=";"))
         cabecalho, linhas = tabela[0], [l for l in tabela[1:] if l]
         nomes = []
