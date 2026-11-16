@@ -68,6 +68,42 @@ def gravar(banco, p: dict) -> None:
     banco.gravar("cargas", [p["carga"]], "meta,base_publicada_em")   # por último: marca a carga como completa
 
 
+def preparar_previsao(pasta: Path) -> tuple[list[dict], dict]:
+    """Previsão da Meta 1: linhas para a tabela `previsoes` (com o nome da unidade) e o resultado completo."""
+    from . import previsao
+    linhas1, publicada_em = fontes.ler(1, pasta)
+    for l in linhas1:
+        if not l.get(regras.UNIDADE):
+            l[regras.UNIDADE] = SEM_UNIDADE
+    try:
+        linhas3 = fontes.ler(3, pasta)[0]
+    except FileNotFoundError:
+        linhas3 = None
+    data_base = datetime.fromisoformat(publicada_em).astimezone(ACRE).date()
+    _, indicadores = regras.classificar_meta1(linhas1)
+    r = previsao.prever_meta1(linhas1, indicadores, data_base, linhas3)
+    modelo = f"julgados: {r['metodo_julgados']}; casos novos: {r['metodo_novos']}"
+    anomes = r["fim"].year * 100 + r["fim"].month
+    saida = []
+    for p in [r["tribunal"]] + r["unidades"]:
+        comum = {"data_base": data_base.isoformat(), "meta": 1, "unidade": p["unidade"], "recorte": "Julgar mais do que os distribuídos",
+                 "anomes": anomes, "modelo": modelo, "erro_backtest": p["margem_pp"]}
+        if p["cumprimento"] is not None:
+            saida.append(dict(comum, variavel="cumprimento_projetado", valor=round(p["cumprimento"], 4),
+                              limite_inferior=round(p["cumprimento_min"], 4), limite_superior=round(p["cumprimento_max"], 4)))
+        for variavel in ("julgados_fim", "casos_novos_fim", "ritmo_atual_semana", "ritmo_necessario_semana"):
+            saida.append(dict(comum, variavel=variavel, valor=round(p[variavel], 2), limite_inferior=None, limite_superior=None))
+    return saida, r
+
+
+def gravar_previsao(banco, linhas: list[dict]) -> None:
+    ids = {u["nome"]: u["id"] for u in banco.ler("unidades", "select=id,nome")}
+    prontas = [dict({k: v for k, v in l.items() if k != "unidade"}, unidade_id=ids.get(l["unidade"]) if l["unidade"] else None)
+               for l in linhas]
+    banco.apagar("previsoes", f"meta=eq.1&data_base=eq.{linhas[0]['data_base']}")
+    banco.inserir("previsoes", prontas)
+
+
 def main() -> None:
     pasta, sem_banco = Path(sys.argv[1]), "--sem-banco" in sys.argv
     banco = None
@@ -86,6 +122,17 @@ def main() -> None:
         except Exception as e:  # uma meta com problema não derruba as outras
             falhas += 1
             print(f"meta {meta}: FALHOU: {e}")
+    try:
+        linhas_prev, r = preparar_previsao(pasta)
+        if banco:
+            gravar_previsao(banco, linhas_prev)
+        t = r["tribunal"]
+        print(f"previsão da Meta 1 até {r['fim']}: tribunal em {t['cumprimento']:.2f}% ± {t['margem_pp']:.2f} p.p. ({t['situacao']}); "
+              f"{len(r['unidades'])} unidades; métodos: julgados {r['metodo_julgados']}, casos novos {r['metodo_novos']}"
+              + (" (não gravado)" if sem_banco else ""))
+    except Exception as e:
+        falhas += 1
+        print(f"previsão da Meta 1: FALHOU: {e}")
     sys.exit(1 if falhas else 0)
 
 

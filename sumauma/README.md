@@ -11,8 +11,26 @@ a partir da ideia do IAra.
 | 1. Ingestão: um download por meta, uma vez por dia | `motor/fontes.py` | pronta |
 | 2. Armazenamento: Postgres (Supabase, região São Paulo) | `banco/migracoes/` | pronta |
 | 3. Regras das metas (Glossário CNJ 2026) | `motor/regras.py` | pronta, com testes |
-| 4. Previsão de cumprimento | — | a fazer |
+| 4. Previsão de cumprimento | `motor/previsao.py` | Meta 1 pronta, com testes |
 | 5. Painéis com login e chat | — | a fazer |
+
+## Previsão da Meta 1
+
+Projeta o cumprimento em 19/12 (fim do período, início do recesso), por unidade e para o
+tribunal: o que falta acontecer = ritmo por dia útil × dias úteis restantes.
+
+- Métodos testados: ritmo das últimas 4 semanas, das últimas 8 semanas, do ano inteiro e
+  8 semanas corrigidas pela sazonalidade de anos anteriores (sentenças da base da Meta 3).
+- A cada carga, cada método é testado contra o passado com horizonte de 35 dias e o de
+  menor erro é usado. Não há IA generativa nessa conta.
+- A margem é o erro, em pontos percentuais do cumprimento, que não foi superado em 80%
+  das simulações do 2º semestre, por faixa de tamanho da unidade e para o tribunal.
+- Situação: "Tende a cumprir" (faixa inteira acima de 100%), "Tende a não cumprir"
+  (inteira abaixo) ou "Em risco".
+- Também calcula o ritmo atual e o ritmo necessário de julgamentos por semana.
+
+Limites: suspensos são mantidos no valor de hoje; feriados não são descontados dos dias
+úteis; a base só traz o ano corrente, então não há sazonalidade própria da Meta 1.
 
 ## Rodar
 

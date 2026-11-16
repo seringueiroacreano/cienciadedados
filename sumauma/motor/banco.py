@@ -37,6 +37,10 @@ class Banco:
             self._pedir("POST", f"{tabela}?on_conflict={conflito}", linhas[i:i + LOTE],
                         "resolution=merge-duplicates,return=minimal")
 
+    def inserir(self, tabela: str, linhas: list[dict]) -> None:
+        for i in range(0, len(linhas), LOTE):
+            self._pedir("POST", tabela, linhas[i:i + LOTE], "return=minimal")
+
     def apagar(self, tabela: str, filtro: str) -> None:
         self._pedir("DELETE", f"{tabela}?{filtro}", prefer="return=minimal")
 
