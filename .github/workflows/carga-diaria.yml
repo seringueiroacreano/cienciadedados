@@ -23,8 +23,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Baixar e preparar a base de cada meta
-        run: python3 rpa-metas-cnj/web/gerar_copia.py saida
+      - name: Baixar a base de cada meta (única consulta ao TJAC no dia)
+        run: python3 -m motor.fontes "$GITHUB_WORKSPACE/bruto"
+        working-directory: sumauma
+
+      - name: Testar as regras
+        run: python3 -m unittest discover -s testes -t .
+        working-directory: sumauma
+
+      - name: Preparar a cópia lida pela página
+        run: python3 rpa-metas-cnj/web/gerar_copia.py saida --de bruto
+
+      - name: Gravar indicadores, série e fila no banco
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_SERVICE_KEY" ] || [ -z "$SUPABASE_URL" ]; then
+            echo "::warning::Banco não configurado (falta SUPABASE_URL ou SUPABASE_SERVICE_KEY); carga no banco pulada."
+            python3 -m motor.carga "$GITHUB_WORKSPACE/bruto" --sem-banco
+          else
+            python3 -m motor.carga "$GITHUB_WORKSPACE/bruto"
+          fi
+        working-directory: sumauma
 
       - name: Publicar na ramificação dados-metas
         env:
