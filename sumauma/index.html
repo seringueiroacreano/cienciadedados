@@ -554,6 +554,7 @@ tr.clicavel { cursor: pointer; } tr.clicavel:hover td { background: var(--surfac
   function mostrar() {
     if (!est.perfil) return;
     const v = VISOES[location.hash.slice(1)] ? location.hash.slice(1) : "tribunal";
+    $("v-aviso").hidden = true; $("v-entrar").hidden = true;
     for (const k of Object.keys(VISOES)) $("v-" + k).hidden = k !== v;
     for (const a of document.querySelectorAll("#nav a")) a.classList.toggle("ativa", a.dataset.v === v);
     VISOES[v]();
