@@ -1,0 +1,58 @@
+name: Robô IRASP (SNA e CNIEP)
+
+# Todo dia às 7h no Acre (12h UTC) o robô consulta os painéis SNA da COGER/TJAC e a API de
+# dados abertos do CNIEP/CNJ, calcula os pontos do IRASP e publica os CSV na ramificação
+# "dados-irasp". O painel Power BI lê esses CSV na atualização agendada.
+# Observação: o GitHub pode atrasar execuções agendadas em alguns minutos nos horários de pico.
+on:
+  schedule:
+    - cron: "0 12 * * *"   # 7h no Acre (UTC-5)
+  workflow_dispatch:         # permite rodar à mão pela aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: irasp-diario
+  cancel-in-progress: false
+
+jobs:
+  robo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Testar as regras
+        run: python -m unittest discover -s testes -t .
+        working-directory: robo-irasp
+
+      - name: Coletar SNA e CNIEP e calcular pontos
+        run: python -m robo_irasp "$GITHUB_WORKSPACE/novo"
+        working-directory: robo-irasp
+
+      - name: Publicar na ramificação dados-irasp (mantém o histórico diário)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads "$URL" dados-irasp >/dev/null; then
+            git clone -q --depth 1 --branch dados-irasp "$URL" pub
+          else
+            mkdir pub && cd pub && git init -q -b dados-irasp && git remote add origin "$URL" && cd ..
+          fi
+          DIA=$(TZ=America/Rio_Branco date '+%Y-%m-%d')
+          mkdir -p pub/irasp "pub/historico/$DIA"
+          cp novo/* pub/irasp/
+          cp novo/* "pub/historico/$DIA/"
+          cd pub
+          git config user.name "robo-irasp"
+          git config user.email "robo-irasp@users.noreply.github.com"
+          git add -A
+          git commit -q -m "IRASP: carga de $(TZ=America/Rio_Branco date '+%d/%m/%Y %H:%M') (horário do Acre)" || echo "Sem mudanças."
+          git push -q origin dados-irasp
