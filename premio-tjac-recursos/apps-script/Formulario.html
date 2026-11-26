@@ -778,7 +778,7 @@ function pedirCodigo(pre){
     $('aba-recurso').classList.toggle('oculto', b.getAttribute('data-aba')!=='recurso');
     $('aba-impugnacao').classList.toggle('oculto', b.getAttribute('data-aba')!=='impugnacao');
   }; });
-  if(temGAS()){ api('config',{}).then(function(c){ if(c&&c.prazo){ PRAZO=c.prazo; } if(c){ CFG.exigeCodigo=!!c.exigeCodigo; ['r','i'].forEach(function(p){ $(p+'-cod-box').classList.toggle('oculto',!CFG.exigeCodigo); }); } desenharPrazo(); if(c&&c.modoTeste) $('faixa-prazo').insertAdjacentHTML('afterbegin','<div class="aviso alerta"><strong>MODO DE TESTE ATIVO</strong>Envios são gravados como teste e o prazo não é verificado.</div>'); }).catch(function(){}); }
+  if(temGAS()){ api('config',{}).then(function(c){ if(c&&c.prazo){ PRAZO=c.prazo; } if(c){ CFG.exigeCodigo=!!c.exigeCodigo; ['r','i'].forEach(function(p){ $(p+'-cod-box').classList.toggle('oculto',!CFG.exigeCodigo); }); } desenharPrazo(); if(c&&c.modoTeste) $('faixa-prazo').insertAdjacentHTML('afterbegin','<div class="aviso alerta"><strong>MODO DE TESTE ATIVO</strong>Envios são gravados como teste; prazo, domínio do e-mail e código de verificação não são exigidos.</div>'); }).catch(function(){}); }
 })();
 </script>
 </body>

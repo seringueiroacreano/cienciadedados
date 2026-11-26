@@ -2,8 +2,9 @@
  * Prêmio TJAC de Qualidade 2026 — Sistema de Recursos e Impugnações
  * Portaria PRESI nº 1.961/2026 (alterada pelas Portarias nº 4.335/2026 e nº 4.919/2026)
  *
- * Banco de dados: a planilha à qual este script está vinculado (Google Sheets) e a
- * pasta do Google Drive onde ela está. Ver README.md do repositório.
+ * Banco de dados: planilha Google Sheets + pasta do Google Drive da conta que implanta
+ * o script. Instalação: execute a função instalar() uma vez (cria pasta, subpastas,
+ * planilha e a lista de unidades). Ver README.md do repositório.
  *
  * Abas da planilha:
  *   Unidades      — lista de unidades e categoria de avaliação (editável pela Unidade Gestora)
@@ -17,8 +18,9 @@
 
 // ============================== CONFIGURAÇÃO ==============================
 var CONFIG = {
-  PLANILHA_ID: '',            // vazio = planilha vinculada a este script
-  PASTA_RAIZ_ID: '',          // vazio = pasta onde a planilha está
+  PLANILHA_ID: '',            // vazio = a criada por instalar() (ou a planilha vinculada ao script)
+  PASTA_RAIZ_ID: '',          // vazio = a criada por instalar() (ou a pasta da planilha)
+  NOME_PASTA_RAIZ: 'Prêmio TJAC de Qualidade 2026 — Sistema de Recursos (BD)',
   PRAZO_INICIO: '2026-12-04T00:00:00-05:00', // publicação do Resultado Preliminar (art. 5º, II)
   PRAZO_FIM: '2026-12-07T23:59:59-05:00',    // termo final (art. 5º, III) — horário do Acre
   FUSO: 'America/Rio_Branco',
@@ -77,7 +79,8 @@ function doGet(e) {
   if (e && e.parameter && e.parameter.acao === 'status') {
     return json_(apiStatus_({ codigo: e.parameter.codigo }));
   }
-  return HtmlService.createHtmlOutputFromFile('Formulario')
+  var saida = typeof FORM_HTML !== 'undefined' ? HtmlService.createHtmlOutput(FORM_HTML) : HtmlService.createHtmlOutputFromFile('Formulario');
+  return saida
     .setTitle('Recursos — ' + CONFIG.TITULO)
     .addMetaTag('viewport', 'width=device-width, initial-scale=1')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -98,7 +101,7 @@ function api(acao, dadosJson) {
 function despachar_(acao, dados) {
   try {
     switch (acao) {
-      case 'config': return { ok: true, prazo: { inicio: CONFIG.PRAZO_INICIO, fim: CONFIG.PRAZO_FIM }, modoTeste: modoTeste_(), exigeCodigo: CONFIG.EXIGIR_CODIGO_EMAIL, dominio: CONFIG.DOMINIO_EMAIL };
+      case 'config': return { ok: true, prazo: { inicio: CONFIG.PRAZO_INICIO, fim: CONFIG.PRAZO_FIM }, modoTeste: modoTeste_(), exigeCodigo: CONFIG.EXIGIR_CODIGO_EMAIL && !modoTeste_(), dominio: CONFIG.DOMINIO_EMAIL };
       case 'status': return apiStatus_(dados);
       case 'enviarCodigo': return apiEnviarCodigo_(dados);
       case 'enviarRecurso': return apiEnviarRecurso_(dados);
@@ -173,7 +176,7 @@ function validaRespondente_(r) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) erros.push('E-mail inválido.');
   else if (CONFIG.DOMINIO_EMAIL && !modoTeste_() && email.split('@')[1] !== CONFIG.DOMINIO_EMAIL) erros.push('Use o e-mail institucional (@' + CONFIG.DOMINIO_EMAIL + ').');
   if (!r.matricula) erros.push('Matrícula não informada.');
-  if (CONFIG.EXIGIR_CODIGO_EMAIL) {
+  if (CONFIG.EXIGIR_CODIGO_EMAIL && !modoTeste_()) { // em modo de teste o código não é exigido
     var cache = CacheService.getScriptCache(), chave = 'cod_' + email;
     if (!r.codigoEmail || cache.get(chave) !== String(r.codigoEmail).trim()) erros.push('Código de verificação do e-mail inválido ou expirado. Solicite um novo código.');
   }
@@ -570,11 +573,40 @@ function onOpen() {
     .addToUi();
 }
 
+/**
+ * INSTALAÇÃO (executar UMA vez no editor, logado na conta institucional).
+ * Cria no Meu Drive: pasta raiz, subpastas, planilha BD_Recursos_PremioTJAC_2026 com a aba
+ * Unidades preenchida (UNIDADES_BD, embutida) e as demais abas. Ativa o MODO DE TESTE.
+ * É idempotente: se já instalado, apenas confere e devolve os endereços.
+ */
+function instalar() {
+  var props = PropertiesService.getScriptProperties();
+  var idPlan = props.getProperty('PLANILHA_ID'), ss = null;
+  if (idPlan) { try { ss = SpreadsheetApp.openById(idPlan); } catch (e) { ss = null; } }
+  if (!ss) {
+    var raiz = DriveApp.createFolder(CONFIG.NOME_PASTA_RAIZ);
+    ss = SpreadsheetApp.create('BD_Recursos_PremioTJAC_2026');
+    DriveApp.getFileById(ss.getId()).moveTo(raiz);
+    props.setProperty('PLANILHA_ID', ss.getId());
+    props.setProperty('PASTA_RAIZ_ID', raiz.getId());
+    var unid = ss.getSheets()[0];
+    unid.setName('Unidades');
+    if (typeof UNIDADES_BD === 'undefined') throw new Error('Lista de unidades (UNIDADES_BD) não encontrada: use o arquivo PremioTJAC_TudoEmUm.gs.');
+    unid.getRange(1, 1, UNIDADES_BD.length, UNIDADES_BD[0].length).setNumberFormat('@').setValues(UNIDADES_BD);
+    props.setProperty('MODO_TESTE', 'SIM');
+  }
+  configurar();
+  var raizPasta = pastaRaiz_();
+  var msg = 'Instalação concluída.\nPasta: ' + raizPasta.getUrl() + '\nPlanilha: ' + ss.getUrl() +
+    '\nModo de teste: ' + (modoTeste_() ? 'ATIVADO' : 'desativado') + '\nPróximo passo: Implantar > Nova implantação > App da Web.';
+  Logger.log(msg);
+  return msg;
+}
+
 /** Cria abas, cabeçalhos e subpastas. Pode ser executada mais de uma vez sem duplicar nada. */
 function configurar() {
   var ss = planilha_();
-  var primeira = ss.getSheets()[0];
-  if (!ss.getSheetByName('Unidades')) primeira.setName('Unidades');
+  if (!ss.getSheetByName('Unidades')) ss.getSheets()[0].setName('Unidades');
   Object.keys(CABECALHOS).forEach(function (nome) {
     var aba = ss.getSheetByName(nome) || ss.insertSheet(nome);
     if (aba.getLastRow() === 0) aba.appendRow(CABECALHOS[nome]);
@@ -594,14 +626,19 @@ function configurar() {
   imp.getRange(2, CABECALHOS.Impugnacoes.indexOf('decisao') + 1, 2000, 1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(['Deferida', 'Parcialmente deferida', 'Indeferida'], true).build());
   Object.keys(CONFIG.PASTAS).forEach(function (k) { pasta_(CONFIG.PASTAS[k]); });
   log_('CONFIGURAR', 'Banco configurado.');
-  try { SpreadsheetApp.getUi().alert('Banco configurado. Agora publique o App da Web (Implantar > Nova implantação).'); } catch (e) { }
+  try { avisar_('Banco configurado. Agora publique o App da Web (Implantar > Nova implantação).'); } catch (e) { }
+}
+
+function avisar_(msg) {
+  Logger.log(msg);
+  try { SpreadsheetApp.getUi().alert(msg); } catch (e) { /* executado pelo editor: a mensagem fica no registro de execução */ }
 }
 
 function alternarModoTeste() {
   var p = PropertiesService.getScriptProperties(), novo = modoTeste_() ? 'NAO' : 'SIM';
   p.setProperty('MODO_TESTE', novo);
   log_('MODO_TESTE', novo);
-  try { SpreadsheetApp.getUi().alert('Modo de teste: ' + (novo === 'SIM' ? 'ATIVADO (prazo e domínio do e-mail não são verificados; envios marcados como teste).' : 'DESATIVADO.')); } catch (e) { }
+  try { avisar_('Modo de teste: ' + (novo === 'SIM' ? 'ATIVADO (prazo e domínio do e-mail não são verificados; envios marcados como teste).' : 'DESATIVADO.')); } catch (e) { }
 }
 
 function excluirTestes() {
@@ -613,7 +650,13 @@ function excluirTestes() {
 }
 
 // ============================== INFRAESTRUTURA ==============================
-function planilha_() { return CONFIG.PLANILHA_ID ? SpreadsheetApp.openById(CONFIG.PLANILHA_ID) : SpreadsheetApp.getActiveSpreadsheet(); }
+function planilha_() {
+  var id = CONFIG.PLANILHA_ID || PropertiesService.getScriptProperties().getProperty('PLANILHA_ID');
+  if (id) return SpreadsheetApp.openById(id);
+  var ativa = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ativa) throw new Error('Banco não instalado: execute a função instalar() no editor do Apps Script.');
+  return ativa;
+}
 function aba_(nome) {
   var ss = planilha_(), aba = ss.getSheetByName(nome) || ss.insertSheet(nome);
   if (aba.getLastRow() === 0 && CABECALHOS[nome]) aba.appendRow(CABECALHOS[nome]); // garante o cabeçalho mesmo sem "Configurar"
@@ -628,7 +671,8 @@ function tabela_(nome) {
 }
 
 function pastaRaiz_() {
-  if (CONFIG.PASTA_RAIZ_ID) return DriveApp.getFolderById(CONFIG.PASTA_RAIZ_ID);
+  var id = CONFIG.PASTA_RAIZ_ID || PropertiesService.getScriptProperties().getProperty('PASTA_RAIZ_ID');
+  if (id) return DriveApp.getFolderById(id);
   var pais = DriveApp.getFileById(planilha_().getId()).getParents();
   return pais.hasNext() ? pais.next() : DriveApp.getRootFolder();
 }

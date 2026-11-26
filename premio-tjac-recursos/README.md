@@ -6,10 +6,11 @@ A estrutura replica o *Formulário para submissão de recursos contra os Resulta
 
 | Item | Onde está |
 |---|---|
+| **Pacote único para instalar** | `apps-script/PremioTJAC_TudoEmUm.gs` |
 | Formulário (HTML) | `apps-script/Formulario.html`, com cópia em `site/index.html` |
 | Servidor (regras, banco, PDFs) | `apps-script/Code.gs` |
 | Lista de unidades e matriz de indicadores | `dados/` (gerados por `scripts/build.py`) |
-| Banco de dados | Google Drive: pasta **Prêmio TJAC de Qualidade 2026 — Sistema de Recursos (BD)** |
+| Banco de dados | Google Drive da conta que implanta: pasta **Prêmio TJAC de Qualidade 2026 — Sistema de Recursos (BD)**, criada por `instalar()` |
 
 ## Identidade visual
 
@@ -66,35 +67,43 @@ Todos os itens do grau aparecem, como no formulário do CNJ. O selo **"competên
 
 Todas as versões incluem as impugnações da unidade. O processamento roda em lotes de ~4,5 min e se reagenda sozinho (limite de 6 min do Apps Script). O índice com os links fica na aba `Relatorios_Finais`. **Gere os relatórios depois do julgamento, entre 08 e 18/12**, porque a certidão afirma que o prazo já terminou.
 
-## 2. Implantação (cerca de 15 minutos, uma única vez)
+## 2. Implantação na conta institucional (cerca de 10 minutos, uma única vez)
 
-O banco já foi criado no Google Drive de josuemdr@gmail.com:
+O banco fica no **Google Drive da conta que implanta o script**, por exemplo josue.silva@tjac.jus.br. Não é preciso criar nada à mão: a função `instalar()` cria a estrutura.
 
-- Pasta: <https://drive.google.com/drive/folders/11852PRzHAzAm9QbLLGwt3RBBDIKIFZxy>
-- Planilha `BD_Recursos_PremioTJAC_2026` (aba de unidades já carregada): <https://docs.google.com/spreadsheets/d/1lEeYbzUayuWBOczsHKdBTkcl-YFiNm87U-1H3q40qSE/edit>
-- Subpastas `01_…` a `04_…`
+1. Entre em <https://script.google.com> **com a conta institucional** e clique em **Novo projeto**. Dê o nome "Prêmio TJAC 2026 — Recursos".
+2. Apague o conteúdo do `Código.gs` e cole o arquivo **`apps-script/PremioTJAC_TudoEmUm.gs`** inteiro. Ele traz o formulário, as 160 unidades, o logotipo e o servidor. Salve.
+3. Engrenagem (Configurações do projeto) › fuso horário **(GMT-05:00) Rio Branco**.
+4. No topo, selecione a função **`instalar`** e clique em **Executar**. Autorize o acesso a Drive, Planilhas e Gmail. O registro de execução mostra os links da pasta e da planilha criadas. O sistema fica em **modo de teste**.
+5. Clique em **Implantar › Nova implantação › tipo App da Web**:
+   - *Executar como:* **Eu (josue.silva@tjac.jus.br)**
+   - *Quem pode acessar:* **Qualquer pessoa**. Se o administrador do Workspace do TJAC bloquear essa opção, use "Qualquer pessoa em tjac.jus.br" (veja a nota abaixo).
+6. Copie a URL `…/exec`.
+7. **Teste automatizado:**
 
-Passos:
+   ```bash
+   cd premio-tjac-recursos/testes
+   node teste_ao_vivo.js "URL_/exec"
+   ```
 
-1. Abra a planilha e vá em **Extensões › Apps Script**.
-2. No editor, crie os arquivos e cole o conteúdo:
-   - `Code.gs` ← `apps-script/Code.gs`
-   - **Arquivo › Novo › Script**, com o nome `Logo` ← `apps-script/Logo.gs` (logotipo do PJAC usado nos PDFs)
-   - **Arquivo › Novo › HTML**, com o nome `Formulario` ← `apps-script/Formulario.html`
-   - Engrenagem › marque "Mostrar arquivo de manifesto" › `appsscript.json` ← `apps-script/appsscript.json`
-3. Ajuste o bloco `CONFIG` no topo do `Code.gs`:
-   - `EMAIL_COPIA` recebe o e-mail da Unidade Gestora.
-   - `LOGO_URL` é opcional: o logotipo oficial já vem embutido em `Logo.gs`.
-   - `DOMINIO_EMAIL` já vem como `tjac.jus.br`.
-4. Selecione a função `configurar` e clique em **Executar**. Autorize o acesso a Planilhas, Drive e Gmail.
-5. Clique em **Implantar › Nova implantação › App da Web**:
-   - *Executar como:* **Eu**
-   - *Quem pode acessar:* **Qualquer pessoa**
-6. Copie a URL `…/exec`. Esse é o endereço a divulgar às unidades.
-7. **Teste antes de 04/12:**
-   - No menu da planilha, use *Prêmio TJAC 2026 › Ativar/desativar modo de teste*. O modo de teste ignora o prazo e o domínio do e-mail e marca os envios como teste.
-   - Faça envios de teste.
-   - Use *Excluir envios de teste* e **desative o modo de teste**.
+   O teste preenche e envia um recurso e uma impugnação de teste, e confere o ID, o PDF e o logotipo.
+
+Funções administrativas: no editor do Apps Script, selecione a função e clique em **Executar**.
+
+| Função | O que faz |
+|---|---|
+| `alternarModoTeste` | liga ou desliga o modo de teste (prazo, domínio e código de e-mail não são exigidos; envios recebem o sufixo `-T`) |
+| `excluirTestes` | apaga os envios de teste das abas |
+| `gerarRelatoriosFinais` | gera 1 PDF por unidade em `04_Relatorios_Finais_por_Unidade` |
+| `configurar` | recria abas e validações que faltarem |
+
+Antes de 04/12, execute `excluirTestes` e depois `alternarModoTeste` (para **desativar**). Confirme que a faixa "MODO DE TESTE ATIVO" sumiu do formulário.
+
+> **Acesso restrito ao domínio.** Com "Qualquer pessoa em tjac.jus.br", só quem está logado no Google institucional abre o formulário. A segurança fica maior, mas o teste automatizado daqui não consegue acessar, porque não faz login. Nesse caso o teste é manual.
+
+> **Banco antigo (conta pessoal).** A pasta criada antes em josuemdr@gmail.com (`11852PRzHAzAm9QbLLGwt3RBBDIKIFZxy`) só contém a lista de unidades, sem recursos. Ela pode ser apagada depois que a instalação institucional estiver validada.
+
+> **Alternativa com arquivos separados** (`Code.gs`, `Logo.gs`, `Formulario.html` e `appsscript.json`): crie um script vinculado a uma planilha (Extensões › Apps Script) e execute `configurar`. Nesse modo a planilha ganha o menu "Prêmio TJAC 2026".
 
 > Opcional: o `site/index.html` pode ser publicado no GitHub Pages. Para isso, defina `ENDPOINT = 'URL /exec'` no arquivo ou abra a página com `?api=URL`. O formulário servido pelo próprio Apps Script continua sendo o caminho recomendado, porque não depende de CORS.
 
@@ -105,7 +114,7 @@ cd premio-tjac-recursos
 python scripts/build.py      # regenera dados/*.json, dados/Unidades_BD.csv, Formulario.html e site/index.html
 ```
 
-Depois, cole o novo `Formulario.html` no Apps Script e crie uma **nova versão** da implantação. A categoria de cada unidade também pode ser corrigida direto na aba `Unidades` da planilha. O servidor lê essa aba, mas a lista exibida no formulário vem do `build.py`.
+Depois, cole o novo `PremioTJAC_TudoEmUm.gs` (ou o `Formulario.html`) no Apps Script e crie uma **nova versão** da implantação. A categoria de cada unidade também pode ser corrigida direto na aba `Unidades` da planilha. O servidor lê essa aba, mas a lista exibida no formulário vem do `build.py`.
 
 ### Testes
 

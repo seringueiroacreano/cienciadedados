@@ -259,7 +259,34 @@ def gerar_html(dados: dict) -> list[Path]:
         encoding="utf-8",
     )
     saidas.append(logo_gs)
+    saidas.append(gerar_pacote_unico(html, logo_gs.read_text(encoding="utf-8")))
     return saidas
+
+
+def gerar_pacote_unico(html: str, logo_js: str) -> Path:
+    """Um único .gs com tudo (formulário, unidades, logotipo e servidor), para colar de uma vez
+    num projeto novo do Apps Script e executar instalar()."""
+    with (RAIZ / "dados" / "Unidades_BD.csv").open(encoding="utf-8", newline="") as f:
+        linhas = list(csv.reader(f))
+    codigo = (RAIZ / "apps-script" / "Code.gs").read_text(encoding="utf-8")
+    destino = RAIZ / "apps-script" / "PremioTJAC_TudoEmUm.gs"
+    destino.write_text(
+        "// =====================================================================\n"
+        "// Prêmio TJAC de Qualidade 2026 — PACOTE ÚNICO (gerado por scripts/build.py)\n"
+        "// 1) Cole este arquivo inteiro em um projeto novo do Apps Script (script.google.com)\n"
+        "// 2) Selecione a função instalar e clique em Executar (autorize o acesso)\n"
+        "// 3) Implantar > Nova implantação > App da Web\n"
+        "// Não edite este arquivo à mão: altere os fontes e rode python scripts/build.py\n"
+        "// =====================================================================\n\n"
+        + logo_js
+        + "\n// Lista de unidades (aba Unidades da planilha), gerada de dados/Unidades_BD.csv\n"
+        + "var UNIDADES_BD = " + json.dumps(linhas, ensure_ascii=False) + ";\n\n"
+        + "// Formulário (HTML completo, com os dados embutidos)\n"
+        + "var FORM_HTML = " + json.dumps(html, ensure_ascii=False) + ";\n\n"
+        + codigo,
+        encoding="utf-8",
+    )
+    return destino
 
 
 def base64_arquivo(caminho: Path) -> str:
