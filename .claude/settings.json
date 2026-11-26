@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Google_Drive__search_files",
+      "mcp__Google_Drive__read_file_content",
+      "mcp__Google_Drive__download_file_content",
+      "mcp__Google_Drive__get_file_metadata",
+      "mcp__Google_Drive__list_recent_files",
+      "mcp__Google_Drive__list_shared_drives",
+      "mcp__Google_Drive__get_shared_drive_metadata",
+      "mcp__Google_Drive__list_file_revisions",
+      "mcp__Google_Drive__get_file_permissions",
+      "mcp__Google_Drive__create_file",
+      "mcp__Google_Drive__copy_file",
+      "mcp__Google_Drive__update_file",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskUpdate",
+      "TaskStop"
+    ]
+  }
+}
