@@ -1,0 +1,15 @@
+{
+  "executado_em": "2026-11-26T11:10:43.137502-05:00",
+  "data_referencia": "2026-11-26",
+  "componentes_automaticos": [
+    "SNA a",
+    "SNA b.1",
+    "SNA b.2",
+    "SNA c",
+    "CNIEP"
+  ],
+  "erros": [],
+  "alertas": [
+    "CNIEP: sem inspeção em 02/2026 no estabelecimento 5 (UNIDADE PENITENCIÁRIA MOACIR PRADO); zera a vara 8156."
+  ]
+}

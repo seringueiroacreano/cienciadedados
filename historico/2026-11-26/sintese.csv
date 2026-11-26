@@ -1,0 +1,6 @@
+Apuração,Componente,Pontos de referência,Valor bruto,Situação,Base / fonte
+AUTO,SNA a,10,96.5986,Apurado,"Média TJAC no painel SNA da COGER: 147 registros, 5 pendências; fonte atualizada em 2026-11-26T11:07:24.136619-05:00"
+AUTO,SNA b.1,10,100.0,Apurado,"Média TJAC no painel SNA da COGER: 6 registros, 0 pendências; fonte atualizada em 2026-11-26T10:11:15.995213-05:00"
+AUTO,SNA b.2,0,20.0,Apurado,"Média TJAC no painel SNA da COGER: 5 registros, 4 pendências; fonte atualizada em 2026-11-26T10:17:33.384693-05:00"
+AUTO,SNA c,10,97.2603,Apurado,"Média TJAC no painel SNA da COGER: 146 registros, 4 pendências; fonte atualizada em 2026-11-26T10:24:39.445576-05:00"
+AUTO,CNIEP,0,29.4375,Apurado,API CNIEP/CNJ: 78 IPr + 1 IFPr; 8 estabelecimentos; 10 meses encerrados e 1 em andamento; 1 lacunas
