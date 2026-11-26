@@ -4,7 +4,9 @@ Uso: python aplicar_no_modelo.py CAMINHO/IRASP_TJAC.SemanticModel/model.bim
 
 O que muda no modelo (o resto fica igual):
   * parâmetros novos: Robo_Ativo (true/false) e Robo_Caminho (repositório/ramificação no GitHub);
-  * consulta nova Fonte_Robo: lê apuracoes.csv, pontuacao.csv, situacao.csv e sintese.csv;
+  * consultas novas Robo_Ler, Robo_Apuracoes, Robo_Pontuacao, Robo_Situacao e Robo_Sintese:
+    cada uma lê um CSV e devolve tabela vazia se ele não estiver disponível
+    (a antiga Fonte_Robo, se existir, é removida);
   * Apuração, Pontuação e Síntese Estadual passam a somar a apuração do robô (código AUTO)
     às apurações da planilha. A apuração AUTO = apuração base da planilha (ex.: AP01) com os
     componentes automáticos (SNA a, b.1, b.2, c e CNIEP) trocados pelos valores do robô.
@@ -25,62 +27,79 @@ PARAMETROS = [
      "Text", "Repositório e ramificação do GitHub onde o robô publica os CSV (dono/repositorio/ramificacao)."),
 ]
 
-FONTE_ROBO = f"""let
-    {MARCA} CSV publicados todo dia às 7h (Acre) pelo robô em github.com/seringueiroacreano/cienciadedados
-    Ler = (arquivo as text) as table =>
-        let
-            Binario = Web.Contents("https://raw.githubusercontent.com", [RelativePath = Robo_Caminho & "/irasp/" & arquivo]),
-            Csv = Csv.Document(Binario, [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-            ComCabecalho = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]),
-            SemVazio = Table.TransformColumns(ComCabecalho, {{}}, each if _ = "" then null else _)
-        in
-            Table.Buffer(SemVazio),
-    Apuracoes = if Robo_Ativo then (try Ler("apuracoes.csv") otherwise null) else null,
-    Disponivel = Apuracoes <> null and not Table.IsEmpty(Apuracoes),
-    Info = if Disponivel then Apuracoes{{0}} else null,
-    Numero = (v) => if v = null then null else Number.FromText(v, "en-US"),
-    Sintese0 = if Disponivel then (try Ler("sintese.csv") otherwise null) else null,
-    Resultado = [
-        Disponivel = Disponivel,
-        Codigo = if Disponivel then Info[#"Apuração"] else null,
-        Base = if Disponivel then Info[#"Apuração base"] else null,
-        Automaticos = if Disponivel and Info[#"Componentes automáticos"] <> null
-            then Text.Split(Info[#"Componentes automáticos"], ";") else {{}},
-        Apuracoes = if Disponivel then
-            Table.TransformColumns(
-                Table.RemoveColumns(Apuracoes, {{"Apuração base", "Componentes automáticos"}}),
-                {{{{"Data de referência", each Date.FromText(_, [Format = "yyyy-MM-dd"])}}}})
-            else null,
-        Pontuacao = if Disponivel then (try Ler("pontuacao.csv") otherwise null) else null,
-        Situacao = if Disponivel then (try Ler("situacao.csv") otherwise null) else null,
-        Sintese = if Sintese0 = null then null else
-            Table.TransformColumns(Sintese0, {{{{"Pontos de referência", Numero}}, {{"Valor bruto", Numero}}}})
-    ]
+COLUNAS = {
+    "Robo_Apuracoes": ["Apuração", "Data de referência", "Descrição", "Tipo", "Observação",
+                       "Apuração base", "Componentes automáticos"],
+    "Robo_Pontuacao": ["Apuração", "Código MPM"],
+    "Robo_Situacao": ["Apuração", "Código MPM", "Componente", "Situação", "Observação"],
+    "Robo_Sintese": ["Apuração", "Componente", "Pontos de referência", "Valor bruto", "Situação", "Base / fonte"],
+}
+ARQUIVOS = {"Robo_Apuracoes": "apuracoes.csv", "Robo_Pontuacao": "pontuacao.csv",
+            "Robo_Situacao": "situacao.csv", "Robo_Sintese": "sintese.csv"}
+
+# Função que lê um CSV do robô. Cada consulta do robô devolve SEMPRE uma tabela
+# (vazia, com os cabeçalhos, se o GitHub falhar ou Robo_Ativo = false): o motor do
+# Power BI não aceita bem consultas compartilhadas que devolvem registros.
+ROBO_LER = f"""(arquivo as text) as table =>
+    let
+        {MARCA} lê um CSV publicado pelo robô (github.com/seringueiroacreano/cienciadedados)
+        Binario = Web.Contents("https://raw.githubusercontent.com", [RelativePath = Robo_Caminho & "/irasp/" & arquivo]),
+        Csv = Csv.Document(Binario, [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+        ComCabecalho = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]),
+        SemVazio = Table.TransformColumns(ComCabecalho, {{}}, each if _ = "" then null else _)
+    in
+        Table.Buffer(SemVazio)"""
+
+
+def consulta_robo(nome):
+    cols = ", ".join(f'"{c}"' for c in COLUNAS[nome])
+    extra = ""
+    if nome == "Robo_Apuracoes":
+        extra = ('\n    Final = Table.TransformColumns(Lida, {{"Data de referência", '
+                 'each if _ = null then null else Date.FromText(_, [Format = "yyyy-MM-dd"])}})')
+    elif nome == "Robo_Sintese":
+        extra = ('\n    Numero = (v) => if v = null then null else Number.FromText(v, "en-US"),'
+                 '\n    Final = Table.TransformColumns(Lida, {{"Pontos de referência", Numero}, {"Valor bruto", Numero}})')
+    else:
+        extra = "\n    Final = Lida"
+    return f"""let
+    {MARCA} CSV do robô ({ARQUIVOS[nome]}); tabela vazia se indisponível
+    Vazia = #table({{{cols}}}, {{}}),
+    Lida = if Robo_Ativo then (try Robo_Ler("{ARQUIVOS[nome]}") otherwise Vazia) else Vazia,{extra}
 in
-    Resultado"""
+    Final"""
+
 
 # Trechos a trocar em cada tabela: (linha original, novas linhas)
 APURACAO_DE = '    Origem = Fonte_IRASP{[Item = "tbApuracoes", Kind = "Table"]}[Data],'
 APURACAO_PARA = f"""    {MARCA} apurações da planilha + apuração automática do robô
     Planilha = Fonte_IRASP{{[Item = "tbApuracoes", Kind = "Table"]}}[Data],
-    Origem = if Fonte_Robo[Disponivel] then Table.Combine({{Planilha, Fonte_Robo[Apuracoes]}}) else Planilha,"""
+    DoRobo = Table.RemoveColumns(Robo_Apuracoes, {{"Apuração base", "Componentes automáticos"}}, MissingField.Ignore),
+    Origem = if Table.IsEmpty(DoRobo) then Planilha else Table.Combine({{Planilha, DoRobo}}),"""
 
 PONTUACAO_DE = '    Origem = Fonte_IRASP{[Item = "tbPontuacao", Kind = "Table"]}[Data],'
 PONTUACAO_PARA = f"""    {MARCA} apuração AUTO = apuração base da planilha com os componentes automáticos do robô
     Planilha = Fonte_IRASP{{[Item = "tbPontuacao", Kind = "Table"]}}[Data],
-    Robo = Fonte_Robo,
+    // Valores lidos por Table.Column (e não por linha{{0}}[campo]): o motor do Power BI
+    // descarta colunas que não vê sendo usadas, e o acesso por registro não conta como uso.
+    // Sem funções locais aqui: o motor não passa funções entre partes da consulta.
+    RoboVazio = Table.IsEmpty(Robo_Apuracoes),
+    RoboCodigo = if RoboVazio or Table.IsEmpty(Robo_Pontuacao) then null else List.First(Table.Column(Robo_Apuracoes, "Apuração")),
+    RoboBase = if RoboVazio then null else List.First(Table.Column(Robo_Apuracoes, "Apuração base")),
+    RoboAutoTexto = if RoboVazio then null else List.First(Table.Column(Robo_Apuracoes, "Componentes automáticos")),
+    RoboAuto = if RoboAutoTexto = null then {{}} else Text.Split(RoboAutoTexto, ";"),
     Automatica =
-        if not Robo[Disponivel] or Robo[Pontuacao] = null then null
+        if RoboCodigo = null or RoboBase = null then null
         else
             let
-                Auto = List.Intersect({{Robo[Automaticos], Table.ColumnNames(Robo[Pontuacao])}}),
-                Base0 = Table.SelectRows(Planilha, each [#"Apuração"] = Robo[Base]),
+                Auto = List.Intersect({{RoboAuto, Table.ColumnNames(Robo_Pontuacao)}}),
+                Base0 = Table.SelectRows(Planilha, each [#"Apuração"] = RoboBase),
                 Base1 = Table.RemoveColumns(Base0, List.Intersect({{Auto, Table.ColumnNames(Base0)}}) & {{"Apuração"}}),
                 Base2 = Table.TransformColumnTypes(Base1, {{{{"Código MPM", Int64.Type}}}}),
-                Valores = Table.TransformColumnTypes(Table.SelectColumns(Robo[Pontuacao], {{"Código MPM"}} & Auto), {{{{"Código MPM", Int64.Type}}}}),
+                Valores = Table.TransformColumnTypes(Table.SelectColumns(Robo_Pontuacao, {{"Código MPM"}} & Auto), {{{{"Código MPM", Int64.Type}}}}),
                 Unida = Table.NestedJoin(Base2, {{"Código MPM"}}, Valores, {{"Código MPM"}}, "R", JoinKind.LeftOuter),
-                Expandida = Table.ExpandTableColumn(Unida, "R", Auto, Auto),
-                ComCodigo = Table.AddColumn(Expandida, "Apuração", each Robo[Codigo], type text)
+                Aberta = Table.ExpandTableColumn(Unida, "R", Auto, Auto),
+                ComCodigo = Table.AddColumn(Aberta, "Apuração", each RoboCodigo, type text)
             in
                 ComCodigo,
     Origem = if Automatica = null then Planilha else Table.Combine({{Planilha, Automatica}}),"""
@@ -90,21 +109,25 @@ SITUACAO_PARA = f"""    {MARCA} exceções da planilha + as da apuração base (
     SitPlanilha = Fonte_IRASP{{[Item = "tbSituacao", Kind = "Table"]}}[Data],
     SitHerdada = if Automatica = null then null else
         Table.TransformColumns(
-            Table.SelectRows(SitPlanilha, each [#"Apuração"] = Robo[Base] and not List.Contains(Robo[Automaticos], [Componente])),
-            {{{{"Apuração", each Robo[Codigo], type text}}}}),
-    Sit0 = Table.Combine(List.RemoveNulls({{SitPlanilha, SitHerdada, if Automatica = null then null else Robo[Situacao]}})),"""
+            Table.SelectRows(SitPlanilha, each [#"Apuração"] = RoboBase and not List.Contains(RoboAuto, [Componente])),
+            {{{{"Apuração", each RoboCodigo, type text}}}}),
+    Sit0 = Table.Combine(List.RemoveNulls({{SitPlanilha, SitHerdada, if Automatica = null then null else Robo_Situacao}})),"""
 
 SINTESE_DE = '    Origem = Fonte_IRASP{[Item = "tbSintese", Kind = "Table"]}[Data],'
 SINTESE_PARA = f"""    {MARCA} referências da planilha + as do robô (componentes manuais herdados da apuração base)
     Planilha = Fonte_IRASP{{[Item = "tbSintese", Kind = "Table"]}}[Data],
-    Robo = Fonte_Robo,
-    Herdada = if not Robo[Disponivel] then null else
+    RoboVazio = Table.IsEmpty(Robo_Apuracoes),
+    RoboCodigo = if RoboVazio then null else List.First(Table.Column(Robo_Apuracoes, "Apuração")),
+    RoboBase = if RoboVazio then null else List.First(Table.Column(Robo_Apuracoes, "Apuração base")),
+    RoboAutoTexto = if RoboVazio then null else List.First(Table.Column(Robo_Apuracoes, "Componentes automáticos")),
+    RoboAuto = if RoboAutoTexto = null then {{}} else Text.Split(RoboAutoTexto, ";"),
+    Herdada = if RoboCodigo = null or RoboBase = null then null else
         Table.TransformColumns(
-            Table.SelectRows(Planilha, each [#"Apuração"] = Robo[Base] and [Componente] <> null
-                and not List.Contains(Robo[Automaticos], [Componente])),
-            {{{{"Apuração", each Robo[Codigo], type text}}}}),
-    Origem = if not Robo[Disponivel] then Planilha
-        else Table.Combine(List.RemoveNulls({{Planilha, Herdada, Robo[Sintese]}})),"""
+            Table.SelectRows(Planilha, each [#"Apuração"] = RoboBase and [Componente] <> null
+                and not List.Contains(RoboAuto, [Componente])),
+            {{{{"Apuração", each RoboCodigo, type text}}}}),
+    Origem = if RoboCodigo = null then Planilha
+        else Table.Combine(List.RemoveNulls({{Planilha, Herdada, Robo_Sintese}})),"""
 
 TROCAS = {
     "Apuração": [(APURACAO_DE, APURACAO_PARA)],
@@ -125,11 +148,14 @@ def aplicar(modelo):
             md["expressions"].append({
                 "name": nome, "annotations": [{"name": "PBI_ResultType", "value": tipo}],
                 "description": desc, "expression": expr, "kind": "m", "lineageTag": tag(nome)})
-    if "Fonte_Robo" not in nomes:
+    novas = {"Robo_Ler": (ROBO_LER, "Function", "Lê um CSV publicado pelo robô IRASP no GitHub.")}
+    for nome in COLUNAS:
+        novas[nome] = (consulta_robo(nome), "Table", f"CSV do robô IRASP: {ARQUIVOS[nome]}.")
+    md["expressions"] = [e for e in md["expressions"] if e["name"] not in novas and e["name"] != "Fonte_Robo"]
+    for nome, (expr, tipo, desc) in novas.items():
         md["expressions"].append({
-            "name": "Fonte_Robo", "annotations": [{"name": "PBI_ResultType", "value": "Record"}],
-            "description": "CSV do robô IRASP (SNA e CNIEP) publicados no GitHub.",
-            "expression": FONTE_ROBO.split("\n"), "kind": "m", "lineageTag": tag("Fonte_Robo")})
+            "name": nome, "annotations": [{"name": "PBI_ResultType", "value": tipo}],
+            "description": desc, "expression": expr.split("\n"), "kind": "m", "lineageTag": tag(nome)})
 
     for tabela in md["tables"]:
         for de, para in TROCAS.get(tabela["name"], []):
