@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base target="_top">
+<title>Recursos — Prêmio TJAC de Qualidade 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0d3a66; --azul-esc:#082847; --azul-claro:#1f5f99; --ouro:#c9a227; --verde:#1d7a46;
+  --cinza-campo:#ebebeb; --cinza-borda:#d6d6d6; --texto:#222; --texto-suave:#5c5c5c;
+  --erro:#b3261e; --erro-fundo:#fdecea; --ok:#1d7a46; --ok-fundo:#e7f4ec; --alerta-fundo:#fff6dc;
+  --fundo:#f3f4f6; --cartao:#fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--fundo);color:var(--texto);font-family:"Open Sans",Arial,sans-serif;font-size:15px;line-height:1.5}
+a{color:var(--azul-claro)}
+.sr{position:absolute;left:-9999px}
+
+/* ---------- Cabeçalho inspirado no portal www.tjac.jus.br ---------- */
+.barra-topo{background:var(--azul-esc);color:#cfd9e6;font-size:12px}
+.barra-topo .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 16px}
+.barra-topo a{color:#cfd9e6;text-decoration:none;margin-left:14px}
+.barra-topo a:hover{color:#fff}
+.cab{background:linear-gradient(180deg,var(--azul) 0%,#0b335a 100%);color:#fff;border-bottom:4px solid var(--ouro)}
+.cab .wrap{display:flex;align-items:center;gap:16px;padding:18px 16px}
+.brasao{width:64px;height:64px;flex:0 0 64px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden}
+.brasao img{width:100%;height:100%;object-fit:contain}
+.cab .tit small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#d8e2ee}
+.cab .tit strong{display:block;font-family:Merriweather,Georgia,serif;font-size:22px;line-height:1.25}
+.menu{background:#0a2f54}
+.menu .wrap{display:flex;gap:2px;flex-wrap:wrap;padding:0 8px}
+.menu a{color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 10px;display:block}
+.menu a:hover,.menu a.ativo{background:var(--azul-claro)}
+.wrap{max-width:1000px;margin:0 auto}
+
+/* ---------- Corpo do formulário (estrutura do formulário do CNJ) ---------- */
+main{padding:20px 16px 40px}
+.folha{background:var(--cartao);max-width:1000px;margin:0 auto;padding:28px 32px 36px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h1.titulo-form{font-family:Merriweather,Georgia,serif;font-size:15px;font-weight:700;margin:0 0 14px}
+.abas{display:flex;gap:6px;margin:0 auto 14px;max-width:1000px;flex-wrap:wrap}
+.abas button{border:1px solid var(--cinza-borda);background:#fff;color:var(--azul);padding:9px 14px;border-radius:999px;font-weight:600;cursor:pointer;font-size:13px}
+.abas button[aria-selected=true]{background:var(--azul);color:#fff;border-color:var(--azul)}
+.passo-txt{font-family:Merriweather,Georgia,serif;font-size:12px;color:#777;margin:8px 0 6px 10px}
+.progresso{background:#e4e4e4;border-radius:999px;padding:7px;margin-bottom:26px}
+.progresso div{height:20px;border-radius:999px;background:repeating-linear-gradient(-45deg,#0b4f78 0 12px,#13668f 12px 24px);color:#fff;font-size:11px;text-align:right;padding-right:10px;line-height:20px;transition:width .3s}
+h2.secao{font-family:Merriweather,Georgia,serif;font-size:14px;font-weight:700;margin:30px 0 22px;padding-bottom:12px;border-bottom:1px solid var(--cinza-borda)}
+.campo{margin:0 0 26px}
+.campo>label,.campo>.rot{display:block;font-family:Merriweather,Georgia,serif;font-weight:700;font-size:13.5px;margin-bottom:8px}
+.obrig{color:var(--texto)}
+.ajuda{font-size:12.5px;color:var(--texto-suave);margin-top:5px}
+input[type=text],input[type=email],input[type=number],input[type=date],select,textarea{width:100%;border:0;background:var(--cinza-campo);padding:11px 12px;font:inherit;font-size:14px;border-radius:2px;color:var(--texto)}
+select{border:1px solid #bbb;background:#fafafa;max-width:420px}
+select.largo{max-width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--azul-claro);outline-offset:1px}
+textarea{min-height:110px;resize:vertical}
+textarea.grande{min-height:140px}
+.contador{font-family:Merriweather,Georgia,serif;font-size:11.5px;color:#777;margin-top:4px}
+.contador.estouro{color:var(--erro);font-weight:700}
+.opcoes label{display:block;padding-left:24px;text-indent:-24px;font-family:Merriweather,Georgia,serif;font-size:13px;margin:0 0 12px;cursor:pointer;font-weight:400}
+.opcoes input{margin:0 9px 0 0;vertical-align:-2px;width:15px;height:15px;accent-color:#2b6cb0}
+.opcoes label .selo{text-indent:0}
+.opcoes label.marcado{font-weight:700}
+.selo{display:inline-block;font-family:"Open Sans",Arial,sans-serif;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:1px}
+.selo.pts{background:#e8eef6;color:var(--azul)}
+.selo.prov{background:var(--ok-fundo);color:var(--ok)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 18px}
+.grade .campo{margin:0}
+.bloco-recurso{border-left:3px solid var(--azul-claro);padding:4px 0 4px 18px;margin:8px 0 34px}
+.bloco-recurso>.rot{font-family:Merriweather,Georgia,serif;font-weight:700;font-size:13.5px;margin:0 0 8px}
+fieldset.evid{border:1px solid var(--cinza-borda);border-radius:4px;padding:14px 16px 18px;margin:18px 0}
+fieldset.evid legend{font-weight:700;font-size:13px;color:var(--azul);padding:0 6px}
+fieldset.evid .letra{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--azul);color:#fff;font-size:11px;margin-right:6px}
+.subtit{font-weight:700;font-size:13px;margin:14px 0 8px}
+.arquivo{font-size:13px}
+.arquivo input{font-size:13px}
+.lista-arq{font-size:12.5px;color:var(--texto-suave);margin:6px 0 0;padding-left:18px}
+.aviso{border-radius:4px;padding:12px 14px;font-size:13.5px;margin:0 0 18px}
+.aviso.info{background:#eaf1f9;border-left:4px solid var(--azul-claro)}
+.aviso.alerta{background:var(--alerta-fundo);border-left:4px solid var(--ouro)}
+.aviso.erro{background:var(--erro-fundo);border-left:4px solid var(--erro)}
+.aviso.ok{background:var(--ok-fundo);border-left:4px solid var(--ok)}
+.aviso>strong:first-child{display:block;margin-bottom:2px}
+.erro-campo{color:var(--erro);font-size:12.5px;margin-top:5px}
+.invalido{outline:2px solid var(--erro)!important}
+.checklist{list-style:none;padding:0;margin:8px 0 0;font-size:13px}
+.checklist li{padding:3px 0}
+.checklist li::before{content:"○ ";color:#999}
+.checklist li.ok::before{content:"✔ ";color:var(--ok)}
+.checklist li.nok::before{content:"✖ ";color:var(--erro)}
+hr.pont{border:0;border-top:1px dotted #bbb;margin:26px 0 22px}
+.botoes{display:flex;flex-direction:column;gap:10px}
+.btn{display:block;width:100%;border:0;border-radius:999px;background:#1b1b1b;color:#fff;font:inherit;font-weight:600;padding:12px 18px;cursor:pointer;font-size:14px}
+.btn:hover{background:#000}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sec{background:#fff;color:#1b1b1b;border:1px solid #1b1b1b}
+.btn.peq{display:inline-block;width:auto;padding:7px 14px;font-size:13px}
+.servidor{border:1px solid var(--cinza-borda);border-radius:4px;padding:14px 16px;margin:0 0 16px;position:relative}
+.servidor .remover{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--erro);cursor:pointer;font-size:13px}
+.meses{font-size:12.5px;margin-top:6px}
+.resumo dt{font-weight:700;font-size:13px;margin-top:8px}
+.resumo dd{margin:0 0 4px}
+.oculto{display:none!important}
+.carregando{position:fixed;inset:0;background:rgba(255,255,255,.75);display:grid;place-items:center;z-index:50}
+.carregando div{background:#fff;padding:22px 26px;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.15);font-weight:600}
+dialog{border:0;border-radius:6px;max-width:560px;width:calc(100% - 32px);padding:24px;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h3{margin:0 0 10px;font-family:Merriweather,Georgia,serif;font-size:16px}
+dialog .acoes{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+
+/* ---------- Rodapé ---------- */
+.rodape-form{background:#ebebec;text-align:center;font-family:Merriweather,Georgia,serif;font-size:12px;padding:34px 16px;color:#333;max-width:1032px;margin:28px auto 0}
+.rodape{background:var(--azul-esc);color:#cfd9e6;font-size:13px;margin-top:0}
+.rodape .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:26px 16px}
+.rodape h4{color:#fff;margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.rodape a{color:#cfd9e6;display:block;text-decoration:none;margin:3px 0}
+.rodape a:hover{color:#fff}
+.rodape .base{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:10px 16px;font-size:12px}
+
+@media (max-width:640px){
+  .folha{padding:20px 16px 28px}
+  .cab .tit strong{font-size:17px}
+  .brasao{width:48px;height:48px;flex-basis:48px}
+  .barra-topo .acess{display:none}
+}
+@media print{.barra-topo,.menu,.abas,.botoes,.rodape{display:none}}
+</style>
+</head>
+<body>
+
+<div class="barra-topo"><div class="wrap">
+  <span>Poder Judiciário do Estado do Acre</span>
+  <span class="acess"><a href="#conteudo">Ir para o conteúdo</a><a href="https://www.tjac.jus.br" target="_blank" rel="noopener">Portal do TJAC</a><a href="https://www.tjac.jus.br/ouvidoria/" target="_blank" rel="noopener">Ouvidoria</a></span>
+</div></div>
+<header class="cab"><div class="wrap">
+  <div class="brasao" aria-hidden="true">
+    <!-- Substitua pelo brasão oficial: defina LOGO_URL no Code.gs ou troque este SVG. -->
+    <svg viewBox="0 0 64 64" width="52" height="52"><circle cx="32" cy="32" r="30" fill="#0d3a66"/><circle cx="32" cy="32" r="26" fill="none" stroke="#c9a227" stroke-width="2"/><g stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M32 15v32M22 47h20M18 22h28"/><path d="M18 22l-6 12h12zM46 22l-6 12h12z"/></g><circle cx="32" cy="15" r="2.6" fill="#c9a227"/></svg>
+  </div>
+  <div class="tit"><small>Poder Judiciário do Estado do Acre</small><strong>Tribunal de Justiça do Estado do Acre</strong></div>
+</div></header>
+<nav class="menu" aria-label="Portal do TJAC"><div class="wrap">
+  <a href="https://www.tjac.jus.br" target="_blank" rel="noopener">Início</a>
+  <a href="https://www.tjac.jus.br/institucional/" target="_blank" rel="noopener">Institucional</a>
+  <a href="https://www.tjac.jus.br/transparencia/" target="_blank" rel="noopener">Transparência</a>
+  <a class="ativo" href="#conteudo">Prêmio TJAC de Qualidade 2026</a>
+</div></nav>
+
+<main id="conteudo">
+  <div class="abas" role="tablist">
+    <button role="tab" aria-selected="true" data-aba="recurso">Recurso contra o Resultado Preliminar</button>
+    <button role="tab" aria-selected="false" data-aba="impugnacao">Impugnação da lista de servidores vinculados</button>
+  </div>
+
+  <!-- ===================== RECURSO ===================== -->
+  <section class="folha" id="aba-recurso">
+    <h1 class="titulo-form">Prêmio TJAC de Qualidade 2026 - Formulário para submissão de recursos contra o Resultado Preliminar</h1>
+    <div id="faixa-prazo"></div>
+    <div class="passo-txt" id="r-passo-txt">Passo 1 de 2</div>
+    <div class="progresso"><div id="r-barra" style="width:50%">50%</div></div>
+
+    <!-- PASSO 1 -->
+    <div id="r-passo1">
+      <h2 class="secao">Identificação do Respondente</h2>
+      <div class="campo">
+        <label for="r-orgao">Identifique o Órgão: <span class="obrig">*</span></label>
+        <select id="r-orgao" disabled><option>Tribunal de Justiça do Estado do Acre</option></select>
+      </div>
+      <div class="campo">
+        <label for="r-unidade">Identifique a Unidade Judiciária: <span class="obrig">*</span></label>
+        <input type="text" id="r-busca" placeholder="Digite parte do nome para filtrar a lista…" style="max-width:420px;margin-bottom:8px" autocomplete="off">
+        <select id="r-unidade" class="largo"></select>
+        <div class="ajuda">Lista das unidades avaliadas (Portaria PRESI nº 1.961/2026, art. 4º). Código da serventia: <strong id="r-codigo">—</strong></div>
+        <div id="r-status-unidade" style="margin-top:10px"></div>
+      </div>
+      <div class="campo">
+        <label for="r-cpf">Informe o CPF do responsável pelo envio: <span class="obrig">*</span></label>
+        <input type="text" id="r-cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00">
+      </div>
+      <div class="campo">
+        <label for="r-nome">Informe o nome do responsável pelo envio: <span class="obrig">*</span></label>
+        <input type="text" id="r-nome" maxlength="150">
+      </div>
+      <div class="campo">
+        <label for="r-email">Informe o e-mail do responsável pelo envio: <span class="obrig">*</span></label>
+        <input type="email" id="r-email" maxlength="150" placeholder="nome@tjac.jus.br">
+        <div class="ajuda">O registro do recurso (PDF) será enviado para este endereço.</div>
+      </div>
+      <div class="campo" id="r-cod-box">
+        <label for="r-codemail">Informe o código de verificação enviado ao e-mail: <span class="obrig">*</span></label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <input type="text" id="r-codemail" inputmode="numeric" maxlength="6" style="max-width:160px" placeholder="000000">
+          <button type="button" class="btn sec peq" id="r-pedircod">Enviar código para o e-mail</button>
+        </div>
+        <div class="ajuda" id="r-cod-info">Confirma que o envio parte de e-mail institucional (evita recurso em nome de outra unidade).</div>
+      </div>
+      <div class="grade">
+        <div class="campo">
+          <label for="r-cargo">Informe o cargo/função do responsável: <span class="obrig">*</span></label>
+          <select id="r-cargo" class="largo">
+            <option value="">Selecione…</option>
+            <option>Juiz(a) de Direito titular</option>
+            <option>Juiz(a) de Direito designado(a)/substituto(a)</option>
+            <option>Desembargador(a)</option>
+            <option>Diretor(a) de Secretaria / Gestor(a) da unidade</option>
+            <option>Chefe de Gabinete</option>
+            <option>Secretário(a) / Coordenador(a)</option>
+            <option>Outro (por delegação)</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="r-matricula">Informe a matrícula: <span class="obrig">*</span></label>
+          <input type="text" id="r-matricula" maxlength="20">
+        </div>
+      </div>
+      <hr class="pont">
+      <div class="botoes"><button class="btn" id="r-avancar" type="button">Próximo</button></div>
+    </div>
+
+    <!-- PASSO 2 -->
+    <div id="r-passo2" class="oculto">
+      <div class="aviso info"><strong>Unidade: <span id="r-unidade-resumo"></span></strong>
+        Os recursos devem ser objetivos e acompanhados das evidências do Anexo III, item 3 (painel/relatório, filtros, período, memória de cálculo, número e quantidade exata dos processos), sob pena de não conhecimento (art. 13).</div>
+      <h2 class="secao">Questionário</h2>
+      <div id="r-eixos"></div>
+
+      <h2 class="secao">Declarações</h2>
+      <div class="opcoes" id="r-declaracoes">
+        <label><input type="checkbox" data-decl="preclusao"> Declaro ciência de que a interposição deste recurso implica <strong>preclusão consumativa</strong>: não será admitido novo recurso desta unidade (art. 7º, § 4º).</label>
+        <label><input type="checkbox" data-decl="reformatio"> Declaro ciência de que a análise dos recursos pode ensejar <strong>acréscimo ou decréscimo</strong> da pontuação desta e das demais unidades, inclusive por reprocessamento dos dados (art. 13, § 2º).</label>
+        <label><input type="checkbox" data-decl="veracidade"> Declaro que as informações e evidências apresentadas são verdadeiras e foram extraídas das fontes oficiais indicadas.</label>
+      </div>
+
+      <div class="aviso alerta" id="r-checklist-box">
+        <strong>Checklist de admissibilidade (Anexo III, item 3)</strong>
+        <ul class="checklist" id="r-checklist"><li>Selecione ao menos um item para recorrer.</li></ul>
+      </div>
+      <div id="r-erros"></div>
+      <hr class="pont">
+      <div class="botoes">
+        <button class="btn" id="r-voltar" type="button">Anterior</button>
+        <button class="btn" id="r-enviar" type="button">Enviar</button>
+      </div>
+    </div>
+
+    <!-- CONFIRMAÇÃO -->
+    <div id="r-final" class="oculto"></div>
+  </section>
+
+  <!-- ===================== IMPUGNAÇÃO ===================== -->
+  <section class="folha oculto" id="aba-impugnacao">
+    <h1 class="titulo-form">Prêmio TJAC de Qualidade 2026 - Formulário de impugnação da lista provisória de servidores vinculados</h1>
+    <div class="aviso info"><strong>Processamento autônomo</strong>
+      A impugnação da lista de servidores tem processamento próprio e <strong>não está sujeita à preclusão consumativa</strong> dos recursos (art. 7º, § 5º). Parâmetro: vinculação à unidade em que o(a) servidor(a) permaneceu lotado(a) por, no mínimo, 6 meses durante o período de apuração (art. 6º); excluem-se os punidos com suspensão ou demissão em 2026 (art. 6º, § 3º). Lista definitiva: 16/12/2026.</div>
+    <div id="i-form">
+      <h2 class="secao">Identificação do Respondente</h2>
+      <div class="campo">
+        <label for="i-unidade">Identifique a Unidade Judiciária: <span class="obrig">*</span></label>
+        <select id="i-unidade" class="largo"></select>
+      </div>
+      <div class="grade">
+        <div class="campo"><label for="i-cpf">CPF do responsável: *</label><input type="text" id="i-cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00"></div>
+        <div class="campo"><label for="i-matricula">Matrícula: *</label><input type="text" id="i-matricula" maxlength="20"></div>
+      </div>
+      <div class="campo" style="margin-top:22px"><label for="i-nome">Nome do responsável pelo envio: *</label><input type="text" id="i-nome" maxlength="150"></div>
+      <div class="campo"><label for="i-email">E-mail do responsável pelo envio: *</label><input type="email" id="i-email" maxlength="150" placeholder="nome@tjac.jus.br"></div>
+      <div class="campo" id="i-cod-box">
+        <label for="i-codemail">Informe o código de verificação enviado ao e-mail: <span class="obrig">*</span></label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <input type="text" id="i-codemail" inputmode="numeric" maxlength="6" style="max-width:160px" placeholder="000000">
+          <button type="button" class="btn sec peq" id="i-pedircod">Enviar código para o e-mail</button>
+        </div>
+        <div class="ajuda" id="i-cod-info">Confirma que o envio parte de e-mail institucional (evita recurso em nome de outra unidade).</div>
+      </div>
+
+      <h2 class="secao">Servidores(as) objeto da impugnação</h2>
+      <div id="i-servidores"></div>
+      <button type="button" class="btn sec peq" id="i-add">+ Adicionar servidor(a)</button>
+
+      <h2 class="secao">Fundamentação e evidências</h2>
+      <div class="campo">
+        <label for="i-fund">Apresente a fundamentação da impugnação: *</label>
+        <textarea id="i-fund" class="grande" maxlength="4000"></textarea>
+        <div class="contador" data-para="i-fund">0 de 4000 máx. de caracteres</div>
+      </div>
+      <div class="campo arquivo">
+        <label for="i-arq">Anexe as evidências (portaria de lotação, extrato do sistema de RH etc.):</label>
+        <input type="file" id="i-arq" multiple accept=".pdf,.png,.jpg,.jpeg,.xlsx,.xls,.csv,.docx,.doc">
+        <ul class="lista-arq" id="i-arq-lista"></ul>
+      </div>
+      <div class="opcoes"><label><input type="checkbox" id="i-veracidade"> Declaro que as informações prestadas são verdadeiras e conferem com o registro oficial de lotação.</label></div>
+      <div id="i-erros"></div>
+      <hr class="pont">
+      <div class="botoes"><button class="btn" id="i-enviar" type="button">Enviar impugnação</button></div>
+    </div>
+    <div id="i-final" class="oculto"></div>
+  </section>
+
+  <div class="rodape-form">Sistema de Gestão de Formulários - Tribunal de Justiça do Estado do Acre<br>Versão 1.0</div>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div><h4>Tribunal de Justiça do Estado do Acre</h4>Rua Tribunal de Justiça, s/n – Via Verde<br>Rio Branco – AC · CEP 69915-631</div>
+    <div><h4>Prêmio TJAC de Qualidade 2026</h4>Portaria PRESI nº 1.961/2026, alterada pelas Portarias nº 4.335/2026 e nº 4.919/2026.</div>
+    <div><h4>Links</h4><a href="https://www.tjac.jus.br" target="_blank" rel="noopener">Portal do TJAC</a><a href="https://www.cnj.jus.br/gestao-estrategica-e-planejamento/premio-cnj-de-qualidade/" target="_blank" rel="noopener">Prêmio CNJ de Qualidade</a></div>
+  </div>
+  <div class="base">© 2026 Poder Judiciário do Estado do Acre</div>
+</footer>
+
+<dialog id="dlg">
+  <h3 id="dlg-tit"></h3>
+  <div id="dlg-txt"></div>
+  <div class="acoes"><button class="btn sec peq" id="dlg-nao" type="button">Revisar</button><button class="btn peq" id="dlg-sim" type="button">Confirmar envio</button></div>
+</dialog>
+<div class="carregando oculto" id="carregando"><div id="carregando-txt">Enviando…</div></div>
+
+<script>
+/* =====================================================================
+   Dados embutidos pelo scripts/build.py (unidades + matriz do Anexo I)
+   ===================================================================== */
+var DADOS = /*__DADOS__*/null;
+
+/* Endereço do Apps Script (/exec) — usado só quando a página roda fora do
+   Apps Script (ex.: GitHub Pages). Também aceita ?api=URL na barra de endereço. */
+var ENDPOINT = '';
+
+var PRAZO = { inicio: '2026-12-04T00:00:00-05:00', fim: '2026-12-07T23:59:59-05:00' };
+var LIMITE_TEXTO = 4000, LIMITE_ARQ_MB = 10, LIMITE_TOTAL_MB = 25;
+var CFG = { exigeCodigo:true };
+var PERIODO_APURACAO = { inicio: '2026-01-01', fim: '2026-11-30' };
+
+/* ---------------- utilitários ---------------- */
+function $(id){ return document.getElementById(id); }
+function el(tag, attrs, html){ var e=document.createElement(tag); if(attrs) for(var k in attrs){ if(k==='class') e.className=attrs[k]; else e.setAttribute(k,attrs[k]); } if(html!==undefined) e.innerHTML=html; return e; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function soDigitos(s){ return String(s||'').replace(/\D/g,''); }
+function fmtCPF(s){ var d=soDigitos(s).slice(0,11); return d.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); }
+function cpfValido(s){
+  var c=soDigitos(s); if(c.length!==11||/^(\d)\1+$/.test(c)) return false;
+  for(var t=9;t<11;t++){ var soma=0; for(var i=0;i<t;i++) soma+=parseInt(c[i],10)*(t+1-i); var dv=(soma*10)%11%10; if(dv!==parseInt(c[t],10)) return false; }
+  return true;
+}
+function emailValido(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(s||'').trim()); }
+/* Número único CNJ (Res. CNJ 65/2008): NNNNNNN-DD.AAAA.J.TR.OOOO, dígito módulo 97 */
+function cnjNormaliza(s){
+  var d=soDigitos(s); if(d.length!==20) return null;
+  var N=d.slice(0,7),DD=d.slice(7,9),A=d.slice(9,13),J=d.slice(13,14),TR=d.slice(14,16),O=d.slice(16,20);
+  var r1=parseInt(N,10)%97, r2=parseInt(String(r1)+A+J+TR,10)%97, r3=parseInt(String(r2)+O+DD,10)%97;
+  if(r3!==1) return null;
+  return N+'-'+DD+'.'+A+'.'+J+'.'+TR+'.'+O;
+}
+function agora(){ return new Date(); }
+function prazoSituacao(){
+  var n=agora(), i=new Date(PRAZO.inicio), f=new Date(PRAZO.fim);
+  if(n<i) return 'antes'; if(n>f) return 'encerrado'; return 'aberto';
+}
+function lerArquivo(f){
+  return new Promise(function(ok,falha){
+    var r=new FileReader(); r.onload=function(){ var b=String(r.result); ok({nome:f.name,tipo:f.type||'application/octet-stream',tamanho:f.size,base64:b.slice(b.indexOf(',')+1)}); };
+    r.onerror=function(){ falha(new Error('Falha ao ler '+f.name)); }; r.readAsDataURL(f);
+  });
+}
+function mostrarCarregando(txt){ $('carregando-txt').textContent=txt||'Enviando…'; $('carregando').classList.remove('oculto'); }
+function esconderCarregando(){ $('carregando').classList.add('oculto'); }
+function confirmar(titulo, html){
+  return new Promise(function(ok){
+    var d=$('dlg'); $('dlg-tit').textContent=titulo; $('dlg-txt').innerHTML=html;
+    $('dlg-sim').onclick=function(){ d.close(); ok(true); };
+    $('dlg-nao').onclick=function(){ d.close(); ok(false); };
+    if(d.showModal) d.showModal(); else ok(window.confirm(titulo));
+  });
+}
+function baixarPDF(base64, nome){
+  var bin=atob(base64), arr=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+  var url=URL.createObjectURL(new Blob([arr],{type:'application/pdf'}));
+  var a=el('a',{href:url,download:nome}); document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+}
+
+/* ---------------- comunicação com o servidor (Apps Script) ---------------- */
+function temGAS(){ return typeof google!=='undefined' && google.script && google.script.run; }
+function endpoint(){ var p=new URLSearchParams(location.search).get('api'); return p || ENDPOINT; }
+function api(acao, dados){
+  if(temGAS()){
+    return new Promise(function(ok,falha){
+      google.script.run.withSuccessHandler(function(r){ ok(typeof r==='string'?JSON.parse(r):r); }).withFailureHandler(falha).api(acao, JSON.stringify(dados||{}));
+    });
+  }
+  var url=endpoint();
+  if(!url) return Promise.reject(new Error('MODO_DEMO'));
+  return fetch(url,{method:'POST',body:JSON.stringify({acao:acao,dados:dados||{}})}).then(function(r){ return r.json(); });
+}
+
+/* ---------------- dados auxiliares ---------------- */
+var UNID = {}; DADOS.unidades.forEach(function(u){ UNID[u.codigo]=u; });
+var AVALIADAS = DADOS.unidades.filter(function(u){ return DADOS.categorias[u.categoria] && DADOS.categorias[u.categoria].avaliada; });
+
+function preencherUnidades(sel, filtro){
+  var atual=sel.value; sel.innerHTML='';
+  sel.appendChild(el('option',{value:''},'Selecione a unidade…'));
+  var grupos={};
+  var f=(filtro||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase();
+  AVALIADAS.forEach(function(u){
+    var nome=u.nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase();
+    if(f && nome.indexOf(f)<0 && u.codigo.indexOf(f)<0) return;
+    var g=DADOS.categorias[u.categoria].rotulo; (grupos[g]=grupos[g]||[]).push(u);
+  });
+  Object.keys(grupos).forEach(function(g){
+    var og=el('optgroup',{label:g});
+    grupos[g].forEach(function(u){ og.appendChild(el('option',{value:u.codigo},esc(u.nome)+' ('+u.codigo+')')); });
+    sel.appendChild(og);
+  });
+  if(atual && UNID[atual]) sel.value=atual;
+}
+
+/* ---------------- faixa de prazo ---------------- */
+function desenharPrazo(){
+  var s=prazoSituacao(), box=$('faixa-prazo');
+  if(s==='aberto') box.innerHTML='<div class="aviso ok"><strong>Prazo recursal aberto</strong>Recursos e impugnações até <strong>07/12/2026, 23h59min59s</strong> (horário do Acre). Resultado Final: 18/12/2026.</div>';
+  else if(s==='antes') box.innerHTML='<div class="aviso alerta"><strong>Prazo recursal ainda não iniciado</strong>O Resultado Preliminar será publicado em 04/12/2026; os recursos poderão ser enviados até 07/12/2026, 23h59min59s. O envio é validado pelo servidor.</div>';
+  else box.innerHTML='<div class="aviso erro"><strong>Prazo recursal encerrado</strong>O termo final para recursos e impugnações foi 07/12/2026, 23h59min59s (art. 5º, III).</div>';
+  if(!temGAS() && !endpoint()) box.innerHTML+='<div class="aviso alerta"><strong>Modo de demonstração</strong>Esta cópia não está ligada ao servidor (Google Apps Script). Os dados não serão gravados.</div>';
+}
+
+/* =====================================================================
+   RECURSO
+   ===================================================================== */
+var estado = { unidade:null, statusUnidade:null };
+
+function passo(n){
+  $('r-passo1').classList.toggle('oculto', n!==1);
+  $('r-passo2').classList.toggle('oculto', n!==2);
+  $('r-final').classList.toggle('oculto', n!==3);
+  var pct = n===1?50:100; $('r-barra').style.width=pct+'%'; $('r-barra').textContent=pct+'%';
+  $('r-passo-txt').textContent = n===3 ? 'Concluído' : 'Passo '+n+' de 2';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function aoEscolherUnidade(){
+  var cod=$('r-unidade').value; estado.unidade=UNID[cod]||null; estado.statusUnidade=null;
+  $('r-codigo').textContent = cod||'—';
+  var box=$('r-status-unidade'); box.innerHTML='';
+  if(!cod) return;
+  box.innerHTML='<div class="ajuda">Verificando se a unidade já interpôs recurso…</div>';
+  api('status',{codigo:cod}).then(function(r){
+    estado.statusUnidade=r;
+    if(r.jaInterpos) box.innerHTML='<div class="aviso erro"><strong>Recurso já interposto por esta unidade</strong>Entrada '+esc(r.idEntrada)+', em '+esc(r.dataHora)+'. Novo recurso é inadmissível (preclusão consumativa — art. 7º, § 4º).</div>';
+    else box.innerHTML='<div class="aviso ok"><strong>Nenhum recurso anterior desta unidade.</strong>Atenção: o primeiro envio esgota a faculdade recursal da unidade.</div>';
+  }).catch(function(e){
+    box.innerHTML = e.message==='MODO_DEMO' ? '<div class="ajuda">Modo de demonstração: verificação de preclusão indisponível.</div>' : '<div class="aviso alerta">Não foi possível verificar a situação da unidade: '+esc(e.message)+'</div>';
+  });
+}
+
+function validarPasso1(){
+  var erros=[];
+  if(!estado.unidade) erros.push(['r-unidade','Selecione a unidade judiciária.']);
+  if(!cpfValido($('r-cpf').value)) erros.push(['r-cpf','CPF inválido.']);
+  if($('r-nome').value.trim().length<5) erros.push(['r-nome','Informe o nome completo.']);
+  if(!emailValido($('r-email').value)) erros.push(['r-email','E-mail inválido.']);
+  if(!$('r-cargo').value) erros.push(['r-cargo','Informe o cargo/função.']);
+  if(CFG.exigeCodigo && !/^\d{6}$/.test($('r-codemail').value.trim())) erros.push(['r-codemail','Informe o código de 6 dígitos enviado ao e-mail.']);
+  if(!$('r-matricula').value.trim()) erros.push(['r-matricula','Informe a matrícula.']);
+  if(estado.statusUnidade && estado.statusUnidade.jaInterpos) erros.push(['r-unidade','Esta unidade já interpôs recurso (preclusão consumativa).']);
+  return erros;
+}
+function marcarErros(erros, caixa){
+  document.querySelectorAll('.invalido').forEach(function(e){ e.classList.remove('invalido'); });
+  document.querySelectorAll('.erro-campo').forEach(function(e){ e.remove(); });
+  erros.forEach(function(p){ var c=$(p[0]); if(c){ c.classList.add('invalido'); var m=el('div',{class:'erro-campo'},esc(p[1])); c.insertAdjacentElement('afterend',m); } });
+  if(caixa){ caixa.innerHTML = erros.length ? '<div class="aviso erro"><strong>Corrija '+erros.length+' pendência(s) antes de prosseguir:</strong><ul style="margin:6px 0 0;padding-left:18px">'+erros.slice(0,12).map(function(p){return '<li>'+esc(p[1])+'</li>';}).join('')+(erros.length>12?'<li>…</li>':'')+'</ul></div>' : ''; }
+  if(erros.length){ var c=$(erros[0][0]); if(c) c.scrollIntoView({behavior:'smooth',block:'center'}); }
+}
+
+function provavel(item, unidade){
+  if(!item.dica || !unidade) return false;
+  return item.dica.some(function(c){ return unidade.competencias.indexOf(c)>=0; });
+}
+
+function desenharEixos(){
+  var u=estado.unidade, cat=DADOS.categorias[u.categoria], box=$('r-eixos'); box.innerHTML='';
+  $('r-unidade-resumo').textContent=u.nome+' ('+u.codigo+') — '+cat.rotulo;
+  cat.eixos.forEach(function(chave, i){
+    var eixo=DADOS.eixos[chave], q=i+1, wrap=el('div',{class:'eixo','data-eixo':chave});
+    wrap.innerHTML =
+      '<div class="campo"><div class="rot">'+q+') Você pretende apresentar recurso para algum item relacionado aos '+esc(eixo.titulo)+'? *</div>'+
+      '<div class="opcoes"><label><input type="radio" name="ex-'+chave+'" value="Sim"> Sim</label><label><input type="radio" name="ex-'+chave+'" value="Não"> Não</label></div></div>'+
+      '<div class="campo oculto itens-eixo"><div class="rot">'+q+'.1) Indique o(s) item(ns) dos '+esc(eixo.titulo)+' para o(s) qual(is) deseja apresentar recurso:</div><div class="opcoes">'+
+      eixo.itens.map(function(it){
+        return '<label><input type="checkbox" data-item="'+it.n+'"> Nº '+it.n+' - '+esc(it.sigla)+' - '+esc(it.nome)+
+               '<span class="selo pts">'+it.pontos+' pts</span>'+(provavel(it,u)?'<span class="selo prov" title="Competência da unidade compatível com o indicador">competência compatível</span>':'')+'</label>';
+      }).join('')+'</div><div class="ajuda">'+esc(eixo.fonte)+' da Portaria PRESI nº 1.961/2026 (redação das Portarias nº 4.335 e nº 4.919/2026).</div></div>'+
+      '<div class="blocos"></div>';
+    box.appendChild(wrap);
+    wrap.querySelectorAll('input[type=radio]').forEach(function(r){ r.addEventListener('change',function(){
+      wrap.querySelector('.itens-eixo').classList.toggle('oculto', r.value!=='Sim' || !r.checked);
+      if(r.value==='Não' && r.checked){ wrap.querySelectorAll('input[data-item]').forEach(function(c){ c.checked=false; c.parentNode.classList.remove('marcado'); }); wrap.querySelector('.blocos').innerHTML=''; }
+      atualizarChecklist();
+    }); });
+    wrap.querySelectorAll('input[data-item]').forEach(function(c){ c.addEventListener('change',function(){
+      c.parentNode.classList.toggle('marcado', c.checked); sincronizarBlocos(wrap, eixo); atualizarChecklist();
+    }); });
+    if(i<cat.eixos.length-1) box.appendChild(el('div',{style:'height:6px'}));
+  });
+}
+
+function sincronizarBlocos(wrap, eixo){
+  var blocos=wrap.querySelector('.blocos');
+  var marcados=[].slice.call(wrap.querySelectorAll('input[data-item]:checked')).map(function(c){ return +c.getAttribute('data-item'); });
+  [].slice.call(blocos.children).forEach(function(b){ if(marcados.indexOf(+b.getAttribute('data-n'))<0) b.remove(); });
+  eixo.itens.forEach(function(it){
+    if(marcados.indexOf(it.n)<0 || blocos.querySelector('[data-n="'+it.n+'"]')) return;
+    var b=criarBloco(it); var depois=null;
+    [].slice.call(blocos.children).some(function(x){ if(+x.getAttribute('data-n')>it.n){ depois=x; return true; } });
+    blocos.insertBefore(b, depois);
+  });
+}
+
+function criarBloco(it){
+  var id='it'+it.n, u=estado.unidade, rot='Nº '+it.n+' - '+it.sigla+' - '+it.nome;
+  var b=el('div',{class:'bloco-recurso','data-n':it.n});
+  b.innerHTML =
+    '<div class="rot">Apresente a seguir o recurso referente ao '+esc(rot)+':</div>'+
+    '<textarea id="'+id+'-fund" class="grande" maxlength="'+LIMITE_TEXTO+'"></textarea>'+
+    '<div class="contador" data-para="'+id+'-fund">0 de '+LIMITE_TEXTO+' máx. de caracteres</div>'+
+    '<fieldset class="evid"><legend>Evidências obrigatórias — Anexo III, item 3 (cláusula de barreira)</legend>'+
+      '<div class="subtit"><span class="letra">a</span>Identificação do painel ou relatório utilizado como base</div>'+
+      '<div class="grade">'+
+        '<div class="campo"><label for="'+id+'-ftipo">Fonte *</label><select id="'+id+'-ftipo" class="largo"><option value="">Selecione…</option>'+
+          ['Painel de BI do PJAC (intranet)','Relatório oficial homologado pela área gestora','DataJud','SEEU','CNIUPS','SNA','CNIEP','Outra fonte oficial'].map(function(o){return '<option>'+o+'</option>';}).join('')+'</select></div>'+
+        '<div class="campo"><label for="'+id+'-fid">Nome exato do painel/relatório, aba e endereço *</label><input type="text" id="'+id+'-fid" maxlength="300" placeholder="Ex.: BI PJAC › Prêmio TJAC 2026 › aba '+esc(it.sigla)+'"></div>'+
+      '</div>'+
+      '<div class="subtit"><span class="letra">b</span>Filtros aplicados</div>'+
+      '<div class="grade">'+
+        '<div class="campo"><label for="'+id+'-fper">Período (filtro) *</label><input type="text" id="'+id+'-fper" maxlength="100" value="01/01/2026 a 30/11/2026"></div>'+
+        '<div class="campo"><label for="'+id+'-fun">Unidade (filtro) *</label><input type="text" id="'+id+'-fun" maxlength="200" value="'+esc(u.nome)+'"></div>'+
+        '<div class="campo"><label for="'+id+'-fcl">Classe processual (filtro) *</label><input type="text" id="'+id+'-fcl" maxlength="200" placeholder="Ex.: Todas / Procedimento Comum Cível (7)"></div>'+
+        '<div class="campo"><label for="'+id+'-fout">Outros filtros</label><input type="text" id="'+id+'-fout" maxlength="300" placeholder="Assunto, situação, grau…"></div>'+
+      '</div>'+
+      '<div class="subtit"><span class="letra">c</span>Período de referência utilizado</div>'+
+      '<div class="grade">'+
+        '<div class="campo"><label for="'+id+'-ri">Início *</label><input type="date" id="'+id+'-ri" value="'+PERIODO_APURACAO.inicio+'"></div>'+
+        '<div class="campo"><label for="'+id+'-rf">Fim *</label><input type="date" id="'+id+'-rf" value="'+PERIODO_APURACAO.fim+'"></div>'+
+      '</div>'+
+      '<div class="subtit"><span class="letra">d</span>Memória de cálculo detalhada</div>'+
+      '<div class="campo"><label for="'+id+'-mem">Demonstração aritmética e lógica do índice/pontuação pretendida *</label>'+
+        '<textarea id="'+id+'-mem" maxlength="'+LIMITE_TEXTO+'" placeholder="Ex.: IAD = baixados ÷ casos novos = 1.050 ÷ 1.000 = 105,0% ≥ 100% → 120 pts (Anexo IV)."></textarea>'+
+        '<div class="contador" data-para="'+id+'-mem">0 de '+LIMITE_TEXTO+' máx. de caracteres</div></div>'+
+      '<div class="grade">'+
+        '<div class="campo"><label for="'+id+'-pa">Pontuação atribuída no Resultado Preliminar *</label><input type="number" id="'+id+'-pa" min="0" max="'+it.pontos+'" step="0.01"></div>'+
+        '<div class="campo"><label for="'+id+'-pp">Pontuação pretendida *</label><input type="number" id="'+id+'-pp" min="0" max="'+it.pontos+'" step="0.01"><div class="ajuda">Máximo do indicador: '+it.pontos+' pts.</div></div>'+
+      '</div>'+
+      '<div class="subtit"><span class="letra">e</span>Número e quantidade exata dos processos impugnados</div>'+
+      '<div class="campo"><label for="'+id+'-proc">Números dos processos (um por linha, padrão CNJ) *</label>'+
+        '<textarea id="'+id+'-proc" placeholder="0700001-23.2026.8.01.0001"></textarea>'+
+        '<div class="ajuda" id="'+id+'-proc-info">0 processo(s) válido(s).</div></div>'+
+      '<div class="campo" style="max-width:260px"><label for="'+id+'-qtd">Quantidade exata de processos impugnados *</label><input type="number" id="'+id+'-qtd" min="1" step="1"></div>'+
+    '</fieldset>'+
+    '<div class="campo arquivo"><label for="'+id+'-arq">Anexe as evidências do recurso referente ao Nº '+it.n+' - '+esc(it.sigla)+' (capturas do painel, planilhas, relatórios):</label>'+
+      '<input type="file" id="'+id+'-arq" multiple accept=".pdf,.png,.jpg,.jpeg,.xlsx,.xls,.csv,.docx,.doc"><ul class="lista-arq" id="'+id+'-arq-lista"></ul>'+
+      '<div class="ajuda">Até '+LIMITE_ARQ_MB+' MB por arquivo e '+LIMITE_TOTAL_MB+' MB no total do recurso.</div></div>';
+  setTimeout(function(){
+    ligarContadores(b);
+    $(id+'-proc').addEventListener('input',function(){ var r=lerProcessos($(id+'-proc').value); $(id+'-proc-info').innerHTML=r.validos.length+' processo(s) válido(s)'+(r.invalidos.length?' · <span style="color:var(--erro)">'+r.invalidos.length+' inválido(s): '+esc(r.invalidos.slice(0,3).join('; '))+(r.invalidos.length>3?'…':'')+'</span>':'')+(r.duplicados?' · '+r.duplicados+' repetido(s) ignorado(s)':'')+'.'; atualizarChecklist(); });
+    $(id+'-arq').addEventListener('change',function(){ listarArquivos($(id+'-arq'),$(id+'-arq-lista')); });
+    b.querySelectorAll('input,textarea,select').forEach(function(x){ x.addEventListener('input',atualizarChecklist); x.addEventListener('change',atualizarChecklist); });
+  },0);
+  return b;
+}
+
+function lerProcessos(txt){
+  var vistos={}, validos=[], invalidos=[], dup=0;
+  String(txt||'').split(/[\n;,]+/).map(function(s){return s.trim();}).filter(Boolean).forEach(function(s){
+    var n=cnjNormaliza(s); if(!n){ invalidos.push(s); return; } if(vistos[n]){ dup++; return; } vistos[n]=1; validos.push(n);
+  });
+  return {validos:validos, invalidos:invalidos, duplicados:dup};
+}
+function listarArquivos(input, lista){
+  lista.innerHTML=[].slice.call(input.files).map(function(f){ var mb=f.size/1048576; return '<li'+(mb>LIMITE_ARQ_MB?' style="color:var(--erro)"':'')+'>'+esc(f.name)+' ('+mb.toFixed(2)+' MB)</li>'; }).join('');
+}
+function ligarContadores(raiz){
+  raiz.querySelectorAll('.contador').forEach(function(c){
+    var t=$(c.getAttribute('data-para')); if(!t) return;
+    var f=function(){ var n=t.value.length, max=+t.getAttribute('maxlength'); c.textContent=n+' de '+max+' máx. de caracteres'; c.classList.toggle('estouro', n>=max); };
+    t.addEventListener('input',f); f();
+  });
+}
+
+/* Coleta e valida o passo 2; devolve {erros, payloadSemArquivos, inputsArquivo} */
+function coletarRecurso(){
+  var erros=[], eixos=[], arquivos=[], qtdItens=0, checks={a:true,b:true,c:true,d:true,e:true};
+  var cat=DADOS.categorias[estado.unidade.categoria];
+  cat.eixos.forEach(function(chave){
+    var eixo=DADOS.eixos[chave], wrap=document.querySelector('[data-eixo="'+chave+'"]');
+    var r=wrap.querySelector('input[type=radio]:checked');
+    if(!r){ erros.push(['','Responda se pretende recorrer quanto aos '+eixo.titulo+'.']); checks.ok=false; return; }
+    var reg={chave:chave, titulo:eixo.titulo, resposta:r.value, itens:[]};
+    if(r.value==='Sim'){
+      var marcados=wrap.querySelectorAll('input[data-item]:checked');
+      if(!marcados.length) erros.push(['','Indique ao menos um item dos '+eixo.titulo+' (ou responda "Não").']);
+      eixo.itens.forEach(function(it){
+        if(!wrap.querySelector('input[data-item="'+it.n+'"]:checked')) return;
+        qtdItens++;
+        var id='it'+it.n, v=function(s){ return ($(id+'-'+s).value||'').trim(); }, rot='Nº '+it.n+' ('+it.sigla+')';
+        var procs=lerProcessos($(id+'-proc').value);
+        var item={ n:it.n, sigla:it.sigla, nome:it.nome, pontosMax:it.pontos, fundamentacao:v('fund'),
+          evid:{ fonteTipo:v('ftipo'), fonteId:v('fid'), filtroPeriodo:v('fper'), filtroUnidade:v('fun'), filtroClasse:v('fcl'), filtroOutros:v('fout'),
+                 refInicio:v('ri'), refFim:v('rf'), memoria:v('mem'), pontAtribuida:v('pa'), pontPretendida:v('pp'),
+                 processos:procs.validos, qtd:v('qtd') } };
+        if(item.fundamentacao.length<50) erros.push([id+'-fund', rot+': apresente a fundamentação do recurso (mín. 50 caracteres).']);
+        if(!item.evid.fonteTipo || item.evid.fonteId.length<5){ erros.push([item.evid.fonteTipo?id+'-fid':id+'-ftipo', rot+': (a) identifique o painel/relatório.']); checks.a=false; }
+        if(!item.evid.filtroPeriodo || !item.evid.filtroUnidade || !item.evid.filtroClasse){ erros.push([!item.evid.filtroClasse?id+'-fcl':id+'-fper', rot+': (b) informe os filtros de período, unidade e classe processual.']); checks.b=false; }
+        if(!item.evid.refInicio || !item.evid.refFim || item.evid.refInicio>item.evid.refFim){ erros.push([id+'-ri', rot+': (c) período de referência inválido.']); checks.c=false; }
+        var pa=parseFloat(item.evid.pontAtribuida), pp=parseFloat(item.evid.pontPretendida);
+        if(item.evid.memoria.length<30){ erros.push([id+'-mem', rot+': (d) detalhe a memória de cálculo.']); checks.d=false; }
+        if(isNaN(pa)||pa<0||pa>it.pontos){ erros.push([id+'-pa', rot+': (d) pontuação atribuída deve estar entre 0 e '+it.pontos+'.']); checks.d=false; }
+        if(isNaN(pp)||pp<0||pp>it.pontos){ erros.push([id+'-pp', rot+': (d) pontuação pretendida deve estar entre 0 e '+it.pontos+'.']); checks.d=false; }
+        if(!procs.validos.length || procs.invalidos.length){ erros.push([id+'-proc', rot+': (e) informe números de processo válidos no padrão CNJ'+(procs.invalidos.length?' — corrija: '+procs.invalidos.slice(0,2).join('; '):'')+'.']); checks.e=false; }
+        else if(parseInt(item.evid.qtd,10)!==procs.validos.length){ erros.push([id+'-qtd', rot+': (e) a quantidade declarada ('+(item.evid.qtd||'vazia')+') difere dos '+procs.validos.length+' processo(s) listado(s).']); checks.e=false; }
+        var inp=$(id+'-arq'); [].slice.call(inp.files).forEach(function(f){ arquivos.push({n:it.n,arquivo:f}); if(f.size>LIMITE_ARQ_MB*1048576) erros.push([id+'-arq', rot+': o arquivo '+f.name+' excede '+LIMITE_ARQ_MB+' MB.']); });
+        reg.itens.push(item);
+      });
+    }
+    eixos.push(reg);
+  });
+  if(!qtdItens) erros.push(['','Nenhum item foi selecionado. Um envio sem itens consumiria a faculdade recursal da unidade (preclusão) sem efeito útil.']);
+  var total=arquivos.reduce(function(s,a){return s+a.arquivo.size;},0);
+  if(total>LIMITE_TOTAL_MB*1048576) erros.push(['','O total de anexos ('+(total/1048576).toFixed(1)+' MB) excede '+LIMITE_TOTAL_MB+' MB.']);
+  var decl={};
+  document.querySelectorAll('#r-declaracoes input').forEach(function(c){ decl[c.getAttribute('data-decl')]=c.checked; if(!c.checked) erros.push(['','Marque todas as declarações de ciência.']); });
+  return {erros:erros, eixos:eixos, arquivos:arquivos, decl:decl, qtdItens:qtdItens, checks:checks};
+}
+
+function atualizarChecklist(){
+  if(!estado.unidade) return;
+  var c=coletarRecurso(), ul=$('r-checklist');
+  if(!c.qtdItens){ ul.innerHTML='<li>Selecione ao menos um item para recorrer.</li>'; return; }
+  var rot={a:'a) Identificação do painel ou relatório',b:'b) Filtros aplicados (período, unidade, classe)',c:'c) Período de referência',d:'d) Memória de cálculo e pontuações',e:'e) Número e quantidade exata dos processos'};
+  ul.innerHTML=Object.keys(rot).map(function(k){ return '<li class="'+(c.checks[k]?'ok':'nok')+'">'+rot[k]+'</li>'; }).join('')+'<li class="'+(c.qtdItens?'ok':'nok')+'">'+c.qtdItens+' item(ns) selecionado(s)</li>';
+  $('r-checklist-box').className='aviso '+(c.checks.a&&c.checks.b&&c.checks.c&&c.checks.d&&c.checks.e?'ok':'alerta');
+}
+
+function enviarRecurso(){
+  var c=coletarRecurso();
+  var dedup={}; c.erros=c.erros.filter(function(e){ if(dedup[e[1]]) return false; dedup[e[1]]=1; return true; });
+  marcarErros(c.erros, $('r-erros'));
+  if(c.erros.length) return;
+  var itensTxt=[]; c.eixos.forEach(function(e){ e.itens.forEach(function(i){ itensTxt.push('Nº '+i.n+' - '+i.sigla); }); });
+  confirmar('Confirmar o envio do recurso?',
+    '<p>Unidade: <strong>'+esc(estado.unidade.nome)+'</strong></p><p>Itens: '+esc(itensTxt.join(', '))+'</p>'+
+    '<div class="aviso erro" style="margin:12px 0 0"><strong>Preclusão consumativa</strong>Após o envio, a unidade não poderá apresentar outro recurso nem complementar este (art. 7º, § 4º).</div>'
+  ).then(function(ok){
+    if(!ok) return;
+    mostrarCarregando('Lendo anexos…');
+    Promise.all(c.arquivos.map(function(a){ return lerArquivo(a.arquivo).then(function(r){ r.n=a.n; return r; }); })).then(function(arqs){
+      c.eixos.forEach(function(e){ e.itens.forEach(function(i){ i.arquivos=arqs.filter(function(a){ return a.n===i.n; }); }); });
+      var payload={ unidade:{codigo:estado.unidade.codigo}, respondente:{cpf:$('r-cpf').value, nome:$('r-nome').value.trim(), email:$('r-email').value.trim(), cargo:$('r-cargo').value, matricula:$('r-matricula').value.trim(), codigoEmail:$('r-codemail').value.trim()},
+                    eixos:c.eixos, declaracoes:c.decl, agente:navigator.userAgent };
+      mostrarCarregando('Enviando recurso e gerando o registro…');
+      return api('enviarRecurso', payload);
+    }).then(function(r){
+      esconderCarregando();
+      if(!r || !r.ok){ marcarErros([['', (r&&r.erro)||'Falha no envio.']], $('r-erros')); return; }
+      mostrarFinal('r-final', r, 'Recurso registrado com sucesso'); passo(3);
+    }).catch(function(e){
+      esconderCarregando();
+      marcarErros([['', e.message==='MODO_DEMO' ? 'Modo de demonstração: o formulário foi validado, mas não há servidor configurado para gravar o recurso.' : 'Falha no envio: '+e.message]], $('r-erros'));
+    });
+  });
+}
+
+function mostrarFinal(alvo, r, titulo){
+  var box=$(alvo); box.classList.remove('oculto');
+  box.innerHTML='<div class="aviso ok"><strong>'+esc(titulo)+'</strong>ID da Entrada: <strong>'+esc(r.id)+'</strong> · '+esc(r.dataHora)+'</div>'+
+    '<p>O registro em PDF foi gravado no banco do Prêmio'+(r.emailEnviado?' e enviado para <strong>'+esc(r.email)+'</strong>':'')+'.</p>'+
+    (r.pdfBase64?'<div class="botoes"><button class="btn" type="button" id="'+alvo+'-pdf">Baixar o registro (PDF)</button></div>':'');
+  if(r.pdfBase64) $(alvo+'-pdf').onclick=function(){ baixarPDF(r.pdfBase64, r.pdfNome||('Registro_'+r.id+'.pdf')); };
+}
+
+/* =====================================================================
+   IMPUGNAÇÃO DA LISTA DE SERVIDORES
+   ===================================================================== */
+var contServ=0;
+function mesesNoPeriodo(ini, fim){
+  if(!ini||!fim||ini>fim) return null;
+  var a=new Date(Math.max(new Date(ini+'T12:00:00'), new Date(PERIODO_APURACAO.inicio+'T12:00:00')));
+  var b=new Date(Math.min(new Date(fim+'T12:00:00'), new Date(PERIODO_APURACAO.fim+'T12:00:00')));
+  if(a>b) return 0;
+  return Math.round(((b-a)/86400000+1)/30.4375*10)/10;
+}
+function addServidor(){
+  var k=++contServ, d=el('div',{class:'servidor','data-k':k});
+  d.innerHTML='<button type="button" class="remover">remover</button>'+
+    '<div class="grade">'+
+      '<div class="campo"><label for="s'+k+'-nome">Nome do(a) servidor(a) *</label><input type="text" id="s'+k+'-nome" maxlength="150"></div>'+
+      '<div class="campo"><label for="s'+k+'-mat">Matrícula *</label><input type="text" id="s'+k+'-mat" maxlength="20"></div>'+
+      '<div class="campo"><label for="s'+k+'-tipo">Pedido *</label><select id="s'+k+'-tipo" class="largo"><option value="">Selecione…</option><option>Inclusão na lista da unidade</option><option>Exclusão da lista da unidade</option><option>Correção de dados/lotação</option></select></div>'+
+      '<div class="campo"><label for="s'+k+'-ini">Lotação na unidade — início *</label><input type="date" id="s'+k+'-ini"></div>'+
+      '<div class="campo"><label for="s'+k+'-fim">Lotação na unidade — fim *</label><input type="date" id="s'+k+'-fim" value="'+PERIODO_APURACAO.fim+'"></div>'+
+    '</div><div class="meses" id="s'+k+'-meses"></div>';
+  $('i-servidores').appendChild(d);
+  var calc=function(){ var m=mesesNoPeriodo($('s'+k+'-ini').value,$('s'+k+'-fim').value); $('s'+k+'-meses').innerHTML = m==null?'':'Tempo de lotação no período de apuração (01/01 a 30/11/2026): <strong>'+m.toString().replace('.',',')+' meses</strong> — '+(m>=6?'<span style="color:var(--ok)">atende ao mínimo de 6 meses (art. 6º)</span>':'<span style="color:var(--erro)">abaixo de 6 meses (art. 6º)</span>'); };
+  $('s'+k+'-ini').addEventListener('change',calc); $('s'+k+'-fim').addEventListener('change',calc);
+  d.querySelector('.remover').onclick=function(){ if(document.querySelectorAll('.servidor').length>1) d.remove(); };
+}
+function enviarImpugnacao(){
+  var erros=[], cod=$('i-unidade').value, servidores=[];
+  if(!cod) erros.push(['i-unidade','Selecione a unidade.']);
+  if(!cpfValido($('i-cpf').value)) erros.push(['i-cpf','CPF inválido.']);
+  if(!$('i-matricula').value.trim()) erros.push(['i-matricula','Informe a matrícula.']);
+  if($('i-nome').value.trim().length<5) erros.push(['i-nome','Informe o nome completo.']);
+  if(!emailValido($('i-email').value)) erros.push(['i-email','E-mail inválido.']);
+  if(CFG.exigeCodigo && !/^\d{6}$/.test($('i-codemail').value.trim())) erros.push(['i-codemail','Informe o código de 6 dígitos enviado ao e-mail.']);
+  document.querySelectorAll('.servidor').forEach(function(d){
+    var k=d.getAttribute('data-k'), g=function(s){ return $('s'+k+'-'+s).value.trim(); };
+    var s={nome:g('nome'),matricula:g('mat'),pedido:g('tipo'),inicio:g('ini'),fim:g('fim')};
+    s.meses=mesesNoPeriodo(s.inicio,s.fim);
+    if(s.nome.length<5) erros.push(['s'+k+'-nome','Informe o nome do(a) servidor(a).']);
+    if(!s.matricula) erros.push(['s'+k+'-mat','Informe a matrícula do(a) servidor(a).']);
+    if(!s.pedido) erros.push(['s'+k+'-tipo','Selecione o pedido.']);
+    if(s.meses==null) erros.push(['s'+k+'-ini','Período de lotação inválido.']);
+    servidores.push(s);
+  });
+  if($('i-fund').value.trim().length<30) erros.push(['i-fund','Apresente a fundamentação (mín. 30 caracteres).']);
+  var arqs=[].slice.call($('i-arq').files), total=0;
+  arqs.forEach(function(f){ total+=f.size; if(f.size>LIMITE_ARQ_MB*1048576) erros.push(['i-arq','O arquivo '+f.name+' excede '+LIMITE_ARQ_MB+' MB.']); });
+  if(total>LIMITE_TOTAL_MB*1048576) erros.push(['i-arq','Total de anexos acima de '+LIMITE_TOTAL_MB+' MB.']);
+  if(!$('i-veracidade').checked) erros.push(['i-veracidade','Marque a declaração de veracidade.']);
+  marcarErros(erros, $('i-erros')); if(erros.length) return;
+  confirmar('Confirmar o envio da impugnação?','<p>Unidade: <strong>'+esc(UNID[cod].nome)+'</strong></p><p>'+servidores.length+' servidor(es) objeto da impugnação.</p>').then(function(ok){
+    if(!ok) return;
+    mostrarCarregando('Enviando impugnação…');
+    Promise.all(arqs.map(lerArquivo)).then(function(lidos){
+      return api('enviarImpugnacao',{ unidade:{codigo:cod}, respondente:{cpf:$('i-cpf').value,nome:$('i-nome').value.trim(),email:$('i-email').value.trim(),matricula:$('i-matricula').value.trim(),codigoEmail:$('i-codemail').value.trim()},
+        servidores:servidores, fundamentacao:$('i-fund').value.trim(), arquivos:lidos, agente:navigator.userAgent });
+    }).then(function(r){
+      esconderCarregando();
+      if(!r||!r.ok){ marcarErros([['',(r&&r.erro)||'Falha no envio.']], $('i-erros')); return; }
+      $('i-form').classList.add('oculto'); mostrarFinal('i-final', r, 'Impugnação registrada com sucesso');
+    }).catch(function(e){ esconderCarregando(); marcarErros([['', e.message==='MODO_DEMO'?'Modo de demonstração: não há servidor configurado para gravar a impugnação.':'Falha no envio: '+e.message]], $('i-erros')); });
+  });
+}
+
+function pedirCodigo(pre){
+  var email=$(pre+'-email').value.trim(), info=$(pre+'-cod-info');
+  if(!emailValido(email)){ info.innerHTML='<span style="color:var(--erro)">Informe um e-mail válido antes de pedir o código.</span>'; return; }
+  info.textContent='Enviando código…';
+  api('enviarCodigo',{email:email}).then(function(r){
+    info.innerHTML = r.ok ? '<span style="color:var(--ok)">Código enviado para '+esc(email)+'. Válido por 30 minutos.</span>' : '<span style="color:var(--erro)">'+esc(r.erro)+'</span>';
+  }).catch(function(e){ info.innerHTML = e.message==='MODO_DEMO' ? 'Modo de demonstração: código não enviado (use 123456 para testar a tela).' : '<span style="color:var(--erro)">'+esc(e.message)+'</span>'; });
+}
+
+/* ---------------- inicialização ---------------- */
+(function iniciar(){
+  desenharPrazo();
+  preencherUnidades($('r-unidade'),'');
+  preencherUnidades($('i-unidade'),'');
+  $('r-busca').addEventListener('input',function(){ preencherUnidades($('r-unidade'),this.value); });
+  $('r-unidade').addEventListener('change',aoEscolherUnidade);
+  ['r-cpf','i-cpf'].forEach(function(id){ $(id).addEventListener('input',function(){ this.value=fmtCPF(this.value); }); });
+  $('r-avancar').onclick=function(){
+    var e=validarPasso1(); marcarErros(e, null);
+    if(e.length) return;
+    if(!document.querySelector('#r-eixos .eixo') || $('r-eixos').getAttribute('data-unidade')!==estado.unidade.codigo){ desenharEixos(); $('r-eixos').setAttribute('data-unidade',estado.unidade.codigo); }
+    passo(2); atualizarChecklist();
+  };
+  $('r-voltar').onclick=function(){ passo(1); };
+  $('r-enviar').onclick=enviarRecurso;
+  document.querySelectorAll('#r-declaracoes input').forEach(function(c){ c.addEventListener('change',function(){ c.parentNode.classList.toggle('marcado',c.checked); }); });
+  addServidor(); $('i-add').onclick=addServidor;
+  $('r-pedircod').onclick=function(){ pedirCodigo('r'); }; $('i-pedircod').onclick=function(){ pedirCodigo('i'); };
+  $('i-arq').addEventListener('change',function(){ listarArquivos($('i-arq'),$('i-arq-lista')); });
+  $('i-enviar').onclick=enviarImpugnacao;
+  ligarContadores(document);
+  document.querySelectorAll('.abas button').forEach(function(b){ b.onclick=function(){
+    document.querySelectorAll('.abas button').forEach(function(x){ x.setAttribute('aria-selected', x===b?'true':'false'); });
+    $('aba-recurso').classList.toggle('oculto', b.getAttribute('data-aba')!=='recurso');
+    $('aba-impugnacao').classList.toggle('oculto', b.getAttribute('data-aba')!=='impugnacao');
+  }; });
+  if(temGAS()){ api('config',{}).then(function(c){ if(c&&c.prazo){ PRAZO=c.prazo; } if(c){ CFG.exigeCodigo=!!c.exigeCodigo; ['r','i'].forEach(function(p){ $(p+'-cod-box').classList.toggle('oculto',!CFG.exigeCodigo); }); } desenharPrazo(); if(c&&c.modoTeste) $('faixa-prazo').insertAdjacentHTML('afterbegin','<div class="aviso alerta"><strong>MODO DE TESTE ATIVO</strong>Envios são gravados como teste e o prazo não é verificado.</div>'); }).catch(function(){}); }
+})();
+</script>
+</body>
+</html>

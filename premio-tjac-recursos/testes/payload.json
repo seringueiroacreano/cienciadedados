@@ -1,0 +1,60 @@
+{
+ "unidade": {
+  "codigo": "3621"
+ },
+ "respondente": {
+  "cpf": "529.982.247-25",
+  "nome": "Fulano de Tal Teste",
+  "email": "fulano@tjac.jus.br",
+  "cargo": "Chefe de Gabinete",
+  "matricula": "12345",
+  "codigoEmail": "123456"
+ },
+ "eixos": [
+  {
+   "chave": "1G_GERAIS",
+   "titulo": "Indicadores Gerais do 1º Grau",
+   "resposta": "Sim",
+   "itens": [
+    {
+     "n": 2,
+     "sigla": "TPL",
+     "nome": "Tempo Médio de Duração dos Processos Pendentes Líquidos",
+     "pontosMax": 60,
+     "fundamentacao": "A unidade contesta o TPL apurado, pois processos suspensos foram computados indevidamente no painel de BI, contrariando o Anexo II.",
+     "evid": {
+      "fonteTipo": "Painel de BI do PJAC (intranet)",
+      "fonteId": "BI PJAC > Prêmio TJAC 2026 > TPL",
+      "filtroPeriodo": "01/01/2026 a 30/11/2026",
+      "filtroUnidade": "1ª VARA CÍVEL DE RIO BRANCO",
+      "filtroClasse": "Todas",
+      "filtroOutros": "",
+      "refInicio": "2026-01-01",
+      "refFim": "2026-11-30",
+      "memoria": "TPL apurado 820 dias; excluídos 2 processos suspensos, TPL = 610 dias, faixa de 60 pontos.",
+      "pontAtribuida": "30",
+      "pontPretendida": "60",
+      "processos": [
+       "0700001-29.2026.8.01.0001",
+       "0700002-48.2025.8.01.0001"
+      ],
+      "qtd": "2"
+     },
+     "arquivos": []
+    }
+   ]
+  },
+  {
+   "chave": "1G_TEMATICOS",
+   "titulo": "Indicadores Temáticos do 1º Grau",
+   "resposta": "Não",
+   "itens": []
+  }
+ ],
+ "declaracoes": {
+  "preclusao": true,
+  "reformatio": true,
+  "veracidade": true
+ },
+ "agente": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.36 Safari/537.36"
+}

@@ -1,0 +1,359 @@
+{
+  "eixos": {
+    "1G_GERAIS": {
+      "titulo": "Indicadores Gerais do 1º Grau",
+      "fonte": "Anexo I, quadro A",
+      "itens": [
+        {
+          "n": 1,
+          "sigla": "IAD-C",
+          "nome": "Índice de Atendimento à Demanda - Critério Conjugado",
+          "pontos": 120,
+          "dica": null
+        },
+        {
+          "n": 2,
+          "sigla": "TPL",
+          "nome": "Tempo Médio de Duração dos Processos Pendentes Líquidos",
+          "pontos": 60,
+          "dica": null
+        },
+        {
+          "n": 3,
+          "sigla": "METAS",
+          "nome": "Índice de Cumprimento das Metas Nacionais do CNJ",
+          "pontos": 130,
+          "dica": null
+        },
+        {
+          "n": 4,
+          "sigla": "IREA",
+          "nome": "Índice de Redução de Processos Antigos",
+          "pontos": 40,
+          "dica": null
+        },
+        {
+          "n": 5,
+          "sigla": "ISU",
+          "nome": "Índice de Saneamento e/ou Consistência de Dados",
+          "pontos": 70,
+          "dica": null
+        },
+        {
+          "n": 6,
+          "sigla": "IRASP",
+          "nome": "Índice de Alimentação e Correção de Sistemas Prioritários - CNIUPS/SNA e CNIEP",
+          "pontos": 120,
+          "dica": null
+        }
+      ]
+    },
+    "1G_TEMATICOS": {
+      "titulo": "Indicadores Temáticos do 1º Grau",
+      "fonte": "Anexo I, quadro B",
+      "itens": [
+        {
+          "n": 7,
+          "sigla": "TPL-VDF",
+          "nome": "Tempo Médio do Pendente Líquido nos Processos de Violência Doméstica e Familiar contra a Mulher",
+          "pontos": 30,
+          "dica": [
+            "22",
+            "1"
+          ]
+        },
+        {
+          "n": 8,
+          "sigla": "TPL-FEM",
+          "nome": "Tempo Médio do Pendente Líquido nos Processos de Feminicídio",
+          "pontos": 30,
+          "dica": [
+            "16",
+            "22",
+            "1"
+          ]
+        },
+        {
+          "n": 9,
+          "sigla": "TM-MPU",
+          "nome": "Tempo Médio de Medidas Protetivas de Urgência",
+          "pontos": 40,
+          "dica": [
+            "22",
+            "1"
+          ]
+        },
+        {
+          "n": 10,
+          "sigla": "TPL-Saúde",
+          "nome": "Tempo Médio do Pendente Líquido nos Processos de Judicialização da Saúde",
+          "pontos": 40,
+          "dica": [
+            "46",
+            "7",
+            "35",
+            "1"
+          ]
+        },
+        {
+          "n": 11,
+          "sigla": "ICAP",
+          "nome": "Índice de Celeridade Processual na Tramitação das Ações Penais",
+          "pontos": 40,
+          "dica": [
+            "3",
+            "12",
+            "15",
+            "16",
+            "22",
+            "27",
+            "43",
+            "44",
+            "1"
+          ]
+        },
+        {
+          "n": 12,
+          "sigla": "IAD-Amb",
+          "nome": "Índice de Atendimento à Demanda - Ambiental",
+          "pontos": 30,
+          "dica": [
+            "29",
+            "7",
+            "1"
+          ]
+        },
+        {
+          "n": 13,
+          "sigla": "IJ-Amb",
+          "nome": "Índice de Julgamento de Ações Ambientais Ingressadas até 31.12.2022",
+          "pontos": 30,
+          "dica": [
+            "29",
+            "7",
+            "1"
+          ]
+        },
+        {
+          "n": 14,
+          "sigla": "IPV-PR/LC-SEEU",
+          "nome": "Índice de Julgamento dos Incidentes de Progressão de Regime e Livramento Condicional Vencidos no SEEU",
+          "pontos": 60,
+          "dica": [
+            "20",
+            "1"
+          ]
+        },
+        {
+          "n": 15,
+          "sigla": "IEP-TP",
+          "nome": "Índice de Extinção da Pena",
+          "pontos": 30,
+          "dica": [
+            "20",
+            "1"
+          ]
+        },
+        {
+          "n": 16,
+          "sigla": "I-ACS",
+          "nome": "Índice de Realização de Audiências Concentradas Infracionais em 30.11.2026",
+          "pontos": 20,
+          "dica": [
+            "45",
+            "50",
+            "1"
+          ]
+        },
+        {
+          "n": 17,
+          "sigla": "C-AI",
+          "nome": "Celeridade processual na tramitação de ato infracional (percentual de casos concluídos em até 180 dias)",
+          "pontos": 20,
+          "dica": [
+            "50",
+            "1"
+          ]
+        }
+      ]
+    },
+    "2G_GERAIS": {
+      "titulo": "Indicadores Gerais do 2º Grau - Gabinetes",
+      "fonte": "Anexo I, quadro C",
+      "itens": [
+        {
+          "n": 18,
+          "sigla": "IAD-C-2G",
+          "nome": "Índice de Atendimento à Demanda - Critério Conjugado (2º grau)",
+          "pontos": 120,
+          "dica": null
+        },
+        {
+          "n": 19,
+          "sigla": "TPL-2G",
+          "nome": "Tempo Médio de Duração dos Processos Pendentes Líquidos (2º grau)",
+          "pontos": 60,
+          "dica": null
+        },
+        {
+          "n": 20,
+          "sigla": "METAS-2G",
+          "nome": "Índice de Cumprimento das Metas Nacionais do CNJ (2º grau)",
+          "pontos": 160,
+          "dica": null
+        },
+        {
+          "n": 21,
+          "sigla": "IREA-2G",
+          "nome": "Índice de Redução de Processos Antigos (2º grau)",
+          "pontos": 70,
+          "dica": null
+        },
+        {
+          "n": 22,
+          "sigla": "ISU-2G",
+          "nome": "Índice de Saneamento e/ou Consistência de Dados (2º grau)",
+          "pontos": 50,
+          "dica": null
+        }
+      ]
+    },
+    "2G_TEMATICOS": {
+      "titulo": "Indicadores Temáticos do 2º Grau",
+      "fonte": "Anexo I, quadro D",
+      "itens": [
+        {
+          "n": 23,
+          "sigla": "TPL-Saúde-2G",
+          "nome": "Tempo Médio do Pendente Líquido nos Processos de Judicialização da Saúde (2º grau)",
+          "pontos": 20,
+          "dica": null
+        },
+        {
+          "n": 24,
+          "sigla": "IAD-Amb-2G",
+          "nome": "Índice de Atendimento à Demanda Ambiental (2º grau)",
+          "pontos": 30,
+          "dica": null
+        },
+        {
+          "n": 25,
+          "sigla": "IJ-Amb-2G",
+          "nome": "Índice de Julgamento de Ações Ambientais Ingressadas até 31.12.2022 (2º grau)",
+          "pontos": 20,
+          "dica": null
+        }
+      ]
+    },
+    "2G_PRECEDENTES": {
+      "titulo": "Precedentes Qualificados (2º Grau)",
+      "fonte": "Anexo I, quadro E",
+      "itens": [
+        {
+          "n": 26,
+          "sigla": "IRDR/IAC-SUS",
+          "nome": "IRDR/IAC suscitado/admitido no período (10 pts por evento, até 2)",
+          "pontos": 20,
+          "dica": null
+        },
+        {
+          "n": 27,
+          "sigla": "IRDR/IAC-TESE",
+          "nome": "IRDR/IAC julgado com tese fixada no período (25 pts por evento, até 2)",
+          "pontos": 50,
+          "dica": null
+        }
+      ]
+    },
+    "SEJUD": {
+      "titulo": "Índice de Desempenho da Secretaria Judiciária (SEJUD)",
+      "fonte": "Anexo I, quadro F",
+      "itens": [
+        {
+          "n": 28,
+          "sigla": "ISJ",
+          "nome": "Índice de Desempenho da Secretaria Judiciária",
+          "pontos": 650,
+          "dica": null
+        }
+      ]
+    },
+    "VPRES": {
+      "titulo": "Índice de Desempenho da Vice-Presidência",
+      "fonte": "Anexo I, quadro G",
+      "itens": [
+        {
+          "n": 29,
+          "sigla": "IAD-VPRES",
+          "nome": "Índice de Atendimento à Demanda - VPRES",
+          "pontos": 120,
+          "dica": null
+        },
+        {
+          "n": 30,
+          "sigla": "TPL-VPRES",
+          "nome": "Tempo Médio do Pendente Líquido - VPRES",
+          "pontos": 120,
+          "dica": null
+        },
+        {
+          "n": 31,
+          "sigla": "TPL-Saúde-VPRES",
+          "nome": "Tempo Médio do Pendente Líquido - Saúde - VPRES",
+          "pontos": 40,
+          "dica": null
+        },
+        {
+          "n": 32,
+          "sigla": "ISU-VPRES",
+          "nome": "Índice de Saneamento e/ou Consistência de Dados - VPRES",
+          "pontos": 70,
+          "dica": null
+        }
+      ]
+    }
+  },
+  "categorias": {
+    "1G": {
+      "rotulo": "Unidade judiciária de 1º grau",
+      "eixos": [
+        "1G_GERAIS",
+        "1G_TEMATICOS"
+      ],
+      "avaliada": true
+    },
+    "2G_GAB": {
+      "rotulo": "Gabinete de Desembargador(a)",
+      "eixos": [
+        "2G_GERAIS",
+        "2G_TEMATICOS",
+        "2G_PRECEDENTES"
+      ],
+      "avaliada": true
+    },
+    "SEJUD": {
+      "rotulo": "Secretaria Judiciária",
+      "eixos": [
+        "SEJUD"
+      ],
+      "avaliada": true
+    },
+    "VPRES": {
+      "rotulo": "Vice-Presidência",
+      "eixos": [
+        "VPRES"
+      ],
+      "avaliada": true
+    },
+    "EXCLUIDA": {
+      "rotulo": "Excluída (art. 4º, § 3º - Presidência, Vice-Presidência ou Corregedoria)",
+      "eixos": [],
+      "avaliada": false
+    },
+    "FORA": {
+      "rotulo": "Fora da abrangência do Prêmio (art. 4º)",
+      "eixos": [],
+      "avaliada": false
+    }
+  }
+}

@@ -1,0 +1,2238 @@
+[
+  {
+    "codigo": "33567",
+    "nome": "1ª TURMA RECURSAL",
+    "status": "Ativo",
+    "competencias": [
+      "11",
+      "12",
+      "35"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível | 12 — Juizado Especial Criminal | 35 — Juizado Especial da Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": "Turma Recursal tratada como 1º grau (Sistema dos Juizados): confirmar."
+  },
+  {
+    "codigo": "3612",
+    "nome": "1ª VARA CÍVEL DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "17"
+    ],
+    "competencias_descritivas": "2 — Cível | 17 — Registros Públicos",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "3621",
+    "nome": "1ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3614",
+    "nome": "1ª VARA CRIMINAL DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "16"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 16 — Tribunal do Júri",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "3625",
+    "nome": "1ª VARA CRIMINAL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "9"
+    ],
+    "competencias_descritivas": "3 — Criminal | 9 — Carta precatória",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3632",
+    "nome": "1ª VARA DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "7"
+    ],
+    "competencias_descritivas": "7 — Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "13734",
+    "nome": "1ª VARA DA INFÂNCIA E DA JUVENTUDE DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3630",
+    "nome": "1ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "5"
+    ],
+    "competencias_descritivas": "5 — Família",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "6379",
+    "nome": "1ª VARA DE PROTEÇÃO À MULHER DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "22"
+    ],
+    "competencias_descritivas": "22 — Violência Doméstica e Familiar contra a Mulher",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3638",
+    "nome": "1ª VARA DO TRIBUNAL DO JÚRI DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "16"
+    ],
+    "competencias_descritivas": "16 — Tribunal do Júri",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "33549",
+    "nome": "1CÂMARA CÍVEL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "3639",
+    "nome": "1º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "11"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88896",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 CÍVEL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "4",
+      "8",
+      "10",
+      "17",
+      "26",
+      "28",
+      "29",
+      "33",
+      "34",
+      "40",
+      "42",
+      "46",
+      "47",
+      "49",
+      "50",
+      "51"
+    ],
+    "competencias_descritivas": "2 — Cível | 4 — Idoso | 8 — Execução Fiscal | 10 — Sucessões | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 29 — Ambiental | 33 — Previdenciária | 34 — Sistema Financeiro | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial | 46 — Saúde | 47 — Tributário | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional | 51 — Execução de Títulos extrajudiciais",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88897",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 CRIMINAL",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "15",
+      "16",
+      "20",
+      "22",
+      "39",
+      "43",
+      "44"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 15 — Entorpecentes/Drogas | 16 — Tribunal do Júri | 20 — Execuções Penais e/ou Medidas Alternativas | 22 — Violência Doméstica e Familiar contra a Mulher | 39 — Inquérito Policial | 43 — Combate ao Crime Organizado | 44 — Crimes Contra a Criança e Adolescente",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88898",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 FAMÍLIA",
+    "status": "Ativo",
+    "competencias": [
+      "5"
+    ],
+    "competencias_descritivas": "5 — Família",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88899",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 FAZENDA PUBLICA",
+    "status": "Ativo",
+    "competencias": [
+      "7",
+      "35"
+    ],
+    "competencias_descritivas": "7 — Fazenda Pública | 35 — Juizado Especial da Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88900",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 JUIZADO ESPECIAL CIVEL",
+    "status": "Ativo",
+    "competencias": [
+      "11"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88901",
+    "nome": "1º NÚCLEO DE JUSTIÇA 4.0 VIOLENCIA DOMESTICA",
+    "status": "Ativo",
+    "competencias": [
+      "22"
+    ],
+    "competencias_descritivas": "22 — Violência Doméstica e Familiar contra a Mulher",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "33572",
+    "nome": "2ª TURMA RECURSAL",
+    "status": "Ativo",
+    "competencias": [
+      "11",
+      "12",
+      "35"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível | 12 — Juizado Especial Criminal | 35 — Juizado Especial da Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": "Turma Recursal tratada como 1º grau (Sistema dos Juizados): confirmar."
+  },
+  {
+    "codigo": "3613",
+    "nome": "2ª VARA CÍVEL DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "10"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 10 — Sucessões",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "3622",
+    "nome": "2ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 42 — Falência e Recuperação Judicial",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3615",
+    "nome": "2ª VARA CRIMINAL DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "15"
+    ],
+    "competencias_descritivas": "3 — Criminal | 15 — Entorpecentes/Drogas",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "81694",
+    "nome": "2ª VARA CRIMINAL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "3"
+    ],
+    "competencias_descritivas": "3 — Criminal",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3633",
+    "nome": "2ª VARA DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "7"
+    ],
+    "competencias_descritivas": "7 — Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "13730",
+    "nome": "2ª VARA DA INFÂNCIA E DA JUVENTUDE DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "49",
+      "44"
+    ],
+    "competencias_descritivas": "49 — Infância e Juventude Cível | 44 — Crimes Contra a Criança e Adolescente",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "11046",
+    "nome": "2ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "5"
+    ],
+    "competencias_descritivas": "5 — Família",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "85404",
+    "nome": "2ª VARA DE PROTEÇÃO À MULHER DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "22"
+    ],
+    "competencias_descritivas": "22 — Violência Doméstica e Familiar contra a Mulher",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "16426",
+    "nome": "2ª VARA DO TRIBUNAL DO JÚRI E AUDITORIA MILITAR DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "16",
+      "27"
+    ],
+    "competencias_descritivas": "16 — Tribunal do Júri | 27 — Auditoria Militar",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "33550",
+    "nome": "2CÂMARA CÍVEL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "3641",
+    "nome": "2º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "11"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3623",
+    "nome": "3ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3628",
+    "nome": "3ª VARA CRIMINAL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "9"
+    ],
+    "competencias_descritivas": "3 — Criminal | 9 — Carta precatória",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3631",
+    "nome": "3ª VARA DE FAMÍLIA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "5"
+    ],
+    "competencias_descritivas": "5 — Família",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3642",
+    "nome": "3º JUIZADO ESPECIAL CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "11"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3624",
+    "nome": "4ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "17051",
+    "nome": "5ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3627",
+    "nome": "6ª VARA CÍVEL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "3",
+      "9",
+      "46"
+    ],
+    "competencias_descritivas": "2 — Cível | 3 — Criminal | 9 — Carta precatória | 46 — Saúde",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "93334",
+    "nome": "Assessoria de Apoio à Jurisdição - ASSAJ",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95333",
+    "nome": "ASSESSORIA JURÍDICA DA CORREGEDORIA-GERAL DA JUSTIÇA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95331",
+    "nome": "ASSESSORIA JURÍDICA DA VICE-PRESIDÊNCIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "33548",
+    "nome": "CÂMARA CRIMINAL",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "4",
+      "9",
+      "12",
+      "15",
+      "16",
+      "19",
+      "20",
+      "22",
+      "29",
+      "34",
+      "39",
+      "40",
+      "43",
+      "44",
+      "45",
+      "46",
+      "50"
+    ],
+    "competencias_descritivas": "3 — Criminal | 4 — Idoso | 9 — Carta precatória | 12 — Juizado Especial Criminal | 15 — Entorpecentes/Drogas | 16 — Tribunal do Júri | 19 — Acidentes de Trabalho | 20 — Execuções Penais e/ou Medidas Alternativas | 22 — Violência Doméstica e Familiar contra a Mulher | 29 — Ambiental | 34 — Sistema Financeiro | 39 — Inquérito Policial | 40 — Improbidade administrativa | 43 — Combate ao Crime Organizado | 44 — Crimes Contra a Criança e Adolescente | 45 — Execução de Medidas Socioeducativas | 46 — Saúde | 50 — Infância e Juventude Infracional",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "81605",
+    "nome": "CÂMARAS CÍVEIS REUNIDAS",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "93337",
+    "nome": "Central de Cálculos - CECAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "93338",
+    "nome": "Central de Juízes Leigos e Conciliadores - CELEC",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "93339",
+    "nome": "Central de Justiça Restaurativa - CEJUR",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "81741",
+    "nome": "CENTRAL DE MANDADOS DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88850",
+    "nome": "CENTRAL DE MANDADOS DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "93336",
+    "nome": "Central de Serviços Multidisciplinares - CESEM",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88871",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE ACRELÂNDIA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Acrelândia",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88851",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE ASSIS BRASIL",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Assis Brasil",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88852",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE BRASILEIA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Brasiléia",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88853",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE BUJARI",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Bujari",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88854",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE CAPIXABA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Capixaba",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88855",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88856",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE EPITACIOLÂNDIA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Epitaciolândia",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88857",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE FEIJÓ",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Feijó",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88858",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE JORDAO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Jordão",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88859",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MÂNCIO LIMA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Mâncio Lima",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88860",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MANOEL URBANO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Manoel Urbano",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88861",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE MARECHAL THAUMATURGO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Marechal Thaumaturgo",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88862",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PLÁCIDO DE CASTRO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Plácido de Castro",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88863",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PORTO ACRE",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Porto Acre",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88864",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE PORTO WALTER",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Porto Walter",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88875",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88865",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE RODRIGUES ALVES",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Rodrigues Alves",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88866",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SANTA ROSA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Santa Rosa",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88868",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENA MADUREIRA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Sena Madureira",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88867",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE SENADOR GUIOMARD",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Senador Guiomard",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88869",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE TARAUACÁ",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Tarauacá",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88870",
+    "nome": "CENTRO JUDICIÁRIO DE SOLUÇÃO DE CONFLITOS E CIDADANIA - CEJUSC DE XAPURI",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "1G",
+    "comarca": "Xapuri",
+    "observacao": "CEJUSC: confirmar com a Unidade Gestora se há acervo avaliável."
+  },
+  {
+    "codigo": "88934",
+    "nome": "CONSELHO DA JUSTIÇA ESTADUAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88876",
+    "nome": "CONTADORIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95322",
+    "nome": "COORDENAÇÃO DA INFÂNCIA E JUVENTUDE",
+    "status": "Ativo",
+    "competencias": [
+      "49"
+    ],
+    "competencias_descritivas": "49 — Infância e Juventude Cível",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95323",
+    "nome": "COORDENAÇÃO DA MULHER EM SITUAÇÃO DE VIOLÊNCIA DOMÉSTICA E FAMILIAR",
+    "status": "Ativo",
+    "competencias": [
+      "22"
+    ],
+    "competencias_descritivas": "22 — Violência Doméstica e Familiar contra a Mulher",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "87189",
+    "nome": "COORDENAÇÃO DOS JUIZADOS ESPECIAIS",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95334",
+    "nome": "COORDENADORIA DE ATIVIDADES DA ÁREA JUDICIAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95326",
+    "nome": "COORDENADORIA DE GESTÃO DE PRECATÓRIOS",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95336",
+    "nome": "COORDENADORIA DE SERVIÇOS AUXILIARES",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95337",
+    "nome": "COORDENADORIA DE TECNOLOGIA E GESTÃO DE DADOS DA ATIVIDADE CORRECIONAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95328",
+    "nome": "COORDENADORIA DO GRUPO DE MONITORAMENTO E FISCALIZAÇÃO DO SISTEMA CARCERÁRIO",
+    "status": "Ativo",
+    "competencias": [
+      "20"
+    ],
+    "competencias_descritivas": "20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88877",
+    "nome": "DIRETORIA DO FORO DE ACRELANDIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88878",
+    "nome": "DIRETORIA DO FORO DE ASSIS BRASIL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Assis Brasil",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88879",
+    "nome": "DIRETORIA DO FORO DE BRASILÉIA",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "FORA",
+    "comarca": "Brasiléia",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88880",
+    "nome": "DIRETORIA DO FORO DE BUJARI",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Bujari",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88881",
+    "nome": "DIRETORIA DO FORO DE CAPIXABA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Capixaba",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88882",
+    "nome": "DIRETORIA DO FORO DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88883",
+    "nome": "DIRETORIA DO FORO DE EPITACIOLÂNDIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Epitaciolândia",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88884",
+    "nome": "DIRETORIA DO FORO DE FEIJÓ",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "FORA",
+    "comarca": "Feijó",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88885",
+    "nome": "DIRETORIA DO FORO DE MÂNCIO LIMA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Mâncio Lima",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88886",
+    "nome": "DIRETORIA DO FORO DE MANOEL URBANO",
+    "status": "Ativo",
+    "competencias": [
+      "2"
+    ],
+    "competencias_descritivas": "2 — Cível",
+    "categoria": "FORA",
+    "comarca": "Manoel Urbano",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88887",
+    "nome": "DIRETORIA DO FORO DE PLÁCIDO DE CASTRO",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "FORA",
+    "comarca": "Plácido de Castro",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88888",
+    "nome": "DIRETORIA DO FORO DE PORTO ACRE",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Porto Acre",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88889",
+    "nome": "DIRETORIA DO FORO DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88890",
+    "nome": "DIRETORIA DO FORO DE RODRIGUES ALVES",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rodrigues Alves",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88891",
+    "nome": "DIRETORIA DO FORO DE SENA MADUREIRA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Sena Madureira",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88892",
+    "nome": "DIRETORIA DO FORO DE SENADOR GUIOMARD",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Senador Guiomard",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88893",
+    "nome": "DIRETORIA DO FORO DE TARAUACÁ",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Tarauacá",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88894",
+    "nome": "DIRETORIA DO FORO DE XAPURI",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Xapuri",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88895",
+    "nome": "DISTRIBUIDOR DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95327",
+    "nome": "DIVISÃO DE ANÁLISE E GERENCIAMENTO DE PRECATÓRIOS",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95324",
+    "nome": "DIVISÃO DE ARQUIVO GERAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95325",
+    "nome": "DIVISÃO DE CONSULTORIA E SUPORTE JURÍDICO INSTITUCIONAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95332",
+    "nome": "GABINETE DA CORREGEDORIA-GERAL DA JUSTIÇA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "74296",
+    "nome": "GABINETE DA VICE-PRESIDÊNCIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "VPRES",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Indicadores específicos (art. 9º, parágrafo único)."
+  },
+  {
+    "codigo": "75537",
+    "nome": "GABINETE DO DES. ELCIO SABO MENDES JÚNIOR",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33556",
+    "nome": "GABINETE DO DES. FRANCISCO DJALMA DA SILVA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33558",
+    "nome": "GABINETE DO DES. JÚNIOR ALBERTO RIBEIRO",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33553",
+    "nome": "GABINETE DO DES. LAUDIVON DE OLIVEIRA NOGUEIRA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "EXCLUIDA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Art. 4º, § 3º: gabinete do Presidente (Des. Laudivon Nogueira)."
+  },
+  {
+    "codigo": "90335",
+    "nome": "GABINETE DO DES. LOIS CARLOS ARRUDA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "79447",
+    "nome": "GABINETE DO DES. LUÍS VITÓRIO CAMOLEZ",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "88015",
+    "nome": "GABINETE DO DES. RAIMUNDO NONATO DA COSTA MAIA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33561",
+    "nome": "GABINETE DO DES. ROBERTO BARROS DOS SANTOS",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33560",
+    "nome": "GABINETE DO DES. SAMOEL MARTINS EVANGELISTA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33557",
+    "nome": "GABINETE DO DES.ª DENISE CASTELO BONFIM",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33555",
+    "nome": "GABINETE DO DES.ª REGINA CÉLIA FERRARI LONGUINI",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "33562",
+    "nome": "GABINETE DO DES.ª WALDIRENE OLIVEIRA DA CRUZ LIMA CORDEIRO",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "17",
+      "26",
+      "28",
+      "33",
+      "40",
+      "42"
+    ],
+    "competencias_descritivas": "2 — Cível | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 17 — Registros Públicos | 26 — Consumidor | 28 — Empresarial | 33 — Previdenciária | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial",
+    "categoria": "2G_GAB",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Conferir se é gabinete do Vice-Presidente ou do Corregedor (art. 4º, § 3º)."
+  },
+  {
+    "codigo": "95329",
+    "nome": "GABINETE DO VICE-PRESIDENTE",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "2º Grau / Sede",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "3616",
+    "nome": "JUIZADO ESPECIAL CÍVEL E DE FAZENDA PÚBLICA DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "11",
+      "35"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível | 35 — Juizado Especial da Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "3645",
+    "nome": "JUIZADO ESPECIAL CRIMINAL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "12"
+    ],
+    "competencias_descritivas": "12 — Juizado Especial Criminal",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "17053",
+    "nome": "JUIZADO ESPECIAL DA FAZENDA PÚBLICA DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "35"
+    ],
+    "competencias_descritivas": "35 — Juizado Especial da Fazenda Pública",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "88014",
+    "nome": "NÚCLEO DE APOIO TÉCNICO ÀS VARAS DA INFÂNCIA E JUVENTUDE DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95330",
+    "nome": "NÚCLEO DE GERENCIAMENTO DE PRECEDENTES E DE AÇÕES COLETIVAS",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "95338",
+    "nome": "OUVIDORIA GERAL",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "80358",
+    "nome": "PLANTÃO JUDICIÁRIO DO 2º GRAU",
+    "status": "Ativo",
+    "competencias": [
+      "3"
+    ],
+    "competencias_descritivas": "3 — Criminal",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "88936",
+    "nome": "PRESIDÊNCIA - PRECATÓRIOS",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "93335",
+    "nome": "Secretaria de Apoio à Jurisdição - SEAJU",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "81518",
+    "nome": "SECRETARIA JUDICIÁRIA",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "SEJUD",
+    "comarca": "Rio Branco",
+    "observacao": "Avaliada pela média dos gabinetes (art. 4º, § 2º)."
+  },
+  {
+    "codigo": "33563",
+    "nome": "TRIBUNAL PLENO JURISDICIONAL",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "15",
+      "16",
+      "17",
+      "19",
+      "20",
+      "22",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "33",
+      "34",
+      "35",
+      "39",
+      "40",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51"
+    ],
+    "competencias_descritivas": "2 — Cível | 3 — Criminal | 4 — Idoso | 5 — Família | 7 — Fazenda Pública | 8 — Execução Fiscal | 9 — Carta precatória | 10 — Sucessões | 11 — Juizado Especial Cível | 12 — Juizado Especial Criminal | 15 — Entorpecentes/Drogas | 16 — Tribunal do Júri | 17 — Registros Públicos | 19 — Acidentes de Trabalho | 20 — Execuções Penais e/ou Medidas Alternativas | 22 — Violência Doméstica e Familiar contra a Mulher | 25 — Agrária | 26 — Consumidor | 27 — Auditoria Militar | 28 — Empresarial | 29 — Ambiental | 33 — Previdenciária | 34 — Sistema Financeiro | 35 — Juizado Especial da Fazenda Pública | 39 — Inquérito Policial | 40 — Improbidade administrativa | 42 — Falência e Recuperação Judicial | 43 — Combate ao Crime Organizado | 44 — Crimes Contra a Criança e Adolescente | 45 — Execução de Medidas Socioeducativas | 46 — Saúde | 47 — Tributário | 48 — Internacional | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional | 51 — Execução de Títulos extrajudiciais",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "81836",
+    "nome": "TURMA DE UNIFORMIZAÇÃO DE JURISPRUDÊNCIA",
+    "status": "Ativo",
+    "competencias": [
+      "11",
+      "12",
+      "35"
+    ],
+    "competencias_descritivas": "11 — Juizado Especial Cível | 12 — Juizado Especial Criminal | 35 — Juizado Especial da Fazenda Pública",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Órgão colegiado: a avaliação do 2º grau é feita por gabinete."
+  },
+  {
+    "codigo": "11674",
+    "nome": "VARA CÍVEL DE BRASILÉIA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "11",
+      "17",
+      "35",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "2 — Cível | 11 — Juizado Especial Cível | 17 — Registros Públicos | 35 — Juizado Especial da Fazenda Pública | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Brasiléia",
+    "observacao": ""
+  },
+  {
+    "codigo": "8153",
+    "nome": "VARA CÍVEL DE FEIJÓ",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "11",
+      "17",
+      "35",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "2 — Cível | 11 — Juizado Especial Cível | 17 — Registros Públicos | 35 — Juizado Especial da Fazenda Pública | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Feijó",
+    "observacao": ""
+  },
+  {
+    "codigo": "3608",
+    "nome": "VARA CÍVEL DE SENA MADUREIRA",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "11",
+      "17",
+      "35",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "2 — Cível | 11 — Juizado Especial Cível | 17 — Registros Públicos | 35 — Juizado Especial da Fazenda Pública | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Sena Madureira",
+    "observacao": ""
+  },
+  {
+    "codigo": "3604",
+    "nome": "VARA CÍVEL DE SENADOR GUIOMARD",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "11",
+      "17",
+      "35",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "2 — Cível | 11 — Juizado Especial Cível | 17 — Registros Públicos | 35 — Juizado Especial da Fazenda Pública | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Senador Guiomard",
+    "observacao": ""
+  },
+  {
+    "codigo": "8155",
+    "nome": "VARA CÍVEL DE TARAUACÁ",
+    "status": "Ativo",
+    "competencias": [
+      "2",
+      "11",
+      "17",
+      "35",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "2 — Cível | 11 — Juizado Especial Cível | 17 — Registros Públicos | 35 — Juizado Especial da Fazenda Pública | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Tarauacá",
+    "observacao": ""
+  },
+  {
+    "codigo": "3588",
+    "nome": "VARA CRIMINAL DE BRASILÉIA",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "20"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Brasiléia",
+    "observacao": ""
+  },
+  {
+    "codigo": "8154",
+    "nome": "VARA CRIMINAL DE FEIJÓ",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "20"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Feijó",
+    "observacao": ""
+  },
+  {
+    "codigo": "3609",
+    "nome": "VARA CRIMINAL DE SENA MADUREIRA",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "20"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Sena Madureira",
+    "observacao": ""
+  },
+  {
+    "codigo": "3605",
+    "nome": "VARA CRIMINAL DE SENADOR GUIOMARD",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "12",
+      "20"
+    ],
+    "competencias_descritivas": "3 — Criminal | 12 — Juizado Especial Criminal | 20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Senador Guiomard",
+    "observacao": ""
+  },
+  {
+    "codigo": "8156",
+    "nome": "VARA CRIMINAL DE TARAUACÁ",
+    "status": "Ativo",
+    "competencias": [
+      "3"
+    ],
+    "competencias_descritivas": "3 — Criminal",
+    "categoria": "1G",
+    "comarca": "Tarauacá",
+    "observacao": ""
+  },
+  {
+    "codigo": "16493",
+    "nome": "VARA DA INFÂNCIA E JUVENTUDE DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "44",
+      "49",
+      "50"
+    ],
+    "competencias_descritivas": "44 — Crimes Contra a Criança e Adolescente | 49 — Infância e Juventude Cível | 50 — Infância e Juventude Infracional",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "88663",
+    "nome": "VARA DE APOIO À JURISDIÇÃO - VAJUR",
+    "status": "Ativo",
+    "competencias": [
+      "999"
+    ],
+    "competencias_descritivas": "999 — Não se aplica",
+    "categoria": "FORA",
+    "comarca": "Rio Branco",
+    "observacao": "Unidade administrativa/de apoio."
+  },
+  {
+    "codigo": "3626",
+    "nome": "VARA DE DELITOS DE ORGANIZAÇÕES CRIMINOSAS DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "3",
+      "9"
+    ],
+    "competencias_descritivas": "3 — Criminal | 9 — Carta precatória",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "79521",
+    "nome": "VARA DE DELITOS DE ROUBOS E EXTORSÃO DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "3"
+    ],
+    "competencias_descritivas": "3 — Criminal",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "3629",
+    "nome": "VARA DE EXECUÇÃO DE PENAS NO REGIME FECHADO",
+    "status": "Ativo",
+    "competencias": [
+      "20"
+    ],
+    "competencias_descritivas": "20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "17052",
+    "nome": "VARA DE EXECUÇÃO FISCAL DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "8"
+    ],
+    "competencias_descritivas": "8 — Execução Fiscal",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "14075",
+    "nome": "VARA DE EXECUÇÕES PENAS E MEDIDAS ALTERNATIVAS DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "20"
+    ],
+    "competencias_descritivas": "20 — Execuções Penais e/ou Medidas Alternativas",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "74300",
+    "nome": "VARA DE PROTEÇÃO À MULHER E EXECUÇÕES PENAIS DE CRUZEIRO DO SUL",
+    "status": "Ativo",
+    "competencias": [
+      "20",
+      "22",
+      "45"
+    ],
+    "competencias_descritivas": "20 — Execuções Penais e/ou Medidas Alternativas | 22 — Violência Doméstica e Familiar contra a Mulher | 45 — Execução de Medidas Socioeducativas",
+    "categoria": "1G",
+    "comarca": "Cruzeiro do Sul",
+    "observacao": ""
+  },
+  {
+    "codigo": "3636",
+    "nome": "VARA DE REGISTROS PÚBLICOS, ÓRFÃOS E SUCESSÕES E DE CARTAS PRECATÓRIAS CÍVEIS DE RIO BRANCO",
+    "status": "Ativo",
+    "competencias": [
+      "9",
+      "17"
+    ],
+    "competencias_descritivas": "9 — Carta precatória | 17 — Registros Públicos",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "89612",
+    "nome": "VARA ESTADUAL DO JUIZ DAS GARANTIAS",
+    "status": "Ativo",
+    "competencias": [
+      "39"
+    ],
+    "competencias_descritivas": "39 — Inquérito Policial",
+    "categoria": "1G",
+    "comarca": "Rio Branco",
+    "observacao": ""
+  },
+  {
+    "codigo": "8149",
+    "nome": "VARA ÚNICA DE ACRELÂNDIA",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Acrelândia",
+    "observacao": ""
+  },
+  {
+    "codigo": "16317",
+    "nome": "VARA ÚNICA DE ASSIS BRASIL",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Assis Brasil",
+    "observacao": ""
+  },
+  {
+    "codigo": "8150",
+    "nome": "VARA ÚNICA DE BUJARI",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Bujari",
+    "observacao": ""
+  },
+  {
+    "codigo": "8151",
+    "nome": "VARA ÚNICA DE CAPIXABA",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Capixaba",
+    "observacao": ""
+  },
+  {
+    "codigo": "17049",
+    "nome": "VARA ÚNICA DE EPITACIOLÂNDIA",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Epitaciolândia",
+    "observacao": ""
+  },
+  {
+    "codigo": "8148",
+    "nome": "VARA ÚNICA DE MÂNCIO LIMA",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Mâncio Lima",
+    "observacao": ""
+  },
+  {
+    "codigo": "8152",
+    "nome": "VARA ÚNICA DE MANOEL URBANO",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Manoel Urbano",
+    "observacao": ""
+  },
+  {
+    "codigo": "17050",
+    "nome": "VARA ÚNICA DE PLÁCIDO DE CASTRO",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Plácido de Castro",
+    "observacao": ""
+  },
+  {
+    "codigo": "74302",
+    "nome": "VARA ÚNICA DE PORTO ACRE",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Porto Acre",
+    "observacao": ""
+  },
+  {
+    "codigo": "33547",
+    "nome": "VARA ÚNICA DE RODRIGUES ALVES",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Rodrigues Alves",
+    "observacao": ""
+  },
+  {
+    "codigo": "17054",
+    "nome": "VARA ÚNICA DE XAPURI",
+    "status": "Ativo",
+    "competencias": [
+      "1"
+    ],
+    "competencias_descritivas": "1 — Juízo Único",
+    "categoria": "1G",
+    "comarca": "Xapuri",
+    "observacao": ""
+  }
+]
