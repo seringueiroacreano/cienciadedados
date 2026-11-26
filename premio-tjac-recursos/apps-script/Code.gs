@@ -25,7 +25,7 @@ var CONFIG = {
   DOMINIO_EMAIL: 'tjac.jus.br', // e-mail do responsável deve ser institucional ('' desativa)
   EXIGIR_CODIGO_EMAIL: true,    // envio só com código de verificação enviado ao e-mail
   EMAIL_COPIA: '',              // e-mail da Unidade Gestora do Prêmio (cópia dos registros)
-  LOGO_URL: '',                 // URL pública (PNG/JPG) do brasão para o PDF
+  LOGO_URL: '',                 // opcional: substitui o logotipo embutido (Logo.gs) por uma URL pública
   PASTAS: {
     anexos: '01_Anexos_Recursos',
     registros: '02_Registros_PDF',
@@ -358,35 +358,37 @@ function cssDoc_() {
   return '<style>' +
     '@page{size:A4;margin:16mm 14mm}' +
     'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#222}' +
-    'table.cab{width:100%;border-collapse:collapse;border-bottom:1px solid #999;margin-bottom:14px}' +
+    'table.cab{width:100%;border-collapse:collapse;border-bottom:2px solid #a01027;margin-bottom:14px}' +
     'table.cab td{vertical-align:middle;padding:0 0 10px}' +
-    '.org{font-size:9pt;color:#0d3a66;font-weight:bold;line-height:1.3}' +
+    '.org{font-size:9pt;color:#84172e;font-weight:bold;line-height:1.3}' +
     '.tit-cab{font-size:9.5pt;text-align:center;color:#333}' +
     '.dt{font-size:9pt;text-align:right;color:#333;white-space:nowrap}' +
-    'h1{font-size:15pt;margin:6px 0 12px;color:#111}' +
-    'h2{font-size:12pt;margin:18px 0 8px;color:#111}' +
+    'h1{font-size:15pt;margin:6px 0 12px;color:#84172e}' +
+    'h2{font-size:12pt;margin:18px 0 8px;color:#a01027;border-bottom:1px solid #e7c3ca;padding-bottom:3px}' +
     '.q{font-weight:bold;margin:12px 0 2px}' +
     '.r{margin:0 0 6px}' +
     'ul{margin:2px 0 8px 0;padding-left:18px}' +
     'table.ev{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:9.5pt}' +
     'table.ev td{border:1px solid #ccc;padding:4px 6px;vertical-align:top}' +
-    'table.ev td.k{width:34%;background:#f2f5f9;font-weight:bold}' +
-    '.decisao{border:1px solid #0d3a66;background:#f2f5f9;padding:8px 10px;margin:6px 0 14px}' +
-    '.certidao{border:1px solid #999;padding:14px;margin:14px 0;line-height:1.6}' +
-    '.rod{border-top:1px solid #999;margin-top:22px;padding-top:6px;font-size:8.5pt;color:#444}' +
+    'table.ev td{border:1px solid #e0c4ca}' +
+    'table.ev td.k{width:34%;background:#f8eef0;font-weight:bold;color:#5c0b1b}' +
+    '.decisao{border:1px solid #a01027;border-left:4px solid #a01027;background:#f8eef0;padding:8px 10px;margin:6px 0 14px}' +
+    '.certidao{border:1px solid #a01027;padding:14px;margin:14px 0;line-height:1.6}' +
+    '.rod{border-top:2px solid #a01027;margin-top:22px;padding-top:6px;font-size:8.5pt;color:#444}' +
     '.teste{color:#b3261e;font-weight:bold;border:2px solid #b3261e;padding:4px 8px;display:inline-block;margin-bottom:8px}' +
-    'a{color:#1f5f99}' +
+    'a{color:#a01027}' +
     '</style>';
 }
 
 function cabecalhoDoc_(tituloCab, dataHora) {
-  var logo = '';
+  var src = typeof LOGO_PDF_BASE64 !== 'undefined' ? 'data:image/png;base64,' + LOGO_PDF_BASE64 : '';
   if (CONFIG.LOGO_URL) {
-    try { var b = UrlFetchApp.fetch(CONFIG.LOGO_URL).getBlob(); logo = '<img src="data:' + b.getContentType() + ';base64,' + Utilities.base64Encode(b.getBytes()) + '" style="height:46px;margin-right:8px;vertical-align:middle">'; } catch (e) { logo = ''; }
+    try { var b = UrlFetchApp.fetch(CONFIG.LOGO_URL).getBlob(); src = 'data:' + b.getContentType() + ';base64,' + Utilities.base64Encode(b.getBytes()); } catch (e) { }
   }
+  var logo = src ? '<img src="' + src + '" style="height:62px">' : '<span class="org">PODER JUDICIÁRIO<br>DO ESTADO DO ACRE</span>';
   return '<table class="cab"><tr>' +
-    '<td style="width:34%">' + logo + '<span class="org">PODER JUDICIÁRIO DO ESTADO DO ACRE<br>Tribunal de Justiça</span></td>' +
-    '<td class="tit-cab" style="width:46%">' + esc_(tituloCab) + '</td>' +
+    '<td style="width:24%">' + logo + '</td>' +
+    '<td class="tit-cab" style="width:56%"><span class="org">TRIBUNAL DE JUSTIÇA DO ESTADO DO ACRE</span><br>' + esc_(tituloCab) + '</td>' +
     '<td class="dt" style="width:20%">' + esc_(dataHora) + '</td></tr></table>';
 }
 
@@ -465,7 +467,8 @@ function htmlRegistroImpugnacao_(imp) {
 }
 
 function pdfDeHtml_(html, nome) {
-  return Utilities.newBlob(html, 'text/html', nome.replace(/\.pdf$/, '.html')).getAs('application/pdf').setName(nome);
+  // HtmlService preserva as imagens embutidas (data URI) do logotipo na conversão para PDF.
+  return HtmlService.createHtmlOutput(html).getAs('application/pdf').setName(nome);
 }
 
 // ============================== RELATÓRIOS FINAIS POR UNIDADE ==============================

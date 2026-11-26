@@ -11,6 +11,15 @@ A estrutura replica o *Formulário para submissão de recursos contra os Resulta
 | Lista de unidades e matriz de indicadores | `dados/` (gerados por `scripts/build.py`) |
 | Banco de dados | Google Drive: pasta **Prêmio TJAC de Qualidade 2026 — Sistema de Recursos (BD)** |
 
+## Identidade visual
+
+O formulário e os PDFs usam a identidade do Poder Judiciário do Estado do Acre: vinho `#A01027` (principal) e `#84172E` (logotipo). Os arquivos estão em `assets/`:
+
+- `simbolo_pjac.png`: símbolo sobre fundo vinho, usado no cabeçalho do formulário;
+- `logo_pjac.png`: logotipo completo, usado no cabeçalho do registro e dos relatórios em PDF.
+
+O `build.py` embute as duas imagens (base64) no `Formulario.html` e no `Logo.gs`, sem depender de URL externa.
+
 ## 1. Como funciona
 
 ```
@@ -70,11 +79,12 @@ Passos:
 1. Abra a planilha e vá em **Extensões › Apps Script**.
 2. No editor, crie os arquivos e cole o conteúdo:
    - `Code.gs` ← `apps-script/Code.gs`
+   - **Arquivo › Novo › Script**, com o nome `Logo` ← `apps-script/Logo.gs` (logotipo do PJAC usado nos PDFs)
    - **Arquivo › Novo › HTML**, com o nome `Formulario` ← `apps-script/Formulario.html`
    - Engrenagem › marque "Mostrar arquivo de manifesto" › `appsscript.json` ← `apps-script/appsscript.json`
 3. Ajuste o bloco `CONFIG` no topo do `Code.gs`:
    - `EMAIL_COPIA` recebe o e-mail da Unidade Gestora.
-   - `LOGO_URL` recebe a URL pública do brasão (opcional).
+   - `LOGO_URL` é opcional: o logotipo oficial já vem embutido em `Logo.gs`.
    - `DOMINIO_EMAIL` já vem como `tjac.jus.br`.
 4. Selecione a função `configurar` e clique em **Executar**. Autorize o acesso a Planilhas, Drive e Gmail.
 5. Clique em **Implantar › Nova implantação › App da Web**:

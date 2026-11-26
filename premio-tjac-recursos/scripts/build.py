@@ -23,6 +23,7 @@ Não precisa instalar nada: usa apenas a biblioteca padrão do Python.
 
 from __future__ import annotations
 
+import base64
 import csv
 import json
 import unicodedata
@@ -31,6 +32,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 CSV_UNIDADES = RAIZ / "dados" / "Unidades_Ativas_TJAC_Competencias.csv"
 MODELO_HTML = RAIZ / "scripts" / "formulario_modelo.html"
+SIMBOLO = RAIZ / "assets" / "simbolo_pjac.png"   # símbolo (fundo vinho) — cabeçalho do formulário
+LOGO_PDF = RAIZ / "assets" / "logo_pjac.png"     # logotipo completo — cabeçalho dos PDFs
 
 # ---------------------------------------------------------------------------
 # 1. Matriz de indicadores (Anexo I consolidado)
@@ -243,11 +246,24 @@ def gravar_csv_banco(unidades: list[dict]) -> Path:
 def gerar_html(dados: dict) -> list[Path]:
     modelo = MODELO_HTML.read_text(encoding="utf-8")
     json_txt = json.dumps(dados, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    html = modelo.replace("/*__DADOS__*/null", json_txt)
+    html = modelo.replace("/*__DADOS__*/null", json_txt).replace("/*__SIMBOLO__*/", base64_arquivo(SIMBOLO))
     saidas = [RAIZ / "apps-script" / "Formulario.html", RAIZ / "site" / "index.html"]
     for s in saidas:
         s.write_text(html, encoding="utf-8")
+    # Logo do PDF (registro e relatórios), embutido para não depender de URL externa.
+    logo_gs = RAIZ / "apps-script" / "Logo.gs"
+    logo_gs.write_text(
+        "// Gerado por scripts/build.py a partir de assets/logo_pjac.png — não edite à mão.\n"
+        "// Logotipo do Poder Judiciário do Estado do Acre usado no cabeçalho dos PDFs.\n"
+        f"var LOGO_PDF_BASE64 = '{base64_arquivo(LOGO_PDF)}';\n",
+        encoding="utf-8",
+    )
+    saidas.append(logo_gs)
     return saidas
+
+
+def base64_arquivo(caminho: Path) -> str:
+    return base64.b64encode(caminho.read_bytes()).decode("ascii")
 
 
 def main() -> None:

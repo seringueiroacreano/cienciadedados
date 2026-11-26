@@ -1,6 +1,8 @@
 // Executa o Code.gs em Node com simulações mínimas dos serviços do Google.
 const fs = require('fs'), vm = require('vm'), crypto = require('crypto');
-const code = fs.readFileSync(process.argv[2], 'utf8');
+const path = require('path');
+const logo = path.join(path.dirname(process.argv[2]), 'Logo.gs');
+const code = (fs.existsSync(logo) ? fs.readFileSync(logo, 'utf8') + '\n' : '') + fs.readFileSync(process.argv[2], 'utf8');
 const unidades = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
 const payload = JSON.parse(fs.readFileSync('payload.json', 'utf8'));
 const sheets = {};
@@ -32,12 +34,12 @@ const ctx = {
   Utilities: { formatDate: (d) => d.toLocaleString('pt-BR', { timeZone: 'America/Rio_Branco' }), newBlob: blob, base64Decode: s => Buffer.from(s, 'base64'), base64Encode: b => Buffer.from(b).toString('base64'),
     computeDigest: (a, s) => [...crypto.createHash('sha256').update(s).digest()].map(b => b > 127 ? b - 256 : b), DigestAlgorithm: {}, Charset: {} },
   ScriptApp: { getProjectTriggers: () => [], newTrigger() { const o = { timeBased: () => o, after: () => o, create() {} }; return o; } },
-  HtmlService: {}, ContentService: {}, UrlFetchApp: {}
+  HtmlService: { createHtmlOutput: h => ({ getAs: t => { const b = blob(h, t, 'doc'); lastHtml['doc' + Object.keys(lastHtml).length] = h; return b; } }) }, ContentService: {}, UrlFetchApp: {}
 };
 vm.createContext(ctx); vm.runInContext(code, ctx);
 let r = JSON.parse(ctx.api('enviarRecurso', JSON.stringify(payload)));
 console.log('1º envio:', r.ok, r.id || r.erro);
-fs.writeFileSync('registro.html', lastHtml[Object.keys(lastHtml).pop()]);
+fs.writeFileSync('registro.html', Object.values(lastHtml).find(h => h.includes('Questionário')));
 r = JSON.parse(ctx.api('enviarRecurso', JSON.stringify(payload)));
 console.log('2º envio (preclusão):', r.ok, r.erro);
 const ruim = JSON.parse(JSON.stringify(payload)); ruim.unidade.codigo = '3620x';
@@ -48,5 +50,5 @@ console.log('status 3621:', ctx.api('status', JSON.stringify({ codigo: '3621' })
 // relatórios finais
 ctx.gerarRelatoriosFinais();
 console.log('relatorios:', sheets.Relatorios_Finais ? sheets.Relatorios_Finais.rows.length : 0, 'arquivos:', files.length);
-const k = Object.keys(lastHtml).find(n => n.includes('Relatorio_Final_3621')); fs.writeFileSync('final_3621.html', lastHtml[k]);
-const k2 = Object.keys(lastHtml).find(n => n.includes('Relatorio_Final_3622')); fs.writeFileSync('final_3622.html', lastHtml[k2]);
+const vals = Object.values(lastHtml); fs.writeFileSync('final_3621.html', vals.find(h => h.includes('3621 - 1ª VARA CÍVEL DE RIO BRANCO</td>')));
+fs.writeFileSync('final_3622.html', vals.find(h => h.includes('3622 - 2ª VARA CÍVEL DE RIO BRANCO</td>')));

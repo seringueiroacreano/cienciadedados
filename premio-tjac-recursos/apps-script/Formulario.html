@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --azul:#0d3a66; --azul-esc:#082847; --azul-claro:#1f5f99; --ouro:#c9a227; --verde:#1d7a46;
+  /* Identidade visual do Poder Judiciário do Estado do Acre (vinho) */
+  --azul:#a01027; --azul-esc:#5c0b1b; --azul-claro:#84172e; --ouro:#e7c3ca; --verde:#1d7a46; --vinho-suave:#f8eef0;
   --cinza-campo:#ebebeb; --cinza-borda:#d6d6d6; --texto:#222; --texto-suave:#5c5c5c;
   --erro:#b3261e; --erro-fundo:#fdecea; --ok:#1d7a46; --ok-fundo:#e7f4ec; --alerta-fundo:#fff6dc;
   --fundo:#f3f4f6; --cartao:#fff;
@@ -21,20 +22,20 @@ a{color:var(--azul-claro)}
 .sr{position:absolute;left:-9999px}
 
 /* ---------- Cabeçalho inspirado no portal www.tjac.jus.br ---------- */
-.barra-topo{background:var(--azul-esc);color:#cfd9e6;font-size:12px}
+.barra-topo{background:var(--azul-esc);color:#f1d9de;font-size:12px}
 .barra-topo .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 16px}
-.barra-topo a{color:#cfd9e6;text-decoration:none;margin-left:14px}
+.barra-topo a{color:#f1d9de;text-decoration:none;margin-left:14px}
 .barra-topo a:hover{color:#fff}
-.cab{background:linear-gradient(180deg,var(--azul) 0%,#0b335a 100%);color:#fff;border-bottom:4px solid var(--ouro)}
+.cab{background:var(--azul);color:#fff;border-bottom:4px solid var(--azul-claro)}
 .cab .wrap{display:flex;align-items:center;gap:16px;padding:18px 16px}
-.brasao{width:64px;height:64px;flex:0 0 64px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden}
+.brasao{width:88px;height:88px;flex:0 0 88px;margin:-8px 0;display:grid;place-items:center;overflow:hidden}
 .brasao img{width:100%;height:100%;object-fit:contain}
-.cab .tit small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#d8e2ee}
+.cab .tit small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f6dde2}
 .cab .tit strong{display:block;font-family:Merriweather,Georgia,serif;font-size:22px;line-height:1.25}
-.menu{background:#0a2f54}
+.menu{background:var(--azul-claro)}
 .menu .wrap{display:flex;gap:2px;flex-wrap:wrap;padding:0 8px}
 .menu a{color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 10px;display:block}
-.menu a:hover,.menu a.ativo{background:var(--azul-claro)}
+.menu a:hover,.menu a.ativo{background:var(--azul-esc)}
 .wrap{max-width:1000px;margin:0 auto}
 
 /* ---------- Corpo do formulário (estrutura do formulário do CNJ) ---------- */
@@ -46,7 +47,7 @@ h1.titulo-form{font-family:Merriweather,Georgia,serif;font-size:15px;font-weight
 .abas button[aria-selected=true]{background:var(--azul);color:#fff;border-color:var(--azul)}
 .passo-txt{font-family:Merriweather,Georgia,serif;font-size:12px;color:#777;margin:8px 0 6px 10px}
 .progresso{background:#e4e4e4;border-radius:999px;padding:7px;margin-bottom:26px}
-.progresso div{height:20px;border-radius:999px;background:repeating-linear-gradient(-45deg,#0b4f78 0 12px,#13668f 12px 24px);color:#fff;font-size:11px;text-align:right;padding-right:10px;line-height:20px;transition:width .3s}
+.progresso div{height:20px;border-radius:999px;background:repeating-linear-gradient(-45deg,#84172e 0 12px,#a01027 12px 24px);color:#fff;font-size:11px;text-align:right;padding-right:10px;line-height:20px;transition:width .3s}
 h2.secao{font-family:Merriweather,Georgia,serif;font-size:14px;font-weight:700;margin:30px 0 22px;padding-bottom:12px;border-bottom:1px solid var(--cinza-borda)}
 .campo{margin:0 0 26px}
 .campo>label,.campo>.rot{display:block;font-family:Merriweather,Georgia,serif;font-weight:700;font-size:13.5px;margin-bottom:8px}
@@ -61,11 +62,11 @@ textarea.grande{min-height:140px}
 .contador{font-family:Merriweather,Georgia,serif;font-size:11.5px;color:#777;margin-top:4px}
 .contador.estouro{color:var(--erro);font-weight:700}
 .opcoes label{display:block;padding-left:24px;text-indent:-24px;font-family:Merriweather,Georgia,serif;font-size:13px;margin:0 0 12px;cursor:pointer;font-weight:400}
-.opcoes input{margin:0 9px 0 0;vertical-align:-2px;width:15px;height:15px;accent-color:#2b6cb0}
+.opcoes input{margin:0 9px 0 0;vertical-align:-2px;width:15px;height:15px;accent-color:#a01027}
 .opcoes label .selo{text-indent:0}
 .opcoes label.marcado{font-weight:700}
 .selo{display:inline-block;font-family:"Open Sans",Arial,sans-serif;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.selo.pts{background:#e8eef6;color:var(--azul)}
+.selo.pts{background:var(--vinho-suave);color:var(--azul)}
 .selo.prov{background:var(--ok-fundo);color:var(--ok)}
 .grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 18px}
 .grade .campo{margin:0}
@@ -79,7 +80,7 @@ fieldset.evid .letra{display:inline-grid;place-items:center;width:20px;height:20
 .arquivo input{font-size:13px}
 .lista-arq{font-size:12.5px;color:var(--texto-suave);margin:6px 0 0;padding-left:18px}
 .aviso{border-radius:4px;padding:12px 14px;font-size:13.5px;margin:0 0 18px}
-.aviso.info{background:#eaf1f9;border-left:4px solid var(--azul-claro)}
+.aviso.info{background:var(--vinho-suave);border-left:4px solid var(--azul-claro)}
 .aviso.alerta{background:var(--alerta-fundo);border-left:4px solid var(--ouro)}
 .aviso.erro{background:var(--erro-fundo);border-left:4px solid var(--erro)}
 .aviso.ok{background:var(--ok-fundo);border-left:4px solid var(--ok)}
@@ -93,10 +94,10 @@ fieldset.evid .letra{display:inline-grid;place-items:center;width:20px;height:20
 .checklist li.nok::before{content:"✖ ";color:var(--erro)}
 hr.pont{border:0;border-top:1px dotted #bbb;margin:26px 0 22px}
 .botoes{display:flex;flex-direction:column;gap:10px}
-.btn{display:block;width:100%;border:0;border-radius:999px;background:#1b1b1b;color:#fff;font:inherit;font-weight:600;padding:12px 18px;cursor:pointer;font-size:14px}
-.btn:hover{background:#000}
+.btn{display:block;width:100%;border:0;border-radius:999px;background:var(--azul);color:#fff;font:inherit;font-weight:600;padding:12px 18px;cursor:pointer;font-size:14px}
+.btn:hover{background:var(--azul-esc)}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
-.btn.sec{background:#fff;color:#1b1b1b;border:1px solid #1b1b1b}
+.btn.sec{background:#fff;color:var(--azul);border:1px solid var(--azul)}
 .btn.peq{display:inline-block;width:auto;padding:7px 14px;font-size:13px}
 .servidor{border:1px solid var(--cinza-borda);border-radius:4px;padding:14px 16px;margin:0 0 16px;position:relative}
 .servidor .remover{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--erro);cursor:pointer;font-size:13px}
@@ -113,17 +114,17 @@ dialog .acoes{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;fle
 
 /* ---------- Rodapé ---------- */
 .rodape-form{background:#ebebec;text-align:center;font-family:Merriweather,Georgia,serif;font-size:12px;padding:34px 16px;color:#333;max-width:1032px;margin:28px auto 0}
-.rodape{background:var(--azul-esc);color:#cfd9e6;font-size:13px;margin-top:0}
+.rodape{background:var(--azul-esc);color:#f1d9de;font-size:13px;margin-top:0}
 .rodape .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:26px 16px}
 .rodape h4{color:#fff;margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.rodape a{color:#cfd9e6;display:block;text-decoration:none;margin:3px 0}
+.rodape a{color:#f1d9de;display:block;text-decoration:none;margin:3px 0}
 .rodape a:hover{color:#fff}
 .rodape .base{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:10px 16px;font-size:12px}
 
 @media (max-width:640px){
   .folha{padding:20px 16px 28px}
   .cab .tit strong{font-size:17px}
-  .brasao{width:48px;height:48px;flex-basis:48px}
+  .brasao{width:52px;height:52px;flex-basis:52px}
   .barra-topo .acess{display:none}
 }
 @media print{.barra-topo,.menu,.abas,.botoes,.rodape{display:none}}
@@ -136,10 +137,7 @@ dialog .acoes{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;fle
   <span class="acess"><a href="#conteudo">Ir para o conteúdo</a><a href="https://www.tjac.jus.br" target="_blank" rel="noopener">Portal do TJAC</a><a href="https://www.tjac.jus.br/ouvidoria/" target="_blank" rel="noopener">Ouvidoria</a></span>
 </div></div>
 <header class="cab"><div class="wrap">
-  <div class="brasao" aria-hidden="true">
-    <!-- Substitua pelo brasão oficial: defina LOGO_URL no Code.gs ou troque este SVG. -->
-    <svg viewBox="0 0 64 64" width="52" height="52"><circle cx="32" cy="32" r="30" fill="#0d3a66"/><circle cx="32" cy="32" r="26" fill="none" stroke="#c9a227" stroke-width="2"/><g stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M32 15v32M22 47h20M18 22h28"/><path d="M18 22l-6 12h12zM46 22l-6 12h12z"/></g><circle cx="32" cy="15" r="2.6" fill="#c9a227"/></svg>
-  </div>
+  <div class="brasao"><img src="data:image/png;base64,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" alt="Símbolo do Poder Judiciário do Estado do Acre"></div>
   <div class="tit"><small>Poder Judiciário do Estado do Acre</small><strong>Tribunal de Justiça do Estado do Acre</strong></div>
 </div></header>
 <nav class="menu" aria-label="Portal do TJAC"><div class="wrap">
