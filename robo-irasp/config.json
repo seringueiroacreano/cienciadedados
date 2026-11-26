@@ -1,0 +1,72 @@
+{
+  "_leia": "Parâmetros do robô IRASP. Ajuste aqui, sem mexer no código. Veja README.md.",
+
+  "apuracao": {
+    "codigo": "AUTO",
+    "descricao": "Apuração automática diária (robô): SNA a, b.1, b.2, c e CNIEP pelas fontes oficiais; demais componentes copiados da última apuração manual",
+    "tipo": "Automática",
+    "apuracao_base": "AP01"
+  },
+
+  "sna": {
+    "metabase": "https://coger.tjac.jus.br/metabase",
+    "paineis": {
+      "SNA a":   {"dashboard": "974ce194-3600-441b-b764-6f18e22ed5b4", "ranking": [1289, 1061], "atualizacao": [1294, 1066]},
+      "SNA b.1": {"dashboard": "0d694eab-9368-4110-9528-544c3d26f3fb", "ranking": [1354, 1089], "atualizacao": [1359, 1093]},
+      "SNA b.2": {"dashboard": "0821e6e6-8e25-4a31-a0d5-d5576795f50f", "ranking": [1362, 1098], "atualizacao": [1367, 1102]},
+      "SNA c":   {"dashboard": "180911e8-cd33-44a7-ac4c-6698d25d2ae8", "ranking": [1311, 1070], "atualizacao": [1316, 1074]}
+    },
+    "_faixas": "Anexo IV, item 6 (Portaria PRESI nº 1.961/2026). minimo = percentual mínimo; estrito = true exige 'maior que'.",
+    "faixas": {
+      "SNA a":   [{"minimo": 98.0, "pontos": 20}, {"minimo": 90.0, "pontos": 10}],
+      "SNA b.1": [{"minimo": 80.0, "pontos": 10}],
+      "SNA b.2": [{"minimo": 80.0, "pontos": 10}],
+      "SNA c":   [{"minimo": 90.0, "pontos": 10, "estrito": true}]
+    },
+    "_unidades": "Nome da unidade como aparece no Metabase (sem acento, minúsculo) -> Código MPM.",
+    "unidades": {
+      "rio branco - infancia e juventude / 1a vara da infancia e da juventude": 13734,
+      "rio branco - infancia e juventude / 2a vara da infancia e da juventude": 13730,
+      "cruzeiro do sul / vara da infancia e da juventude": 16493,
+      "brasileia / vara civel": 11674,
+      "feijo / vara civel": 8153,
+      "sena madureira / vara civel": 3608,
+      "senador guiomard / vara civel": 3604,
+      "tarauaca / vara civel": 8155,
+      "acrelandia / vara unica - civel": 8149,
+      "assis brasil / vara unica - civel": 16317,
+      "bujari / vara unica - civel": 8150,
+      "capixaba / vara unica - civel": 8151,
+      "epitaciolandia / vara unica - civel": 17049,
+      "mancio lima / vara unica - civel": 8148,
+      "manoel urbano / vara unica - civel": 8152,
+      "placido de castro / vara unica - civel": 17050,
+      "porto acre / vara unica - civel": 74302,
+      "rodrigues alves / vara unica - civel": 33547,
+      "xapuri / vara unica - civel": 17054
+    }
+  },
+
+  "cniep": {
+    "api": "https://cniep.cnj.jus.br/api",
+    "tribunal": "Tribunal de Justiça do Estado do Acre",
+    "ano": 2026,
+    "mes_inicial": 1,
+    "mes_final": 11,
+    "_dias_tolerancia": "Um mês só conta (e só pode zerar) depois de N dias do fim dele, para dar tempo de submeter a inspeção.",
+    "dias_tolerancia": 10,
+    "_divisor": "'meses_fechados' = proporcional aos meses já encerrados; 12 = leitura literal da fórmula do Anexo IV.",
+    "divisor": "meses_fechados",
+    "pontos_maximos": 30,
+    "_estabelecimentos": "Código MPM da vara -> seq_estabelecimento do CNIEP sob sua corregedoria.",
+    "estabelecimentos": {
+      "14075": [3628, 3629, 3630, 3634],
+      "3605":  [4178],
+      "3609":  [4],
+      "8156":  [5],
+      "3615":  [14]
+    },
+    "_fora": "Estabelecimentos do AC no CNIEP deixados fora do cálculo (sem inspeção registrada; confirmar se são de responsabilidade do TJAC).",
+    "fora_do_calculo": [5327, 4768]
+  }
+}
