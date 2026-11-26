@@ -1,6 +1,7 @@
 // Gera um PDF do formulário completo (todas as perguntas, itens de todas as categorias,
 // campos de evidência e a aba de impugnação), para conferência e divulgação.
 // Uso: node scripts/gerar_pdf_formulario.js site/index.html Formulario_Recursos_PremioTJAC_2026.pdf
+//  ou: node scripts/gerar_pdf_formulario.js "https://script.google.com/macros/s/.../exec" saida.pdf  (formulário publicado)
 const { chromium } = require('playwright');
 const path = require('path');
 
@@ -8,9 +9,19 @@ const path = require('path');
   const [, , html, saida] = process.argv;
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1100, height: 1400 }, locale: 'pt-BR' });
-  await p.goto('file://' + path.resolve(html));
-  await p.waitForTimeout(400);
-  await p.evaluate(() => {
+  const publicado = /^https?:/.test(html);
+  await p.goto(publicado ? html : 'file://' + path.resolve(html), { waitUntil: 'domcontentloaded', timeout: 60000 });
+  let alvo = p;
+  if (publicado) { // o Apps Script serve o formulário dentro de iframes
+    alvo = null;
+    for (let i = 0; i < 60 && !alvo; i++) {
+      for (const f of p.frames()) { try { if (await f.$('#r-unidade')) { alvo = f; break; } } catch (e) { } }
+      if (!alvo) await p.waitForTimeout(500);
+    }
+    if (!alvo) throw new Error('Formulário não encontrado na URL publicada.');
+    await p.waitForTimeout(3000);
+  } else await p.waitForTimeout(400);
+  await alvo.evaluate(() => {
     // Faixa de prazo neutra (sem aviso de "modo de demonstração")
     $('faixa-prazo').innerHTML = '<div class="aviso info"><strong>Prazo recursal</strong>De 04/12/2026 (publicação do Resultado Preliminar) até <strong>07/12/2026, 23h59min59s</strong> (horário do Acre). Resultado Final: 18/12/2026 (art. 5º da Portaria PRESI nº 1.961/2026).</div>';
     // Passo 1 e Passo 2 visíveis ao mesmo tempo
@@ -55,6 +66,10 @@ const path = require('path');
     st.textContent = '@media print{.barra-topo,.menu{display:none} .campo,.subtit{break-inside:avoid} .subtit{break-after:avoid} .folha{box-shadow:none}} body{-webkit-print-color-adjust:exact;print-color-adjust:exact}';
     document.head.appendChild(st);
   });
+  if (publicado) { // copia o formulário montado para uma página própria, para imprimir sem iframes
+    const htmlPronto = await alvo.evaluate(() => '<!DOCTYPE html>' + document.documentElement.outerHTML.replace(/<script[\s\S]*?<\/script>/gi, ''));
+    await p.setContent(htmlPronto, { waitUntil: 'networkidle' });
+  }
   await p.emulateMedia({ media: 'print' });
   await p.pdf({
     path: saida, format: 'A4', printBackground: true,
