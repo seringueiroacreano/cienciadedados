@@ -127,9 +127,9 @@ mascarar o número dos processos sigilosos (228 linhas com `sigilo = S`).
 1. A matriz preenchida: incidentes com datas de suscitamento, admissão e julgamento, tese e evidências.
 2. A lista oficial de IRDR/IAC do TJAC (BNPR/NUGEPNAC): número do tema local, data de admissão, data do
    julgamento e tese. Com ela, o ETL pode **conferir automaticamente** o que a matriz declara.
-3. ~~Extração de movimentos das classes IRDR/IAC~~ → **resolvido pela API do DataJud (seção 8).**
+3. ~~Extração de movimentos das classes IRDR/IAC~~ → **resolvido pela API do DataJud (seção 7).**
 
-## 8. Fonte automática: API Pública do DataJud
+## 7. Fonte automática: API Pública do DataJud
 
 Parametrização TPU/SGT usada (material SUMAE/COGER — Prêmio TJAC 2026):
 
@@ -197,7 +197,7 @@ classifica cada incidente em *Nas duas fontes*, *Só na matriz*, *Só no DataJud
 A chave da API é a **pública** divulgada pelo CNJ na wiki do DataJud. Se o CNJ trocar a chave, use a
 variável `DATAJUD_API_KEY` (Python) ou o parâmetro `DataJud_Chave` (Power BI).
 
-## 7. Como rodar
+## 8. Como rodar
 
 ```bash
 cd painel-irdr-iac
