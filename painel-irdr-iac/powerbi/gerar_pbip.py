@@ -245,6 +245,9 @@ def tmdl_modelo(base: Path):
     (d / "definition" / "model.tmdl").write_text(
         "model Model\n\tculture: pt-BR\n\tdefaultPowerBIDataSourceVersion: powerBI_V3\n\tsourceQueryCulture: pt-BR\n"
         "\tdataAccessOptions\n\t\tlegacyRedirects\n\t\treturnErrorValuesAsNull\n\n"
+        # os grupos citados em "queryGroup:" das expressões precisam existir no modelo
+        "queryGroup Parâmetros\n\n\tannotation PBI_QueryGroupOrder = 0\n\n"
+        "queryGroup DataJud\n\n\tannotation PBI_QueryGroupOrder = 1\n\n"
         f"annotation PBI_QueryOrder = {json.dumps(ordem)}\n\nannotation __PBI_TimeIntelligenceEnabled = 0\n\n"
         f"annotation PBI_ProTooling = [\"DevMode\"]\n\n{tabelas}\n\n", encoding="utf-8")
 
