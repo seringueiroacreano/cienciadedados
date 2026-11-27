@@ -1,0 +1,63 @@
+table dCarga
+	lineageTag: dd178a65-bd79-5cb7-9772-8db25aed735b
+
+	column ultima_carga_datajud
+		dataType: dateTime
+		formatString: dd/mm/yyyy hh:mm
+		lineageTag: 30d2b777-b253-513e-904c-27298a04d00a
+		summarizeBy: none
+		sourceColumn: ultima_carga_datajud
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = DateTime
+
+
+	column atualizado_em
+		dataType: dateTime
+		formatString: dd/mm/yyyy hh:mm:ss
+		lineageTag: 0d00174e-cd98-5fe9-9810-097950c30bf2
+		summarizeBy: none
+		sourceColumn: atualizado_em
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = DateTime
+
+
+	column inicio_apuracao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 4101ff7c-4346-54a9-af72-690719b4fe2e
+		summarizeBy: none
+		sourceColumn: inicio_apuracao
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column fim_apuracao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 337deeec-b2a6-5999-b887-2320645fd4d3
+		summarizeBy: none
+		sourceColumn: fim_apuracao
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	partition dCarga = m
+		mode: import
+		source =
+				let
+				    R = DataJud_Post([size = 0, aggs = [u = [max = [field = "dataHoraUltimaAtualizacao"]]]]),
+				    Ultima = DateTimeZone.FromText(R[aggregations][u][value_as_string]),
+				    Agora = DateTimeZone.SwitchZone(DateTimeZone.UtcNow(), -5),          // horário do Acre (UTC-5)
+				    FimApuracao = List.Min({Periodo_Fim, Date.From(DateTimeZone.SwitchZone(Ultima, -5))}),
+				    Tabela = #table(
+				        type table [ultima_carga_datajud = datetime, atualizado_em = datetime, inicio_apuracao = date, fim_apuracao = date],
+				        {{DateTime.From(DateTimeZone.SwitchZone(Ultima, -5)), DateTime.From(Agora), Periodo_Inicio, FimApuracao}})
+				in
+				    Tabela
+
+	annotation PBI_ResultType = Table
+

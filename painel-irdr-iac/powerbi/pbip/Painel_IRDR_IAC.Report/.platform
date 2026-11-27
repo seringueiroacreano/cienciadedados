@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Painel_IRDR_IAC"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c18bf0bc-f662-56b0-92bd-42b777425181"
+  }
+}

@@ -1,0 +1,69 @@
+table dGabinete
+	lineageTag: eac630b5-55d9-58e4-bdb4-a87297d25ff5
+
+	column chave
+		dataType: string
+		lineageTag: f0be613b-6246-5135-b2ea-7cc3adef081b
+		summarizeBy: none
+		sourceColumn: chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column gabinete
+		dataType: string
+		lineageTag: 90a41c05-0c5e-5c72-b40b-05d98f8d049b
+		summarizeBy: none
+		sourceColumn: gabinete
+
+		annotation SummarizationSetBy = Automatic
+
+	column gabinete_nome_completo
+		dataType: string
+		lineageTag: d6ebb5a8-bb06-5dca-8ce8-c73ec78c2a2c
+		summarizeBy: none
+		sourceColumn: gabinete_nome_completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column elegivel
+		dataType: boolean
+		lineageTag: a7b35487-0b66-5191-9cf6-970cad853f7f
+		summarizeBy: none
+		sourceColumn: elegivel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: 72dcb788-db97-5ceb-aea2-30b916e49f98
+		summarizeBy: none
+		sourceColumn: ordem
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dGabinete = m
+		mode: import
+		source =
+				let
+				    Fonte = #table(
+				        type table [chave = text, gabinete = text, gabinete_nome_completo = text, elegivel = logical, ordem = Int64.Type],
+				        {
+				            {"DENISE", "Des.ª Denise Bonfim", "GABINETE DA DES.ª DENISE CASTELO BONFIM", true, 1},
+				            {"REGINA", "Des.ª Regina Longuini", "GABINETE DA DES.ª REGINA CÉLIA FERRARI LONGUINI", true, 2},
+				            {"WALDIRENE", "Des.ª Waldirene Cordeiro", "GABINETE DA DES.ª WALDIRENE OLIVEIRA DA CRUZ LIMA CORDEIRO", true, 3},
+				            {"ELCIO", "Des. Elcio Mendes", "GABINETE DO DES. ELCIO SABO MENDES JÚNIOR", true, 4},
+				            {"DJALMA", "Des. Francisco Djalma", "GABINETE DO DES. FRANCISCO DJALMA DA SILVA", true, 5},
+				            {"ALBERTO RIBEIRO", "Des. Júnior Alberto", "GABINETE DO DES. JÚNIOR ALBERTO RIBEIRO", true, 6},
+				            {"LAUDIVON", "Des. Laudivon Nogueira", "GABINETE DO DES. LAUDIVON DE OLIVEIRA NOGUEIRA", true, 7},
+				            {"LOIS", "Des. Lois Arruda", "GABINETE DO DES. LOIS CARLOS ARRUDA", true, 8},
+				            {"CAMOLEZ", "Des. Luís Camolez", "GABINETE DO DES. LUÍS VITÓRIO CAMOLEZ", true, 9},
+				            {"RAIMUNDO NONATO", "Des. Raimundo Maia", "GABINETE DO DES. RAIMUNDO NONATO DA COSTA MAIA", true, 10},
+				            {"ROBERTO BARROS", "Des. Roberto Barros", "GABINETE DO DES. ROBERTO BARROS DOS SANTOS", true, 11},
+				            {"FORA DA MATRIZ", "Fora da matriz", "Órgão sem gabinete na Matriz SEJUD 2026", false, 99}
+				        })
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table
+

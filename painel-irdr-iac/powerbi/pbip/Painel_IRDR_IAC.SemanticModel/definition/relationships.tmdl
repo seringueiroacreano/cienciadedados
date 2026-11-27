@@ -1,0 +1,9 @@
+relationship 231cb19f-9fa0-5c91-a7b5-f61d6977c680
+	fromColumn: fIncidente.chave_gabinete
+	toColumn: dGabinete.chave
+
+relationship 6f250013-ff9e-5a30-ac20-3a2791062546
+	crossFilteringBehavior: bothDirections
+	fromColumn: fMovimento.numero
+	toColumn: fIncidente.numero
+

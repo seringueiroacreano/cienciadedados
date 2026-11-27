@@ -1,0 +1,51 @@
+{
+  "name": "TJAC_Plataforma",
+  "dataColors": [
+    "#EF5B5B",
+    "#1FC7A3",
+    "#F5C518",
+    "#8B1E2D",
+    "#5B8DEF",
+    "#9B59B6",
+    "#8A8F98",
+    "#2C3E50"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#3C3C3C",
+  "tableAccent": "#EF5B5B",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#3C3C3C"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#3C3C3C"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E1E5EC"
+              }
+            },
+            "radius": 12
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": true,
+            "transparency": 70
+          }
+        ]
+      }
+    }
+  }
+}

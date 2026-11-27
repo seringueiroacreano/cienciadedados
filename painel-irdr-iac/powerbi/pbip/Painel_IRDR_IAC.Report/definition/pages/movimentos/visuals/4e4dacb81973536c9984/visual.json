@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "4e4dacb81973536c9984",
+  "position": {
+    "x": 8,
+    "y": 686,
+    "z": 11000,
+    "width": 560,
+    "height": 28,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Fonte: DataJud (API Pública) via Power Query — CNJ  ·  Portaria PRESI nº 1.961/2026",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#8A8F98",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

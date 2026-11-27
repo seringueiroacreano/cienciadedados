@@ -1,0 +1,66 @@
+table fMovimento
+	lineageTag: a27d9979-a4d7-5da7-95e7-b0f0fdc6a89c
+
+	column numero
+		dataType: string
+		lineageTag: 806291b0-8712-54d3-a6d7-ad4eb7e6d763
+		summarizeBy: none
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo
+		dataType: int64
+		formatString: 0
+		lineageTag: 08e4f33f-a0eb-5f8f-a743-ea8866a39d81
+		summarizeBy: none
+		sourceColumn: codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column movimento
+		dataType: string
+		lineageTag: fea856d2-ebf9-50d0-8303-35689cab9cca
+		summarizeBy: none
+		sourceColumn: movimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 70f032f8-0522-5f01-a1d6-c6bbec07a5c6
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column parametrizado
+		dataType: string
+		lineageTag: 33e0ba19-f97d-55a1-aaee-72efb7406689
+		summarizeBy: none
+		sourceColumn: parametrizado
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fMovimento = m
+		mode: import
+		source =
+				let
+				    T = Table.ExpandListColumn(Table.SelectColumns(DataJud_Bruto, {"numero", "movimentos"}), "movimentos"),
+				    E = Table.ExpandRecordColumn(T, "movimentos", {"codigo", "movimento", "data"}),
+				    SemVazio = Table.SelectRows(E, each [codigo] <> null),
+				    Param = Table.AddColumn(SemVazio, "parametrizado", each
+				        if [codigo] = 12094 then "Admissão (12094)" else if [codigo] = 12095 then "Não admissão (12095)"
+				        else if [codigo] = 12257 then "Definição de tese (12257)" else if [codigo] = 14985 then "Levantamento (14985)"
+				        else if [codigo] = 12098 then "Suspensão por IRDR (12098)" else if [codigo] = 848 then "Trânsito em julgado"
+				        else if [codigo] = 26 then "Distribuição" else "Outros", type text),
+				    Tipos = Table.TransformColumnTypes(Param, {{"numero", type text}, {"codigo", Int64.Type},
+				              {"movimento", type text}, {"data", type date}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

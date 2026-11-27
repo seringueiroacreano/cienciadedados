@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "c187d802230353f6a65e",
+  "position": {
+    "x": 240,
+    "y": 72,
+    "z": 4000,
+    "width": 800,
+    "height": 32,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Conferência dos lançamentos na TPU — classes 12085/12087 · movimentos 12094, 12095, 12257",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#4A4A4A",
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

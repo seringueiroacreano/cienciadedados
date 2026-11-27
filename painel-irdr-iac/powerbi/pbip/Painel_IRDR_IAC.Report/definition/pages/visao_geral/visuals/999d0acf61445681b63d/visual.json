@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "999d0acf61445681b63d",
+  "position": {
+    "x": 240,
+    "y": 72,
+    "z": 4000,
+    "width": 800,
+    "height": 32,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Portaria PRESI nº 1.961/2026 · Anexo IV, item 18 — SUS (10) e TESE (25)",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#4A4A4A",
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

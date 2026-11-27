@@ -1,0 +1,75 @@
+expression DataJud_Chave = "cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 45aed67a-9db1-5d50-b3fa-fbdcda9ac128
+	queryGroup: Parâmetros
+
+	annotation PBI_ResultType = Text
+
+expression Periodo_Inicio = #date(2026, 1, 1) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 506f750f-0ce6-5846-b3b8-e12f8dcd2b32
+	queryGroup: Parâmetros
+
+	annotation PBI_ResultType = Date
+
+expression Periodo_Fim = #date(2026, 11, 30) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 6053749c-1fb1-5efb-9714-b7179faca204
+	queryGroup: Parâmetros
+
+	annotation PBI_ResultType = Date
+
+expression DataJud_Post =
+		(corpo as record) as record =>
+		let
+		    Tentar = (n as number) as record =>
+		        let
+		            Resp = Web.Contents("https://api-publica.datajud.cnj.jus.br",
+		                [RelativePath = "api_publica_tjac/_search",
+		                 Headers = [Authorization = "APIKey " & DataJud_Chave, #"Content-Type" = "application/json"],
+		                 Content = Json.FromValue(corpo),
+		                 ManualStatusHandling = {429, 500, 502, 503, 504},
+		                 Timeout = #duration(0, 0, 5, 0),
+		                 IsRetry = n > 0]),
+		            Json = try Json.Document(Resp) otherwise [],
+		            Ok = Record.HasFields(Json, "hits")
+		        in
+		            if Ok then Json
+		            else if n >= 5 then error "DataJud indisponível (429/5xx) após 6 tentativas"
+		            else Function.InvokeAfter(() => @Tentar(n + 1), #duration(0, 0, 0, 20 * (n + 1)))
+		in
+		    Tentar(0)
+	lineageTag: 24130422-8cc7-5498-941e-e84f4ff8e12d
+	queryGroup: DataJud
+
+	annotation PBI_ResultType = Function
+
+expression DataJud_Bruto =
+		let
+		    R = DataJud_Post([size = 1000, query = [terms = [classe.codigo = {12085, 12087}]]]),
+		    Hits = List.Transform(R[hits][hits], each [_source]),
+		    // datas do DataJud: "2026051100", "20260511000000" ou ISO "2026-05-11T00:00:00.000Z"
+		    Dt = (v) => if v = null then null else
+		            let t = Text.From(v) in
+		            if Text.Middle(t, 4, 1) = "-" then Date.FromText(Text.Start(t, 10), [Format = "yyyy-MM-dd"])
+		            else #date(Number.From(Text.Start(t, 4)), Number.From(Text.Middle(t, 4, 2)), Number.From(Text.Middle(t, 6, 2))),
+		    Linhas = List.Transform(Hits, (s) => [
+		        numero = s[numeroProcesso],
+		        classe = s[classe][codigo],
+		        especie = if s[classe][codigo] = 12085 then "IRDR" else "IAC",
+		        grau = s[grau],
+		        orgao_julgador = s[orgaoJulgador][nome],
+		        data_suscitamento = Dt(s[dataAjuizamento]),
+		        ultima_atualizacao = Dt(Record.FieldOrDefault(s, "dataHoraUltimaAtualizacao", null)),
+		        movimentos = List.Transform(Record.FieldOrDefault(s, "movimentos", {}),
+		                        each [codigo = [codigo], movimento = [nome], data = Dt([dataHora])])
+		    ]),
+		    Tabela = Table.FromRecords(Linhas),
+		    // o DataJud pode repetir o processo: fica a versão mais recente
+		    Unico = Table.Distinct(Table.Sort(Tabela, {{"ultima_atualizacao", Order.Descending}}), {"numero"})
+		in
+		    Unico
+	lineageTag: 7238a018-03cd-5120-a641-0aec7e06d039
+	queryGroup: DataJud
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

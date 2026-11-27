@@ -1,0 +1,334 @@
+table fIncidente
+	lineageTag: c9b69500-7166-522f-844a-421bdbdce1c8
+
+	measure 'Incidentes' = DISTINCTCOUNT ( fIncidente[numero] )
+		formatString: 0
+		displayFolder: Incidentes
+		lineageTag: bce76f40-adde-5187-865c-c589289f1ec8
+
+	measure 'Incidentes no Período' = CALCULATE ( [Incidentes], fIncidente[sus] = 1 )
+		formatString: 0
+		displayFolder: Incidentes
+		lineageTag: 053104c4-27b5-56f5-af43-3d54b4830c46
+
+	measure 'Eventos SUS' = SUM ( fIncidente[sus] )
+		formatString: 0
+		displayFolder: Incidentes
+		lineageTag: a8b450ae-25e9-56d3-8d83-1c9cb9645256
+
+	measure 'Eventos TESE' = SUM ( fIncidente[tese] )
+		formatString: 0
+		displayFolder: Incidentes
+		lineageTag: f8fdd9aa-ef37-5b82-84aa-2b6126a948a0
+
+	measure 'Incidentes com Alerta' = CALCULATE ( [Incidentes], fIncidente[alertas] <> "" )
+		formatString: 0
+		displayFolder: Incidentes
+		lineageTag: aebb8da7-ce01-5364-a533-6093f4112492
+
+	measure 'Pontos SUS' = SUMX ( fIncidente, 10 * fIncidente[sus] * fIncidente[selecionado] )
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: b8aed082-dbfb-52b2-935a-3fc9c8d2a375
+
+	measure 'Pontos TESE' = SUMX ( fIncidente, 25 * fIncidente[tese] * fIncidente[selecionado] )
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: 896a53a6-1962-5a48-9f18-5353bbe00486
+
+	measure 'Pontos' = SUM ( fIncidente[pontos] ) + 0
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: c3e54d16-5686-5846-9aa8-4c80ae028061
+
+	measure 'Teto' = 70 * CALCULATE ( COUNTROWS ( dGabinete ), dGabinete[elegivel] = TRUE () )
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: 9ef4c7e6-6818-5888-b6f9-8f4662188851
+
+	measure '% do Teto' = DIVIDE ( [Pontos], [Teto] )
+		formatString: 0.0%
+		displayFolder: Pontuação
+		lineageTag: ab1a9b40-eef8-5ddb-ba47-6d76fb7206de
+
+	measure 'Pontos Não Computados' = SUM ( fIncidente[potencial] ) - [Pontos]
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: e8db92d9-732a-5811-b97b-682a55fb950b
+
+	measure 'Gabinetes Pontuando' = COUNTROWS ( FILTER ( VALUES ( dGabinete[gabinete] ), [Pontos] > 0 ) ) + 0
+		formatString: 0
+		displayFolder: Pontuação
+		lineageTag: b00e23c0-b0dd-5f20-ac62-956acf5deb02
+
+	measure 'Atualizado' = "Atualizado: " & FORMAT ( MAX ( dCarga[atualizado_em] ), "dd/mm/yyyy hh:mm:ss" )
+		displayFolder: Rótulos
+		lineageTag: 18ac5716-fb80-5cfc-be71-9eecef1f5788
+
+	measure 'Carga DataJud' = "Última carga do TJAC no DataJud: " & FORMAT ( MAX ( dCarga[ultima_carga_datajud] ), "dd/mm/yyyy" ) & "  ·  Apuração até " & FORMAT ( MAX ( dCarga[fim_apuracao] ), "dd/mm/yyyy" )
+		displayFolder: Rótulos
+		lineageTag: 74eef3c3-77ea-55c1-bc4b-8463bbbf8ced
+
+	column numero
+		dataType: string
+		lineageTag: 46aa1325-7bca-585e-b343-d3c046fea317
+		summarizeBy: none
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column classe
+		dataType: int64
+		formatString: 0
+		lineageTag: 25c44ec1-5bd7-565e-88ee-2cae0a46d3a0
+		summarizeBy: none
+		sourceColumn: classe
+
+		annotation SummarizationSetBy = Automatic
+
+	column especie
+		dataType: string
+		lineageTag: 7a946c7f-b529-5277-81e8-e38f7fe985d4
+		summarizeBy: none
+		sourceColumn: especie
+
+		annotation SummarizationSetBy = Automatic
+
+	column grau
+		dataType: string
+		lineageTag: a9242e3e-a3de-565d-90da-6d0d68f40666
+		summarizeBy: none
+		sourceColumn: grau
+
+		annotation SummarizationSetBy = Automatic
+
+	column orgao_julgador
+		dataType: string
+		lineageTag: 9f09626b-c04b-59db-baec-f14a9b61d127
+		summarizeBy: none
+		sourceColumn: orgao_julgador
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_suscitamento
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: f704c9bd-09e5-5654-8e97-a4cc42daa899
+		summarizeBy: none
+		sourceColumn: data_suscitamento
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column ultima_atualizacao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 9390c99f-34d7-5d5e-8b45-55235c2ecae4
+		summarizeBy: none
+		sourceColumn: ultima_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column data_admissao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: c973a77e-6663-5641-9445-9a2048b2b2c5
+		summarizeBy: none
+		sourceColumn: data_admissao
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column data_nao_admissao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: c2d1a5ab-b9fa-5359-83aa-359323a188d2
+		summarizeBy: none
+		sourceColumn: data_nao_admissao
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column data_tese
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 73e48b6f-e735-5faa-a525-e14ebaf66ca3
+		summarizeBy: none
+		sourceColumn: data_tese
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column data_transito
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 0f5380d8-28ba-5628-9306-551e38537edf
+		summarizeBy: none
+		sourceColumn: data_transito
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+
+	column chave_gabinete
+		dataType: string
+		lineageTag: 7c68b822-35a8-5c44-9554-1bca66fb0ae8
+		summarizeBy: none
+		sourceColumn: chave_gabinete
+
+		annotation SummarizationSetBy = Automatic
+
+	column processo
+		dataType: string
+		lineageTag: 34e8b7d8-61a9-540b-bca1-b68c8bcbb13f
+		summarizeBy: none
+		sourceColumn: processo
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_suscitamento
+		dataType: int64
+		formatString: 0
+		lineageTag: dd3e89b9-81f7-5b30-ac69-29aa0c978001
+		summarizeBy: none
+		sourceColumn: ano_suscitamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column sus
+		dataType: int64
+		formatString: 0
+		lineageTag: fb7cc077-c461-529b-8d87-5be8ccd0b539
+		summarizeBy: none
+		sourceColumn: sus
+
+		annotation SummarizationSetBy = Automatic
+
+	column tese
+		dataType: int64
+		formatString: 0
+		lineageTag: c6ab3f71-f474-5f97-955c-eda2c0cffc12
+		summarizeBy: none
+		sourceColumn: tese
+
+		annotation SummarizationSetBy = Automatic
+
+	column potencial
+		dataType: int64
+		formatString: 0
+		lineageTag: abf26471-faef-5f39-89b2-9d9913a2dee2
+		summarizeBy: none
+		sourceColumn: potencial
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao_tpu
+		dataType: string
+		lineageTag: 080693fc-f385-5cbe-bb8c-3899020870da
+		summarizeBy: none
+		sourceColumn: situacao_tpu
+
+		annotation SummarizationSetBy = Automatic
+
+	column alertas
+		dataType: string
+		lineageTag: bf00d681-a6a8-5ee3-bbd5-538d43e6a00a
+		summarizeBy: none
+		sourceColumn: alertas
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordem_no_gabinete
+		dataType: int64
+		formatString: 0
+		lineageTag: d9851527-1404-5c7f-8a85-efabd458bcc0
+		summarizeBy: none
+		sourceColumn: ordem_no_gabinete
+
+		annotation SummarizationSetBy = Automatic
+
+	column selecionado
+		dataType: int64
+		formatString: 0
+		lineageTag: b3f520b8-0e00-5771-afb0-042692a5c4a4
+		summarizeBy: none
+		sourceColumn: selecionado
+
+		annotation SummarizationSetBy = Automatic
+
+	column pontos
+		dataType: int64
+		formatString: 0
+		lineageTag: 75552ff3-5a1d-5fbc-a399-c4ee2525e7a6
+		summarizeBy: none
+		sourceColumn: pontos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fIncidente = m
+		mode: import
+		source =
+				let
+				    Inicio = dCarga{0}[inicio_apuracao],
+				    Fim = dCarga{0}[fim_apuracao],
+				    Chaves = List.Select(dGabinete[chave], each _ <> "FORA DA MATRIZ"),
+				    PrimeiroMov = (movs as list, cod as number) =>
+				        List.Min(List.Transform(List.Select(movs, each [codigo] = cod), each [data])),
+				    A = Table.AddColumn(DataJud_Bruto, "data_admissao", each PrimeiroMov([movimentos], 12094), type date),
+				    B = Table.AddColumn(A, "data_nao_admissao", each PrimeiroMov([movimentos], 12095), type date),
+				    C = Table.AddColumn(B, "data_tese", each PrimeiroMov([movimentos], 12257), type date),
+				    D = Table.AddColumn(C, "data_transito", each PrimeiroMov([movimentos], 848), type date),
+				    Chave = Table.AddColumn(D, "chave_gabinete", each
+				            List.First(List.Select(Chaves, (k) => Text.Contains(Text.Upper([orgao_julgador]), k)), "FORA DA MATRIZ"), type text),
+				    Proc = Table.AddColumn(Chave, "processo", each
+				            let n = Text.PadStart([numero], 20, "0") in
+				            Text.Start(n, 7) & "-" & Text.Middle(n, 7, 2) & "." & Text.Middle(n, 9, 4) & "." & Text.Middle(n, 13, 1)
+				            & "." & Text.Middle(n, 14, 2) & "." & Text.Middle(n, 16, 4), type text),
+				    Ano = Table.AddColumn(Proc, "ano_suscitamento", each Date.Year([data_suscitamento]), Int64.Type),
+				    Sus = Table.AddColumn(Ano, "sus", each if [data_suscitamento] <> null and [data_suscitamento] >= Inicio
+				            and [data_suscitamento] <= Fim then 1 else 0, Int64.Type),
+				    Tese = Table.AddColumn(Sus, "tese", each if [data_tese] <> null and [data_tese] >= Inicio
+				            and [data_tese] <= Fim then 1 else 0, Int64.Type),
+				    Pot = Table.AddColumn(Tese, "potencial", each 10 * [sus] + 25 * [tese], Int64.Type),
+				    Situacao = Table.AddColumn(Pot, "situacao_tpu", each
+				            if [data_tese] <> null then "Tese fixada (12257)"
+				            else if [data_nao_admissao] <> null then "Não admitido (12095)"
+				            else if [data_admissao] <> null then "Admitido (12094)"
+				            else "Sem juízo de admissibilidade", type text),
+				    Alertas = Table.AddColumn(Situacao, "alertas", each Text.Combine(List.RemoveNulls({
+				            if [data_nao_admissao] <> null then "Não admitido: confirmar se o suscitamento pontua SUS" else null,
+				            if [especie] = "IRDR" and [data_admissao] = null and [data_nao_admissao] = null and [data_tese] = null
+				                then "Sem 12094/12095: admissibilidade não lançada" else null,
+				            if [data_transito] <> null and [data_tese] = null and [data_nao_admissao] = null
+				                then "Transitado sem 12257: tese não registrada?" else null,
+				            if [data_tese] <> null and [data_suscitamento] <> null and Duration.Days([data_tese] - [data_suscitamento]) < 30
+				                then "Tese < 30 dias do ajuizamento: conferir 12257" else null,
+				            if [chave_gabinete] = "FORA DA MATRIZ" then "Órgão fora da Matriz SEJUD" else null}), "; "), type text),
+				    // Portaria PRESI 1.961/2026, Anexo I, item E: os 2 incidentes de maior pontuação por gabinete
+				    Ord = Table.Sort(Alertas, {{"chave_gabinete", Order.Ascending}, {"potencial", Order.Descending},
+				                               {"data_suscitamento", Order.Ascending}, {"numero", Order.Ascending}}),
+				    Grupo = Table.Group(Ord, {"chave_gabinete"}, {{"t", each Table.AddIndexColumn(_, "ordem_no_gabinete", 1, 1, Int64.Type)}}),
+				    Junta = Table.Combine(Grupo[t]),
+				    Sel = Table.AddColumn(Junta, "selecionado", each
+				            if [ordem_no_gabinete] <= 2 and [potencial] > 0 and [chave_gabinete] <> "FORA DA MATRIZ" then 1 else 0, Int64.Type),
+				    Total = Table.AddColumn(Sel, "pontos", each [potencial] * [selecionado], Int64.Type),
+				    Final = Table.RemoveColumns(Total, {"movimentos"}),
+				    // Table.Group/Combine descartam os tipos: retipa tudo
+				    Tipos = Table.TransformColumnTypes(Final, {{"numero", type text}, {"classe", Int64.Type}, {"especie", type text},
+				              {"grau", type text}, {"orgao_julgador", type text}, {"data_suscitamento", type date},
+				              {"ultima_atualizacao", type date}, {"data_admissao", type date}, {"data_nao_admissao", type date},
+				              {"data_tese", type date}, {"data_transito", type date}, {"chave_gabinete", type text},
+				              {"processo", type text}, {"ano_suscitamento", Int64.Type}, {"sus", Int64.Type}, {"tese", Int64.Type},
+				              {"potencial", Int64.Type}, {"situacao_tpu", type text}, {"alertas", type text},
+				              {"ordem_no_gabinete", Int64.Type}, {"selecionado", Int64.Type}, {"pontos", Int64.Type}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

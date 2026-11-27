@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "27084c66e93a5b6b972f",
+  "position": {
+    "x": 240,
+    "y": 12,
+    "z": 3000,
+    "width": 800,
+    "height": 58,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "IRDR e IAC — Aferição",
+                    "textStyle": {
+                      "fontSize": "30pt",
+                      "color": "#4A4A4A",
+                      "fontFamily": "Segoe UI Bold",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

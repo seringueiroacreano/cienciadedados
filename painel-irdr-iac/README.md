@@ -197,7 +197,41 @@ classifica cada incidente em *Nas duas fontes*, *Só na matriz*, *Só no DataJud
 A chave da API é a **pública** divulgada pelo CNJ na wiki do DataJud. Se o CNJ trocar a chave, use a
 variável `DATAJUD_API_KEY` (Python) ou o parâmetro `DataJud_Chave` (Power BI).
 
-## 8. Como rodar
+## 8. Painel Power BI (projeto PBIP)
+
+O projeto fica em `powerbi/pbip/Painel_IRDR_IAC.pbip` e é gerado por `powerbi/gerar_pbip.py`. Ele segue o
+formato da Plataforma de Gestão de Dados do TJAC: logo, título centralizado com subtítulo normativo, painel
+de filtros à esquerda com "Limpar filtros", cartões brancos e, no rodapé, a fonte e a hora da atualização.
+O esboço está em `powerbi/esboco_visao_geral.png`. É uma simulação do layout com os dados de 27/11, e não
+uma captura do Power BI.
+
+| Página | Conteúdo |
+|---|---|
+| Visão Geral | Pontuação por gabinete (SUS × TESE), incidentes por situação na TPU, lista de processos, cartões e medidor da expectativa de pontuação (teto 770 = 11 × 70) |
+| Incidentes e Alertas | Datas de suscitamento, admissão, não admissão e tese; potencial; selecionado; alertas de lançamento |
+| Linha do Tempo | Todos os movimentos dos incidentes, com destaque para os parametrizados |
+
+A única fonte é a API Pública do DataJud. Por isso, **não precisa de gateway** para a atualização agendada.
+
+### Publicar e agendar (feito por quem tem a conta do Power BI)
+
+1. Abra `Painel_IRDR_IAC.pbip` no Power BI Desktop (versão de 2025 em diante, que tem PBIP e PBIR).
+2. Clique em **Atualizar**. Quando o Desktop pedir a credencial de `https://api-publica.datajud.cnj.jus.br`,
+   escolha **Anônimo** e o nível de privacidade **Público**. A chave pública do CNJ já vai no cabeçalho.
+3. Em **Publicar**, escolha o workspace da Plataforma de Gestão de Dados.
+4. No Power BI Service, vá ao modelo semântico e abra **Configurações**:
+   - **Credenciais da fonte de dados → Editar:** escolha Anônimo e Público, e marque *Ignorar teste de conexão*.
+   - **Atualização agendada:** ative, escolha o fuso **(UTC-05:00) Bogotá, Lima, Quito, Rio Branco**,
+     frequência diária e horário **6:00**. É o horário do Acre, antes do expediente.
+   - Clique em **Atualizar agora** para fazer a primeira carga.
+5. O DataJud às vezes responde 429 (sobrecarga). A consulta tenta 6 vezes, com até 7 minutos de espera.
+   Se a atualização das 6h falhar, o Service mantém os dados da véspera.
+
+Para mudar o período (por exemplo, para o ciclo 2027), altere os parâmetros `Periodo_Inicio` e `Periodo_Fim`
+em **Transformar dados**. Para trocar o logo, substitua `powerbi/recursos/logo_tjac.png` pelo arquivo oficial
+e rode `python powerbi/gerar_pbip.py` de novo. O logo atual foi recortado da captura do painel de referência.
+
+## 9. Como rodar
 
 ```bash
 cd painel-irdr-iac
