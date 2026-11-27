@@ -238,17 +238,69 @@ def diagnostico(fs: pd.DataFrame, irdr_bruto: pd.DataFrame, mag: pd.DataFrame | 
 
 
 # ----------------------------------------------------------------- execução
+def incidentes_do_datajud(registros: list[dict], dgab: pd.DataFrame) -> list[regras.Incidente]:
+    """Converte os incidentes do DataJud em registros da matriz (marco SUS = suscitamento)."""
+    chaves = dict(zip(dgab["chave"], dgab["gabinete"]))
+    return [regras.Incidente(
+        ordem=n, numero=r["numero"], especie=r["especie"],
+        gabinete=casar_gabinete(r["gabinete"], chaves) or r["gabinete"],
+        data_suscitamento=r["data_suscitamento"], data_admissao=r["data_admissao"], marco_sus="Suscitamento",
+        data_julgamento=r["data_tese"], tese_fixada=r["data_tese"] is not None,
+        evidencia_sus=r["evidencia_sus"], evidencia_julgamento=r["evidencia_julgamento"])
+        for n, r in enumerate(sorted(registros, key=lambda r: (r["data_suscitamento"] or date.min, r["numero"])), 1)]
+
+
+def conferir(matriz: list[regras.Incidente], dj: pd.DataFrame, corte: date) -> pd.DataFrame:
+    """Matriz (declarado pela SEJUD) x DataJud (lançado na TPU), por número do processo."""
+    so_dig = lambda s: re.sub(r"\D", "", str(s or ""))
+    m = pd.DataFrame(regras.pontuar(matriz, corte)) if matriz else pd.DataFrame(columns=["numero", "sus", "tese"])
+    m = m.assign(chave=m["numero"].map(so_dig))[["chave", "numero", "sus", "tese"]]
+    d = dj.assign(chave=dj["numero"].map(so_dig))[["chave", "numero", "sus", "tese", "gabinete", "alertas"]]
+    c = m.merge(d, on="chave", how="outer", suffixes=("_matriz", "_datajud"), indicator=True)
+    c["resultado"] = c["_merge"].map({"both": "Nas duas fontes", "left_only": "Só na matriz",
+                                      "right_only": "Só no DataJud"}).astype(str)
+    both = c["_merge"] == "both"
+    c.loc[both & ((c["sus_matriz"] != c["sus_datajud"]) | (c["tese_matriz"] != c["tese_datajud"])),
+          "resultado"] = "Divergência de pontuação"
+    return c.drop(columns="_merge")
+
+
 def executar(matriz: Path, saida: Path, irdr_csv: Path | None = None, magistrados_csv: Path | None = None,
-             corte: date | None = None) -> dict[str, pd.DataFrame]:
+             corte: date | None = None, datajud: bool = False, datajud_json: Path | None = None
+             ) -> dict[str, pd.DataFrame]:
     saida.mkdir(parents=True, exist_ok=True)
     param, dgab, incidentes, _ = ler_matriz(matriz, corte)
+    tabelas = {}
+    fonte_pontuacao = "Matriz SEJUD"
+    if datajud or datajud_json:
+        from . import datajud as dj
+        import json
+        if datajud_json:
+            bruto = json.loads(Path(datajud_json).read_text(encoding="utf-8"))
+        else:
+            bruto = {"ultima_carga": str(dj.ultima_carga()), "consulta": datetime.now().isoformat(timespec="seconds"),
+                     "fontes": dj.buscar_incidentes()}
+            (saida / "datajud_bruto.json").write_text(json.dumps(bruto, ensure_ascii=False), encoding="utf-8")
+        regs, movs = dj.converter(bruto["fontes"])
+        inc_dj = incidentes_do_datajud(regs, dgab)
+        pont_dj = pd.DataFrame(regras.pontuar(inc_dj, param["corte"]))
+        fdj = pd.DataFrame(regs).merge(pont_dj[["numero", "gabinete", "sus", "tese", "potencial", "selecionado", "total"]]
+                                       .rename(columns={"gabinete": "gabinete_matriz"}), on="numero", how="left")
+        tabelas["fIncidenteDataJud"] = fdj
+        tabelas["fMovimentoDataJud"] = pd.DataFrame(movs)
+        tabelas["dCarga"] = pd.DataFrame([{"ultima_carga_datajud": bruto.get("ultima_carga"),
+                                           "data_consulta": bruto.get("consulta"), "incidentes": len(regs)}])
+        tabelas["conferencia"] = conferir(incidentes, fdj, param["corte"])
+        if not incidentes:   # matriz ainda vazia: o DataJud vira a fonte provisória da pontuação
+            incidentes, fonte_pontuacao = inc_dj, "DataJud (provisório: matriz sem incidentes)"
+    param["fonte_pontuacao"] = fonte_pontuacao
     finc = pd.DataFrame(regras.pontuar(incidentes, param["corte"]))
     if finc.empty:
         finc = pd.DataFrame(columns=["ordem", "numero", "especie", "gabinete", "data_sus", "data_julgamento",
                                      "sus", "tese", "potencial", "pendencias", "ordem_no_gabinete",
                                      "selecionado", "pontos_sus", "pontos_tese", "total"])
     tabelas = {"dParametros": pd.DataFrame([param]), "dGabinete": dgab, "fIncidente": finc,
-               "fPontuacaoGabinete": consolidar(dgab, finc)}
+               "fPontuacaoGabinete": consolidar(dgab, finc), **tabelas}
     if irdr_csv:
         bruto = ler_csv(irdr_csv)
         mag = ler_csv(magistrados_csv) if magistrados_csv else None

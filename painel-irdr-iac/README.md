@@ -127,8 +127,75 @@ mascarar o número dos processos sigilosos (228 linhas com `sigilo = S`).
 1. A matriz preenchida: incidentes com datas de suscitamento, admissão e julgamento, tese e evidências.
 2. A lista oficial de IRDR/IAC do TJAC (BNPR/NUGEPNAC): número do tema local, data de admissão, data do
    julgamento e tese. Com ela, o ETL pode **conferir automaticamente** o que a matriz declara.
-3. Uma extração de movimentos com data para os incidentes das classes IRDR e IAC (conferir os códigos na TPU/CNJ),
-   em vez da extração de sobrestamento.
+3. ~~Extração de movimentos das classes IRDR/IAC~~ → **resolvido pela API do DataJud (seção 8).**
+
+## 8. Fonte automática: API Pública do DataJud
+
+Parametrização TPU/SGT usada (material SUMAE/COGER — Prêmio TJAC 2026):
+
+| Código | Tipo | Significado | Uso no painel |
+|---|---|---|---|
+| **12085** | Classe | IRDR | filtra os incidentes |
+| **12087** | Classe | IAC | filtra os incidentes |
+| 12094 | Movimento | Admissão de IRDR | data de admissão (marco SUS alternativo) |
+| 12095 | Movimento | Não admissão de IRDR | alerta |
+| 12098 | Movimento | Processo suspenso por IRDR (nos processos de origem) | página de impacto |
+| 14985 | Movimento | Levantamento da suspensão por IRDR | página de impacto |
+| **12257** | Movimento | Definição de tese jurídica | **gera a TESE (25 pts)** |
+
+Regra de conversão: SUS = data de ajuizamento do incidente (suscitamento); TESE = 1º movimento 12257;
+gabinete = órgão julgador atual. Cada ato traz como evidência "DataJud: mov. X em data".
+
+**Primeira coleta (27/11/2026, última carga do TJAC no DataJud: 28/10/2026):** 22 incidentes
+(18 IRDR, 4 IAC), 12 deles ajuizados em 2026. A pontuação provisória é de **140 pts** em 6 gabinetes:
+
+| Gabinete | SUS | TESE | Pontos |
+|---|---|---|---|
+| Des. Roberto Barros dos Santos | 3 | 1 | 45 |
+| Des.ª Waldirene Cordeiro | 1 | 1 (IAC) | 35 |
+| Des.ª Regina Longuini | 3 | 0 | 20 |
+| Des. Luís Vitório Camolez | 2 | 0 | 20 |
+| Des. Elcio Mendes | 1 | 0 | 10 |
+| Des. Francisco Djalma | 1 | 0 | 10 |
+| Demais 5 gabinetes | 0 | 0 | 0 |
+
+**Alertas de lançamento na TPU, que a SEJUD precisa tratar antes do fechamento:**
+- **Nenhum incidente de 2026 tem a admissão (12094) lançada.** Quatro têm a não admissão (12095) e os
+  demais estão sem juízo de admissibilidade registrado.
+- **4 IRDR de 2026 não foram admitidos** (Regina ×3, Elcio). A matriz considera o suscitamento como
+  marco SUS. **Decisão necessária:** incidente não admitido pontua SUS? A Portaria precisa ser lida
+  nesse ponto. Se não pontuar, o total cai 30 pts (Regina −20, Elcio −10).
+- **As duas TESES saíram 9 e 27 dias após o ajuizamento.** O prazo é atípico para IRDR/IAC. É preciso
+  conferir no SAJ se o 12257 foi lançado no incidente certo. As duas TESES somam 50 dos 140 pts.
+- **7 incidentes antigos transitaram sem 12257 nem 12095.** Eles podem ter sido julgados com tese não
+  registrada. Isso não afeta 2026, mas afeta o BNP/CNJ.
+- **Um incidente está na "1ª Câmara Cível"**, e não em um gabinete. Sem relator identificado, não é
+  atribuível.
+- **Defasagem:** a última carga do DataJud é de 28/10. Atos de novembro só aparecem na carga de dezembro.
+  A apuração final precisa de nova coleta depois dela ou da matriz da SEJUD.
+- **Fora das classes 12085/12087 há 26 processos** com algum dos movimentos 12094/12095/12257/14985.
+  O 14985 é esperado nos processos de origem. Os demais indicam lançamento no processo errado e
+  precisam ser revisados (lista via `--datajud`).
+
+**Papel de cada fonte:** o DataJud é a fonte **automática e auditável** (o mesmo dado que o CNJ vê).
+A matriz da SEJUD é a fonte **homologada**. Quando a matriz estiver preenchida, a tabela `conferencia`
+classifica cada incidente em *Nas duas fontes*, *Só na matriz*, *Só no DataJud* ou
+*Divergência de pontuação*. Enquanto a matriz estiver vazia, o painel pontua pelo DataJud e
+`dParametros[fonte_pontuacao]` mostra "provisório".
+
+### Conectar o Power BI
+
+- **Opção A — direto na API** (`powerbi/datajud_tjac.pq`): o Power Query chama o DataJud em cada
+  atualização e calcula SUS, TESE e a seleção dos 2 maiores por gabinete. A credencial é "Anônimo", e a
+  chave pública do CNJ vai no cabeçalho. O DataJud responde 429 com frequência (cluster sobrecarregado),
+  então a função tenta 6 vezes com espera crescente. Agende a atualização fora do horário comercial.
+- **Opção B — via ETL em Python** (`python -m irdr_iac ... --datajud`): grava os CSV com
+  `fIncidenteDataJud`, `fMovimentoDataJud`, `dCarga` e `conferencia`, e o Power BI lê os arquivos
+  (`powerbi/carregar_tabelas.pq`). Esta é a opção recomendada para a apuração oficial, porque a regra
+  é testada e a coleta fica salva (`datajud_bruto.json`), o que permite reproduzir o resultado.
+
+A chave da API é a **pública** divulgada pelo CNJ na wiki do DataJud. Se o CNJ trocar a chave, use a
+variável `DATAJUD_API_KEY` (Python) ou o parâmetro `DataJud_Chave` (Power BI).
 
 ## 7. Como rodar
 
@@ -136,8 +203,10 @@ mascarar o número dos processos sigilosos (228 linhas com `sigilo = S`).
 cd painel-irdr-iac
 pip install pandas xlrd openpyxl
 python -m unittest discover -s testes -t .
-python -m irdr_iac CAMINHO/Matriz_Afericao_IRDR_IAC_TJAC_2026_Gabinetes.xls --irdr CAMINHO/IRDR.csv --magistrados CAMINHO/MAGISTRADOS.csv --saida saida
+python -m irdr_iac CAMINHO/Matriz_Afericao_IRDR_IAC_TJAC_2026_Gabinetes.xls --datajud --irdr CAMINHO/IRDR.csv --magistrados CAMINHO/MAGISTRADOS.csv --saida saida
 ```
+
+Sem internet, ou com o DataJud fora do ar, troque `--datajud` por `--datajud-json saida/datajud_bruto.json`.
 
 Use `--corte AAAA-MM-DD` para simular uma aferição parcial em outra data. Os CSV de entrada e de saída
 não são versionados (`.gitignore`), porque contêm números de processos.
