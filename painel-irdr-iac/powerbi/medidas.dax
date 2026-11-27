@@ -1,0 +1,69 @@
+// =====================================================================
+// Painel de Aferição IRDR/IAC — medidas DAX (tabela de medidas: _Medidas)
+// Modelo: dGabinete 1—* fIncidente ; dGabinete 1—* fPontuacaoGabinete ;
+//         dTema 1—* fSobrestamento (numero_tema) ; dCalendario 1—* fSobrestamento (data_recebimento)
+//         dGabinete 1—* fSobrestamento (gabinete -> gabinete_matriz, inativa: USERELATIONSHIP)
+// =====================================================================
+
+// ---------- Parâmetros (dParametros tem 1 linha)
+Data de Corte = MAX ( dParametros[corte] )
+Teto por Gabinete = MAX ( dParametros[teto_gabinete] )
+Dias para o Encerramento = DATEDIFF ( TODAY (), MAX ( dParametros[encerramento] ), DAY )
+
+// ---------- Aferição oficial (Portaria PRESI 1.961/2026, Anexo IV, item 18)
+Pontos SUS = SUM ( fPontuacaoGabinete[pontos_sus] )
+Pontos TESE = SUM ( fPontuacaoGabinete[pontos_tese] )
+Pontos Totais = SUM ( fPontuacaoGabinete[total] )
+% do Teto = DIVIDE ( [Pontos Totais], [Teto por Gabinete] * [Gabinetes Elegíveis] )
+
+Gabinetes Elegíveis = CALCULATE ( COUNTROWS ( dGabinete ), dGabinete[elegivel] = TRUE () )
+Gabinetes Aferidos =
+    CALCULATE ( COUNTROWS ( fPontuacaoGabinete ),
+        fPontuacaoGabinete[situacao] IN { "Aferido", "Aferido sem pontuação", "Sem registros no período" } )
+Gabinetes Pendentes = [Gabinetes Elegíveis] - [Gabinetes Aferidos]
+% Cobertura da Aferição = DIVIDE ( [Gabinetes Aferidos], [Gabinetes Elegíveis] )
+Gabinetes Pontuando = CALCULATE ( COUNTROWS ( fPontuacaoGabinete ), fPontuacaoGabinete[total] > 0 )
+
+Incidentes Registrados = COUNTROWS ( fIncidente )
+Incidentes IRDR = CALCULATE ( [Incidentes Registrados], fIncidente[especie] = "IRDR" )
+Incidentes IAC = CALCULATE ( [Incidentes Registrados], fIncidente[especie] = "IAC" )
+Eventos SUS = SUM ( fIncidente[sus] )
+Eventos TESE = SUM ( fIncidente[tese] )
+Incidentes Selecionados = SUM ( fIncidente[selecionado] )
+Incidentes com Pendência = CALCULATE ( [Incidentes Registrados], fIncidente[pendencias] <> "" )
+Pontos Potenciais Não Computados =        // o que ficou fora pelo limite de 2 por gabinete
+    SUMX ( fIncidente, fIncidente[potencial] ) - SUM ( fIncidente[total] )
+
+// Ranking (empate mantém posição — a Portaria não desempata gabinetes)
+Ranking Gabinete =
+    IF ( HASONEVALUE ( dGabinete[gabinete] ),
+        RANKX ( FILTER ( ALL ( dGabinete ), dGabinete[elegivel] ), [Pontos Totais],, DESC, DENSE ) )
+
+// Semáforo da situação (formatação condicional por valor de campo)
+Cor Situação =
+    SWITCH ( SELECTEDVALUE ( fPontuacaoGabinete[situacao] ),
+        "Aferido", "#1B7F3B",
+        "Aferido sem pontuação", "#6B7280",
+        "Sem registros no período", "#6B7280",
+        "Registros em conferência", "#B7791F",
+        "Aguardando incidentes", "#B7791F",
+        "#B42318" )            // aguardando manifestação / conflito
+
+// Quanto falta para o teto (meta-alvo de cada gabinete)
+Pontos para o Teto = [Teto por Gabinete] - [Pontos Totais]
+
+// ---------- Contexto: acervo sobrestado por precedentes (NÃO entra na pontuação)
+Processos Sobrestados = DISTINCTCOUNT ( fSobrestamento[numero] )
+Processos Suspensos Hoje = CALCULATE ( [Processos Sobrestados], fSobrestamento[fase] = "Suspenso" )
+Processos Pendentes = CALCULATE ( [Processos Sobrestados], fSobrestamento[fase] = "Pendente" )
+Temas com Sobrestamento = DISTINCTCOUNT ( fSobrestamento[numero_tema] )
+% Julgados = DIVIDE ( CALCULATE ( [Processos Sobrestados], fSobrestamento[julgado] = TRUE () ), [Processos Sobrestados] )
+Tempo Médio Suspenso (dias) =
+    AVERAGEX ( FILTER ( fSobrestamento, fSobrestamento[fase] = "Suspenso" ), fSobrestamento[dias_desde_recebimento] )
+Sobrestados no Gabinete =
+    CALCULATE ( [Processos Sobrestados],
+        USERELATIONSHIP ( dGabinete[gabinete], fSobrestamento[gabinete_matriz] ) )
+
+// ---------- Qualidade de dados
+Linhas com Rótulo Conflitante = CALCULATE ( COUNTROWS ( fSobrestamento ), fSobrestamento[tema_com_rotulo_conflitante] = TRUE () )
+Achados Críticos = CALCULATE ( COUNTROWS ( qualidade ), qualidade[gravidade] = "Crítica" )
